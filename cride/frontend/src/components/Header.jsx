@@ -20,7 +20,7 @@ export default function Header() {
                     color: #fff;
                 }
                 .form-search-parent{
-                    width: 60%;
+                    width: 50%;
                 }
                 @media only screen and (min-width: 768px) {
                     .form-search-parent{
@@ -32,6 +32,7 @@ export default function Header() {
                         width: 50%;
                     }
                   }
+                  
                 .form-search{
                    
                     padding: 20px 20px 20px 40px!important;
@@ -40,16 +41,16 @@ export default function Header() {
             </style>
             <Navbar bg="light" expand="md" className="border-bottom p-0">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <div className="border-right ml-3 pr-4">
+                <div className="ml-3 pr-4">
                     <Navbar.Brand href="#home">CRide</Navbar.Brand>
                     <Button variant="ligth border-0 mb-1 d-none d-sm-inline">Categories</Button>
                 </div>
-                <Form inline className="position-relative form-search-parent">
+                <Form inline className="position-relative form-search-parent border-left">
                     <FormControl
                         border="none"
                         type="text"
                         placeholder="Search"
-                        className="ml-2 border-0 w-100 align-middle form-search" />
+                        className="ml-md-2 border-0 w-100 align-middle form-search rounded-0" />
                     <IconContext.Provider value={{
                         className: "position-absolute",
                         style: {

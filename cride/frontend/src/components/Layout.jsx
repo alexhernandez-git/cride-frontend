@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 
 const Layout = ({ children }) => (
-    <div className="vh-100 bg-light">
+    <div className="vh-100 bg-warning">
 
         {children}
         <Footer />
