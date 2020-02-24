@@ -1,0 +1,9 @@
+/* General */
+.btn:focus {
+    box-shadow: none !important;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+    border: none;
+}
