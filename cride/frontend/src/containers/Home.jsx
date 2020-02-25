@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import Header from '../components/Header'
+import TeacherCard from '../components/TeacherCard'
 const Home = () => {
     return (
         <div>
-            <Header />
+
+
+            <TeacherCard />
         </div>
     )
 }

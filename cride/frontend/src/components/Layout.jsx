@@ -1,12 +1,17 @@
 import React from 'react';
 import Footer from './Footer';
-
+import Container from 'react-bootstrap/Container';
+import Header from '../components/Header'
 const Layout = ({ children }) => (
-    <div className="vh-100 bg-light">
-        {children}
+    <>
+        <Header />
 
+        < Container className="mt-4">
+            {children}
+
+        </Container >
         <Footer />
-    </div>
+    </>
 );
 
 export default Layout;
