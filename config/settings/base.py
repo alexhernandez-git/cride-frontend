@@ -49,6 +49,8 @@ THIRD_PARTY_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'webpack_loader',
+    'compressor',
+    'sass_processor',
 ]
 LOCAL_APPS = [
     'cride.users.apps.UsersAppConfig',
@@ -97,10 +99,12 @@ STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(APPS_DIR.path('frontend/static')),
+    str(APPS_DIR.path('node_modules')),
 ]
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 # Media
@@ -180,3 +184,19 @@ WEBPACK_LOADER = {
         'STATS_FILE': str(APPS_DIR.path('webpack-stats.json')),
     }
 }
+
+# Compress
+COMPRESS_OFFLINE = False
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+# Sass
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    str(ROOT_DIR.path('extra-styles/scss')),
+    str(ROOT_DIR.path('node_modules'))
+]
+SASS_PROCESSOR_AUTO_INCLUDE = False
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
+SASS_PRECISION = 8
+SASS_PRECISION = 8

@@ -66,7 +66,7 @@ export default function Header() {
                 </Form>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
-                        <Nav.Link href="#features" className="d-flex align-items-center">Teach</Nav.Link>
+                        <Nav.Link href="#features" className="d-flex align-items-center justify-content-center">Teach</Nav.Link>
                         <Nav.Link className="ml-md-2 m-2 btn btn-outline-info pr-4 pl-4">Login</Nav.Link>
                         <Nav.Link className="ml-md-2 m-2 btn btn-primary pr-4 pl-4 text-white" href="">Sign up</Nav.Link>
                     </Nav>

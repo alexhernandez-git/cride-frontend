@@ -1,0 +1,29 @@
+// Colors
+/* General */
+$theme-colors: (
+  "primary": #124026,
+  "secondary": #593c31,
+  "success": #1c5936,
+  "danger": #bd0b0a,
+  "warning": #a6998a,
+  "info": #688c78,
+  "light": #f8f9fa,
+  "dark": #343a40
+);
+
+/* btn */
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.btn {
+  border-radius: 0 !important;
+}
+
+/* Forms */
+input.form-control:focus {
+  box-shadow: none;
+  border: none;
+}
+
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";

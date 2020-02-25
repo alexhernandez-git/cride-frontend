@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import Header from '../components/Header'
-
 const Home = () => {
     return (
         <div>

@@ -13,10 +13,14 @@ RUN apk update \
   # Translations dependencies
   && apk add gettext \
   # https://docs.djangoproject.com/en/dev/ref/django-admin/#dbshell
-  && apk add postgresql-client
+  && apk add postgresql-client \
+  # Other dependences
+  && apk add build-base \
+  && apk add python3-dev 
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
+RUN pip install --upgrade wheel
 RUN pip install -r /requirements/local.txt
 
 COPY ./compose/production/django/entrypoint /entrypoint
