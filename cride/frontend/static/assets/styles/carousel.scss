@@ -1,0 +1,32 @@
+body {
+  background-color: #fafafa;
+}
+
+.card {
+  padding-top: 10px;
+  opacity: 1;
+  width: 300px;
+  color: white;
+}
+
+.card-title {
+  color: #262626;
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0 !important;
+}
+
+img {
+  display: block;
+  margin: auto;
+  width: 250px;
+  height: 250px;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+}

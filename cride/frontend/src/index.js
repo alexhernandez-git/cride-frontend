@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './routes/App';
+import "../static/assets/styles/styles.scss"
+import $ from 'jquery';
 
 import store from './redux/store'
 

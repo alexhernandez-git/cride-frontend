@@ -36,7 +36,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(s*)css$/,
                 use: [
                     // Creates `style` nodes from JS strings
                     'style-loader',
@@ -44,6 +44,12 @@ module.exports = {
                     'css-loader',
                     // Compiles Sass to CSS
                     'sass-loader',
+                ],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader',
                 ],
             },
         ],

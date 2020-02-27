@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import Header from '../components/Header'
-import TeacherCard from '../components/TeacherCard'
+import CarouselCards from '../components/CarouselCards'
+import WelcomeLayout from '../components/WelcomeLayout'
 const Home = () => {
     return (
         <div>
-
-
-            <TeacherCard />
+            <WelcomeLayout />
+            <CarouselCards />
         </div>
     )
 }

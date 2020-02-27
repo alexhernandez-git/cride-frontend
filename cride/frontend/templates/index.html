@@ -1,15 +1,11 @@
 {% load render_bundle from webpack_loader %}
-{% load compress %}
    {% load static %}
-
 <!DOCTYPE html>
 <html>
  <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>CRide</title>
- {% load sass_tags %}
-    <link href="{% sass_src 'assets/styles/styles.scss' %}" rel="stylesheet" type="text/css" />
  </head>
  <body>
  <div id="react"></div>

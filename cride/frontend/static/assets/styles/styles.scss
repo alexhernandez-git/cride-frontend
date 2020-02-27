@@ -1,19 +1,35 @@
 // Colors
 /* General */
 $theme-colors: (
-  "primary": #124026,
-  "secondary": #593c31,
-  "success": #1c5936,
-  "danger": #bd0b0a,
-  "warning": #a6998a,
-  "info": #688c78,
+  "primary": #66bcf2,
+  "secondary": #e5c07b,
+  "success": #9cbf78,
+  "danger": #d96a7e,
+  "warning": #e5c07b,
+  "info": #66bcf2,
   "light": #f8f9fa,
   "dark": #343a40
 );
+// $theme-colors: (
+//   "primary": #124026,
+//   "secondary": #593c31,
+//   "success": #1c5936,
+//   "danger": #bd0b0a,
+//   "warning": #a6998a,
+//   "info": #688c78,
+//   "light": #f8f9fa,
+//   "dark": #343a40
+// );
 
 /* btn */
 .btn:focus {
   box-shadow: none !important;
+}
+.btn-dark:focus {
+  box-shadow: none !important;
+}
+.btn-outline-dark:hover {
+  color: #fff !important;
 }
 
 .btn {

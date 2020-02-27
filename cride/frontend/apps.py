@@ -1,5 +1,9 @@
+"""Frontend app"""
+
 from django.apps import AppConfig
 
 
 class FrontendAppConfig(AppConfig):
-    name = 'frontend'
+    """Frontend app config."""
+    name = 'cride.frontend'
+    verbose_name = 'Frontend'
