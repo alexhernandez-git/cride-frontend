@@ -5,6 +5,9 @@ const Blackboard = () => {
     return (
         <div>
             <div className="mt-4 blackboard border-warning position-relative">
+                <div className="letters text-light text-center d-flex justify-content-center align-items-center">
+                    <span>Ver como funciona</span>
+                </div> 
                 <div className="whiteboard position-absolute"></div>
                 <div className="whiteboard w-1 position-absolute"></div>
                 <div className="whiteboard w-2 position-absolute"></div>
