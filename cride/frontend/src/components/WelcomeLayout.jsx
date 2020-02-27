@@ -10,7 +10,7 @@ const WelcomeLayout = () => {
                 <div className="row">
                     <div className="col-md-6 align-self-center">
                         <h1 className="mt-3 text-light">Welcome</h1>
-                        <input className="mt-4 form-control bg-light w-75" type="text" placeholder="Search" />
+                        <input className="mt-4 form-control bg-light w-100" type="text" placeholder="Search" />
                     </div>
                     <div className="col-md-6">
                         <Blackboard />

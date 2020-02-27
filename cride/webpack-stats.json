@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\vlexh\\cride\\cride\\frontend\\static\\bundles\\main.js"}]},"error":"ModuleBuildError","message":"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Invalid CSS after \".w-4\": expected \"{\", was \"\"\n        on line 31 of C:\\Users\\vlexh\\cride\\cride\\frontend\\static\\assets\\styles\\components\\Blackboard.scss\n>> \n   ^\n"}
+{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\vlexh\\cride\\cride\\frontend\\static\\bundles\\main.js"}]}}

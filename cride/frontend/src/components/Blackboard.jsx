@@ -4,7 +4,7 @@ import "../../static/assets/styles/components/Blackboard.scss"
 const Blackboard = () => {
     return (
         <div>
-            <div className="mt-4 blackboard border-secondary position-relative">
+            <div className="mt-4 blackboard border-warning position-relative">
                 <div className="whiteboard position-absolute"></div>
                 <div className="whiteboard w-1 position-absolute"></div>
                 <div className="whiteboard w-2 position-absolute"></div>

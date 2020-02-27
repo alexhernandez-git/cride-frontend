@@ -3,7 +3,7 @@ import React, {
     useState,
     useEffect
 } from 'react';
-import "../../static/assets/styles/carousel.scss"
+import "../../static/assets/styles/components/CarouselCards.scss"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -48,9 +48,9 @@ function CarouselCards() {
     }
     return (
         <>
-            <div className="container mt-5">
-                <h6 className="text-muted">Circulos de tu zona</h6>
 
+            <h3 className="text-dark text-center mt-5">Profesores</h3>
+            <div className="container mt-4 rounded h1">
                 <Slider {...settings}>
                     <CardLayout />
                     <CardLayout />
