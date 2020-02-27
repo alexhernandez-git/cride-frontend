@@ -1,39 +1,10 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa';
 import { IconContext } from "react-icons";
+import "../../static/assets/styles/components/Header.scss"
 export default function Header() {
     return (
         <>
-            <style type="text/css">
-                {`
-                .navbar-light .navbar-toggler,
-                .navbar-light .navbar-toggler:focus{
-                    border: none!important;
-                    outline:none !important;
-                }
-                a.ml-md-2.m-2.btn.btn-outline-info.pr-4.pl-4.nav-link:hover {
-                    color: #fff;
-                }
-                .form-search-parent{
-                    width: 50%;
-                }
-                @media only screen and (min-width: 768px) {
-                    .form-search-parent{
-                        width: 30%;
-                    }
-                  }
-                  @media only screen and (min-width: 1024px) {
-                    .form-search-parent{
-                        width: 50%;
-                    }
-                  }
-                  
-                .form-search{
-                   
-                    padding: 20px 20px 20px 40px!important;
-                }
-            `}
-            </style>
             < nav className="navbar navbar-expand-lg navbar-light bg-ligth" >
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

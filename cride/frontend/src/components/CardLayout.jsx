@@ -1,12 +1,11 @@
 import React, { Component, useState } from 'react';
-
+import "../../static/assets/styles/components/CardLayout.scss"
 function CardLayout(props) {
     console.log(props);
-
     return (
         <>
-            <div className="out border-0">
-                <div className="card bg-light">
+            <div className="out border-0 div-card-slick">
+                <div className="card bg-light card-slick">
                     <img className="rounded-circle" alt={"users here"} src={`https://source.unsplash.com/random/1`} height={56} width={56} />
                     <div className="card-body">
                         <h5 className="card-title">fewwaeffwea</h5>

@@ -277,3 +277,6 @@ cride/media/
 .env
 .envs/*
 !.envs/.local/
+
+# Bundles
+/cride/frontend/static/bundles/*
