@@ -6,12 +6,21 @@
 a.ml-md-2.m-2.btn.btn-outline-info.pr-4.pl-4.nav-link:hover {
   color: #fff;
 }
+.search-icon {
+  position: absolute;
+  top: 7px;
+  left: 20px;
+  color: rgba($color: #000000, $alpha: 0.5);
+}
 .form-search-parent {
   width: 50%;
 }
 @media only screen and (min-width: 768px) {
   .form-search-parent {
     width: 30%;
+  }
+  .form-search {
+    margin-left: 10px;
   }
 }
 @media only screen and (min-width: 1024px) {

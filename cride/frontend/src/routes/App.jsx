@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../containers/Home'
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
 
 const App = props => {
     console.log(props);

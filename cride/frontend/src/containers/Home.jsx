@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import CarouselCards from '../components/CarouselCards'
-import WelcomeLayout from '../components/WelcomeLayout'
+import CarouselCards from '../components/ProfessorsCarousel/ProfessorCarousel'
+import WelcomeLayout from '../components/WelcomeLayout/WelcomeLayout'
 const Home = () => {
     return (
         <div>
