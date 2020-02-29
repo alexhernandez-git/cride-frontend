@@ -280,3 +280,4 @@ cride/media/
 
 # Bundles
 /cride/frontend/static/bundles/*
+/cride/webpack-stats.json
