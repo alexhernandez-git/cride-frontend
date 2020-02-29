@@ -28,6 +28,12 @@
   height: 300px;
   border-bottom: 20px solid;
   background-color: #3c6754;
+  box-shadow: 0 0 5px black;
+  transition: 0.2s all ease;
+}
+.blackboard:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 10px black;
 }
 .draft {
   width: 50px;
