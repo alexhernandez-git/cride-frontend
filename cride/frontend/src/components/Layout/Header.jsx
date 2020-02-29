@@ -10,7 +10,7 @@ import "../../../static/assets/styles/components/Layout/Header.scss"
 export default function Header() {
     return (
         <>
-            <Navbar bg="white" expand="md" className="header border-bottom p-0 shadow">
+            <Navbar bg="white" expand="md" className="header border-bottom p-0">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <div className="ml-3">
                     <Link to="/">

@@ -1,10 +1,11 @@
 import React from 'react';
 import Sidebar from '../components/Layout/Sidebar'
 import ProfessorsFeed from '../components/Professors/ProfessorsFeed'
-
+import FilterBar from "../components/Layout/FilterBar"
 const Search = () => {
     return (
         <>
+            <FilterBar />
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 mt-5">
