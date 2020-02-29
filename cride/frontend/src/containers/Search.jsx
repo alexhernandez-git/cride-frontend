@@ -7,10 +7,6 @@ const Search = () => {
         <>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-4">
-
-                        <Sidebar />
-                    </div>
                     <div className="col-md-8 mt-5">
                         <ProfessorsFeed />
                         <ProfessorsFeed />
@@ -22,6 +18,10 @@ const Search = () => {
                         <ProfessorsFeed />
                         <ProfessorsFeed />
                         <ProfessorsFeed />
+                    </div>
+                    <div className="col-md-4 d-none d-md-block">
+
+                        <Sidebar />
                     </div>
 
                 </div>
