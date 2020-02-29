@@ -4,8 +4,10 @@ import Header from './Header'
 const Layout = ({ children }) => (
     <>
         <Header />
+        <div style={{ overflow: 'hidden' }}>
 
-        {children}
+            {children}
+        </div>
         <Footer />
     </>
 );

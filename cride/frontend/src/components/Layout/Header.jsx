@@ -4,19 +4,31 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
 import { FaSearch } from 'react-icons/fa';
-import { IconContext } from "react-icons";
-import "../../../static/assets/styles/components/Header.scss"
+import { Link } from "react-router-dom"
+import "../../../static/assets/styles/components/Layout/Header.scss"
 export default function Header() {
     return (
         <>
-            <Navbar bg="light" expand="md" className="border-bottom p-0">
+            <Navbar bg="white" expand="md" className="header border-bottom p-0 shadow">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <div className="ml-3 pr-4">
-                    <Navbar.Brand href="#home">CRide</Navbar.Brand>
-                    <Button variant="ligth border-0 mb-1 d-none d-sm-inline">Categories</Button>
+                <div className="ml-3">
+                    <Link to="/">
+                        <Navbar.Brand >
+                            <img
+                                alt=""
+                                src="https://react-bootstrap.netlify.com/logo.svg"
+                                width="30"
+                                height="30"
+                                className="d-inline-block align-top"
+                            />{' '}
+                            <span className="d-none d-md-inline">OneToMany</span>
+                        </Navbar.Brand>
+                    </Link>
                 </div>
+                <Nav className="ml-auto mr-3 d-none d-md-block">
+                    <Nav.Link href="#features" className="align-self-center text-center">Categories</Nav.Link>
+                </Nav>
                 <Form inline className="position-relative form-search-parent border-left">
                     <FormControl
                         border="none"
@@ -29,9 +41,9 @@ export default function Header() {
                 </Form>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
-                        <Nav.Link href="#features" className="align-self-center text-center">Teach</Nav.Link>
-                        <Nav.Link className="ml-md-2 m-2 btn btn-outline-dark pr-4 pl-4">Login</Nav.Link>
-                        <Nav.Link className="ml-md-2 m-2 btn btn-dark pr-4 pl-4 text-white" href="">Sign up</Nav.Link>
+                        <Nav.Link href="#features" className="align-self-center text-center header-btn">Enseña</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-outline-dark header-btn">Iniciar sesión</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-dark text-white header-btn" href="">Registrate</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
