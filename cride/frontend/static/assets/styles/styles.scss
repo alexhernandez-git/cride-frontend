@@ -4,32 +4,25 @@
 $theme-colors: (
   "primary": #28526d,
   // "primary": #66bcf2,
-    "secondary": #aab2be,
+    "secondary": #757575,
   // "success": #9cbf78,
     "success": #3c6754,
   "danger": #d96a7e,
   "warning": #e5c07b,
-  "info": #66bcf2,
+  "info": #a38873,
   "light": #f8f9fa,
   "dark": #323840
 );
-// $theme-colors: (
-//   "primary": #124026,
-//   "secondary": #593c31,
-//   "success": #1c5936,
-//   "danger": #bd0b0a,
-//   "warning": #a6998a,
-//   "info": #688c78,
-//   "light": #f8f9fa,
-//   "dark": #343a40
-// );
+// Posibles colores
+// background: linear-gradient(#64c8e6, #9198e5);
 
-// Utils
-.cursor-pointer {
-  cursor: pointer;
-}
-.box-shadow {
-  box-shadow: 0 0 20px black;
+// General
+// .btn {
+//   border-radius: 0 !important;
+// }
+.disable-default-a {
+  text-decoration: none !important;
+  background-color: transparent !important;
 }
 img {
   pointer-events: none;
@@ -41,8 +34,20 @@ img {
   -ms-user-select: none;
   // color: #323840;
 }
+
+// Utils
+.bg-gradient-blue {
+  background: linear-gradient(#64c8e6, #9198e5);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.box-shadow {
+  box-shadow: 0 0 20px black;
+}
+
 .text-grey {
-  color: #909090;
+  color: #757575 !important;
 }
 /* btn */
 

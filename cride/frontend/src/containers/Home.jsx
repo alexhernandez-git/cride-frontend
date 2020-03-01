@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 const Home = () => {
     return (
-        <div >
+        <div className="text-grey" >
             <WelcomeLayout />
             <ProfessorsCarousel />
             <div className="banner-home mt-5 border-danger bg-primary box-shadow">
@@ -28,7 +28,7 @@ const Home = () => {
                     <div className="banner-instructor-text">
                         <h4 className="h2">Conviertete en instructor</h4>
                         <p>Y enseña como nunca lo has hecho</p>
-                        <Button variant="outline-primary">Empezar ahora</Button>
+                        <Button variant="outline-secondary">Empezar ahora</Button>
                     </div>
                 </div>
             </div>

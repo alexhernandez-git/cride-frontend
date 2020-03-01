@@ -56,7 +56,7 @@ function MainCategories() {
 
             <div className="container pt-5 pb-5 ">
                 <div className="border-bottom pb-3">
-                    <h3 className="text-center font-weight-light">Categorias Populares</h3>
+                    <h3 className="text-center font-weight-normal">Categorias Populares</h3>
                     <div className="div-btn-categories">
                         <Button variant="outline-primary" className="btn-categories btn-lg">Idiomas</Button>
                         <Button variant="outline-secondary" className="btn-categories btn-lg">Repaso</Button>

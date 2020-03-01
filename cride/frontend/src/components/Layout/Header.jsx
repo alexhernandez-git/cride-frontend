@@ -10,7 +10,7 @@ import "../../../static/assets/styles/components/Layout/Header.scss"
 export default function Header() {
     return (
         <>
-            <Navbar bg="white" expand="md" className="header border-bottom p-0">
+            <Navbar bg="white" expand="md" className="header border-bottom p-0 shadow">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <div className="ml-3">
                     <Link to="/">
@@ -42,8 +42,8 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
                         <Nav.Link href="#features" className="align-self-center text-center header-btn">Enseña</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-outline-dark header-btn">Iniciar sesión</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-dark text-white header-btn" href="">Registrate</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-outline-success header-btn">Iniciar sesión</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-success text-white header-btn" href="">Registrate</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

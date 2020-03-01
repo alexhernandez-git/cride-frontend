@@ -8,8 +8,8 @@ const Search = () => {
         <>
             <FilterBar />
             <div className="container">
-                <div className="row">
-                    <div className="col-md-8 mt-5">
+                <div className="row  mt-5">
+                    <div className="col-md-8">
                         <ProfessorsFeed />
                         <ProfessorsFeed />
                         <ProfessorsFeed />
@@ -25,7 +25,7 @@ const Search = () => {
 
                         </div>
                     </div>
-                    <div className="col-md-4 d-none d-md-block mt-5">
+                    <div className="col-md-4 d-none d-md-block">
 
                         <Sidebar />
                     </div>

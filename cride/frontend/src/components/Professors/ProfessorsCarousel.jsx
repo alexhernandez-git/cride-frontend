@@ -49,7 +49,7 @@ function CarouselCards() {
         <>
 
             <div className="container mt-5">
-                <h3 className="font-weight-light">Que quieres aprender</h3>
+                <h3 className="font-weight-normal">Que quieres aprender</h3>
 
                 <div className="overflow-auto filter-carousel border-bottom">
                     <div href="" className="active">Matematicas</div>

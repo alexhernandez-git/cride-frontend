@@ -1,4 +1,9 @@
-.card-slick {
+.container-card {
+  a:hover {
+    text-decoration: none !important;
+    background-color: transparent !important;
+  }
+
   .img-card {
     width: 200px !important;
     height: 200px !important;
