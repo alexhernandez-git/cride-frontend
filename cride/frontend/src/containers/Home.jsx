@@ -28,7 +28,7 @@ const Home = () => {
                     <div className="banner-instructor-text">
                         <h4 className="h2">Conviertete en instructor</h4>
                         <p>Y enseña como nunca lo has hecho</p>
-                        <Button variant="outline-secondary">Empezar ahora</Button>
+                        <Button variant="outline-info">Empezar ahora</Button>
                     </div>
                 </div>
             </div>

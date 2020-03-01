@@ -3,9 +3,34 @@ import ProgressBar from "react-bootstrap/ProgressBar"
 import { MdWork, MdHome, MdEmail, MdLocalPhone } from "react-icons/md";
 import { IconContext } from "react-icons";
 import Button from "react-bootstrap/Button"
+import { FaRegStar, FaStar } from 'react-icons/fa';
 const ProfessorsSidebar = () => {
     return (
         <>
+            <div className="main-info-profile p-4 shadow">
+                <div className="d-inline justify-content-between">
+                    <span className="d-block h2 mb-3 text-break font-weight-normal">Alex Hernandez</span>
+
+                    <div className="punctuation d-lg-flex justify-content-between">
+                        <div>
+
+                            <IconContext.Provider
+                                value={{
+                                    className: "global-class-name text-warning",
+                                    size: '20px'
+                                }}>
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaStar />
+                                <FaRegStar />
+                            </IconContext.Provider>
+                        </div>
+                        <small className="font-weight-light ml-1 d-block">(+500 valoraciones)</small>
+                    </div>
+                </div>
+
+            </div>
             <div className="div-img w-100">
                 <img className="w-100" src={`https://source.unsplash.com/random/1`} alt="" />
             </div>
