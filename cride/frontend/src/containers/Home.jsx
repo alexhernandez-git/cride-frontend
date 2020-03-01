@@ -11,7 +11,7 @@ const Home = () => {
         <div className="text-grey" >
             <WelcomeLayout />
             <ProfessorsCarousel />
-            <div className="banner-home mt-5 border-danger bg-primary box-shadow">
+            <div className="banner-home mt-5 border-danger bg-danger box-shadow">
                 <h4 className="h2">Nunca pares de aprender</h4>
                 <p>Y aprende como nunca lo has hecho</p>
                 <Link to="/profesores">

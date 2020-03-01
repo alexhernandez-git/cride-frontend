@@ -43,7 +43,7 @@ const Blackboard = () => {
                 <Modal.Body className="p-0">
                     <div style={{ width: 'auto', height: 'auto' }}>
                         <ResponsiveEmbed aspectRatio="16by9">
-                            <iframe src="https://www.youtube.com/embed/rrNNaA24qRc" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            <iframe width="1280" height="720" src="https://www.youtube.com/embed/l0s6ZLkV-U0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </ResponsiveEmbed>
                     </div>
                 </Modal.Body>

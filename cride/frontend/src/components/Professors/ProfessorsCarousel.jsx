@@ -13,7 +13,7 @@ function CarouselCards() {
     // })
     const settings = {
         initialSlide: 0,
-        infinite: true,
+        infinite: false,
         speed: 1000,
         arrows: true,
         slidesToShow: 4,

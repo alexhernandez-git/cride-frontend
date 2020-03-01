@@ -26,7 +26,7 @@ const ProfessorsSidebar = () => {
                         <span className="font-weight-bold">10 clases</span>
                         <span className="text-success">10€/clase</span>
                     </div>
-                    <div className="buttons mt-3 text-center">
+                    <div className="buttons mt-3 text-center border-bottom pb-3">
                         <Button variant="success" className="btn-block">Solicitar clase</Button>
 
                         <Button variant="outline-success" className="btn-block">Enviar mensaje</Button>

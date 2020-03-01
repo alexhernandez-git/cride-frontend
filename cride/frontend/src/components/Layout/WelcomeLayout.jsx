@@ -5,7 +5,8 @@ import Form from "react-bootstrap/Form"
 const WelcomeLayout = () => {
 
     return (
-        <div className="div-welcome bg-dark border-danger box-shadow">
+        <div className="div-welcome border-secondary bg-secondary box-shadow" >
+
             <div className="container">
 
                 <div className="row mt-3">
