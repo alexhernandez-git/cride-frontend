@@ -13,7 +13,7 @@ const Blackboard = () => {
 
     return (
         <div>
-            <div className="mt-4 blackboard border-warning position-relative cursor-pointer" onClick={handleShow}>
+            <div className="mt-4 blackboard border-warning position-relative cursor-pointer shadow" onClick={handleShow}>
                 <div className="letters text-light text-center d-flex justify-content-center align-items-center">
                     <span>Ver como funciona</span>
                     <IconContext.Provider value={{

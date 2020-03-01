@@ -8,11 +8,8 @@ const Search = () => {
         <>
             <FilterBar />
             <div className="container">
-                <div className="row  mt-5">
+                <div className="row mt-5">
                     <div className="col-md-8">
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
                         <ProfessorsFeed />
                         <ProfessorsFeed />
                         <ProfessorsFeed />

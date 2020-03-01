@@ -17,9 +17,18 @@ $theme-colors: (
 // background: linear-gradient(#64c8e6, #9198e5);
 
 // General
-// .btn {
-//   border-radius: 0 !important;
+.btn {
+  border-radius: 0 !important;
+}
+// @media only screen and (max-width: 768px) {
+//   .header-btn.btn-outline-secondary:hover,
+//   .header-btn.btn-outline-secondary:focus {
+//     color: #56b389 !important;
+//     background-color: #fff !important;
+//     border-color: #56b389 !important;
+//   }
 // }
+
 .disable-default-a {
   text-decoration: none !important;
   background-color: transparent !important;

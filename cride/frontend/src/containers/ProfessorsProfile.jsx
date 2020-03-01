@@ -1,8 +1,11 @@
 import React from 'react';
 import "../../static/assets/styles/containers/ProfessorsProfile.scss"
 
-import ProfessorsSidebar from "../components/Professors/ProfessorsSidebar"
-import ProfessorsExperience from "../components/Professors/ProfessorsExperience"
+import ProfessorsSidebar from "../components/Professors/ProfessorsProfile/ProfessorsSidebar"
+import ProfessorsWorkExperience from "../components/Professors/ProfessorsProfile/ProfessorsWorkExperience"
+import ProfessorsEducation from "../components/Professors/ProfessorsProfile/ProfessorsEducation"
+import ProfessorsPresentation from "../components/Professors/ProfessorsProfile/ProfessorsPresentation"
+import ProfessorsTeach from "../components/Professors/ProfessorsProfile/ProfessorsTeach"
 const ProfessorsProfile = () => {
     return (
         <div className="profile-content container mt-5 mb-5 text-grey">
@@ -12,9 +15,10 @@ const ProfessorsProfile = () => {
                     <ProfessorsSidebar />
                 </div>
                 <div className="col-md-8 mb-4 p-0 pl-md-3 pr-md-3">
-
-                    <ProfessorsExperience type={'Work experience'} />
-                    <ProfessorsExperience type={'Education'} />
+                    <ProfessorsPresentation />
+                    <ProfessorsTeach />
+                    <ProfessorsWorkExperience />
+                    <ProfessorsEducation />
                 </div>
             </div>
         </div>
