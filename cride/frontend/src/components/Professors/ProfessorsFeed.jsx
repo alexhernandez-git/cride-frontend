@@ -17,13 +17,13 @@ export default function ProfessorFeed() {
                         <div>
                             <div className="row">
                                 <div className="col-12">
-                                    <span className="font-weight-bold h5 text-dark">Alex Hernandez</span>
+                                    <span className="font-weight-bold h5 text-info">Alex Hernandez</span>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col">
                                     <small className="text-grey">España</small><br />
-                                    <span className="font-weight-bold text-dark mb-2">HTML, CSS, JS, React</span><br />
+                                    <span className="font-weight-bold text-info mb-2">HTML, CSS, JS, React</span><br />
                                     <small className="profe-text text-grey">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus ducimus vel, itaque officiis sint soluta aperiam exercitationem, rem impedit rerum, quaerat nemo! Fuga nemo qui placeat obcaecati quia quasi veniam?</small>
                                 </div>
                             </div>

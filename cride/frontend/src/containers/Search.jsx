@@ -7,7 +7,7 @@ const Search = () => {
     return (
         <>
             <FilterBar />
-            <div className="container">
+            <div className="container text-info">
                 <div className="row mt-5">
                     <div className="col-md-8">
                         <ProfessorsFeed />

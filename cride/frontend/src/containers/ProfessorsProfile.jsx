@@ -6,6 +6,8 @@ import ProfessorsWorkExperience from "../components/Professors/ProfessorsProfile
 import ProfessorsEducation from "../components/Professors/ProfessorsProfile/ProfessorsEducation"
 import ProfessorsPresentation from "../components/Professors/ProfessorsProfile/ProfessorsPresentation"
 import ProfessorsTeach from "../components/Professors/ProfessorsProfile/ProfessorsTeach"
+import ProfessorsSkills from "../components/Professors/ProfessorsProfile/ProfessorsSkills"
+
 const ProfessorsProfile = () => {
     return (
         <div className="profile-content container mt-5 mb-5 text-grey">
@@ -17,6 +19,7 @@ const ProfessorsProfile = () => {
                 <div className="col-md-8 mb-4 p-0 pl-md-3 pr-md-3">
                     <ProfessorsPresentation />
                     <ProfessorsTeach />
+                    <ProfessorsSkills />
                     <ProfessorsWorkExperience />
                     <ProfessorsEducation />
                 </div>
