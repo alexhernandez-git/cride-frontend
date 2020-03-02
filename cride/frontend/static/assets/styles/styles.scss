@@ -45,6 +45,9 @@ img {
 }
 
 // Utils
+.text-shadow {
+  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
 .bg-gradient-blue {
   background: linear-gradient(#64c8e6, #9198e5);
 }

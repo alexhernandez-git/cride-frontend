@@ -16,7 +16,7 @@
   animation: beat linear 1.5s infinite alternate;
 }
 .letters {
-  font-family: "Permanent Marker";
+  // font-family: "Permanent Marker";
   font-size: 2rem;
   top: 0;
   left: 0;
@@ -29,6 +29,11 @@
   border-bottom: 20px solid;
   background-color: #3c6754;
   // transition: 0.2s all ease;
+}
+@media only screen and (max-width: 768px) {
+  .blackboard {
+    margin-top: 30px;
+  }
 }
 // .blackboard:hover {
 //   transform: scale(1.01);

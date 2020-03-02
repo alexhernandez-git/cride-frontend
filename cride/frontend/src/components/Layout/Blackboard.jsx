@@ -13,9 +13,9 @@ const Blackboard = () => {
 
     return (
         <div>
-            <div className="mt-4 blackboard border-warning position-relative cursor-pointer shadow" onClick={handleShow}>
+            <div className="blackboard border-warning position-relative cursor-pointer shadow" onClick={handleShow}>
                 <div className="letters text-light text-center d-flex justify-content-center align-items-center">
-                    <span>Ver como funciona</span>
+                    <span className="font-weight-light mt-3">Ver como funciona</span>
                     <IconContext.Provider value={{
                         className: "position-absolute play-icon",
                         style: {

@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import App from './routes/App';
 import "../static/assets/styles/styles.scss"
-import store from './redux/store'
-
+import Context from "./Context"
 ReactDOM.render(
-    <Provider store={store}>
+    <Context.Provider value={{ isAuth: false }}>
         <App />
-    </Provider>,
+    </Context.Provider>,
     document.getElementById('react')
 );

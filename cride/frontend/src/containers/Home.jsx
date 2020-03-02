@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
 import WelcomeLayout from '../components/Layout/WelcomeLayout'
 import ProfessorsCarousel from '../components/Professors/ProfessorsCarousel'
 import MainCategories from '../components/Categories/MainCategories';
@@ -44,4 +43,4 @@ const Home = () => {
 //     }
 // }
 
-export default connect(null, null)(Home);
+export default Home;
