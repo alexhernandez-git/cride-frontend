@@ -42,8 +42,8 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
                         <Nav.Link href="#features" className="align-self-center text-center header-btn">Enseña</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-outline-success header-btn shadow">Iniciar sesión</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-success text-white header-btn shadow" href="">Registrate</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
+                        <Nav.Link className="btn ml-2 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

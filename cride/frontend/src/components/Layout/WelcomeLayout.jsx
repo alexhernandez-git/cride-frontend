@@ -6,7 +6,7 @@ const WelcomeLayout = () => {
 
     return (
         <>
-            <div className="div-welcome bg-secondary shadow pt-5 pb-5" >
+            <div className="div-welcome bg-gradient-green shadow pt-5 pb-5" >
 
                 <div className="container">
 

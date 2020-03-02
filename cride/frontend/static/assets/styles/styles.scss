@@ -15,11 +15,13 @@ $theme-colors: (
 );
 // Posibles colores
 // background: linear-gradient(#64c8e6, #9198e5);
-
+// background: linear-gradient(45deg, #56b389 , #85892e ); // verde amarillo
+// linear-gradient(45deg, #56b389 , #b6b419 ); // verde amarillo
+//background: linear-gradient(45deg, #56b389 , #2e6a89 );
 // General
-.btn {
-  border-radius: 0 !important;
-}
+// .btn {
+//   border-radius: 0 !important;
+// }
 // @media only screen and (max-width: 768px) {
 //   .header-btn.btn-outline-secondary:hover,
 //   .header-btn.btn-outline-secondary:focus {
@@ -45,11 +47,32 @@ img {
 }
 
 // Utils
+.btn-green {
+  background: linear-gradient(45deg, #56b389, #2e6a89);
+  border: none !important;
+}
+.btn-outline-green {
+  background-color: none;
+  border: 1px solid #56b389 !important;
+  color: #56b389 !important;
+}
+.btn-outline-green:hover {
+  background: linear-gradient(45deg, #56b389, #2e6a89);
+  border: 1px solid white !important;
+}
+.btn-outline-success {
+  border: none !important;
+}
+
+// gradients
+.bg-gradient-light-blue {
+  background: linear-gradient(#64c8e6, #9198e5);
+}
+.bg-gradient-green {
+  background: linear-gradient(45deg, #56b389, #2e6a89);
+}
 .text-shadow {
   text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
-.bg-gradient-blue {
-  background: linear-gradient(#64c8e6, #9198e5);
 }
 .cursor-pointer {
   cursor: pointer;

@@ -52,9 +52,9 @@ const ProfessorsSidebar = () => {
                         <span className="text-success">10€/clase</span>
                     </div>
                     <div className="buttons mt-3 text-center border-bottom pb-3">
-                        <Button variant="success" className="btn-block">Solicitar clase</Button>
+                        <a className="btn btn-block btn-green text-white">Solicitar clase</a>
 
-                        <Button variant="outline-success" className="btn-block">Enviar mensaje</Button>
+                        <a className="btn btn-block btn-outline-green">Enviar mensaje</a>
                     </div>
                 </div>
                 {/* <div className="info pb-3 border-bottom">
@@ -96,38 +96,54 @@ const ProfessorsSidebar = () => {
                         <span className="h4">Skills</span>
                         <div className="mt-2 mb-2">
                             <span>Adobe photoshop</span>
-                            <ProgressBar className="mt-2" variant="success" now={40} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={60} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={10} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={100} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
                     <div className="languages mt-3">
                         <span className="h4">Languages</span>
                         <div className="mt-2 mb-2">
                             <span>Adobe photoshop</span>
-                            <ProgressBar className="mt-2" variant="success" now={40} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={60} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={10} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                         <div className="mt-2">
                             <span>Photography</span>
-                            <ProgressBar className="mt-2" variant="success" now={100} />
+                            <div class="progress">
+                                <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
