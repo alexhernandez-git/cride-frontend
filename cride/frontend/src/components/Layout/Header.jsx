@@ -22,7 +22,7 @@ export default function Header() {
                                 height="30"
                                 className="d-inline-block align-top"
                             />{' '}
-                            <span className="d-none d-md-inline">OneToMany</span>
+                            <span className="d-none d-md-inline">ClassLine</span>
                         </Navbar.Brand>
                     </Link>
                 </div>

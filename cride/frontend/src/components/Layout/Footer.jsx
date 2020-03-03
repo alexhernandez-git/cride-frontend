@@ -3,7 +3,7 @@ import "../../../static/assets/styles/components/Layout/Footer.scss"
 
 const Footer = () => {
     return (
-        <footer className="bg-primary mt-5 text-white">
+        <footer className="bg-success mt-5 text-white">
             <div className="container">
                 <section className="mas-enlaces">
                     <div className="row cabezera">

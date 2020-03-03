@@ -8,13 +8,13 @@ const ProfessorsTeach = () => {
     return (
         <div className="professors-teach shadow w-100 p-4 rounded mb-3">
 
-            <span className="d-block h3 font-weight-normal text-success">¿What teacher teach?</span>
+            <span className="d-block h3 font-weight-normal text-primary">¿What teacher teach?</span>
             <div className="row pr-4 pl-4">
                 <div className="col-md-6 text-break">
                     <div className="subject p-2 position-relative">
 
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success position-absolute",
+                            className: "mr-2 text-primary position-absolute",
                             size: '20px',
 
                         }}>
@@ -28,7 +28,7 @@ const ProfessorsTeach = () => {
                     <div className="subject p-2 position-relative">
 
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success position-absolute",
+                            className: "mr-2 text-primary position-absolute",
                             size: '20px',
 
                         }}>

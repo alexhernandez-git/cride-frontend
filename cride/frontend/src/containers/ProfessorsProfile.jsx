@@ -7,6 +7,7 @@ import ProfessorsEducation from "../components/Professors/ProfessorsProfile/Prof
 import ProfessorsPresentation from "../components/Professors/ProfessorsProfile/ProfessorsPresentation"
 import ProfessorsTeach from "../components/Professors/ProfessorsProfile/ProfessorsTeach"
 import ProfessorsSkills from "../components/Professors/ProfessorsProfile/ProfessorsSkills"
+import ProfessorsCalendar from "../components/Professors/ProfessorsProfile/ProfessorsCalendar"
 
 const ProfessorsProfile = () => {
     return (
@@ -22,6 +23,7 @@ const ProfessorsProfile = () => {
                     <ProfessorsSkills />
                     <ProfessorsWorkExperience />
                     <ProfessorsEducation />
+                    <ProfessorsCalendar />
                 </div>
             </div>
         </div>

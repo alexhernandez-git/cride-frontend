@@ -14,10 +14,10 @@ const ProfessorsPresentation = () => {
         <>
             <div className="professors-presentation shadow w-100 p-4 rounded mb-3">
                 <div className="d-sm-flex justify-content-between">
-                    <span className="d-block h3 font-weight-normal text-success">Presentation</span>
+                    <span className="d-block h3 font-weight-normal text-primary">Presentation</span>
 
                     <IconContext.Provider value={{
-                        className: "play-icon text-success",
+                        className: "play-icon text-primary",
                         style: {}
                     }}>
                         <div onClick={handleShow} className="d-flex align-items-center">

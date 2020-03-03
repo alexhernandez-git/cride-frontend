@@ -26,7 +26,7 @@ const ProfessorsSidebar = () => {
                                 <FaRegStar />
                             </IconContext.Provider>
                         </div>
-                        <small className="font-weight-light ml-1 d-block text-success">+500 valoraciones</small>
+                        <small className="font-weight-light ml-1 d-block text-primary">+500 valoraciones</small>
                     </div>
                 </div>
 
@@ -41,15 +41,15 @@ const ProfessorsSidebar = () => {
                     <span className="d-block pb-2 border-bottom mb-2">Prueba de 15 min. gratuita</span>
                     <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
                         <span className="font-weight-bold">1 clase</span>
-                        <span className="text-success">19€</span>
+                        <span className="text-primary">19€</span>
                     </div>
                     <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
                         <span className="font-weight-bold">5 clases</span>
-                        <span className="text-success">15€/clase</span>
+                        <span className="text-primary">15€/clase</span>
                     </div>
                     <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
                         <span className="font-weight-bold">10 clases</span>
-                        <span className="text-success">10€/clase</span>
+                        <span className="text-primary">10€/clase</span>
                     </div>
                     <div className="buttons mt-3 text-center border-bottom pb-3">
                         <a className="btn btn-block btn-green text-white">Solicitar clase</a>
@@ -60,7 +60,7 @@ const ProfessorsSidebar = () => {
                 {/* <div className="info pb-3 border-bottom">
                     <div className="mb-2">
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success",
+                            className: "mr-2 text-primary",
                             size: '20px'
                         }}>
                             <MdWork />Designer
@@ -68,7 +68,7 @@ const ProfessorsSidebar = () => {
                     </div>
                     <div className="mt-2 mb-2">
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success",
+                            className: "mr-2 text-primary",
                             size: '20px'
                         }}>
                             <MdHome />London, UK
@@ -76,7 +76,7 @@ const ProfessorsSidebar = () => {
                     </div>
                     <div className="mt-2 mb-2">
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success",
+                            className: "mr-2 text-primary",
                             size: '20px'
                         }}>
                             <MdEmail />ex@mail.com
@@ -84,7 +84,7 @@ const ProfessorsSidebar = () => {
                     </div>
                     <div className="mt-2">
                         <IconContext.Provider value={{
-                            className: "mr-2 text-success",
+                            className: "mr-2 text-primary",
                             size: '20px'
                         }}>
                             <MdLocalPhone />1224435534
@@ -96,25 +96,25 @@ const ProfessorsSidebar = () => {
                         <span className="h4">Skills</span>
                         <div className="mt-2 mb-2">
                             <span>Adobe photoshop</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
@@ -123,25 +123,25 @@ const ProfessorsSidebar = () => {
                         <span className="h4">Languages</span>
                         <div className="mt-2 mb-2">
                             <span>Adobe photoshop</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2 mb-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                         <div className="mt-2">
                             <span>Photography</span>
-                            <div class="progress">
+                            <div className="progress">
                                 <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>

@@ -37,9 +37,9 @@ export default function ProfessorsWorkExperience() {
         <div className="professors-work-experience shadow w-100 p-4 rounded mb-3 overflow-hidden" id="professors-work-experience">
             <div className="d-flex justify-content-between cursor-pointer" onClick={handleToogle}>
 
-                <span className="d-block h3 font-weight-normal text-success">Work experience</span>
+                <span className="d-block h3 font-weight-normal text-primary">Work experience</span>
                 <IconContext.Provider value={{
-                    className: "mr-2 text-success toggle-icon-work",
+                    className: "mr-2 text-primary toggle-icon-work",
                     size: '30px'
                 }}>
                     <IoIosArrowDown />
@@ -50,10 +50,10 @@ export default function ProfessorsWorkExperience() {
                 <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
                 <span className="font-weight-normal">
                     <IconContext.Provider value={{
-                        className: "mr-2 text-success",
+                        className: "mr-2 text-primary",
                         size: '20px'
                     }}>
-                        <FaRegCalendarAlt />Jan 2015 - <Badge variant="success" >Current</Badge>
+                        <FaRegCalendarAlt />Jan 2015 - <Badge variant="primary" >Current</Badge>
                     </IconContext.Provider>
                 </span>
                 <div className="mt-2">
@@ -66,7 +66,7 @@ export default function ProfessorsWorkExperience() {
                 <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
                 <span className="font-weight-normal">
                     <IconContext.Provider value={{
-                        className: "mr-2 text-success",
+                        className: "mr-2 text-primary",
                         size: '20px'
                     }}>
                         <FaRegCalendarAlt />             Jan 2015 - Dec 2014
@@ -83,7 +83,7 @@ export default function ProfessorsWorkExperience() {
                 <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
                 <span className="font-weight-normal">
                     <IconContext.Provider value={{
-                        className: "mr-2 text-success",
+                        className: "mr-2 text-primary",
                         size: '20px'
                     }}>
                         <FaRegCalendarAlt />Jan 2015 - Dec 2014
