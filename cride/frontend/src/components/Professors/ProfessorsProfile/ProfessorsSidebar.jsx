@@ -51,6 +51,10 @@ const ProfessorsSidebar = () => {
                         <span className="font-weight-bold">10 clases</span>
                         <span className="text-primary">10€/clase</span>
                     </div>
+                    <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
+                        <span className="font-weight-bold">Invitado</span>
+                        <span className="text-primary">5€/clase</span>
+                    </div>
                     <div className="buttons mt-3 text-center border-bottom pb-3">
                         <a className="btn btn-block btn-green text-white">Solicitar clase</a>
 

@@ -28,6 +28,16 @@ const ProfessorsCalendar = () => {
                 endTime: '16:00' // 4pm
             },
             {
+                daysOfWeek: [4], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
+                daysOfWeek: [5], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
                 daysOfWeek: [0], // Thursday, Friday
                 startTime: '10:00', // 10am
                 endTime: '16:00' // 4pm
@@ -40,16 +50,51 @@ const ProfessorsCalendar = () => {
     const [calendarView, setCalendarView] = useState(null)
 
     function handleDateClick(arg) {
-        if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-            setCalendarEvents({  // add new event data
-                calendarEvents: calendarEvents.calendarEvents.concat({ // creates a new array
-                    title: 'Reservado',
-                    start: arg.date,
-                    allDay: arg.allDay
-                })
-            })
+        let date = moment(arg.date)
+        var dateAdd = moment(date).add(30, "minutes")
+        var halfHourMore = dateAdd._d
+
+        let result = calendarEvents.calendarEvents.filter(element => {
+            return (
+                String(element.start) == String(arg.date) ||
+                String(element.start) == String(halfHourMore)
+            )
         }
-        console.log(calendarEvents.calendarEvents);
+        );
+
+        if (result.length <= 0) {
+            if (arg.jsEvent.target.classList.contains('fc-nonbusiness') ||
+                arg.jsEvent.target.classList.contains('busy-time')
+            ) {
+                alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
+            } else {
+                if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
+                    setCalendarEvents({  // add new event data
+                        calendarEvents: calendarEvents.calendarEvents.concat({ // creates a new array
+                            title: 'Reservado',
+                            start: arg.date,
+                        })
+                    })
+                }
+            }
+        }
+    }
+    function handleEventClick(args) {
+        if (confirm('¿Are you sure you want remove this event?')) {
+            let newEventsArray = calendarEvents.calendarEvents.filter(event => {
+                return event.start.toString() !== args.event.start.toString()
+            })
+            setCalendarEvents({ calendarEvents: newEventsArray })
+            args.event.remove()
+        }
+
+    }
+    function handleEventDrop(args) {
+        alert(args.event.title + " was dropped on " + args.event.start.toISOString());
+
+        if (!confirm("Are you sure about this change?")) {
+            args.revert();
+        }
     }
     function getSize() {
         return {
@@ -96,13 +141,18 @@ const ProfessorsCalendar = () => {
                     locales={allLocales}
                     locale='es'
                     allDaySlot={false}
-                    minTime="07:00:00"
-                    maxTime="21:00:00"
+                    slotDuration='00:30:00'
+                    minTime="06:00:00"
+                    maxTime="23:00:00"
                     contentHeight="auto"
                     ref={calendarComponentRef}
+                    businessHours={businessHours.businessHours}
+                    eventLimit={true}
                     events={calendarEvents.calendarEvents}
                     dateClick={handleDateClick}
-                    businessHours={businessHours.businessHours}
+                    eventClick={handleEventClick}
+                    eventDrop={handleEventDrop}
+                    displayEventTime={false}
                 />
             </div>
         </div>
