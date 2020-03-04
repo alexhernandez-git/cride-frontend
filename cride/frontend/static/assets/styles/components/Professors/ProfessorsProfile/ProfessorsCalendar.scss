@@ -38,6 +38,36 @@
   justify-content: center;
   align-items: center;
 }
+.fc-content {
+  background: linear-gradient(45deg, #56b389, #2e6a89) !important;
+  border-radius: 5px !important;
+}
+.fc-time-grid-event.fc-event.fc-start.fc-end.fc-short {
+  border: 0 !important;
+  border-radius: 5px !important;
+}
 .fc-title {
   padding: 10px !important;
+}
+.fc-next-button {
+  background: linear-gradient(45deg, #56b389, #2e6a89) !important;
+  border-color: inherit;
+}
+.fc-prev-button {
+  background: linear-gradient(45deg, #56b389, #2e6a89) !important;
+  border-color: inherit;
+  margin: inherit;
+}
+.fc-today-button {
+  background: linear-gradient(45deg, #56b389, #2e6a89) !important;
+
+  border: none;
+}
+.fc-next-button:hover,
+.fc-prev-button:hover,
+.fc-prev-button:focus,
+.fc-prev-button:focus,
+.fc-today-button:hover,
+.fc-today-button:focus {
+  border-color: inherit !important;
 }

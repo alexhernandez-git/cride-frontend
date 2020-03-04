@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "../../../static/assets/styles/components/Layout/FilterBar.scss"
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -29,7 +29,6 @@ const FilterBar = () => {
                 filterBox.style.height = "750px";
             }
             setState({ isOpen: true })
-            console.log(state);
 
         }
         else {

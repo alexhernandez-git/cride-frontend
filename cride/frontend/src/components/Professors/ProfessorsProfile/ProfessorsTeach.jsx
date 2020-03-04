@@ -8,7 +8,7 @@ const ProfessorsTeach = () => {
     return (
         <div className="professors-teach shadow w-100 p-4 rounded mb-3">
 
-            <span className="d-block h3 font-weight-normal text-primary">¿What teacher teach?</span>
+            <span className="d-block h3 font-weight-normal text-primary">¿What does the teacher teach?</span>
             <div className="row pr-4 pl-4">
                 <div className="col-md-6 text-break">
                     <div className="subject p-2 position-relative">

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './routes/App';
 import "../static/assets/styles/styles.scss"
-import Context from "./Context"
+import { AppContext } from "./context/AppContext"
 ReactDOM.render(
-    <Context.Provider value={{ isAuth: false }}>
+    <AppContext.Provider value={{ isAuth: false }}>
         <App />
-    </Context.Provider>,
+    </AppContext.Provider>,
     document.getElementById('react')
 );
