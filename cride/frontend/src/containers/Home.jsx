@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeLayout from '../components/Layout/WelcomeLayout'
-import ProfessorsCarousel from '../components/Professors/ProfessorsCarousel'
+import TeachersCarousel from '../components/Teachers/TeachersCarousel'
 import MainCategories from '../components/Categories/MainCategories';
 import "../../static/assets/styles/containers/Home.scss"
 import Button from 'react-bootstrap/Button'
@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className="text-grey" >
             <WelcomeLayout />
-            <ProfessorsCarousel />
+            <TeachersCarousel />
             <div className="banner-home mt-5 border-danger bg-danger box-shadow">
                 <h4 className="h2">Nunca pares de aprender</h4>
                 <p>Y aprende como nunca lo has hecho</p>

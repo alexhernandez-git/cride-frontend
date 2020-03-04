@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Layout/Sidebar'
-import ProfessorsFeed from '../components/Professors/ProfessorsFeed'
+import TeachersFeed from '../components/Teachers/TeachersFeed'
 import FilterBar from "../components/Layout/FilterBar"
 import Pagination from "../components/Layout/Pagination"
 const Search = () => {
@@ -10,13 +10,13 @@ const Search = () => {
             <div className="container text-info">
                 <div className="row mt-5">
                     <div className="col-md-8">
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
-                        <ProfessorsFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
+                        <TeachersFeed />
                         <div className="div-pagination mt-5">
                             <Pagination />
 
