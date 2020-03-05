@@ -1,0 +1,71 @@
+.filter-carousel {
+  display: flex;
+}
+.filter-carousel div {
+  padding: 5px;
+  color: rgba($color: #000000, $alpha: 0.5);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.filter-carousel div:hover,
+.filter-carousel div.active {
+  color: black;
+  border-bottom: 1px solid black;
+}
+.filter-carousel .card {
+  padding-top: 10px;
+  opacity: 1;
+  width: 300px;
+  color: white;
+}
+
+.card-title {
+  color: #262626;
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0 !important;
+}
+
+.category-card img {
+  display: block;
+  margin: auto;
+  width: 250px;
+  height: 250px;
+}
+.slick-prev:before,
+.slick-next:before {
+  font-weight: 700;
+  color: black !important;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+  color: #007791;
+  font-size: 24px;
+  height: 47px;
+  line-height: 1;
+  padding: 11px 0;
+  text-align: center;
+  transform: translateY(-50%);
+  width: 47px;
+  z-index: 100000 !important;
+  position: absolute;
+}
+
+.slick-prev:before {
+  right: 0;
+}
+.slick-next:before {
+  right: -30px;
+}
+@media only screen and (min-width: 1024px) {
+  .slick-next:before {
+    right: -25px;
+  }
+}
