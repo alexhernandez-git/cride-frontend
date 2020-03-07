@@ -11,6 +11,7 @@ import TeacherTeach from "../components/Teachers/TeachersProfile/TeacherTeach"
 import TeacherSkills from "../components/Teachers/TeachersProfile/TeacherSkills"
 import TeacherCalendar from "../components/Teachers/TeachersProfile/TeacherCalendar"
 import StudentFeedback from '../components/Teachers/TeachersProfile/StudentFeedback';
+import ScheduleClass from '../components/Teachers/TeachersProfile/ScheduleClass';
 const TeachersProfile = () => {
     return (
         <TeachersProfileProvider>
@@ -28,6 +29,7 @@ const TeachersProfile = () => {
                         <TeacherEducation />
                         <TeacherCalendar />
                         <StudentFeedback />
+                        <ScheduleClass />
                     </div>
                 </div>
             </div>

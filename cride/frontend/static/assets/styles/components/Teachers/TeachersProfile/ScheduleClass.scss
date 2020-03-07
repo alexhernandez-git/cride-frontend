@@ -1,0 +1,23 @@
+.schedule-class {
+  .nav-link:focus {
+    outline: none !important;
+    box-shadow: none;
+  }
+  .nav-link.active {
+    background: linear-gradient(45deg, #56b389, #2e6a89);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  .form-control:focus {
+    box-shadow: none;
+  }
+  .div-img {
+    overflow: hidden;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+  .img-student {
+    height: 150px;
+    width: 150px;
+  }
+}

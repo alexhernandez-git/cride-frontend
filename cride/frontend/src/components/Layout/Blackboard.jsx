@@ -39,7 +39,7 @@ const Blackboard = () => {
                 <div className="draft position-absolute"></div>
             </div>
 
-            <Modal show={show} onHide={handleClose} size="xl">
+            <Modal show={show} onHide={handleClose} size="xl" centered>
                 <Modal.Body className="p-0">
                     <div style={{ width: 'auto', height: 'auto' }}>
                         <ResponsiveEmbed aspectRatio="16by9">

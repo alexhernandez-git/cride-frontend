@@ -28,7 +28,7 @@ const TeachersPresentation = () => {
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora aspernatur aperiam ducimus eligendi nihil praesentium pariatur a iste nobis optio quia fugit, explicabo nisi iusto quis perspiciatis ut asperiores culpa.</p>
             </div>
-            <Modal show={show} onHide={handleClose} size="xl">
+            <Modal show={show} onHide={handleClose} size="xl" centered>
                 <Modal.Body className="p-0">
                     <div style={{ width: 'auto', height: 'auto' }}>
                         <ResponsiveEmbed aspectRatio="16by9">

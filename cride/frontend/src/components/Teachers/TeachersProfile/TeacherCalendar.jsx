@@ -9,42 +9,8 @@ import { TeachersProfileContext } from "../../../context/TeachersProfileContext"
 
 import moment from 'moment'
 const TeachersCalendar = () => {
-    const professorContext = useContext(TeachersProfileContext);
+    const teacherContext = useContext(TeachersProfileContext);
     const calendarComponentRef = useRef(null)
-    const [businessHours, setBusinessHours] = useState({
-        businessHours: [ // specify an array instead
-            {
-                daysOfWeek: [1], // Monday, Tuesday, Wednesday
-                startTime: '08:00', // 8am
-                endTime: '18:00' // 6pm
-            },
-            {
-                daysOfWeek: [2], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [3], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [4], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [5], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [0], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            }
-        ]
-    })
 
     const [calendarView, setCalendarView] = useState(null)
 
@@ -55,42 +21,50 @@ const TeachersCalendar = () => {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        let result = professorContext.calendarEvents.filter(element => String(element.start) == String(roundDown._d));
-        if (result.length <= 0) {
-            if (arg.jsEvent.target.classList.contains('fc-nonbusiness') ||
-                arg.jsEvent.target.classList.contains('busy-time')
-            ) {
-                alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
-            } else {
-                if (professorContext.lessonsLeft > 0) {
-                    if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
-                        professorContext.addClass()
+        let result = teacherContext.calendarEvents.filter(element => String(element.start) == String(roundDown._d));
 
-                        professorContext.addCalendarEvent({
-                            // creates a new array
-                            id: Math.random().toString(36).substr(2),
-                            title: 'Reservado',
-                            start: roundDown._d,
-                        })
-                    }
+
+        if (!moment().isAfter(roundDown._d) > 0) {
+
+
+            if (result.length <= 0) {
+                if (arg.jsEvent.target.classList.contains('fc-nonbusiness') ||
+                    arg.jsEvent.target.classList.contains('busy-time')
+                ) {
+                    alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
-                    if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
-                        result = prompt('¿Cuantas quieres adquirir?')
+                    if (teacherContext.lessonsLeft > 0) {
+                        if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
+                            teacherContext.addClass()
 
-                        if (result)
-                            professorContext.addLessonsLeft(result)
+                            teacherContext.addCalendarEvent({
+                                // creates a new array
+                                id: Math.random().toString(36).substr(2),
+                                title: 'Reservado',
+                                start: roundDown._d,
+                            })
+                        }
+                    } else {
+                        if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
+                            result = prompt('¿Cuantas quieres adquirir?')
+
+                            if (result)
+                                teacherContext.addLessonsLeft(result)
+                        }
                     }
                 }
             }
+        } else {
+            alert('this date is in the past')
         }
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = professorContext.calendarEvents.filter(event => {
+            let newEventsArray = teacherContext.calendarEvents.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
-            professorContext.setCalendarEvents(newEventsArray)
-            professorContext.removeClass()
+            teacherContext.setCalendarEvents(newEventsArray)
+            teacherContext.removeClass()
             args.event.remove()
 
         }
@@ -135,7 +109,7 @@ const TeachersCalendar = () => {
     }, []); // Empty array ensures that effect is only run on mount and unmount
     return (
         <TeachersProfileContext.Consumer>
-            {professorContext => (
+            {teacherContext => (
                 <div className="teacher-calendar shadow w-100 p-4 rounded mb-3 overflow-hidden">
                     <div className='demo-app-calendar'>
                         <FullCalendar
@@ -156,13 +130,16 @@ const TeachersCalendar = () => {
                             contentHeight="auto"
 
                             ref={calendarComponentRef}
-                            businessHours={businessHours.businessHours}
+                            businessHours={teacherContext.businessHours}
                             eventLimit={true}
-                            events={professorContext.calendarEvents}
+                            events={teacherContext.calendarEvents}
                             dateClick={handleDateClick}
                             eventClick={handleEventClick}
                             eventDrop={handleEventDrop}
                             displayEventTime={false}
+                            selectAllow={function (selectInfo) {
+                                return moment().diff(selectInfo.start) <= 0
+                            }}
                         />
                     </div>
                 </div>

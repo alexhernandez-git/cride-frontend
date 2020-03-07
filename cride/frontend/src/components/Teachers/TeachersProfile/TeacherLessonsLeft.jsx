@@ -9,7 +9,7 @@ const TeachersLessonsLeft = () => {
         const handleScroll = () => {
             let scroll = document.body.getBoundingClientRect().y
 
-            if (scroll < '-500') {
+            if (scroll < '-750') {
 
                 professorsLessonsLeft.current.classList.add('lessons-fixed')
 

@@ -8,6 +8,7 @@ import TeachersLessonsLeft from "./TeacherLessonsLeft"
 import { TeachersProfileContext } from "../../../context/TeachersProfileContext"
 
 const TeachersSidebar = () => {
+
     const professorContext = useContext(TeachersProfileContext);
     const handleRequestClasses = () => {
 
@@ -17,9 +18,10 @@ const TeachersSidebar = () => {
             professorContext.addLessonsLeft(result)
 
     }
+
     return (
         <TeachersProfileContext.Consumer>
-            {context => (
+            {teachersContext => (
                 <div>
                     <div className="main-info-profile p-4 shadow">
                         <div className="d-inline justify-content-between">
@@ -50,12 +52,13 @@ const TeachersSidebar = () => {
                     </div>
 
                     <div className="p-3">
-                        <div className="cursor-pointer" onClick={handleRequestClasses}>
+                        <a className="btn btn-block btn-green text-white" onClick={teachersContext.handleShow}>Solicitar clase</a>
+                        <div className="buttons mt-3 text-center border-bottom pb-3">
 
-                            <TeachersLessonsLeft />
+                            <a className="btn btn-block btn-outline-green">Enviar mensaje</a>
                         </div>
 
-                        <div className="call-to-action p-3">
+                        <div className="call-to-action pt-3 pl-3 pr-3">
                             <small className="d-block pb-2 border-bottom mb-2">Las clases tienen una duración de 60 minutos</small>
                             <span className="d-block pb-2 border-bottom mb-2">Prueba de 15 min. gratuita</span>
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
@@ -70,11 +73,13 @@ const TeachersSidebar = () => {
                                 <span className="font-weight-bold">10 clases</span>
                                 <span className="text-primary">10€/clase</span>
                             </div>
-                            <div className="buttons mt-3 text-center border-bottom pb-3">
-                                <a className="btn btn-block btn-green text-white" onClick={handleRequestClasses}>Solicitar clase</a>
+                        </div>
+                        <div className="classes-acquired mt-3 text-center">
+                            <div className="cursor-pointer" onClick={handleRequestClasses}>
 
-                                <a className="btn btn-block btn-outline-green">Enviar mensaje</a>
+                                <TeachersLessonsLeft />
                             </div>
+
                         </div>
 
                         <div className="d-block d-md-none">
