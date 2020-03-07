@@ -3,7 +3,7 @@ import Badge from 'react-bootstrap/Badge'
 import { IconContext } from "react-icons";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import "../../../../static/assets/styles/components/Teachers/TeachersProfile/TeacherWorkExperience.scss"
+import "static/assets/styles/components/Teachers/TeachersProfile/TeacherWorkExperience.scss"
 export default function TeachersWorkExperience() {
     const [isOpen, setIsOpen] = useState(false)
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaStar } from 'react-icons/fa';
 import { IconContext } from "react-icons";
-import "../../../../../static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback/FeedbackBars.scss"
+import "static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback/FeedbackBars.scss"
 export default function FeedbackBar(props) {
     const [type, setType] = useState(props.type)
     const [percentage, setPercentage] = useState(props.percentage)

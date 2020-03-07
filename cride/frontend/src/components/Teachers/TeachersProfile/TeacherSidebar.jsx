@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import Button from "react-bootstrap/Button"
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import TeachersLessonsLeft from "./TeacherLessonsLeft"
-import { TeachersProfileContext } from "../../../context/TeachersProfileContext"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 
 const TeachersSidebar = () => {
 

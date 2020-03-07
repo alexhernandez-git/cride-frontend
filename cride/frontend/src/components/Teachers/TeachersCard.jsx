@@ -3,9 +3,9 @@ import Card from "react-bootstrap/Card"
 import Badge from "react-bootstrap/Badge"
 import { Link } from "react-router-dom"
 
-import "../../../static/assets/styles/components/Teachers/TeachersCard.scss"
+import "static/assets/styles/components/Teachers/TeachersCard.scss"
 
-import Punctuation from "../Layout/Punctuation"
+import Punctuation from "src/components/Layout/Punctuation"
 function TeachersCard() {
     const [color, setColor] = useState(['primary', 'secondary', 'success', 'warning', 'danger', 'info'])
 

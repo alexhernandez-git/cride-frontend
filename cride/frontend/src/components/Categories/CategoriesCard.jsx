@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import "../../../static/assets/styles/components/Categories/CategoriesCard.scss"
+import "static/assets/styles/components/Categories/CategoriesCard.scss"
 function CategoriesCard(props) {
     const [category, setCategories] = useState(props)
 

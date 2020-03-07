@@ -55,6 +55,7 @@ module.exports = {
         ],
     },
     resolve: {
+        modules: [path.resolve(__dirname, './cride/frontend'), 'node_modules'],
         extensions: ['*', '.js', '.jsx']
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { IconContext } from "react-icons";
-import "../../../../../static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback/StudentReview.scss"
+import "static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback/StudentReview.scss"
 const StudentReview = () => {
     return (
         <div>

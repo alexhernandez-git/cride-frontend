@@ -71,118 +71,35 @@ export const TeachersProfileProvider = ({ children }) => {
     const handleClose = () => setShowScheduleClass(false);
     const handleShow = () => setShowScheduleClass(true);
 
-    const [classesPrice, setClassesPrice] = useState(0);
+    const [classPrice, setClassPrice] = useState(0);
     useEffect(() => {
-        setClassesPrice(26)
+        setClassPrice(25)
     }, []);
+    const calcPriceClass = (numClass) => {
+        let finalPrice
+        if (numClass > 5) {
+            finalPrice = classPrice / 1.5
+        } else {
+            finalPrice = classPrice / 1.4
+        }
+        return Math.round(finalPrice)
+    }
     // State of selected classes
     const [selectedClasses, setSelectedClasses] = useState({});
     useEffect(() => {
 
         setSelectedClasses({
-            selected: 1,
-            totalPrice: 20,
-            totalDiscount: 0,
-            finalPrice: 20,
-            priceByClass: 20
+            selected: 0,
+            price: 0,
         })
     }, []);
 
-    const createTotalPrice = (classesSelected) => {
-        var rest = classesSelected % 5;
-
-        let discount
-        let finalPrice
-        let classPrice
-
-        if (classesSelected >= 100) {
-            discount = 2.00
-        } else if (classesSelected >= 50) {
-            discount = 1.95
-        }
-        else if (classesSelected >= 25) {
-            discount = 1.85
-        }
-        else if (classesSelected >= 15) {
-            discount = 1.75
-        }
-        else if (classesSelected >= 10) {
-            discount = 1.50
-        }
-        else if (classesSelected >= 5) {
-            discount = 1.25
-        } else {
-            discount = 2.05
-        }
-
-        if (rest == 0 && classesSelected > 1) {
-            finalPrice = Math.round((classesPrice * classesSelected) / discount);
-            discount = Math.round((classesPrice * classesSelected) - finalPrice);
-
-            classPrice = Math.round(finalPrice / classesSelected);
-
-        } else {
-
-            classPrice = classesPrice
-
-            finalPrice = classesPrice * classesSelected;
-            discount = 0
-
-        }
-        classPrice = classesSelected == 0 ? classPrice = 0 : classPrice
-        let total = classesPrice * classesSelected;
 
 
-        return {
-            total: total,
-            discount: discount,
-            finalPrice: finalPrice,
-            classPrice: classPrice
-        }
-    }
-    const handleChangeSelected = (value) => {
-
-        if (value > 0 && Number.isInteger(parseInt(value)) || value == '') {
-            if (value == '') value = 0
-            var valueInt = parseInt(value);
-
-
-            let result = createTotalPrice(valueInt)
-
-            setSelectedClasses({
-                selected: valueInt,
-                totalPrice: result.total,
-                totalDiscount: result.discount,
-                finalPrice: result.finalPrice,
-                priceByClass: result.classPrice
-            })
-        }
-    }
-    const handleAdd = () => {
-        let valueInt = selectedClasses.selected + 1
-        let result = createTotalPrice(valueInt)
-        setSelectedClasses({
-            selected: valueInt,
-            totalPrice: result.total,
-            totalDiscount: result.discount,
-            finalPrice: result.finalPrice,
-            priceByClass: result.classPrice
-        })
+    const selectClasses = (classesSelected) => {
 
     }
-    const handleSub = () => {
-        if (selectedClasses.selected > 0) {
-            let valueInt = selectedClasses.selected - 1
-            let result = createTotalPrice(valueInt)
-            setSelectedClasses({
-                selected: valueInt,
-                totalPrice: result.total,
-                totalDiscount: result.discount,
-                finalPrice: result.finalPrice,
-                priceByClass: result.classPrice
-            })
-        }
-    }
+
     return (
         <TeachersProfileContext.Provider value={{
             calendarEvents,
@@ -196,10 +113,10 @@ export const TeachersProfileProvider = ({ children }) => {
             businessHours,
             handleClose,
             handleShow,
+            classPrice,
+            calcPriceClass,
             selectedClasses,
-            handleChangeSelected,
-            handleAdd,
-            handleSub,
+            selectClasses,
         }}>
             {children}
         </TeachersProfileContext.Provider>
