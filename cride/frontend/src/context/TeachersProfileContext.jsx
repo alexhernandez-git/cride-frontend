@@ -73,7 +73,7 @@ export const TeachersProfileProvider = ({ children }) => {
 
     const [classPrice, setClassPrice] = useState(0);
     useEffect(() => {
-        setClassPrice(25)
+        setClassPrice(20)
     }, []);
     const calcPriceClass = (numClass) => {
         let finalPrice
@@ -97,8 +97,16 @@ export const TeachersProfileProvider = ({ children }) => {
 
 
     const selectClasses = (classesSelected) => {
-
+        setSelectedClasses({
+            selected: classesSelected.classes,
+            price: classesSelected.price,
+        })
     }
+
+    const getInvitationEarnings = () => {
+        return Math.round(classPrice * 0.25)
+    }
+
 
     return (
         <TeachersProfileContext.Provider value={{
@@ -117,6 +125,7 @@ export const TeachersProfileProvider = ({ children }) => {
             calcPriceClass,
             selectedClasses,
             selectClasses,
+            getInvitationEarnings,
         }}>
             {children}
         </TeachersProfileContext.Provider>

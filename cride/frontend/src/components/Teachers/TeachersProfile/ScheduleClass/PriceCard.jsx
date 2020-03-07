@@ -14,14 +14,16 @@ export default function PriceCard(props) {
             setDiscount(teacherContext.classPrice * classes - price * classes)
         }
     }, []);
-
+    const handleSelectClasses = () => {
+        teacherContext.selectClasses({ classes: classes, price: price })
+    }
     return (
         <div className="price-card d-flex justify-content-between p-3 pb-5">
             <Card
                 className="text-grey border-0 shadow"
                 style={{ height: '500px' }}
             >
-                <Card.Img className="rounded-circle img-card mt-4" variant="top" src={`https://source.unsplash.com/random/1`} />
+                <Card.Img className="rounded-circle img-card mt-4" variant="top" src={`https://source.unsplash.com/random/10`} />
 
                 <Card.Body>
                     <span className="d-block h4 mb-0">{title}</span>
@@ -39,7 +41,10 @@ export default function PriceCard(props) {
                             <span className="h5 font-weight-light">{discount}€</span>
                         </span>
                         : ''}
-                    <a className="btn btn-green btn-block text-white mt-3">Seleccionar</a>
+                    <a
+                        className="btn btn-green btn-block text-white mt-3"
+                        onClick={handleSelectClasses}
+                    >Seleccionar</a>
 
                 </Card.Footer>
             </Card>

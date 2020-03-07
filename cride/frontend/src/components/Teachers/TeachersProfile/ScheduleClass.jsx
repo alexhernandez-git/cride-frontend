@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 import Modal from 'react-bootstrap/Modal'
 import Tab from 'react-bootstrap/Tab'
@@ -11,7 +11,8 @@ import {
     FaRegStar,
     FaStar,
     FaChalkboardTeacher,
-    FaRegCalendarCheck
+    FaRegCalendarCheck,
+    FaRegQuestionCircle
 } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { MdPayment } from 'react-icons/md';
@@ -21,18 +22,20 @@ import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
 export default function ScheduleClass() {
     const teacherContext = useContext(TeachersProfileContext);
+
     const [key, setKey] = useState(0);
     const handleNext = () => {
         if (key <= 1) {
-            setKey(parseInt(key) + 1)
-        }
+            if (teacherContext.selectedClasses.selected > 0) {
+                setKey(parseInt(key) + 1)
 
+            }
+        }
     }
     const handleClose = () => {
         setKey(0)
         teacherContext.handleClose()
     }
-
     return (
 
         <TeachersProfileContext.Consumer>
@@ -42,6 +45,22 @@ export default function ScheduleClass() {
                     size="xl"
                     backdrop='false'
                 >
+                    <Modal.Header>
+                        <div className="w-100 bg-gradient-green shadow rounded p-2 text-white text-center">
+                            <IconContext.Provider
+                                value={{
+                                    className: "global-class-name cursor-pointer float-right font-weight-light",
+                                    size: '20px'
+                                }}
+                            >
+                                <div>
+                                    <FaRegQuestionCircle />
+
+                                </div>
+                            </IconContext.Provider>
+                            <span className="d-block">Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{teacherContext.getInvitationEarnings()}€</span></span>
+                        </div>
+                    </Modal.Header>
                     <Modal.Body className="pt-3 border-0 rounded bg-white">
                         <div className="schedule-class">
                             <div className="d-flex justify-content-end">
@@ -65,7 +84,7 @@ export default function ScheduleClass() {
                                         <div className="d-flex flex-column justify-content-center align-items-center p-3">
                                             <div className="div-img mb-4">
                                                 <img className="img-student" src={`https://source.unsplash.com/random/1`} />
-                                            </div>
+                                            </div >
                                             <div>
                                                 <span className="d-block h5">Alex Hernandez</span>
                                             </div>
@@ -86,14 +105,19 @@ export default function ScheduleClass() {
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
                                             <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses.selected}</span>
+                                            {teacherContext.selectedClasses.selected == 1 ?
+                                                <span className="d-block">Clase seleccionada</span>
+                                                :
+                                                <span className="d-block">Clases seleccionadas</span>
+                                            }
 
-                                            <span className="d-block">Clases seleccionadas</span>
-                                        </div>
+                                        </div >
 
-                                    </div>
-                                </Col>
+                                    </div >
+                                </Col >
                                 <Col lg={9}>
                                     <Tab.Container id="left-tabs-example" activeKey={key} onSelect={k => setKey(k)} defaultActiveKey="first" className="p-3">
+
                                         <Form onSubmit={(e) => e.preventDefault()}>
                                             <Row className="mb-3">
                                                 <Col sm={12}>
@@ -112,34 +136,60 @@ export default function ScheduleClass() {
                                                             </Nav.Link>
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            <Nav.Link eventKey={1}>
-                                                                <IconContext.Provider
-                                                                    value={{
-                                                                        className: "global-class-name",
-                                                                        size: '20px'
-                                                                    }}>
-                                                                    <FaRegCalendarCheck />
+                                                            {teacherContext.selectedClasses.selected > 0 ?
+                                                                <Nav.Link eventKey={1} >
+                                                                    <IconContext.Provider
+                                                                        value={{
+                                                                            className: "global-class-name",
+                                                                            size: '20px'
+                                                                        }}>
+                                                                        <FaRegCalendarCheck />
 
-                                                                </IconContext.Provider>
+                                                                    </IconContext.Provider>
+                                                                </Nav.Link>
+                                                                :
+                                                                < Nav.Link >
+                                                                    <IconContext.Provider
+                                                                        value={{
+                                                                            className: "global-class-name",
+                                                                            size: '20px'
+                                                                        }}>
+                                                                        <FaRegCalendarCheck />
 
-                                                            </Nav.Link>
+                                                                    </IconContext.Provider>
+                                                                </Nav.Link>
+                                                            }
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            <Nav.Link eventKey={2}>
-                                                                <IconContext.Provider
-                                                                    value={{
-                                                                        className: "global-class-name",
-                                                                        size: '20px'
-                                                                    }}>
-                                                                    <MdPayment />
+                                                            {teacherContext.selectedClasses.selected > 0 ?
+                                                                <Nav.Link eventKey={2}>
+                                                                    <IconContext.Provider
+                                                                        value={{
+                                                                            className: "global-class-name",
+                                                                            size: '20px'
+                                                                        }}>
+                                                                        <MdPayment />
 
-                                                                </IconContext.Provider>
-                                                            </Nav.Link>
+                                                                    </IconContext.Provider>
+                                                                </Nav.Link>
+                                                                :
+                                                                <Nav.Link>
+                                                                    <IconContext.Provider
+                                                                        value={{
+                                                                            className: "global-class-name",
+                                                                            size: '20px'
+                                                                        }}>
+                                                                        <MdPayment />
+
+                                                                    </IconContext.Provider>
+                                                                </Nav.Link>
+                                                            }
                                                         </Nav.Item>
 
                                                     </Nav>
                                                 </Col>
                                             </Row>
+
                                             <Row>
                                                 <Col className="pl-3 pr-3">
 
@@ -158,18 +208,18 @@ export default function ScheduleClass() {
                                 </Col>
 
 
-                            </Row>
-                        </div>
-                    </Modal.Body>
+                            </Row >
+                        </div >
+                    </Modal.Body >
                     <Modal.Footer className="pt-0 border-0">
                         <div className="d-flex justify-content-end">
-                            <a className="btn btn-green text-white" onClick={handleNext}>Siguiente paso</a>
+                            <a className={teacherContext.selectedClasses.selected > 0 ? 'btn text-white btn-green' : 'btn text-white btn-green disabled'} onClick={handleNext}>Siguiente paso</a>
 
                         </div>
                     </Modal.Footer>
 
 
-                </Modal>
+                </Modal >
             )
             }
         </TeachersProfileContext.Consumer >

@@ -8,21 +8,19 @@ import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaPlus, FaMinus } from 'react-icons/fa';
 import PriceCard from 'src/components/Teachers/TeachersProfile/ScheduleClass/PriceCard.jsx'
-import { IconContext } from "react-icons";
 export default function ClassSubject() {
     const teacherContext = useContext(TeachersProfileContext);
 
     const [cardContent, setCardContent] = useState([{
-        id: 0,
-        title: 'Entrevista',
-        sessions: 'Sesión de 15 min.',
-        description: 'Entrevístate con Miguel Ángel, comparte tus dudas y objetivos para asegurarte que es tu profesor ideal.',
-        price: 'Gratuita',
-        classes: 1
-    },
-    {
+        //     id: 0,
+        //     title: 'Entrevista',
+        //     sessions: 'Sesión de 15 min.',
+        //     description: 'Entrevístate con Miguel Ángel, comparte tus dudas y objetivos para asegurarte que es tu profesor ideal.',
+        //     price: 0,
+        //     classes: 1
+        // },
+        // {
         id: 1,
         title: 'Resolver dudas',
         sessions: '1 clase',
@@ -58,7 +56,7 @@ export default function ClassSubject() {
 
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1200,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1
