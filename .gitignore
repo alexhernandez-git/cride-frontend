@@ -279,5 +279,5 @@ cride/media/
 !.envs/.local/
 
 # Bundles
-/cride/frontend/static/bundles/*
-/cride/webpack-stats.json
+cride/frontend/static/bundles/*
+cride/webpack-stats.json
