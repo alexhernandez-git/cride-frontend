@@ -65,4 +65,13 @@
     font-size: 50px !important;
     line-height: 0 !important;
   }
+  .nav-item {
+    width: max-content;
+  }
+  @media only screen and (max-width: 1200px) {
+    .nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

@@ -5,7 +5,6 @@ import "static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback
 export default function FeedbackBar(props) {
     const [type, setType] = useState(props.type)
     const [percentage, setPercentage] = useState(props.percentage)
-    console.log(percentage);
     function renderStars(type) {
         switch (type) {
             case 5:

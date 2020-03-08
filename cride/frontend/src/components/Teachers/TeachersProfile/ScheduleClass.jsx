@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 import Modal from 'react-bootstrap/Modal'
 import Tab from 'react-bootstrap/Tab'
@@ -23,18 +23,16 @@ import ScheduleHour from "./ScheduleClass/ScheduleHour"
 export default function ScheduleClass() {
     const teacherContext = useContext(TeachersProfileContext);
 
-    const [key, setKey] = useState(0);
-    const handleNext = () => {
-        if (key <= 1) {
-            if (teacherContext.selectedClasses.selected > 0) {
-                setKey(parseInt(key) + 1)
-
-            }
+    const [invitationPriceState, setInvitationPriceState] = useState(false)
+    const handleClickInvitationEarning = () => {
+        if (invitationPriceState) {
+            setInvitationPriceState(false)
+        } else {
+            setInvitationPriceState(true)
         }
     }
-    const handleClose = () => {
-        setKey(0)
-        teacherContext.handleClose()
+    const button = () => {
+
     }
     return (
 
@@ -44,25 +42,54 @@ export default function ScheduleClass() {
                     show={teacherContext.showScheduleClass}
                     size="xl"
                     backdrop='false'
+                    className="schedule-class"
                 >
-                    <Modal.Header>
-                        <div className="w-100 bg-gradient-green shadow rounded p-2 text-white text-center">
-                            <IconContext.Provider
-                                value={{
-                                    className: "global-class-name cursor-pointer float-right font-weight-light",
-                                    size: '20px'
-                                }}
-                            >
-                                <div>
+                    <Modal.Header className="d-block">
+
+                        <div
+                            className="invitation-earning overflow-hidden w-100 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer"
+                            onClick={handleClickInvitationEarning}
+                        >
+                            {invitationPriceState ?
+                                <IconContext.Provider
+                                    value={{
+                                        className: "global-class-name cursor-pointer float-right font-weight-light",
+                                        size: '20px'
+                                    }}
+                                >
+                                    <IoMdClose />
+
+                                </IconContext.Provider> :
+                                <IconContext.Provider
+                                    value={{
+                                        className: "global-class-name cursor-pointer float-right font-weight-light",
+                                        size: '20px'
+                                    }}
+                                >
                                     <FaRegQuestionCircle />
 
-                                </div>
-                            </IconContext.Provider>
-                            <span className="d-block">Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{teacherContext.getInvitationEarnings()}€</span></span>
+                                </IconContext.Provider>
+
+                            }
+
+                            <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span></span>
+
                         </div>
+                        <div
+                            className={invitationPriceState ? "d-block text-center p-2 shadow rounded-bottom text-grey position-absolute bg-white" : "d-none"}
+                            style={{ width: '85%', zIndex: '1000', left: '0', right: '0', margin: '0 auto' }}
+                        >
+                            <span className="d-block">
+                                Al compañero que invites le va a costar la classe exactamente{' '}
+                                <span className="font-weight-bold">{Math.round(teacherContext.classPrice - teacherContext.classPrice * 0.2)}€</span><br />
+                                que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
+                                <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span> por cada invitado que adquiera la clase
+                                </span>
+                        </div>
+
                     </Modal.Header>
                     <Modal.Body className="pt-3 border-0 rounded bg-white">
-                        <div className="schedule-class">
+                        <div >
                             <div className="d-flex justify-content-end">
 
                                 <IconContext.Provider
@@ -71,7 +98,7 @@ export default function ScheduleClass() {
                                         size: '20px'
                                     }}
                                 >
-                                    <div onClick={handleClose}>
+                                    <div onClick={teacherContext.handleClose}>
                                         <IoMdClose />
 
                                     </div>
@@ -104,8 +131,9 @@ export default function ScheduleClass() {
                                             <div>
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
-                                            <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses.selected}</span>
-                                            {teacherContext.selectedClasses.selected == 1 ?
+                                            }
+                                            <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
+                                            {teacherContext.selectedClasses == 1 ?
                                                 <span className="d-block">Clase seleccionada</span>
                                                 :
                                                 <span className="d-block">Clases seleccionadas</span>
@@ -116,7 +144,7 @@ export default function ScheduleClass() {
                                     </div >
                                 </Col >
                                 <Col lg={9}>
-                                    <Tab.Container id="left-tabs-example" activeKey={key} onSelect={k => setKey(k)} defaultActiveKey="first" className="p-3">
+                                    <Tab.Container id="left-tabs-example" activeKey={teacherContext.key} onSelect={k => teacherContext.setKey(k)} defaultActiveKey="first" className="p-3">
 
                                         <Form onSubmit={(e) => e.preventDefault()}>
                                             <Row className="mb-3">
@@ -130,13 +158,14 @@ export default function ScheduleClass() {
                                                                         size: '20px'
                                                                     }}>
                                                                     <FaChalkboardTeacher />
+                                                                    {' '}Cuantas clases quieres?
 
                                                                 </IconContext.Provider>
 
                                                             </Nav.Link>
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            {teacherContext.selectedClasses.selected > 0 ?
+                                                            {teacherContext.selectedClasses > 0 ?
                                                                 <Nav.Link eventKey={1} >
                                                                     <IconContext.Provider
                                                                         value={{
@@ -144,7 +173,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <FaRegCalendarCheck />
-
+                                                                        {' '}Asigna tus clases
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
@@ -155,13 +184,13 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <FaRegCalendarCheck />
-
+                                                                        {' '}Asigna tus clases
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                             }
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            {teacherContext.selectedClasses.selected > 0 ?
+                                                            {teacherContext.selectedClasses > 0 ?
                                                                 <Nav.Link eventKey={2}>
                                                                     <IconContext.Provider
                                                                         value={{
@@ -169,7 +198,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <MdPayment />
-
+                                                                        {' '}Completa el proceso
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
@@ -180,7 +209,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <MdPayment />
-
+                                                                        {' '}Completa el proceso
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                             }
@@ -200,6 +229,16 @@ export default function ScheduleClass() {
                                                         <Tab.Pane eventKey={1} className="text-grey">
                                                             <ScheduleHour />
                                                         </Tab.Pane>
+                                                        <Tab.Pane eventKey={2} className="text-grey">
+                                                            <div className="d-flex justify-content-center">
+                                                                <a
+                                                                    className="btn btn-green text-white"
+                                                                    onClick={teacherContext.handleBuy}
+                                                                >
+                                                                    Adquirir
+                                                                </a>
+                                                            </div>
+                                                        </Tab.Pane>
                                                     </Tab.Content>
                                                 </Col>
                                             </Row>
@@ -213,7 +252,21 @@ export default function ScheduleClass() {
                     </Modal.Body >
                     <Modal.Footer className="pt-0 border-0">
                         <div className="d-flex justify-content-end">
-                            <a className={teacherContext.selectedClasses.selected > 0 ? 'btn text-white btn-green' : 'btn text-white btn-green disabled'} onClick={handleNext}>Siguiente paso</a>
+
+
+                            {
+
+
+                                teacherContext.selectedClasses < 1 || teacherContext.key == 2 ?
+                                    (
+
+                                        <a className='btn text-white btn-green disabled' onClick={teacherContext.handleNext}>Siguiente paso</a>
+                                    )
+                                    :
+                                    (
+                                        <a className='btn text-white btn-green' onClick={teacherContext.handleNext}>Siguiente paso</a>
+                                    )
+                            }
 
                         </div>
                     </Modal.Footer>

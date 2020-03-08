@@ -4,9 +4,15 @@ export const TeachersProfileContext = createContext()
 export const TeachersProfileProvider = ({ children }) => {
 
     // State de eventos
-    const [calendarEvents, setCalendarEvents] = useState([])
-    const addCalendarEvent = (newEvent) => {
-        setCalendarEvents([...calendarEvents, newEvent])
+    const [assignedClass, setAssignedClass] = useState([])
+    const addAssignedClass = (newEvent) => {
+        if (Array.isArray(newEvent)) {
+            setAssignedClass([...assignedClass, ...newEvent])
+        } else {
+            setAssignedClass([...assignedClass, newEvent])
+
+        }
+
     }
     // State de lecciones restantes
     const [lessonsLeft, setLessonsLeft] = useState(null)
@@ -67,11 +73,27 @@ export const TeachersProfileProvider = ({ children }) => {
     }, []);
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
+    const [key, setKey] = useState(0);
+    const handleNext = () => {
+        if (key <= 1) {
+            if (selectedClasses > 0) {
+                setKey(parseInt(key) + 1)
 
-    const handleClose = () => setShowScheduleClass(false);
-    const handleShow = () => setShowScheduleClass(true);
+            }
+        }
+    }
+    const handleClose = () => {
 
-    const [classPrice, setClassPrice] = useState(0);
+        setKey(0)
+        setShowScheduleClass(false)
+    };
+    const handleShow = () => {
+
+        setKey(0)
+        setShowScheduleClass(true)
+    };
+
+    const [classPrice, setClassPrice] = useState(20);
     useEffect(() => {
         setClassPrice(20)
     }, []);
@@ -87,45 +109,70 @@ export const TeachersProfileProvider = ({ children }) => {
     // State of selected classes
     const [selectedClasses, setSelectedClasses] = useState({});
     useEffect(() => {
-
-        setSelectedClasses({
-            selected: 0,
-            price: 0,
-        })
+        setSelectedClasses(0)
     }, []);
 
 
+    const [classesAssignedLeft, setClassesAssignedLeft] = useState(0)
 
     const selectClasses = (classesSelected) => {
-        setSelectedClasses({
-            selected: classesSelected.classes,
-            price: classesSelected.price,
-        })
-    }
+        setSelectedClasses(classesSelected)
+        setClassesAssignedLeft(classesSelected)
 
-    const getInvitationEarnings = () => {
-        return Math.round(classPrice * 0.25)
     }
+    // State de asignacion temporal de clases
+    const [assignedTemporaryClass, setAssignedTemporaryClass] = useState([])
+    useEffect(() => {
 
+    }, [])
+    const addAssignedTemporaryClass = (newEvent) => {
+
+        setAssignedTemporaryClass([...assignedTemporaryClass, newEvent])
+    }
+    const addTemporaryClass = () => {
+        let classesAssigned = classesAssignedLeft - 1
+        setClassesAssignedLeft(classesAssigned)
+    }
+    const removeTemporaryClass = () => {
+        let classesAssigned = classesAssignedLeft + 1
+        setClassesAssignedLeft(classesAssigned)
+    }
+    const handleBuy = () => {
+        addAssignedClass(assignedTemporaryClass)
+        setAssignedTemporaryClass([])
+        setLessonsLeft(lessonsLeft + classesAssignedLeft)
+        setClassesAssignedLeft(0)
+        setSelectedClasses(0)
+        handleClose()
+    }
 
     return (
         <TeachersProfileContext.Provider value={{
-            calendarEvents,
-            setCalendarEvents,
-            addCalendarEvent,
+            assignedClass,
+            setAssignedClass,
+            addAssignedClass,
             lessonsLeft,
             addClass,
             removeClass,
             addLessonsLeft,
             showScheduleClass,
             businessHours,
+            key,
+            setKey,
             handleClose,
             handleShow,
+            handleNext,
             classPrice,
             calcPriceClass,
             selectedClasses,
             selectClasses,
-            getInvitationEarnings,
+            classesAssignedLeft,
+            assignedTemporaryClass,
+            setAssignedTemporaryClass,
+            addAssignedTemporaryClass,
+            addTemporaryClass,
+            removeTemporaryClass,
+            handleBuy
         }}>
             {children}
         </TeachersProfileContext.Provider>

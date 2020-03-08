@@ -5,6 +5,8 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Teachers/TeachersProfile/TeacherCalendar.scss"
+import "static/assets/styles/components/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
+
 import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 
 import moment from 'moment'
@@ -22,7 +24,8 @@ export default function ScheduleHour() {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        let result = teacherContext.calendarEvents.filter(element => String(element.start) == String(roundDown._d));
+
+        let result = teacherContext.assignedTemporaryClass.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -34,11 +37,12 @@ export default function ScheduleHour() {
                 ) {
                     alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
-                    if (teacherContext.lessonsLeft > 0) {
-                        if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
-                            teacherContext.addClass()
 
-                            teacherContext.addCalendarEvent({
+                    if (teacherContext.classesAssignedLeft > 0) {
+                        if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
+                            teacherContext.addTemporaryClass()
+
+                            teacherContext.addAssignedTemporaryClass({
                                 // creates a new array
                                 id: Math.random().toString(36).substr(2),
                                 title: 'Reservado',
@@ -46,12 +50,7 @@ export default function ScheduleHour() {
                             })
                         }
                     } else {
-                        if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
-                            result = prompt('¿Cuantas quieres adquirir?')
-
-                            if (result)
-                                teacherContext.addLessonsLeft(result)
-                        }
+                        alert("Ya has assignado todas las clases")
                     }
                 }
             }
@@ -61,22 +60,15 @@ export default function ScheduleHour() {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.calendarEvents.filter(event => {
+            let newEventsArray = teacherContext.assignedTemporaryClass.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
-            teacherContext.setCalendarEvents(newEventsArray)
-            teacherContext.removeClass()
+            teacherContext.setAssignedTemporaryClass(newEventsArray)
+            teacherContext.removeTemporaryClass()
             args.event.remove()
 
         }
 
-    }
-    function handleEventDrop(args) {
-        alert(args.event.title + " was dropped on " + args.event.start.toISOString());
-
-        if (!confirm("Are you sure about this change?")) {
-            args.revert();
-        }
     }
     function getSize() {
         return {
@@ -111,8 +103,12 @@ export default function ScheduleHour() {
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
-                <div className="teacher-calendar w-100 rounded overflow-hidden text-center">
-                    <span className="d-block h4 mb-3">Elige cuándo quieres realizar la/s clase/s</span>
+                <div className="teacher-calendar w-100 rounded text-center">
+
+
+                    <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
+                        Este paso es 100% opcional, podras asignar las clases cuando quieras
+                    </div>
                     <div className='demo-app-calendar'>
                         <FullCalendar
                             view={calendarView}
@@ -134,15 +130,17 @@ export default function ScheduleHour() {
                             ref={calendarComponentRef}
                             businessHours={teacherContext.businessHours}
                             eventLimit={true}
-                            events={teacherContext.calendarEvents}
+                            events={teacherContext.assignedTemporaryClass}
                             dateClick={handleDateClick}
                             eventClick={handleEventClick}
-                            eventDrop={handleEventDrop}
                             displayEventTime={false}
                             selectAllow={function (selectInfo) {
                                 return moment().diff(selectInfo.start) <= 0
                             }}
                         />
+                    </div>
+                    <div className="classes-to-assign mt-2 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer">
+                        Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft}</span>
                     </div>
                 </div>
             )}

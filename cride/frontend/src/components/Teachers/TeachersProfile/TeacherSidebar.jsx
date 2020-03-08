@@ -9,13 +9,13 @@ import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 
 const TeachersSidebar = () => {
 
-    const professorContext = useContext(TeachersProfileContext);
+    const teacherContext = useContext(TeachersProfileContext);
     const handleRequestClasses = () => {
 
         let result = prompt('Adquirir clases, ¿Cuantas quieres adquirir?')
 
         if (result)
-            professorContext.addLessonsLeft(result)
+            teacherContext.addLessonsLeft(result)
 
     }
 
@@ -60,7 +60,7 @@ const TeachersSidebar = () => {
 
                         <div className="call-to-action pt-3 pl-3 pr-3">
                             <small className="d-block pb-2 border-bottom mb-2">Las clases tienen una duración de 60 minutos</small>
-                            <span className="d-block pb-2 border-bottom mb-2">Prueba de 15 min. gratuita</span>
+
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
                                 <span className="font-weight-bold">1 clase</span>
                                 <span className="text-primary">19€</span>

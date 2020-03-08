@@ -21,7 +21,7 @@ const TeachersCalendar = () => {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        let result = teacherContext.calendarEvents.filter(element => String(element.start) == String(roundDown._d));
+        let result = teacherContext.assignedClass.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -37,19 +37,17 @@ const TeachersCalendar = () => {
                         if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
                             teacherContext.addClass()
 
-                            teacherContext.addCalendarEvent({
+                            teacherContext.addAssignedClass({
                                 // creates a new array
                                 id: Math.random().toString(36).substr(2),
                                 title: 'Reservado',
                                 start: roundDown._d,
                             })
+
                         }
                     } else {
                         if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
-                            result = prompt('¿Cuantas quieres adquirir?')
-
-                            if (result)
-                                teacherContext.addLessonsLeft(result)
+                            teacherContext.handleShow()
                         }
                     }
                 }
@@ -60,10 +58,10 @@ const TeachersCalendar = () => {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.calendarEvents.filter(event => {
+            let newEventsArray = teacherContext.assignedClass.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
-            teacherContext.setCalendarEvents(newEventsArray)
+            teacherContext.setAssignedClass(newEventsArray)
             teacherContext.removeClass()
             args.event.remove()
 
@@ -132,7 +130,7 @@ const TeachersCalendar = () => {
                             ref={calendarComponentRef}
                             businessHours={teacherContext.businessHours}
                             eventLimit={true}
-                            events={teacherContext.calendarEvents}
+                            events={teacherContext.assignedClass}
                             dateClick={handleDateClick}
                             eventClick={handleEventClick}
                             eventDrop={handleEventDrop}

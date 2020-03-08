@@ -15,7 +15,7 @@ export default function PriceCard(props) {
         }
     }, []);
     const handleSelectClasses = () => {
-        teacherContext.selectClasses({ classes: classes, price: price })
+        teacherContext.selectClasses(classes)
     }
     return (
         <div className="price-card d-flex justify-content-between p-3 pb-5">
