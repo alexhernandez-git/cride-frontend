@@ -10,14 +10,6 @@ import { TeachersProfileContext } from "src/context/TeachersProfileContext"
 const TeachersSidebar = () => {
 
     const teacherContext = useContext(TeachersProfileContext);
-    const handleRequestClasses = () => {
-
-        let result = prompt('Adquirir clases, ¿Cuantas quieres adquirir?')
-
-        if (result)
-            teacherContext.addLessonsLeft(result)
-
-    }
 
     return (
         <TeachersProfileContext.Consumer>
@@ -75,7 +67,7 @@ const TeachersSidebar = () => {
                             </div>
                         </div>
                         <div className="classes-acquired mt-3 text-center">
-                            <div className="cursor-pointer" onClick={handleRequestClasses}>
+                            <div className="cursor-pointer" onClick={teachersContext.handleShow}>
 
                                 <TeachersLessonsLeft />
                             </div>
