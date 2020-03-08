@@ -31,9 +31,7 @@ export default function ScheduleClass() {
             setInvitationPriceState(true)
         }
     }
-    const button = () => {
 
-    }
     return (
 
         <TeachersProfileContext.Consumer>
@@ -131,7 +129,7 @@ export default function ScheduleClass() {
                                             <div>
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
-                                            }
+
                                             <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
                                             {teacherContext.selectedClasses == 1 ?
                                                 <span className="d-block">Clase seleccionada</span>

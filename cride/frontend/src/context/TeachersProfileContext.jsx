@@ -3,13 +3,23 @@ export const TeachersProfileContext = createContext()
 
 export const TeachersProfileProvider = ({ children }) => {
 
-    // State de eventos
-    const [assignedClass, setAssignedClass] = useState([])
-    const addAssignedClass = (newEvent) => {
+    // Your classes
+    const [myClass, setMyClass] = useState({
+        classes: ['hello'],
+    })
+    // Temporary classes
+    const [temporaryClass, setTemporaryClass] = useState({
+        classes: ['hello'],
+    })
+    const addMyClass = (newEvent) => {
         if (Array.isArray(newEvent)) {
-            setAssignedClass([...assignedClass, ...newEvent])
+            setMyClass({
+                classes: [...myClass.classes, ...newEvent]
+            })
         } else {
-            setAssignedClass([...assignedClass, newEvent])
+            setMyClass({
+                classes: [...myClass.classes, newEvent]
+            })
 
         }
 
@@ -121,13 +131,10 @@ export const TeachersProfileProvider = ({ children }) => {
 
     }
     // State de asignacion temporal de clases
-    const [assignedTemporaryClass, setAssignedTemporaryClass] = useState([])
-    useEffect(() => {
-
-    }, [])
-    const addAssignedTemporaryClass = (newEvent) => {
-
-        setAssignedTemporaryClass([...assignedTemporaryClass, newEvent])
+    const addMyTemporaryClass = (newEvent) => {
+        setTemporaryClass({
+            classes: [...temporaryClass.classes, newEvent]
+        })
     }
     const addTemporaryClass = () => {
         let classesAssigned = classesAssignedLeft - 1
@@ -138,8 +145,12 @@ export const TeachersProfileProvider = ({ children }) => {
         setClassesAssignedLeft(classesAssigned)
     }
     const handleBuy = () => {
-        addAssignedClass(assignedTemporaryClass)
-        setAssignedTemporaryClass([])
+        setMyClass({
+            classes: [...myClass.classes, ...temporaryClass.classes]
+        })
+        setTemporaryClass({
+            classes: []
+        })
         setLessonsLeft(lessonsLeft + classesAssignedLeft)
         setClassesAssignedLeft(0)
         setSelectedClasses(0)
@@ -148,9 +159,9 @@ export const TeachersProfileProvider = ({ children }) => {
 
     return (
         <TeachersProfileContext.Provider value={{
-            assignedClass,
-            setAssignedClass,
-            addAssignedClass,
+            myClass,
+            setMyClass,
+            addMyClass,
             lessonsLeft,
             addClass,
             removeClass,
@@ -166,10 +177,10 @@ export const TeachersProfileProvider = ({ children }) => {
             calcPriceClass,
             selectedClasses,
             selectClasses,
+            temporaryClass,
+            setTemporaryClass,
             classesAssignedLeft,
-            assignedTemporaryClass,
-            setAssignedTemporaryClass,
-            addAssignedTemporaryClass,
+            addMyTemporaryClass,
             addTemporaryClass,
             removeTemporaryClass,
             handleBuy

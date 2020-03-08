@@ -21,7 +21,9 @@ const TeachersCalendar = () => {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        let result = teacherContext.assignedClass.filter(element => String(element.start) == String(roundDown._d));
+        console.log(teacherContext.myClass.classes);
+
+        let result = teacherContext.myClass.classes.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -37,7 +39,7 @@ const TeachersCalendar = () => {
                         if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
                             teacherContext.addClass()
 
-                            teacherContext.addAssignedClass({
+                            teacherContext.addMyClass({
                                 // creates a new array
                                 id: Math.random().toString(36).substr(2),
                                 title: 'Reservado',
@@ -58,10 +60,10 @@ const TeachersCalendar = () => {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.assignedClass.filter(event => {
+            let newEventsArray = teacherContext.myClass.classes.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
-            teacherContext.setAssignedClass(newEventsArray)
+            teacherContext.setMyClass(newEventsArray)
             teacherContext.removeClass()
             args.event.remove()
 
@@ -130,7 +132,12 @@ const TeachersCalendar = () => {
                             ref={calendarComponentRef}
                             businessHours={teacherContext.businessHours}
                             eventLimit={true}
-                            events={teacherContext.assignedClass}
+                            eventSources={[
+                                {
+                                    events: teacherContext.myClass.classes,
+                                    color: '#3f8989',
+                                },
+                            ]}
                             dateClick={handleDateClick}
                             eventClick={handleEventClick}
                             eventDrop={handleEventDrop}

@@ -24,8 +24,9 @@ export default function ScheduleHour() {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
+        console.log(teacherContext.temporaryClass);
 
-        let result = teacherContext.assignedTemporaryClass.filter(element => String(element.start) == String(roundDown._d));
+        let result = teacherContext.temporaryClass.classes.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -42,7 +43,7 @@ export default function ScheduleHour() {
                         if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
                             teacherContext.addTemporaryClass()
 
-                            teacherContext.addAssignedTemporaryClass({
+                            teacherContext.addMyTemporaryClass({
                                 // creates a new array
                                 id: Math.random().toString(36).substr(2),
                                 title: 'Reservado',
@@ -60,7 +61,7 @@ export default function ScheduleHour() {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.assignedTemporaryClass.filter(event => {
+            let newEventsArray = teacherContext.temporaryClass.classes.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
             teacherContext.setAssignedTemporaryClass(newEventsArray)
@@ -130,7 +131,18 @@ export default function ScheduleHour() {
                             ref={calendarComponentRef}
                             businessHours={teacherContext.businessHours}
                             eventLimit={true}
-                            events={teacherContext.assignedTemporaryClass}
+                            eventSources={[
+                                {
+                                    events: teacherContext.myClass.classes,
+                                    color: 'grey',
+                                },
+                                {
+                                    events: teacherContext.temporaryClass.classes,
+                                    color: '#3f8989'
+                                },
+                            ]
+
+                            }
                             dateClick={handleDateClick}
                             eventClick={handleEventClick}
                             displayEventTime={false}
