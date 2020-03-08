@@ -15,6 +15,7 @@ export default function PriceCard(props) {
         }
     }, []);
     const handleSelectClasses = () => {
+        teacherContext.setKey(1)
         teacherContext.selectClasses(classes)
     }
     return (
