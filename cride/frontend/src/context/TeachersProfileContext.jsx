@@ -5,11 +5,11 @@ export const TeachersProfileProvider = ({ children }) => {
 
     // Your classes
     const [myClass, setMyClass] = useState({
-        classes: ['hello'],
+        classes: [],
     })
     // Temporary classes
     const [temporaryClass, setTemporaryClass] = useState({
-        classes: ['hello'],
+        classes: [],
     })
     const addMyClass = (newEvent) => {
         if (Array.isArray(newEvent)) {
@@ -84,6 +84,14 @@ export const TeachersProfileProvider = ({ children }) => {
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
     const [key, setKey] = useState(0);
+    useEffect(() => {
+        if (key == 0) {
+            setTemporaryClass({
+                classes: []
+            })
+            setSelectedClasses(0)
+        }
+    }, [key])
     const handleNext = () => {
         if (key <= 1) {
             if (selectedClasses > 0) {
@@ -117,7 +125,7 @@ export const TeachersProfileProvider = ({ children }) => {
         return Math.round(finalPrice)
     }
     // State of selected classes
-    const [selectedClasses, setSelectedClasses] = useState({});
+    const [selectedClasses, setSelectedClasses] = useState();
     useEffect(() => {
         setSelectedClasses(0)
     }, []);

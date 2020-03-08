@@ -18,6 +18,7 @@ export default function ScheduleHour() {
     const [calendarView, setCalendarView] = useState(null)
 
     function handleDateClick(arg) {
+
         // Creamos la fecha con moment para poder modificarla
         let date = moment(arg.date)
         // Redondeamos abajo la hora
@@ -60,11 +61,14 @@ export default function ScheduleHour() {
         }
     }
     function handleEventClick(args) {
+        if (args.el != undefined && args.el.style.backgroundColor == "grey") {
+            return
+        }
         if (confirm('¿Are you sure you want remove this event?')) {
             let newEventsArray = teacherContext.temporaryClass.classes.filter(event => {
                 return event.start.toString() !== args.event.start.toString()
             })
-            teacherContext.setAssignedTemporaryClass(newEventsArray)
+            teacherContext.setTemporaryClass({ classes: newEventsArray })
             teacherContext.removeTemporaryClass()
             args.event.remove()
 
@@ -135,6 +139,7 @@ export default function ScheduleHour() {
                                 {
                                     events: teacherContext.myClass.classes,
                                     color: 'grey',
+                                    editable: false,
                                 },
                                 {
                                     events: teacherContext.temporaryClass.classes,

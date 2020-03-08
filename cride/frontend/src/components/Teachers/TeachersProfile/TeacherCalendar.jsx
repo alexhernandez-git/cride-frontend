@@ -61,9 +61,12 @@ const TeachersCalendar = () => {
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
             let newEventsArray = teacherContext.myClass.classes.filter(event => {
+
                 return event.start.toString() !== args.event.start.toString()
             })
-            teacherContext.setMyClass(newEventsArray)
+            console.log('New events array ', newEventsArray);
+
+            teacherContext.setMyClass({ classes: newEventsArray })
             teacherContext.removeClass()
             args.event.remove()
 
