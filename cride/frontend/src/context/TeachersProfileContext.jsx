@@ -1,48 +1,39 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useReducer } from 'react'
 export const TeachersProfileContext = createContext()
+import {
+    classesLeftReducer,
+    ADD_CLASS,
+    REMOVE_CLASS,
+    SET_CLASSES_LEFT
+} from './reducers/classesLeftReducer'
+import {
+    myClassReducer,
+    ADD_MY_CLASS,
+    MERGE_MY_CLASS,
+    SET_MY_CLASS,
+} from './reducers/myClassReducer'
 
 export const TeachersProfileProvider = ({ children }) => {
-
     // Your classes
-    const [myClass, setMyClass] = useState({
-        classes: [],
-    })
+    const [myClassState, dispatchMyClass] = useReducer(myClassReducer, []);
+    const addMyClass = (newClass) => {
+        dispatchMyClass({ type: ADD_MY_CLASS, newClass: newClass })
+    }
+    const setMyClass = (myClassNew) => {
+        dispatchMyClass({ type: SET_MY_CLASS, myClassNew: myClassNew })
+    }
     // Temporary classes
     const [temporaryClass, setTemporaryClass] = useState({
         classes: [],
     })
-    const addMyClass = (newEvent) => {
-        if (Array.isArray(newEvent)) {
-            setMyClass({
-                classes: [...myClass.classes, ...newEvent]
-            })
-        } else {
-            setMyClass({
-                classes: [...myClass.classes, newEvent]
-            })
-
-        }
-
-    }
     // State de lecciones restantes
-    const [lessonsLeft, setLessonsLeft] = useState(null)
-    useEffect(() => {
-        setLessonsLeft(0)
-    }, []);
+    const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, 0);
+
     const addClass = () => {
-        let lessons = lessonsLeft - 1
-        setLessonsLeft(lessons)
+        dispatchClassesLeft({ type: ADD_CLASS })
     }
     const removeClass = () => {
-        let lessons = lessonsLeft + 1
-        setLessonsLeft(lessons)
-    }
-    const addLessonsLeft = (num) => {
-
-        let number = parseInt(num)
-        let lessons = number + lessonsLeft;
-
-        setLessonsLeft(lessons)
+        dispatchClassesLeft({ type: REMOVE_CLASS })
 
     }
     // State buisness hours
@@ -153,13 +144,18 @@ export const TeachersProfileProvider = ({ children }) => {
         setClassesAssignedLeft(classesAssigned)
     }
     const handleBuy = () => {
-        setMyClass({
-            classes: [...myClass.classes, ...temporaryClass.classes]
-        })
+        console.log('temporaryClass ', temporaryClass.classes);
+
+        dispatchMyClass({ type: MERGE_MY_CLASS, tempClasses: temporaryClass.classes })
+
         setTemporaryClass({
             classes: []
         })
-        setLessonsLeft(lessonsLeft + classesAssignedLeft)
+        dispatchClassesLeft({
+            type: SET_CLASSES_LEFT,
+            classesAssignedLeft: classesAssignedLeft
+        })
+        // setLessonsLeft(lessonsLeft + classesAssignedLeft)
         setClassesAssignedLeft(0)
         setSelectedClasses(0)
         handleClose()
@@ -167,13 +163,12 @@ export const TeachersProfileProvider = ({ children }) => {
 
     return (
         <TeachersProfileContext.Provider value={{
-            myClass,
-            setMyClass,
+            myClassState,
             addMyClass,
-            lessonsLeft,
+            setMyClass,
+            classesLeftState,
             addClass,
             removeClass,
-            addLessonsLeft,
             showScheduleClass,
             businessHours,
             key,

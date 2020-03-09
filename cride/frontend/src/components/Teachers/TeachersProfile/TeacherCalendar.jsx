@@ -21,9 +21,8 @@ const TeachersCalendar = () => {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        console.log(teacherContext.myClass.classes);
 
-        let result = teacherContext.myClass.classes.filter(element => String(element.start) == String(roundDown._d));
+        let result = teacherContext.myClassState.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -35,18 +34,16 @@ const TeachersCalendar = () => {
                 ) {
                     alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
-                    if (teacherContext.lessonsLeft > 0) {
-                        if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
-                            teacherContext.addClass()
+                    if (teacherContext.classesLeftState > 0) {
+                        teacherContext.addClass()
 
-                            teacherContext.addMyClass({
-                                // creates a new array
-                                id: Math.random().toString(36).substr(2),
-                                title: 'Reservado',
-                                start: roundDown._d,
-                            })
+                        teacherContext.addMyClass({
+                            // creates a new array
+                            id: Math.random().toString(36).substr(2),
+                            title: 'Reservado',
+                            start: roundDown._d,
+                        })
 
-                        }
                     } else {
                         if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
                             teacherContext.handleShow()
@@ -60,13 +57,12 @@ const TeachersCalendar = () => {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.myClass.classes.filter(event => {
+            let newEventsArray = teacherContext.myClassState.filter(event => {
 
                 return event.start.toString() !== args.event.start.toString()
             })
-            console.log('New events array ', newEventsArray);
 
-            teacherContext.setMyClass({ classes: newEventsArray })
+            teacherContext.setMyClass(newEventsArray)
             teacherContext.removeClass()
             args.event.remove()
 
@@ -113,7 +109,7 @@ const TeachersCalendar = () => {
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
-                <div className="teacher-calendar shadow w-100 p-4 rounded mb-3 overflow-hidden">
+                <div className="teacher-calendar shadow w-100 pt-4 pl-4 pr-4 pb-3 rounded mb-3 overflow-hidden">
                     <div className='demo-app-calendar'>
                         <FullCalendar
                             view={calendarView}
@@ -137,7 +133,7 @@ const TeachersCalendar = () => {
                             eventLimit={true}
                             eventSources={[
                                 {
-                                    events: teacherContext.myClass.classes,
+                                    events: teacherContext.myClassState,
                                     color: '#3f8989',
                                 },
                             ]}
@@ -149,6 +145,9 @@ const TeachersCalendar = () => {
                                 return moment().diff(selectInfo.start) <= 0
                             }}
                         />
+                    </div>
+                    <div className="classes-to-assign mt-2 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer">
+                        Clases por asignar <span className="font-weight-bold">{teacherContext.classesLeftState}</span>
                     </div>
                 </div>
             )}

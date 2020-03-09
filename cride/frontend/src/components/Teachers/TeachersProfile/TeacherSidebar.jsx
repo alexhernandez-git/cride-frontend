@@ -4,8 +4,9 @@ import { MdWork, MdHome, MdEmail, MdLocalPhone } from "react-icons/md";
 import { IconContext } from "react-icons";
 import Button from "react-bootstrap/Button"
 import { FaRegStar, FaStar } from 'react-icons/fa';
-import TeachersLessonsLeft from "./TeacherLessonsLeft"
+import AcquiredClasses from "./AcquiredClasses"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import "static/assets/styles/components/Teachers/TeachersProfile/TeacherSidebar.scss"
 
 const TeachersSidebar = () => {
 
@@ -39,8 +40,8 @@ const TeachersSidebar = () => {
                         </div>
 
                     </div>
-                    <div className="div-img w-100">
-                        <img className="w-100" src={`https://source.unsplash.com/random/1`} alt="" />
+                    <div className="div-img aspect-ratio-box">
+                        <img className="aspect-ratio-box-inside" src={`https://source.unsplash.com/random/1`} alt="" />
                     </div>
 
                     <div className="p-3">
@@ -69,7 +70,7 @@ const TeachersSidebar = () => {
                         <div className="classes-acquired mt-3 text-center">
                             <div className="cursor-pointer" onClick={teachersContext.handleShow}>
 
-                                <TeachersLessonsLeft />
+                                <AcquiredClasses />
                             </div>
 
                         </div>

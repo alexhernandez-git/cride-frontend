@@ -25,10 +25,10 @@ export default function ScheduleHour() {
         var roundDown = date.startOf('hour');
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
-        console.log(teacherContext.temporaryClass);
 
         let result = teacherContext.temporaryClass.classes.filter(element => String(element.start) == String(roundDown._d));
-
+        let result2 = teacherContext.myClassState.filter(element => String(element.start) == String(roundDown._d));
+        result = [...result, ...result2]
 
         if (!moment().isAfter(roundDown._d) > 0) {
 
@@ -41,16 +41,14 @@ export default function ScheduleHour() {
                 } else {
 
                     if (teacherContext.classesAssignedLeft > 0) {
-                        if (confirm('Would you like to add an event to ' + roundDown._d + ' ?')) {
-                            teacherContext.addTemporaryClass()
+                        teacherContext.addTemporaryClass()
 
-                            teacherContext.addMyTemporaryClass({
-                                // creates a new array
-                                id: Math.random().toString(36).substr(2),
-                                title: 'Reservado',
-                                start: roundDown._d,
-                            })
-                        }
+                        teacherContext.addMyTemporaryClass({
+                            // creates a new array
+                            id: Math.random().toString(36).substr(2),
+                            title: 'Reservado',
+                            start: roundDown._d,
+                        })
                     } else {
                         alert("Ya has assignado todas las clases")
                     }
@@ -137,7 +135,7 @@ export default function ScheduleHour() {
                             eventLimit={true}
                             eventSources={[
                                 {
-                                    events: teacherContext.myClass.classes,
+                                    events: teacherContext.myClassState,
                                     color: 'grey',
                                     editable: false,
                                 },

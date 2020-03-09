@@ -7,8 +7,6 @@ import "../../static/assets/styles/styles.scss"
 import ScrollToTop from "../utils/ScrollToTop"
 import TeachersProfile from "../containers/TeachersProfile"
 const App = props => {
-    console.log(props);
-
     return (
         <BrowserRouter>
             <Layout>
