@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../../static/assets/styles/components/Layout/WelcomeLayout.scss"
+import "static/assets/styles/components/Layout/WelcomeLayout.scss"
 import Blackboard from "./Blackboard"
 import Form from "react-bootstrap/Form"
 const WelcomeLayout = () => {
@@ -13,7 +13,9 @@ const WelcomeLayout = () => {
                     <div className="row">
                         <div className="col-md-6 align-self-center">
                             <span className="mt-3 text-light h4 font-weight-light text-shadow">Bienvenido a <h2 className="h2 mb-4">ClassLine Academy</h2></span>
-                            <Form.Control type="email" placeholder="¿Que estas buscando?" />
+                            <Form.Control className="mb-2" type="email" placeholder="¿Que estas buscando?" />
+                            <span className="mt-3 text-light h4 font-weight-light text-shadow">La unica academia donde podras ganar dinero hasta siendo estudiante</span>
+
                         </div>
                         <div className="col-md-6">
                             <Blackboard />

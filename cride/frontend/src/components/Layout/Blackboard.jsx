@@ -15,7 +15,7 @@ const Blackboard = () => {
         <div>
             <div className="blackboard border-warning position-relative cursor-pointer shadow" onClick={handleShow}>
                 <div className="letters text-light text-center d-flex justify-content-center align-items-center">
-                    <span className="font-weight-light mt-3">Ver como funciona</span>
+                    <span className="font-weight-light mt-3">¿Como funciona ClassLine?</span>
                     <IconContext.Provider value={{
                         className: "position-absolute play-icon",
                         style: {

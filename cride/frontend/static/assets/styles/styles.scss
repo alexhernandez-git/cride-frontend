@@ -30,7 +30,6 @@ $theme-colors: (
 //     border-color: #56b389 !important;
 //   }
 // }
-
 .disable-default-a {
   text-decoration: none !important;
   background-color: transparent !important;
@@ -54,7 +53,7 @@ img {
 }
 // Utils
 .btn-green {
-  background: linear-gradient(45deg, #56b389, #2e6a89);
+  background: linear-gradient(45deg, #2e6a89, #56b389);
   border: none !important;
 }
 .btn-outline-green {
@@ -77,7 +76,7 @@ img {
   background: linear-gradient(#64c8e6, #9198e5);
 }
 .bg-gradient-green {
-  background: linear-gradient(45deg, #56b389, #2e6a89);
+  background: linear-gradient(45deg, #2e6a89, #56b389);
 }
 .text-shadow {
   text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;

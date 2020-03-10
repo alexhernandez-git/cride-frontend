@@ -19,14 +19,9 @@
   }
   @media only screen and (min-width: 1024px) {
     .img-card {
-      width: 200px !important;
-      height: 200px !important;
+      padding: 10px;
     }
   }
-}
-
-.card-slick {
-  width: 90%;
 }
 
 @media only screen and (min-width: 582px) {

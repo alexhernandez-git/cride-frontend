@@ -35,12 +35,5 @@ const Home = () => {
     )
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         mylist: state.mylist,
-//         trends: state.trends,
-//         originals: state.originals
-//     }
-// }
 
 export default Home;
