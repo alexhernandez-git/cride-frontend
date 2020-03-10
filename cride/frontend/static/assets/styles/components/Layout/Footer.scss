@@ -1,7 +1,9 @@
 footer {
+  z-index: 500;
   background-color: var(--grisFooter);
   padding-top: 15px;
   margin-top: 10px;
+  position: relative;
 }
 footer a,
 footer p,

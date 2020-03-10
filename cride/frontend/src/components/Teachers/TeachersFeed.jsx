@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 import { Link } from "react-router-dom"
 export default function ProfessorFeed() {
     return (
-        <Link to="/profesores/1" className="disable-default-a">
+        <Link to="/teacher/1" className="disable-default-a">
             <Card className="w-100 profe-feed shadow mb-3 border-0 cursor-pointer">
                 <Card.Body className="">
                     <div className="profe-card-content">

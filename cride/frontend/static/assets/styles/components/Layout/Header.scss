@@ -13,9 +13,6 @@
 .form-search-parent {
   width: 50%;
 }
-.form-search {
-  background-color: rgba($color: #ccc, $alpha: 0.2) !important;
-}
 .header-btn {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -65,17 +62,41 @@
     align-items: center;
   }
 }
-@media only screen and (min-width: 888px) {
-  // .form-search-parent {
-  //   width: 30%;
-  // }
-}
-@media only screen and (min-width: 1024px) {
-  // .form-search-parent {
-  //   width: 40%;
-  // }
-}
-
 .form-search {
   padding: 20px 20px 20px 40px !important;
+}
+/* Sidebar */
+.teacher-header {
+  display: block;
+  z-index: 1;
+}
+.teacher-header a {
+  text-align: center;
+  width: 100%;
+}
+.teacher-header span {
+  font-size: 18px;
+  margin: 0;
+}
+.seccion {
+  color: #757575;
+  padding: 10px;
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  .seccion span {
+    color: #757575;
+  }
+}
+
+@media (min-width: 480px) {
+  .teacher-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 768px) {
+  .teacher-header {
+    display: none;
+  }
 }

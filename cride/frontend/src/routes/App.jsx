@@ -6,6 +6,7 @@ import Layout from '../components/Layout/Layout'
 import "../../static/assets/styles/styles.scss"
 import ScrollToTop from "../utils/ScrollToTop"
 import TeachersProfile from "../containers/TeachersProfile"
+import TeachersZone from '../containers/TeachersZone';
 const App = props => {
     return (
         <BrowserRouter>
@@ -13,8 +14,9 @@ const App = props => {
                 <ScrollToTop />
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/profesores" component={Search} />
-                    <Route path="/profesores/:id" component={TeachersProfile} />
+                    <Route exact path="/teachers" component={Search} />
+                    <Route path="/teacher/:id" component={TeachersProfile} />
+                    <Route path="/teacherzone" component={TeachersZone} />
                     <Route path="**" component={<h1>404 not found</h1>} />
                 </Switch>
             </Layout>

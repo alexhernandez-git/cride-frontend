@@ -5,9 +5,15 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import { FaSearch } from 'react-icons/fa';
-import { Link } from "react-router-dom"
-import "../../../static/assets/styles/components/Layout/Header.scss"
+
+import { Link, useLocation } from "react-router-dom"
+import "static/assets/styles/components/Layout/Header.scss"
+import TeachersMenu from "src/components/Teachers/TeachersZone/TeachersMenu"
+
 export default function Header() {
+    const location = useLocation();
+    console.log(location);
+
     return (
         <>
             <Navbar bg="white" expand="md" className="header border-bottom p-0 shadow" sticky="top">
@@ -41,12 +47,21 @@ export default function Header() {
                 </Form>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
-                        <Nav.Link href="#features" className="align-self-center text-center header-btn">Enseña</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
-                        <Nav.Link className="btn ml-2 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
+                        <Link to="/teacherzone" className="d-flex align-self-center text-grey text-center header-btn border-bottom p-3">Profesor</Link>
+                        <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
+                        <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
                     </Nav>
+                    {location.pathname == '/teacherzone' ?
+                        <div className="teacher-header">
+                            <TeachersMenu />
+                        </div>
+                        :
+                        ''
+                    }
+
                 </Navbar.Collapse>
             </Navbar>
+
         </>
     )
 }

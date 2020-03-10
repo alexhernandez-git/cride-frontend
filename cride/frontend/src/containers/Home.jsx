@@ -13,7 +13,7 @@ const Home = () => {
             <div className="banner-home mt-5 border-danger bg-danger box-shadow">
                 <h4 className="h2">Nunca pares de aprender</h4>
                 <p>Y aprende como nunca lo has hecho</p>
-                <Link to="/profesores">
+                <Link to="/teachers">
                     <Button variant="outline-light">Empezar ahora</Button>
                 </Link>
             </div>

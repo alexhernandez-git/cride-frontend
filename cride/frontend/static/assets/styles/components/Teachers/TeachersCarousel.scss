@@ -57,15 +57,40 @@
   z-index: 100000 !important;
   position: absolute;
 }
-
-.slick-prev:before {
-  right: 0;
+@media only screen and (max-width: 400px) {
+  .slick-prev {
+    position: absolute !important;
+    z-index: 1000 !important;
+  }
+  .slick-prev:before {
+    right: -50px !important;
+  }
+  .slick-next:before {
+    right: 20px !important;
+  }
 }
-.slick-next:before {
-  right: -30px;
+@media only screen and (min-width: 400px) {
+  .slick-prev {
+    position: absolute !important;
+    z-index: 1000 !important;
+  }
+  .slick-prev:before {
+    right: -100px !important;
+  }
+  .slick-next:before {
+    right: 70px !important;
+  }
+}
+@media only screen and (min-width: 582px) {
+  .slick-prev:before {
+    right: 0 !important;
+  }
+  .slick-next:before {
+    right: -30px !important;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .slick-next:before {
-    right: -25px;
+    right: -25px !important;
   }
 }
