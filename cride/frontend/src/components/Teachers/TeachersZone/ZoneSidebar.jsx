@@ -4,7 +4,7 @@ import TeachersMenu from "src/components/Teachers/TeachersZone/TeachersMenu"
 export default function ZoneSidebar() {
     return (
         <>
-            <div className="sidebar">
+            <div className="teachers-zone-sidebar shadow">
                 <TeachersMenu />
             </div>
         </>

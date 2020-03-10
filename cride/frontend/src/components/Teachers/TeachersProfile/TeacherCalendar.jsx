@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Teachers/TeachersProfile/TeacherCalendar.scss"
-import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 
 import moment from 'moment'
 const TeachersCalendar = () => {

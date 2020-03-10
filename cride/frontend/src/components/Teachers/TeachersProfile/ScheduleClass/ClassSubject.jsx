@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from 'react'
 import Row from 'react-bootstrap/Row'
 
 import "static/assets/styles/components/Teachers/TeachersProfile/ScheduleClass.scss"
-import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

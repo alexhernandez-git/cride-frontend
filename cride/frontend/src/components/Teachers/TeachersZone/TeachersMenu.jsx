@@ -1,12 +1,12 @@
 import React from 'react'
-import { FaChalkboardTeacher, FaRegCalendarAlt, FaUniversity } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaRegCalendarAlt } from 'react-icons/fa';
 import { MdMessage } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
 export default function TeachersMenu() {
     return (
         <>
-            <Link>
+            {/* <Link to="/teacherzone/teacher">
                 <div className="seccion">
                     <IconContext.Provider
                         value={{
@@ -20,7 +20,7 @@ export default function TeachersMenu() {
                         Profesor
                     </span>
                 </div>
-            </Link>
+            </Link> */}
             <Link>
                 <div className="seccion">
                     <IconContext.Provider
@@ -28,7 +28,7 @@ export default function TeachersMenu() {
                             className: "global-class-name",
                             size: '20px'
                         }}>
-                        <FaUniversity />
+                        <FaChalkboardTeacher />
                     </IconContext.Provider>
                     <br />
                     <span>

@@ -7,7 +7,7 @@ import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Teachers/TeachersProfile/TeacherCalendar.scss"
 import "static/assets/styles/components/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
 
-import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 
 import moment from 'moment'
 export default function ScheduleHour() {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import "../../static/assets/styles/containers/TeachersProfile.scss"
 
-import { TeachersProfileProvider } from "../context/TeachersProfileContext"
-import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import { TeachersProfileProvider, TeachersProfileContext } from "../context/TeachersProfileContext/TeachersProfileContext"
 
 import TeacherSidebar from "../components/Teachers/TeachersProfile/TeacherSidebar"
 import TeacherWorkExperience from "../components/Teachers/TeachersProfile/TeacherWorkExperience"

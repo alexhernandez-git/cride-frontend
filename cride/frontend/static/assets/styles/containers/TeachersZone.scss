@@ -1,5 +1,13 @@
-.teachers-zone-sidebar {
-  min-height: calc(100vh - 70px);
-}
-.teachers-zone {
+@media only screen and (min-width: 768px) {
+  .teachers-zone {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
+    width: calc(100% - 100px);
+    position: absolute;
+    left: 100px;
+    right: 0;
+    top: 70px;
+    padding: 0 0 30px;
+  }
 }

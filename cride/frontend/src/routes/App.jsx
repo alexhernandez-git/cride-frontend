@@ -4,7 +4,7 @@ import Home from '../containers/Home'
 import Search from '../containers/Search'
 import Layout from '../components/Layout/Layout'
 import "../../static/assets/styles/styles.scss"
-import ScrollToTop from "../utils/ScrollToTop"
+import ScrollToTop from "src/utils/ScrollToTop"
 import TeachersProfile from "../containers/TeachersProfile"
 import TeachersZone from '../containers/TeachersZone';
 const App = props => {

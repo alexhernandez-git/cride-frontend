@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import { TeachersProfileContext } from "src/context/TeachersProfileContext"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import Modal from 'react-bootstrap/Modal'
 import Tab from 'react-bootstrap/Tab'
 import Row from 'react-bootstrap/Row'
