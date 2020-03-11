@@ -3,6 +3,9 @@
   border: none !important;
   outline: none !important;
 }
+.navbar-collapse {
+  width: 100%;
+}
 
 .search-icon {
   position: absolute;
@@ -68,36 +71,34 @@
   padding: 20px 20px 20px 40px !important;
 }
 /* Sidebar */
-.teacher-header {
-  display: block;
+.users-header {
+  display: flex;
+  justify-content: space-between;
   z-index: 1;
+  overflow-x: scroll;
 }
-.teacher-header a {
+
+.users-header a {
   text-align: center;
   width: 100%;
 }
-.teacher-header span {
-  font-size: 18px;
-  margin: 0;
-}
+
 .seccion {
+  width: 79px;
   color: #757575;
   padding: 10px;
-  cursor: pointer;
-}
-@media (max-width: 480px) {
-  .seccion span {
-    color: #757575;
-  }
 }
 
 @media (min-width: 480px) {
-  .teacher-header {
+  .seccion {
+    padding: 10px;
+  }
+  .users-header {
     display: none;
   }
 }
 @media (min-width: 768px) {
-  .teacher-header {
+  .users-header {
     display: none;
   }
 }

@@ -5,14 +5,15 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import { FaSearch } from 'react-icons/fa';
-
+import { FaChalkboardTeacher } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 import { Link, useLocation } from "react-router-dom"
 import "static/assets/styles/components/Layout/Header.scss"
-import TeachersMenu from "src/components/Teachers/TeachersZone/TeachersMenu"
+import UsersMenu from "src/components/Users/UsersZone/UsersMenu"
 
 export default function Header() {
     const location = useLocation();
-    const regExLocation = new RegExp(/^\/teacherzone*/)
+    const regExLocation = new RegExp(/^\/myzone*/)
 
     return (
         <>
@@ -47,14 +48,15 @@ export default function Header() {
                 </Form>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
-                        <Link to="/teacherzone" className="d-flex align-self-center text-grey text-center header-btn border-bottom p-3">Profesor</Link>
+
+                        <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">Profesor</Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
                     </Nav>{console.log(location.pathname)
                     }
                     {regExLocation.test(location.pathname) ?
-                        <div className="teacher-header">
-                            <TeachersMenu />
+                        <div className="users-header">
+                            <UsersMenu />
                         </div>
                         :
                         ''
