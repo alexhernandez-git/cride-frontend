@@ -12,7 +12,7 @@ import TeachersMenu from "src/components/Teachers/TeachersZone/TeachersMenu"
 
 export default function Header() {
     const location = useLocation();
-    console.log(location);
+    const regExLocation = new RegExp(/^\/teacherzone*/)
 
     return (
         <>
@@ -50,8 +50,9 @@ export default function Header() {
                         <Link to="/teacherzone" className="d-flex align-self-center text-grey text-center header-btn border-bottom p-3">Profesor</Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
-                    </Nav>
-                    {location.pathname == '/teacherzone' ?
+                    </Nav>{console.log(location.pathname)
+                    }
+                    {regExLocation.test(location.pathname) ?
                         <div className="teacher-header">
                             <TeachersMenu />
                         </div>

@@ -21,7 +21,7 @@ export default function TeachersMenu() {
                     </span>
                 </div>
             </Link> */}
-            <Link>
+            <Link to="/teacherzone/classes">
                 <div className="seccion">
                     <IconContext.Provider
                         value={{
@@ -36,7 +36,7 @@ export default function TeachersMenu() {
                     </span>
                 </div>
             </Link>
-            <Link>
+            <Link to="/teacherzone/calendar">
                 <div className="seccion">
                     <IconContext.Provider
                         value={{
@@ -51,7 +51,7 @@ export default function TeachersMenu() {
                     </span>
                 </div>
             </Link>
-            <Link>
+            <Link to="/teacherzone/messages">
                 <div className="seccion">
                     <IconContext.Provider
                         value={{
