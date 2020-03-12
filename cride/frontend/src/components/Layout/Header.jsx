@@ -9,7 +9,6 @@ import { FaChalkboardTeacher } from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import { Link, useLocation } from "react-router-dom"
 import "static/assets/styles/components/Layout/Header.scss"
-import UsersMenu from "src/components/Users/UsersZone/UsersMenu"
 
 export default function Header() {
     const location = useLocation();
@@ -52,15 +51,7 @@ export default function Header() {
                         <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">Profesor</Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
-                    </Nav>{console.log(location.pathname)
-                    }
-                    {regExLocation.test(location.pathname) ?
-                        <div className="users-header">
-                            <UsersMenu />
-                        </div>
-                        :
-                        ''
-                    }
+                    </Nav>
 
                 </Navbar.Collapse>
             </Navbar>

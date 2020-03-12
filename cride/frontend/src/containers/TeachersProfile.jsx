@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import "../../static/assets/styles/containers/TeachersProfile.scss"
+import "static/assets/styles/containers/TeachersProfile.scss"
 
-import { TeachersProfileProvider, TeachersProfileContext } from "../context/TeachersProfileContext/TeachersProfileContext"
+import { TeachersProfileProvider, TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 
-import TeacherSidebar from "../components/Teachers/TeachersProfile/TeacherSidebar"
-import TeacherWorkExperience from "../components/Teachers/TeachersProfile/TeacherWorkExperience"
-import TeacherEducation from "../components/Teachers/TeachersProfile/TeacherEducation"
-import TeacherPresentation from "../components/Teachers/TeachersProfile/TeacherPresentation"
-import TeacherTeach from "../components/Teachers/TeachersProfile/TeacherTeach"
-import TeacherSkills from "../components/Teachers/TeachersProfile/TeacherSkills"
-import TeacherCalendar from "../components/Teachers/TeachersProfile/TeacherCalendar"
-import StudentFeedback from '../components/Teachers/TeachersProfile/StudentFeedback';
-import ScheduleClass from '../components/Teachers/TeachersProfile/ScheduleClass';
+import TeacherSidebar from "src/components/Users/Teachers/TeachersProfile/TeacherSidebar"
+import TeacherWorkExperience from "src/components/Users/Teachers/TeachersProfile/TeacherWorkExperience"
+import TeacherEducation from "src/components/Users/Teachers/TeachersProfile/TeacherEducation"
+import TeacherPresentation from "src/components/Users/Teachers/TeachersProfile/TeacherPresentation"
+import TeacherTeach from "src/components/Users/Teachers/TeachersProfile/TeacherTeach"
+import TeacherSkills from "src/components/Users/Teachers/TeachersProfile/TeacherSkills"
+import TeacherCalendar from "src/components/Users/Teachers/TeachersProfile/TeacherCalendar"
+import StudentFeedback from 'src/components/Users/Teachers/TeachersProfile/StudentFeedback';
+import ScheduleClass from 'src/components/Users/Teachers/TeachersProfile/ScheduleClass';
 import { Row } from 'react-bootstrap';
 const TeachersProfile = () => {
     return (

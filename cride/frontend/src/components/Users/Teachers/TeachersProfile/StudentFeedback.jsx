@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { IconContext } from "react-icons";
-import "static/assets/styles/components/Teachers/TeachersProfile/StudentFeedback.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersProfile/StudentFeedback.scss"
 import FeedbackBars from "./StudentFeedback/FeedbackBars"
 import StudentReview from './StudentFeedback/StudentReview';
 export default function TeacherPunctuation() {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "static/assets/styles/components/Teachers/TeachersProfile/TeacherTeach.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherTeach.scss"
 import { IconContext } from "react-icons";
 import { IoMdCheckmark } from 'react-icons/io';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../../static/assets/styles/components/Teachers/TeachersCarousel.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersCarousel.scss"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

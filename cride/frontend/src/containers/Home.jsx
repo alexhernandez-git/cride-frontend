@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import WelcomeLayout from '../components/Layout/WelcomeLayout'
-import TeachersCarousel from '../components/Teachers/TeachersCarousel'
-import MainCategories from '../components/Categories/MainCategories';
-import "../../static/assets/styles/containers/Home.scss"
+import WelcomeLayout from 'src/components/Layout/WelcomeLayout'
+import TeachersCarousel from 'src/components/Users/Teachers/TeachersCarousel'
+import MainCategories from 'src/components/Categories/MainCategories';
+import "static/assets/styles/containers/Home.scss"
 import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom"
 const Home = () => {

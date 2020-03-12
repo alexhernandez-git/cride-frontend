@@ -1,14 +1,16 @@
 import React from 'react'
-import "static/assets/styles/components/Teachers/TeachersZone/TeachersMenu.scss"
-import "static/assets/styles/components/Teachers/TeachersZone/TeachersZone.scss"
-import TeachersMenu from "src/components/Teachers/TeachersZone/TeachersMenu"
+import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersMenu.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersZone.scss"
+import TeachersMenu from "src/components/Users/Teachers/TeachersZone/TeachersMenu"
 import { Route } from 'react-router-dom';
 import ScrollToTop from "src/utils/ScrollToTop"
+import "static/assets/styles/components/Layout/ZoneSidebar.scss"
 
 export default function TeachersZone() {
     return (
         <>
-            <div>
+            <div className="zone-sidebar shadow">
+
                 <TeachersMenu />
 
             </div>

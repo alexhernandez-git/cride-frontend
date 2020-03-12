@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
-import "static/assets/styles/components/Teachers/TeachersProfile/ScheduleClass.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass.scss"
 import {
     FaRegStar,
     FaStar,

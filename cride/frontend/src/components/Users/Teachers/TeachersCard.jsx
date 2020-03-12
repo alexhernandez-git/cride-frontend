@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card"
 import Badge from "react-bootstrap/Badge"
 import { Link } from "react-router-dom"
 
-import "static/assets/styles/components/Teachers/TeachersCard.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersCard.scss"
 
 import Punctuation from "src/components/Layout/Punctuation"
 function TeachersCard() {
@@ -45,7 +45,7 @@ function TeachersCard() {
                                     return (
                                         <Badge className={'badge-card text-' + col + ' border border-' + col + ' p-1 rounded font-weight-light mr-1 mb-4 cursor-pointer'}>
                                             HTML
-                            </Badge>
+                                        </Badge>
                                     )
                                 })}
 

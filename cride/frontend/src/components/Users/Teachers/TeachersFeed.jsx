@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import '../../../static/assets/styles/components/Teachers/TeachersFeed.scss'
+import 'static/assets/styles/components/Users/Teachers/TeachersFeed.scss'
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom"

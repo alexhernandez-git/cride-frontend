@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import Card, { CardFooter } from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import "static/assets/styles/components/Teachers/TeachersProfile/ScheduleClass/PriceCard.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/PriceCard.scss"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 
 export default function PriceCard(props) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import "static/assets/styles/components/Teachers/TeachersProfile/TeacherLessonsLeft.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherLessonsLeft.scss"
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 const AcquiredClasses = () => {

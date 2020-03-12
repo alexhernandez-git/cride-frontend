@@ -1,8 +1,8 @@
 import React from 'react';
-import Sidebar from '../components/Layout/Sidebar'
-import TeachersFeed from '../components/Teachers/TeachersFeed'
-import FilterBar from "../components/Layout/FilterBar"
-import Pagination from "../components/Layout/Pagination"
+import Sidebar from 'src/components/Layout/Sidebar'
+import TeachersFeed from 'src/components/Users/Teachers/TeachersFeed'
+import FilterBar from "src/components/Layout/FilterBar"
+import Pagination from "src/components/Layout/Pagination"
 const Search = () => {
     return (
         <>

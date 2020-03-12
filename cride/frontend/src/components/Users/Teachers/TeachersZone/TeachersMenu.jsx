@@ -3,10 +3,10 @@ import { FaChalkboardTeacher, FaRegCalendarAlt, FaUserAlt, FaRegHeart, FaUserGra
 import { MdMessage } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
-import "static/assets/styles/components/Teachers/TeachersZone/TeachersMenu.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersMenu.scss"
 export default function TeachersMenu() {
     return (
-        <div className="teachers-menu shadow">
+        <div className="teachers-menu zone-sidebar shadow">
             <Link to="/myzone/teacher/profile">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">

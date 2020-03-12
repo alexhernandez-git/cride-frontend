@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'static/assets/styles/components/Teachers/TeachersProfile/TeacherPresentation.scss'
+import 'static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherPresentation.scss'
 import Modal from "react-bootstrap/Modal"
 import ResponsiveEmbed from "react-bootstrap/ResponsiveEmbed"
 import { FaPlay } from 'react-icons/fa';
