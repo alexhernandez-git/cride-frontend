@@ -7,6 +7,23 @@ import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersMenu
 export default function TeachersMenu() {
     return (
         <div className="teachers-menu zone-sidebar shadow">
+            <Link to="/myzone/teacher">
+                <div className="seccion">
+                    <div className="div-icon bg-gradient-green rounded-circle bg-white teacher active">
+
+                        <IconContext.Provider
+                            value={{
+                                className: "global-class-name text-white",
+                                size: '20px'
+                            }}>
+                            <FaChalkboardTeacher />
+                        </IconContext.Provider>
+                    </div>
+                    <small className="">
+                        Teacher
+                    </small>
+                </div>
+            </Link>
             <Link to="/myzone/teacher/profile">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
@@ -96,23 +113,7 @@ export default function TeachersMenu() {
                                         </small>
                 </div>
             </Link>
-            <Link to="/myzone/teacher">
-                <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle bg-white teacher active">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-white",
-                                size: '20px'
-                            }}>
-                            <FaUserGraduate />
-                        </IconContext.Provider>
-                    </div>
-                    <small className="">
-                        Alumno
-                    </small>
-                </div>
-            </Link>
         </div>
 
     )

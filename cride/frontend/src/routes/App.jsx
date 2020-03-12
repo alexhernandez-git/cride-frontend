@@ -18,9 +18,9 @@ const App = props => {
                     <Route exact path="/teachers" component={Search} />
                     <Route path="/teacher/:id" component={TeachersProfile} />
                     <Route path="/myzone/student" component={StudentsZone} />
-                    <Route path="/myzone/**" component={StudentsZone} />
-                    <Route path="/myzone/teacher" component={TeachersProfile} />
-                    <Route path="/myzone/**" component={TeachersProfile} />
+                    <Route path="/myzone/student/**" component={StudentsZone} />
+                    <Route path="/myzone/teacher" component={TeachersZone} />
+                    <Route path="/myzone/teacher/**" component={TeachersZone} />
                     <Route path="/**" component={() => <h1>404 not found</h1>} />
                 </Switch>
             </Layout>

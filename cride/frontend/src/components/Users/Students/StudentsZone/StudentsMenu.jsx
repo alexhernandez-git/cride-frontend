@@ -7,6 +7,23 @@ import "static/assets/styles/components/Users/Students/StudentsZone/StudentsMenu
 export default function StudentsMenu() {
     return (
         <div className="student-menu zone-sidebar shadow">
+            <Link to="/myzone/teacher">
+                <div className="seccion">
+                    <div className="div-icon bg-gradient-green rounded-circle bg-white teacher active">
+
+                        <IconContext.Provider
+                            value={{
+                                className: "global-class-name text-white",
+                                size: '20px'
+                            }}>
+                            <FaUserGraduate />
+                        </IconContext.Provider>
+                    </div>
+                    <small className="">
+                        Student
+                    </small>
+                </div>
+            </Link>
             <Link to="/myzone/profile">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
@@ -96,23 +113,7 @@ export default function StudentsMenu() {
                                         </small>
                 </div>
             </Link>
-            <Link to="/myzone/teacher">
-                <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle bg-white teacher active">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-white",
-                                size: '20px'
-                            }}>
-                            <FaChalkboardTeacher />
-                        </IconContext.Provider>
-                    </div>
-                    <small className="">
-                        Profesor
-                    </small>
-                </div>
-            </Link>
         </div>
 
     )

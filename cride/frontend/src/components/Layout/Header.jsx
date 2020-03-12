@@ -11,8 +11,7 @@ import { Link, useLocation } from "react-router-dom"
 import "static/assets/styles/components/Layout/Header.scss"
 
 export default function Header() {
-    const location = useLocation();
-    const regExLocation = new RegExp(/^\/myzone*/)
+
 
     return (
         <>

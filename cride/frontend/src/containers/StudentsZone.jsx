@@ -11,7 +11,7 @@ const StudentsZone = () => {
         <div className="min-vh-100 bg-light">
 
             <StudentsMenu />
-            <div className="users-zone text-grey">
+            <div className="content-students-zone text-grey">
                 <ScrollToTop />
                 <Route exact path="/student/" component={StudentsClasses} />
             </div>
