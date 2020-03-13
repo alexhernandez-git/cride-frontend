@@ -62,16 +62,12 @@ export default function ScheduleHour() {
         if (args.el != undefined && args.el.style.backgroundColor == "grey") {
             return
         }
-        if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.temporaryClass.classes.filter(event => {
-                return event.start.toString() !== args.event.start.toString()
-            })
-            teacherContext.setTemporaryClass({ classes: newEventsArray })
-            teacherContext.removeTemporaryClass()
-            args.event.remove()
-
-        }
-
+        let newEventsArray = teacherContext.temporaryClass.classes.filter(event => {
+            return event.start.toString() !== args.event.start.toString()
+        })
+        teacherContext.setTemporaryClass({ classes: newEventsArray })
+        teacherContext.removeTemporaryClass()
+        args.event.remove()
     }
     function getSize() {
         return {

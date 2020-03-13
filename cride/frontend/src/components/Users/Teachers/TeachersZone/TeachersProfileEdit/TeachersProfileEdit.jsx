@@ -1,22 +1,15 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-import Modal from 'react-bootstrap/Modal'
 import Tab from 'react-bootstrap/Tab'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
-import Form from 'react-bootstrap/Form'
 import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersClasses.scss"
 import TeachersProfileInfo from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileInfo"
 import TeachersProfileImage from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileImage"
-import {
-    FaRegStar,
-    FaStar,
-    FaChalkboardTeacher,
-    FaRegCalendarCheck,
-    FaRegQuestionCircle
-} from 'react-icons/fa';
-import { MdPayment } from 'react-icons/md';
+import TeachersProfilePresentation from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePresentation"
+import TeachersProfileLanguages from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileLanguages"
+
 
 import { IconContext } from "react-icons";
 const TeacherProfileEdit = () => {
@@ -46,29 +39,19 @@ const TeacherProfileEdit = () => {
 
                                 <Nav.Item>
                                     <Nav.Link eventKey={0} className="text-grey">
+                                        <span className="font-weight-bold">Información Principal</span>
+
+                                    </Nav.Link>
+                                </Nav.Item>
+
+                                <Nav.Item>
+                                    <Nav.Link eventKey={1} className="text-grey">
                                         <span className="font-weight-bold">PERFIL DEL PROFESOR</span>
 
                                     </Nav.Link>
                                 </Nav.Item>
-
-
-                                <Nav.Item>
-                                    <Nav.Link eventKey={1} className="text-grey">
-                                        <span className="font-weight-bold">IMAGEN DE PERFIL</span>
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey={2} className="text-grey">
-                                        <span className="font-weight-bold">VIDEO DE PRESENTACIÓN</span>
-                                    </Nav.Link>
-                                </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link eventKey={3} className="text-grey">
-                                        <span className="font-weight-bold">CURRICULUM</span>
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey={4} className="text-grey">
                                         <span className="font-weight-bold">PRICING</span>
                                     </Nav.Link>
                                 </Nav.Item>
@@ -81,14 +64,21 @@ const TeacherProfileEdit = () => {
 
                             <Tab.Content>
                                 <Tab.Pane eventKey={0} className="text-grey">
+                                    <TeachersProfileImage />
                                     <TeachersProfileInfo />
+
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={1} className="text-grey">
-                                    <TeachersProfileImage />
+                                    <TeachersProfilePresentation />
+                                    <TeachersProfileLanguages />
+
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={2} className="text-grey">
-                                    ewffewfew
-                            </Tab.Pane>
+                                    <TeachersProfilePresentation />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey={3} className="text-grey">
+                                    <TeachersProfilePresentation />
+                                </Tab.Pane>
                             </Tab.Content>
                         </Col>
                     </Row>

@@ -12,10 +12,9 @@
   }
   .content-teachers-zone {
     width: calc(100% - 100px);
-    position: absolute;
+    position: relative;
     left: 100px;
     right: 0;
-    top: 70px;
     padding: 0 0 30px;
   }
 }

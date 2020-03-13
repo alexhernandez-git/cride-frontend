@@ -8,7 +8,7 @@ import "static/assets/styles/components/Layout/ZoneSidebar.scss"
 import TeachersProfileEdit from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileEdit"
 export default function TeachersZone() {
     return (
-        <div className="min-vh-100 bg-light">
+        <div className="min-vh-100 bg-light pb-5">
 
             <TeachersMenu />
 
