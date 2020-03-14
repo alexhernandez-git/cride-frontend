@@ -28,8 +28,8 @@ const TeachersProfilePresentation = () => {
             <span className="d-none d-md-block">Presentación</span>
             <Row>
 
-                <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center mb-2">
-                    <span className="h5 font-weight-normal">Presentación</span>
+                <Col lg={{ span: 4 }} className="mb-3 text-center d-lg-flex justify-content-end align-items-center">
+                    <span className="h5 m-0 font-weight-normal">Presentación</span>
 
                 </Col>
 
@@ -44,7 +44,7 @@ const TeachersProfilePresentation = () => {
             <Row className="video-upload">
 
                 <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center">
-                    <span className="h5 font-weight-normal">Video de presentación</span>
+                    <span className="h5 m-0 font-weight-normal">Video de presentación</span>
                 </Col>
                 <Col lg={{ offset: 1, span: 6 }}>
                     {srcVideo != null ?

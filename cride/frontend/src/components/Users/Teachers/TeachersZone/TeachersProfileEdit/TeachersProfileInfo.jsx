@@ -11,7 +11,7 @@ const TeachersProfileInfo = () => {
             <Form>
                 <Row>
 
-                    <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center mb-2">
+                    <Col lg={{ span: 4 }} className="mb-3 text-center d-lg-flex justify-content-end align-items-center">
                         <span className="h5 m-0 font-weight-normal">Nombre</span>
 
                     </Col>
@@ -25,7 +25,7 @@ const TeachersProfileInfo = () => {
 
                 <Row>
 
-                    <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center mb-2">
+                    <Col lg={{ span: 4 }} className="mb-3 text-center d-lg-flex justify-content-end align-items-center">
                         <span className="h5 m-0 font-weight-normal">Apellidos</span>
                     </Col>
 
@@ -35,9 +35,9 @@ const TeachersProfileInfo = () => {
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row>
+                {/* <Row>
 
-                    <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center mb-2">
+                    <Col lg={{ span: 4 }} className="mb-3text-center d-lg-flex justify-content-end align-items-center">
                         <span className="h5 m-0 font-weight-normal">Pais</span>
                     </Col>
 
@@ -55,7 +55,7 @@ const TeachersProfileInfo = () => {
                                 },
                             })} />
                     </Col>
-                </Row>
+                </Row> */}
 
 
             </Form>

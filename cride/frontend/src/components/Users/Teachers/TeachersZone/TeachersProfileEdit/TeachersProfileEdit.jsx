@@ -9,9 +9,11 @@ import TeachersProfileInfo from "src/components/Users/Teachers/TeachersZone/Teac
 import TeachersProfileImage from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileImage"
 import TeachersProfilePresentation from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePresentation"
 import TeachersProfileLanguages from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileLanguages"
+import TeachersProfileTeach from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileTeach"
 
 
 import { IconContext } from "react-icons";
+import TeachersProfileSkills from './TeachersProfileSkills'
 const TeacherProfileEdit = () => {
     const [key, setKey] = useState(0)
     return (
@@ -39,7 +41,7 @@ const TeacherProfileEdit = () => {
 
                                 <Nav.Item>
                                     <Nav.Link eventKey={0} className="text-grey">
-                                        <span className="font-weight-bold">Información Principal</span>
+                                        <span className="font-weight-bold">INFORMACIÓN PRINCIPAL</span>
 
                                     </Nav.Link>
                                 </Nav.Item>
@@ -70,14 +72,11 @@ const TeacherProfileEdit = () => {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={1} className="text-grey">
                                     <TeachersProfilePresentation />
+                                    <TeachersProfileTeach />
                                     <TeachersProfileLanguages />
-
+                                    <TeachersProfileSkills />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={2} className="text-grey">
-                                    <TeachersProfilePresentation />
-                                </Tab.Pane>
-                                <Tab.Pane eventKey={3} className="text-grey">
-                                    <TeachersProfilePresentation />
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>

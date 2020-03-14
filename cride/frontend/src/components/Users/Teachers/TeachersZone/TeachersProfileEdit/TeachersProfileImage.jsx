@@ -48,13 +48,10 @@ const TeachersProfileImage = () => {
         <div className="bg-white shadow p-3 rounded my-2">
             <span className="d-none d-md-block">Imagen de perfil</span>
             <Row className="image-avatar-upload">
-
-                <Col lg={1}></Col>
-                <Col lg={3} className="text-center d-lg-flex justify-content-end align-items-center">
-                    <span className="h5 font-weight-normal">Imagen</span>
+                <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center">
+                    <span className="h5 m-0 font-weight-normal">Imagen</span>
                 </Col>
-                <Col lg={1}></Col>
-                <Col lg={6}>
+                <Col lg={{ offset: 1, span: 6 }}>
                     <Row>
                         <Col lg={4} className="d-flex justify-content-center align-content-center align-items-center">
                             <label

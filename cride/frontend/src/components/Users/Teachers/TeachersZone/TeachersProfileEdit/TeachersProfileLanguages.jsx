@@ -3,7 +3,7 @@ import Lang from "static/data/languages"
 import LangLevel from "static/data/languageLevel"
 import Select from 'react-select'
 
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
@@ -60,7 +60,7 @@ const TeachersProfileLanguages = () => {
             <Form>
                 <Row>
 
-                    <Col lg={{ span: 4 }} className="text-center d-lg-flex justify-content-end align-items-center mb-2">
+                    <Col lg={{ span: 4 }} className="mb-3 text-center d-lg-flex justify-content-end align-items-center mb-2">
                         <span className="h5 font-weight-normal m-0">Idiomas</span>
                     </Col>
 
@@ -83,7 +83,7 @@ const TeachersProfileLanguages = () => {
                                                         size: '20px'
                                                     }}
                                                 >
-                                                    <FaTrashAlt />
+                                                    <FaRegTrashAlt />
 
                                                 </IconContext.Provider>
                                             </td>
