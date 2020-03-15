@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import Select from 'react-select'
 
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import { IconContext } from "react-icons";
@@ -62,7 +62,7 @@ export default function TeachersProfileSkills() {
 
                     <Col lg={{ offset: 1, span: 6 }}>
                         {skills.length == 0 ?
-                            <span className="text-secondary">Añade tus habilidades...</span>
+                            <span className="text-secondary cursor-pointer" onClick={handleShowSkills}>Añade tus habilidades...</span>
 
                             :
                             skills.map((skill) => (
@@ -75,11 +75,11 @@ export default function TeachersProfileSkills() {
                                                 <IconContext.Provider
                                                     value={{
                                                         className: "global-class-name cursor-pointer text-secondary",
-                                                        size: '20px'
+                                                        size: '25px'
                                                     }}
 
                                                 >
-                                                    <FaRegTrashAlt />
+                                                    <IoMdClose />
 
                                                 </IconContext.Provider>
                                             </span>
@@ -111,6 +111,7 @@ export default function TeachersProfileSkills() {
                             <Form.Label className="d-flex justify-content-between"><span>Tu nivel</span> <span>{valueLevel}%</span></Form.Label>
                             <div className="mt-3 mx-2">
                                 <Slider
+                                    className="cursor-pointer"
                                     min={0}
                                     max={100}
                                     value={valueLevel}
@@ -137,12 +138,9 @@ export default function TeachersProfileSkills() {
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="border-0">
-                    <Button variant="info" onClick={handleCloseSkills}>
-                        Cancelar
-                </Button>
                     <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleAddSkills}>
                         Añadir
-                </Button>
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div >

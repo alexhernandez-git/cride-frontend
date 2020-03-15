@@ -3,7 +3,7 @@ import Lang from "static/data/languages"
 import LangLevel from "static/data/languageLevel"
 import Select from 'react-select'
 
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
@@ -66,7 +66,7 @@ const TeachersProfileLanguages = () => {
 
                     <Col lg={{ offset: 1, span: 6 }}>
                         {language.length == 0 ?
-                            <span className="text-secondary">Añade tus idiomas...</span>
+                            <span className="text-secondary cursor-pointer" onClick={handleShowLanguage}>Añade tus idiomas...</span>
 
                             :
                             <Table responsive className="botder-top border-bottom text-grey">
@@ -76,14 +76,14 @@ const TeachersProfileLanguages = () => {
                                         <tr key={lang.id}>
                                             <td>{lang.languageLabel}</td>
                                             <td>{lang.levelLabel}</td>
-                                            <td onClick={() => handleDelete(lang.id)} className="d-flex align-items-center justify-content-center h-100">
+                                            <td onClick={() => handleDelete(lang.id)} className="pr-1" style={{ width: '25px' }}>
                                                 <IconContext.Provider
                                                     value={{
                                                         className: "global-class-name cursor-pointer text-secondary",
-                                                        size: '20px'
+                                                        size: '25px'
                                                     }}
                                                 >
-                                                    <FaRegTrashAlt />
+                                                    <IoMdClose />
 
                                                 </IconContext.Provider>
                                             </td>
@@ -142,9 +142,6 @@ const TeachersProfileLanguages = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="border-0">
-                    <Button variant="info" onClick={handleCloseLanguage}>
-                        Cancelar
-                    </Button>
                     <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleAddLanguage}>
                         Añadir
                     </Button>

@@ -74,7 +74,9 @@ img {
 .btn-outline-success {
   border: none !important;
 }
-
+.btn-gradient-green {
+  padding: 7px 15px !important;
+}
 // gradients
 .bg-gradient-light-blue {
   background: linear-gradient(#64c8e6, #9198e5);
@@ -113,12 +115,14 @@ img {
 
 /* Forms */
 input.form-control,
-textarea.form-control {
-  box-shadow: none;
+textarea.form-control,
+input.custom-control-input {
+  box-shadow: none !important;
 }
 input.form-control:focus,
-textarea.form-control:focus {
-  box-shadow: none;
+textarea.form-control:focus,
+input.custom-control-input:focus {
+  box-shadow: none !important;
 }
 
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";

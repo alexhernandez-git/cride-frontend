@@ -99,9 +99,6 @@ const TeachersProfileImage = () => {
 
                 </Modal.Body>
                 <Modal.Footer className="border-0">
-                    <Button variant="info" onClick={handleClose}>
-                        Cancelar
-                    </Button>
                     <Button className="btn-gradient-green bg-gradient-green border-0" onClick={cropImage}>
                         Subir
                     </Button>

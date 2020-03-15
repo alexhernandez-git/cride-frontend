@@ -15,8 +15,8 @@ function TeachersCard() {
         <>
             <div className="container-card">
                 <Link to="/teacher/1">
-                    <div className="div-card-slick pt-2 pb-4 pr-3 pl-3">
-                        <Card className="card-slick position-relative cursor-pointer shadow border-0 overflow-hidden">
+                    <div className="div-card-slick pt-2 pb-4 pr-2 pl-2">
+                        <Card className="card-slick w-100 position-relative cursor-pointer shadow border-0 overflow-hidden">
 
                             <Card.Img className="rounded-circle img-card mt-2" variant="top" src={`https://source.unsplash.com/random/1`} />
                             <Card.Body className="p-2 text-center">

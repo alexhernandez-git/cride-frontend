@@ -10,6 +10,8 @@ import TeachersProfileImage from "src/components/Users/Teachers/TeachersZone/Tea
 import TeachersProfilePresentation from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePresentation"
 import TeachersProfileLanguages from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileLanguages"
 import TeachersProfileTeach from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileTeach"
+import TeachersProfileWork from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileWork"
+import TeachersProfileStudies from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileStudies"
 
 
 import { IconContext } from "react-icons";
@@ -75,6 +77,8 @@ const TeacherProfileEdit = () => {
                                     <TeachersProfileTeach />
                                     <TeachersProfileLanguages />
                                     <TeachersProfileSkills />
+                                    <TeachersProfileWork />
+                                    <TeachersProfileStudies />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={2} className="text-grey">
                                 </Tab.Pane>
