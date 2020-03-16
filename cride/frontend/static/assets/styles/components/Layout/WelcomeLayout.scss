@@ -1,15 +1,18 @@
 .div-welcome {
-  //   height: calc(100vh - 310px);
+  height: calc(100vh - 306px);
   display: flex;
   align-items: center;
-  height: 600px;
+  min-height: 600px;
 }
 @media only screen and (max-width: 768px) {
+  .info-pill {
+    margin: 10px 0;
+  }
   .div-welcome {
-    // height: calc(100vh);
+    height: calc(100vh);
     display: flex;
     align-items: center;
-    height: 700px;
+    min-height: 700px;
   }
   .container-info-pill > .row {
     margin: 0;
