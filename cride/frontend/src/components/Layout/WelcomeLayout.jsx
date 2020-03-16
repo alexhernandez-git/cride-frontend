@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "static/assets/styles/components/Layout/WelcomeLayout.scss"
 import Blackboard from "./Blackboard"
 import Form from "react-bootstrap/Form"
+import Slider from "react-slick";
 const WelcomeLayout = () => {
+    const slider = useRef()
 
+    const settings = {
+        initialSlide: 0,
+        infinite: false,
+        // speed: 100,
+        arrows: false,
+        dots: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+
+    }
     return (
         <>
-            <div className="div-welcome bg-gradient-green shadow pt-5 pb-5" >
+            <div
+                className="div-welcome bg-gradient-green shadow"
+
+            >
 
                 <div className="container">
 
@@ -23,14 +38,54 @@ const WelcomeLayout = () => {
                     </div>
                 </div>
             </div >
-            <div className="bg-danger shadow text-white">
-                <div className="container">
-                    <div className="row h4 text-center font-weight-light">
-                        <div className="col-md-4 d-flex justify-content-center align-items-center p-2">Elije a tu profesor online</div>
-                        <div className="col-md-4 d-flex justify-content-center align-items-center p-2">Haz una clase online tu solo o con compañeros</div>
-                        <div className="col-md-4 d-flex justify-content-center align-items-center p-2">Y aprende de los mejores</div>
+            <div className="shadow text-white">
+                <Slider {...settings} ref={slider}>
+                    <div className="w-100 slick-element">
+
+
+                        <div className="row bg-danger p-1 shadow">
+                            <div className="container text-center d-flex justify-content-around align-items-center">
+                                <span className="h4 m-0 p-2">Alumno</span>
+                                <span className="h5 m-0 p-2 font-weight-light cursor-pointer" onClick={() => slider.current.slickGoTo(1)}>Profesor</span>
+                            </div>
+                        </div>
+                        <div className="container container-info-pill">
+                            <div className="row text-center py-4 d-flex justify-content-between font-weight-normal">
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Tu eliges</span>con quien vas a aprender</div>
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas dinero</span>invitando a tus compañeros</div>
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Pagas menos</span>si has sido invitado</div>
+
+                            </div>
+                        </div>
+                        <div className="d-flex justify-content-center bg-gradient-green p-3">
+                            <span className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a aprender</span>
+
+                        </div>
                     </div>
-                </div>
+                    <div className="w-100 slick-element">
+
+                        <div className="row bg-danger p-1 shadow">
+                            <div className="container text-center d-flex justify-content-around align-items-center">
+                                <span className="h5 p-2 m-0 font-weight-light cursor-pointer" onClick={() => slider.current.slickGoTo(0)}>Alumno</span>
+
+                                <span className="h4 m-0 p-2">Profesor</span>
+                            </div>
+                        </div>
+                        <div className="container container-info-pill">
+                            <div className="row text-center py-4 d-flex justify-content-between font-weight-normal">
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Tu eliges</span>tus horas disponibles</div>
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas dinero</span>impartiendo clases</div>
+                                <div className="col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Se un referente</span>para tus alumnos</div>
+
+                            </div>
+                        </div>
+                        <div className="d-flex justify-content-center bg-gradient-green p-3">
+                            <span className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a enseñar</span>
+
+                        </div>
+                    </div>
+
+                </Slider>
             </div>
         </>
     );

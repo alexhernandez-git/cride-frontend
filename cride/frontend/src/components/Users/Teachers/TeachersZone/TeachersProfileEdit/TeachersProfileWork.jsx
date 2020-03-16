@@ -68,26 +68,13 @@ const TeachersProfileWork = () => {
 
     }
     const handleStartDateChange = (d) => {
-        // if (valueWork.currentWorking) {
         setValueWork({ ...valueWork, startDate: d })
 
-        // } else {
-        // if (d < valueWork.endDate) {
-        // setValueWork({ ...valueWork, startDate: d })
-        // }
-        // }
 
     }
     const handleEndDateChange = (d) => {
-        // if (valueWork.currentWorking) {
         setValueWork({ ...valueWork, endDate: d })
 
-        // } else {
-        //     if (d > valueWork.startDate) {
-        //         setValueWork({ ...valueWork, endDate: d })
-
-        //     }
-        // }
     }
     const handleCheckChange = e => {
         if (!valueWork.currentWorking) {
@@ -132,7 +119,6 @@ const TeachersProfileWork = () => {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Tus experiencia laboral</span>
-                    <button className="btn btn-green text-white float-right" onClick={handleShowWork}>Añadir experiencia laboral</button>
                 </Col>
             </Row>
             <Row>
@@ -142,54 +128,56 @@ const TeachersProfileWork = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {works.length == 0 ?
-                        <span className="text-secondary cursor-pointer" onClick={handleShowWork}>Añade tu experiencia laboral...</span>
-                        :
-                        works.map(work => (
+                    {works.length != 0 ?
+                        <div className="mb-3">
+                            {works.map(work => (
 
+                                <div className="work-experience w-100 border-bottom pb-2 mb-2" key={work.id}>
+                                    <div className="d-flex justify-content-between">
 
-                            <div className="work-experience w-100 border-bottom pb-2 mb-2" key={work.id}>
-                                <div className="d-flex justify-content-between">
+                                        <span className="d-block h4 mb-1 font-weight-normal text-break">{work.title} / {work.company}</span>
+                                        <span onClick={() => handleOpenEdit(work.id)}>
+                                            <IconContext.Provider
+                                                value={{
+                                                    className: "global-class-name cursor-pointer text-secondary",
+                                                    size: '25px'
+                                                }}
 
-                                    <span className="d-block h4 mb-1 font-weight-normal text-break">{work.title} / {work.company}</span>
-                                    <span onClick={() => handleOpenEdit(work.id)}>
-                                        <IconContext.Provider
-                                            value={{
-                                                className: "global-class-name cursor-pointer text-secondary",
-                                                size: '25px'
-                                            }}
+                                            >
+                                                <FiEdit2 />
 
-                                        >
-                                            <FiEdit2 />
+                                            </IconContext.Provider>
+                                        </span>
+                                    </div>
+                                    <span className="font-weight-normal">
+                                        <IconContext.Provider value={{
+                                            className: "mr-2 text-primary",
+                                            size: '20px'
+                                        }}>
+                                            {work.currentWorking
 
+                                                ?
+                                                <>
+                                                    <FaRegCalendarAlt />{moment(work.startDate).format('MM/YYYY')}  - <Badge variant="primary" >Actualidad</Badge>
+                                                </>
+                                                :
+                                                <>
+                                                    <FaRegCalendarAlt />{moment(work.startDate).format('MM/YYYY')} - {moment(work.endDate).format('MM/YYYY')}
+                                                </>
+                                            }
                                         </IconContext.Provider>
                                     </span>
-                                </div>
-                                <span className="font-weight-normal">
-                                    <IconContext.Provider value={{
-                                        className: "mr-2 text-primary",
-                                        size: '20px'
-                                    }}>
-                                        {work.currentWorking
+                                    <div className="mt-2 text-break">
+                                        {work.description}
+                                    </div>
 
-                                            ?
-                                            <>
-                                                <FaRegCalendarAlt />{moment(work.startDate).format('MM/YYYY')}  - <Badge variant="primary" >Actualidad</Badge>
-                                            </>
-                                            :
-                                            <>
-                                                <FaRegCalendarAlt />{moment(work.startDate).format('MM/YYYY')} - {moment(work.endDate).format('MM/YYYY')}
-                                            </>
-                                        }
-                                    </IconContext.Provider>
-                                </span>
-                                <div className="mt-2 text-break">
-                                    {work.description}
                                 </div>
-
-                            </div>
-                        ))
+                            ))}
+                        </div>
+                        :
+                        ''
                     }
+                    <span className="text-secondary cursor-pointer" onClick={handleShowWork}>Añade tu experiencia laboral...</span>
 
                 </Col>
             </Row>

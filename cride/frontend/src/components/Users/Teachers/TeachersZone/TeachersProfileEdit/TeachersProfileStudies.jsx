@@ -39,14 +39,7 @@ const TeachersProfileStudies = () => {
         const studiesSorted = newArrayStudiess.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
         setStudiess(studiesSorted)
     }
-    const [formErrors, setFormErrors] = useState({
-        title: false,
-        company: false,
-        currentStudiesing: false,
-        startDate: false,
-        endDate: false,
-        description: false
-    })
+
 
     const handleAddStudies = () => {
 
@@ -131,7 +124,6 @@ const TeachersProfileStudies = () => {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Tus experiencia academica</span>
-                    <button className="btn btn-green text-white float-right" onClick={handleShowStudies}>Añadir experiencia academica</button>
                 </Col>
             </Row>
             <Row>
@@ -141,54 +133,57 @@ const TeachersProfileStudies = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {studies.length == 0 ?
-                        <span className="text-secondary cursor-pointer" onClick={handleShowStudies}>Añade tu experiencia academica...</span>
-                        :
-                        studies.map(studies => (
+                    {studies.length != 0 ?
+                        <div className="mb-3">
+                            {studies.map(studies => (
 
 
-                            <div className="studies-experience w-100 border-bottom pb-2 mb-2" key={studies.id}>
-                                <div className="d-flex justify-content-between">
+                                <div className="studies-experience w-100 border-bottom pb-2 mb-2" key={studies.id}>
+                                    <div className="d-flex justify-content-between">
 
-                                    <span className="d-block h4 mb-1 font-weight-normal text-break">{studies.title} / {studies.company}</span>
-                                    <span onClick={() => handleOpenEdit(studies.id)}>
-                                        <IconContext.Provider
-                                            value={{
-                                                className: "global-class-name cursor-pointer text-secondary",
-                                                size: '25px'
-                                            }}
+                                        <span className="d-block h4 mb-1 font-weight-normal text-break">{studies.title} / {studies.company}</span>
+                                        <span onClick={() => handleOpenEdit(studies.id)}>
+                                            <IconContext.Provider
+                                                value={{
+                                                    className: "global-class-name cursor-pointer text-secondary",
+                                                    size: '25px'
+                                                }}
 
-                                        >
-                                            <FiEdit2 />
+                                            >
+                                                <FiEdit2 />
 
+                                            </IconContext.Provider>
+                                        </span>
+                                    </div>
+                                    <span className="font-weight-normal">
+                                        <IconContext.Provider value={{
+                                            className: "mr-2 text-primary",
+                                            size: '20px'
+                                        }}>
+                                            {studies.currentStudiesing
+
+                                                ?
+                                                <>
+                                                    <FaRegCalendarAlt />{moment(studies.startDate).format('MM/YYYY')}  - <Badge variant="primary" >Actualidad</Badge>
+                                                </>
+                                                :
+                                                <>
+                                                    <FaRegCalendarAlt />{moment(studies.startDate).format('MM/YYYY')} - {moment(studies.endDate).format('MM/YYYY')}
+                                                </>
+                                            }
                                         </IconContext.Provider>
                                     </span>
-                                </div>
-                                <span className="font-weight-normal">
-                                    <IconContext.Provider value={{
-                                        className: "mr-2 text-primary",
-                                        size: '20px'
-                                    }}>
-                                        {studies.currentStudiesing
+                                    <div className="mt-2 text-break">
+                                        {studies.description}
+                                    </div>
 
-                                            ?
-                                            <>
-                                                <FaRegCalendarAlt />{moment(studies.startDate).format('MM/YYYY')}  - <Badge variant="primary" >Actualidad</Badge>
-                                            </>
-                                            :
-                                            <>
-                                                <FaRegCalendarAlt />{moment(studies.startDate).format('MM/YYYY')} - {moment(studies.endDate).format('MM/YYYY')}
-                                            </>
-                                        }
-                                    </IconContext.Provider>
-                                </span>
-                                <div className="mt-2 text-break">
-                                    {studies.description}
                                 </div>
-
-                            </div>
-                        ))
+                            ))}
+                        </div>
+                        :
+                        ''
                     }
+                    <span className="text-secondary cursor-pointer" onClick={handleShowStudies}>Añade tu experiencia academica...</span>
 
                 </Col>
             </Row>

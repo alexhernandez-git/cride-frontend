@@ -1,0 +1,23 @@
+.div-welcome {
+  //   height: calc(100vh - 310px);
+  display: flex;
+  align-items: center;
+  height: 600px;
+}
+@media only screen and (max-width: 768px) {
+  .div-welcome {
+    // height: calc(100vh);
+    display: flex;
+    align-items: center;
+    height: 700px;
+  }
+  .container-info-pill > .row {
+    margin: 0;
+  }
+  .container-info-pill > .row > div {
+    margin: 10px 0;
+  }
+}
+.slick-element {
+  outline: none !important;
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import Select from 'react-select'
 
-import { IoMdClose } from 'react-icons/io';
+import { MdCancel } from 'react-icons/md';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import { IconContext } from "react-icons";
@@ -50,7 +50,6 @@ export default function TeachersProfileSkills() {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Tus habilidades</span>
-                    <button className="btn btn-green text-white float-right" onClick={handleShowSkills}>Añadir habilidad</button>
                 </Col>
             </Row>
             <Form>
@@ -61,37 +60,41 @@ export default function TeachersProfileSkills() {
                     </Col>
 
                     <Col lg={{ offset: 1, span: 6 }}>
-                        {skills.length == 0 ?
-                            <span className="text-secondary cursor-pointer" onClick={handleShowSkills}>Añade tus habilidades...</span>
 
-                            :
-                            skills.map((skill) => (
-                                <div className="my-2" key={skill.id}>
-                                    <div className="d-flex justify-content-between">
-                                        <span className="h5 font-weight-light text-break">{skill.skillValue}</span>
+                        {skills.length != 0 ?
+                            <div className="mb-3">
+
+                                {skills.map((skill) => (
+                                    <div className="my-2" key={skill.id}>
                                         <div className="d-flex justify-content-between">
+                                            <span className="h5 font-weight-light text-break">{skill.skillValue}</span>
+                                            <div className="d-flex justify-content-between">
 
-                                            <span onClick={() => handleDelete(skill.id)}>
-                                                <IconContext.Provider
-                                                    value={{
-                                                        className: "global-class-name cursor-pointer text-secondary",
-                                                        size: '25px'
-                                                    }}
+                                                <span onClick={() => handleDelete(skill.id)}>
+                                                    <IconContext.Provider
+                                                        value={{
+                                                            className: "global-class-name cursor-pointer text-secondary",
+                                                            size: '25px'
+                                                        }}
 
-                                                >
-                                                    <IoMdClose />
+                                                    >
+                                                        <MdCancel />
 
-                                                </IconContext.Provider>
-                                            </span>
+                                                    </IconContext.Provider>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="progress">
+                                            <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: skill.levelValue + '%' }} aria-valuenow={skill.levelValue} aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: skill.levelValue + '%' }} aria-valuenow={skill.levelValue} aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            ))
+                                ))}
+                            </div>
+                            :
+                            ''
                         }
 
+                        <span className="text-secondary cursor-pointer" onClick={handleShowSkills}>Añade tus habilidades...</span>
                     </Col>
                 </Row>
 

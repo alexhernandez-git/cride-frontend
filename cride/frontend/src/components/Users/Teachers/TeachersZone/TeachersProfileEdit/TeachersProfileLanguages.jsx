@@ -3,7 +3,7 @@ import Lang from "static/data/languages"
 import LangLevel from "static/data/languageLevel"
 import Select from 'react-select'
 
-import { IoMdClose } from 'react-icons/io';
+import { MdCancel } from 'react-icons/md';
 
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
@@ -54,7 +54,6 @@ const TeachersProfileLanguages = () => {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Tus idiomas</span>
-                    <button className="btn btn-green text-white float-right" onClick={handleShowLanguage}>Añadir idioma</button>
                 </Col>
             </Row>
             <Form>
@@ -65,10 +64,7 @@ const TeachersProfileLanguages = () => {
                     </Col>
 
                     <Col lg={{ offset: 1, span: 6 }}>
-                        {language.length == 0 ?
-                            <span className="text-secondary cursor-pointer" onClick={handleShowLanguage}>Añade tus idiomas...</span>
-
-                            :
+                        {language.length != 0 ?
                             <Table responsive className="botder-top border-bottom text-grey">
                                 <tbody>
                                     {language.map((lang) => (
@@ -82,8 +78,9 @@ const TeachersProfileLanguages = () => {
                                                         className: "global-class-name cursor-pointer text-secondary",
                                                         size: '25px'
                                                     }}
+
                                                 >
-                                                    <IoMdClose />
+                                                    <MdCancel />
 
                                                 </IconContext.Provider>
                                             </td>
@@ -92,7 +89,10 @@ const TeachersProfileLanguages = () => {
                                     ))}
                                 </tbody>
                             </Table>
+                            :
+                            ''
                         }
+                        <span className="text-secondary cursor-pointer" onClick={handleShowLanguage}>Añade tus idiomas...</span>
 
                     </Col>
                 </Row>

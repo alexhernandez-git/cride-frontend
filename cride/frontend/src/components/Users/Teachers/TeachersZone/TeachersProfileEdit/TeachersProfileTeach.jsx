@@ -13,15 +13,15 @@ export default function TeachersProfileTeach() {
     const [showSubjectsInput, setShowSubjectsInput] = useState(false);
     const inputSubject = useRef(null)
 
+    const [isEditing, setIsEditing] = useState(false)
 
+    const [subjects, setSubjects] = useState([
+        {
+            id: Math.random().toString(36).substr(2),
+            subjectValue: ''
+        }
+    ])
 
-    const [valueSubjects, setValueSubjects] = useState('')
-    const [subjects, setSubjects] = useState([])
-
-
-    const handleSubjectsChange = (e) => {
-        setValueSubjects(e.target.value)
-    }
 
     const handleUpdateSubjects = (e) => {
 
@@ -32,26 +32,42 @@ export default function TeachersProfileTeach() {
         const newValue = [...subjects]
         newValue[subjectIndex].subjectValue = e.target.value
         console.log(newValue);
-
+        setIsEditing(true)
         setSubjects([...newValue])
     }
     const handleAddSubjects = () => {
-        if (valueSubjects != '') {
-            const subject = {}
+        const subject = {}
+        if (subjects[subjects.length - 1].subjectValue != '') {
+
             subject.id = Math.random().toString(36).substr(2);
-            subject.subjectValue = valueSubjects
+            subject.subjectValue = ''
             setSubjects([...subjects, subject])
 
         }
-        console.log(subjects);
-
-        setValueSubjects('');
-        handleHideSubjects()
     }
     const handleDelete = (id) => {
+        console.log(subjects.length);
 
-        const newArrayLang = subjects.filter((subject) => subject.id != id)
-        setSubjects(newArrayLang);
+        if (subjects.length == 1) {
+            setSubjects([
+                {
+                    id: Math.random().toString(36).substr(2),
+                    subjectValue: ''
+                }
+            ]);
+
+        } else {
+            const newArrayLang = subjects.filter((subject) => subject.id != id)
+            setSubjects(newArrayLang);
+
+        }
+
+    }
+    const handleSave = () => {
+        console.log(subjects);
+
+
+        setIsEditing(false)
 
     }
     return (
@@ -59,7 +75,13 @@ export default function TeachersProfileTeach() {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Que temas te gustaria enseñar</span>
+                    {isEditing ?
+                        <button className="btn btn-green text-white float-right" onClick={handleSave}>Guardar los temas</button>
 
+                        :
+                        <button className="btn btn-green-disabled text-white float-right">Guardar los temas</button>
+
+                    }
                 </Col>
             </Row>
             <Row>
@@ -104,34 +126,8 @@ export default function TeachersProfileTeach() {
                         :
                         ''
                     }
+                    <span className="text-secondary cursor-pointer" onClick={handleAddSubjects}>Añade otro tema...</span>
 
-                    < Form onSubmit={(e) => { e.preventDefault(); handleAddSubjects() }}>
-
-                        <Form.Group className="position-relative" >
-                            <Form.Control type="text" placeholder="Añadir tema" value={valueSubjects} onChange={(e) => handleSubjectsChange(e)} />
-                            <div
-                                className="position-absolute"
-                                style={{
-                                    top: '5px',
-                                    right: '7px'
-                                }}
-                            >
-
-                                <span onClick={handleAddSubjects}>
-                                    <IconContext.Provider
-                                        value={{
-                                            className: "global-class-name cursor-pointer text-secondary",
-                                            size: '25px'
-                                        }}
-
-                                    >
-                                        <MdPlaylistAdd />
-
-                                    </IconContext.Provider>
-                                </span>
-                            </div>
-                        </Form.Group>
-                    </Form>
 
                 </Col>
             </Row >

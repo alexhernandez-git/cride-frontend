@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaChalkboardTeacher, FaRegCalendarAlt, FaUserAlt, FaRegHeart, FaUserGraduate } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaRegCalendarAlt, FaChalkboard, FaRegHeart, FaUserGraduate } from 'react-icons/fa';
 import { MdMessage } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
@@ -20,11 +20,11 @@ export default function TeachersMenu() {
                         </IconContext.Provider>
                     </div>
                     <small className="">
-                        Teacher
+                        Profesor
                     </small>
                 </div>
             </Link>
-            <Link to="/myzone/teacher/profile">
+            <Link to="/myzone/teacher/classes">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -33,12 +33,12 @@ export default function TeachersMenu() {
                                 className: "global-class-name text-white",
                                 size: '20px'
                             }}>
-                            <FaChalkboardTeacher />
+                            <FaChalkboard />
                         </IconContext.Provider>
                     </div>
 
                     <small>
-                        Portafolio
+                        Mis clases
                     </small>
                 </div>
             </Link>
