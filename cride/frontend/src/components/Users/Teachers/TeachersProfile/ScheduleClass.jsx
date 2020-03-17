@@ -149,7 +149,7 @@ export default function ScheduleClass() {
                                                 <Col sm={12}>
                                                     <Nav variant="pills" className="d-flex justify-content-center">
                                                         <Nav.Item>
-                                                            <Nav.Link eventKey={0}>
+                                                            <Nav.Link eventKey={0} className="rounded-pill">
                                                                 <IconContext.Provider
                                                                     value={{
                                                                         className: "global-class-name",
@@ -164,7 +164,7 @@ export default function ScheduleClass() {
                                                         </Nav.Item>
                                                         <Nav.Item>
                                                             {teacherContext.selectedClasses > 0 ?
-                                                                <Nav.Link eventKey={1} >
+                                                                <Nav.Link eventKey={1} className="rounded-pill">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -175,7 +175,7 @@ export default function ScheduleClass() {
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
-                                                                < Nav.Link >
+                                                                < Nav.Link className="rounded-pill">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -189,7 +189,7 @@ export default function ScheduleClass() {
                                                         </Nav.Item>
                                                         <Nav.Item>
                                                             {teacherContext.selectedClasses > 0 ?
-                                                                <Nav.Link eventKey={2}>
+                                                                <Nav.Link eventKey={2} className="rounded-pill">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -200,7 +200,7 @@ export default function ScheduleClass() {
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
-                                                                <Nav.Link>
+                                                                <Nav.Link className="rounded-pill">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",

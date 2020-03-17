@@ -74,7 +74,7 @@ const TeachersProfileImage = () => {
 
                         </Col>
                         <Col lg={6} className="d-flex justify-content-center align-content-start align-items-center flex-column">
-                            <label htmlFor="avatar-upload" className="bg-gradient-green p-2 rounded text-white cursor-pointer w-100 text-center">Subir imagen</label>
+                            <label htmlFor="avatar-upload" className="bg-gradient-green p-2 rounded-pill text-white cursor-pointer w-100 text-center">Subir imagen</label>
                             <input type="file" id="avatar-upload" className="d-none" ref={inputFile} placeholder="Imagen" onChange={handleUploadImage} />
                         </Col>
                     </Row>

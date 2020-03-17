@@ -26,7 +26,7 @@ const AcquiredClasses = () => {
     return (
         <TeachersProfileContext.Consumer>
             {context => (
-                <div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light">
+                <div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
                     <span>Clases adquiridas</span>{' '}
                     <span className="">{context.myClassState.length + context.classesLeftState}</span>
 

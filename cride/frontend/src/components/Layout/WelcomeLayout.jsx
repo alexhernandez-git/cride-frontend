@@ -3,6 +3,7 @@ import "static/assets/styles/components/Layout/WelcomeLayout.scss"
 import Blackboard from "./Blackboard"
 import Form from "react-bootstrap/Form"
 import Slider from "react-slick";
+import { Link } from "react-router-dom"
 const WelcomeLayout = () => {
     const slider = useRef()
     const [slideIndex, setSlideIndex] = useState(0)
@@ -83,9 +84,9 @@ const WelcomeLayout = () => {
                     </div>
                     <div className="d-flex justify-content-center bg-gradient-green p-3">
                         {slideIndex == 0 ?
-                            <span className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a aprender</span>
+                            <Link to="/teachers" className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a aprender</Link>
                             :
-                            <span className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a enseñar</span>
+                            <Link className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a enseñar</Link>
 
                         }
                     </div>

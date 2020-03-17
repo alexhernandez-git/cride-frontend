@@ -78,7 +78,7 @@ const TeachersProfilePresentation = () => {
                         </label>
                     }
 
-                    <label htmlFor="video-upload" className="bg-gradient-green p-2 rounded text-white cursor-pointer w-100 text-center">Subir video</label>
+                    <label htmlFor="video-upload" className="bg-gradient-green p-2 rounded text-white cursor-pointer w-100 text-center rounded-pill">Subir video</label>
                     <input type="file" id="video-upload" className="d-none" ref={inputFileVideo} placeholder="Imagen" onChange={handleUploadVideo} />
 
                 </Col>

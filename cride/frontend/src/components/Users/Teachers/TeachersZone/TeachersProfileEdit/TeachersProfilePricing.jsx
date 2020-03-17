@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select'
 import { Col, Row } from 'react-bootstrap';
 import Prices from "static/data/prices"
 const TeachersProfilePricing = () => {
     const [price, setPrice] = useState(Prices[0])
+    const [isEditing, setIsEditing] = useState(false)
+    useEffect(() => {
+
+        return () => {
+            setIsEditing(true)
+        };
+    }, [price]);
+    const handleSave = () => {
+        setIsEditing(false)
+    }
     return (
         <>
             <Row>
@@ -28,7 +38,14 @@ const TeachersProfilePricing = () => {
                                 },
                             })}
                         />
-                        <button className="btn btn-green text-white float-right">Guardar</button>
+                        {isEditing ?
+                            <span className="btn btn-green text-white float-right" onClick={handleSave}>Guardar</span>
+
+                            :
+                            <span className="btn btn-green-disabled rounded-pill text-white float-right">Guardar</span>
+
+
+                        }
 
                     </div>
                 </Col>

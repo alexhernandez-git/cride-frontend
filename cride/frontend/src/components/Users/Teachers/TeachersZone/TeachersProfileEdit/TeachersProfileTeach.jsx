@@ -10,8 +10,6 @@ import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
 
 
 export default function TeachersProfileTeach() {
-    const [showSubjectsInput, setShowSubjectsInput] = useState(false);
-    const inputSubject = useRef(null)
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -24,8 +22,6 @@ export default function TeachersProfileTeach() {
 
 
     const handleUpdateSubjects = (e) => {
-
-
         console.log(e.target.parentElement.parentElement);
 
         const subjectIndex = subjects.findIndex((subject => subject.id == e.target.parentElement.parentElement.id));
@@ -46,9 +42,11 @@ export default function TeachersProfileTeach() {
         }
     }
     const handleDelete = (id) => {
+
         console.log(subjects.length);
 
         if (subjects.length == 1) {
+            setIsEditing(false)
             setSubjects([
                 {
                     id: Math.random().toString(36).substr(2),
@@ -75,13 +73,8 @@ export default function TeachersProfileTeach() {
             <Row className="mb-4">
                 <Col className="d-md-flex justify-content-between">
                     <span className="d-none d-md-block">Que temas te gustaria enseñar</span>
-                    {isEditing ?
-                        <button className="btn btn-green text-white float-right" onClick={handleSave}>Guardar los temas</button>
 
-                        :
-                        <button className="btn btn-green-disabled text-white float-right">Guardar los temas</button>
 
-                    }
                 </Col>
             </Row>
             <Row>
@@ -131,7 +124,17 @@ export default function TeachersProfileTeach() {
 
                 </Col>
             </Row >
+            <div className="d-flex justify-content-center align-items-center mt-4">
+                {isEditing ?
+                    <span className="btn btn-green rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar</span>
 
+                    :
+                    <span className="btn btn-green-disabled rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar</span>
+
+
+                }
+
+            </div>
 
 
         </div >

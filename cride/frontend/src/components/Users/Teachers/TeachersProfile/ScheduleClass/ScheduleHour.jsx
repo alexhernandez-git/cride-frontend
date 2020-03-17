@@ -150,7 +150,7 @@ export default function ScheduleHour() {
                             }}
                         />
                     </div>
-                    <div className="classes-to-assign mt-2 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer">
+                    <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
                         Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft}</span>
                     </div>
                 </div>
