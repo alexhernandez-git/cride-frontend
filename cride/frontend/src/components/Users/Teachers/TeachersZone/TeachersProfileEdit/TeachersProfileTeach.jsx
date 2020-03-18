@@ -126,10 +126,10 @@ export default function TeachersProfileTeach() {
             </Row >
             <div className="d-flex justify-content-center align-items-center mt-4">
                 {isEditing ?
-                    <span className="btn btn-green rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar</span>
+                    <span className="btn btn-green rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar temas</span>
 
                     :
-                    <span className="btn btn-green-disabled rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar</span>
+                    <span className="btn btn-green-disabled rounded-pill text-white py-2 px-4" onClick={handleSave}>Guardar temas</span>
 
 
                 }

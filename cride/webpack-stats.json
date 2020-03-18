@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\vlexh\\cride\\cride\\frontend\\static\\bundles\\main.js"}]}}
+{"status":"done","error":"ModuleNotFoundError","message":"Module not found: Error: Can't resolve 'static/assets/styles/components/Users/Teachers/TeachersZone/Classes/TeachersMyClasses' in 'C:\\Users\\vlexh\\cride\\cride\\frontend\\src\\components\\Users\\Teachers\\TeachersZone\\TeachersClasses'","chunks":{"main":[{"name":"main.js","path":"C:\\Users\\vlexh\\cride\\cride\\frontend\\static\\bundles\\main.js"}]}}

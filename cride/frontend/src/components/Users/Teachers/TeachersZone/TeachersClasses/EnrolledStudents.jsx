@@ -2,9 +2,10 @@ import React from 'react'
 import { IconContext } from "react-icons";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
-export default function EnrolledStudents() {
+export default function EnrolledStudents(props) {
+    const { id, name, surname, isAdmin } = props.student
     return (
-        <div className="border-top border-bottom p-2">
+        <div className=" border-top p-2">
             <div className="div-delegate-student d-flex justify-content-between align-items-center">
                 <div className="d-flex justify-content-start align-items-center w-100">
 
@@ -26,7 +27,13 @@ export default function EnrolledStudents() {
                         />
                     </div>
                     <div className="d-flex flex-column">
-                        <span className="h5">Marcos Sanchez</span><span className="badge badge-pill bg-gradient-green text-white">Delegado</span>
+                        <span className="h5 m-0">{name} {surname}</span>
+                        {isAdmin ?
+
+                            <span className="badge badge-pill bg-gradient-green text-white mt-2">Delegado</span>
+                            :
+                            ''
+                        }
 
                     </div>
                 </div>

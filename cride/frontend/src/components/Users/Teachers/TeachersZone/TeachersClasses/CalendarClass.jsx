@@ -8,9 +8,54 @@ import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 
 import moment from 'moment'
-const CalendarClass = () => {
+const CalendarClass = (props) => {
+    const classEvent = props.classEvent
     const calendarComponentRef = useRef(null)
+    const [classes, setClasses] = useState()
+    useEffect(() => {
+        setClasses([{
+            id: Math.random().toString(36).substr(2),
+            title: 'Clase',
+            start: new Date(),
+        }])
+    }, [])
 
+    // State buisness hours
+    const [businessHours, setBusinessHours] = useState()
+    useEffect(() => {
+        setBusinessHours([ // specify an array instead
+            {
+                daysOfWeek: [1], // Monday, Tuesday, Wednesday
+                startTime: '08:00', // 8am
+                endTime: '18:00' // 6pm
+            },
+            {
+                daysOfWeek: [2], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
+                daysOfWeek: [3], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
+                daysOfWeek: [4], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
+                daysOfWeek: [5], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            },
+            {
+                daysOfWeek: [0], // Thursday, Friday
+                startTime: '10:00', // 10am
+                endTime: '16:00' // 4pm
+            }
+        ])
+    }, []);
 
     const [calendarView, setCalendarView] = useState(null)
 
@@ -74,7 +119,14 @@ const CalendarClass = () => {
                     minTime="06:00:00"
                     maxTime="24:00:00"
                     contentHeight="auto"
-
+                    eventSources={[
+                        {
+                            events: classEvent,
+                            color: '#3f8989',
+                            textColor: '#fff'
+                        }
+                    ]}
+                    color='#3f8989'
                     ref={calendarComponentRef}
                     eventLimit={true}
 

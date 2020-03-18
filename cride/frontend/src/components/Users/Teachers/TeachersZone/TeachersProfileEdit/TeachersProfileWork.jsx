@@ -6,7 +6,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FiEdit2 } from 'react-icons/fi';
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Badge } from 'react-bootstrap'
-import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersProfileWork.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersProfileWork.scss"
 import moment from 'moment'
 const TeachersProfileWork = () => {
     const [showWorkModal, setShowWorkModal] = useState(false);

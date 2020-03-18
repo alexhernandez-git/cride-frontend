@@ -21,8 +21,6 @@ import { IconContext } from "react-icons";
 import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
 export default function ScheduleClass() {
-    const teacherContext = useContext(TeachersProfileContext);
-
     const [invitationPriceState, setInvitationPriceState] = useState(false)
     const handleClickInvitationEarning = () => {
         if (invitationPriceState) {

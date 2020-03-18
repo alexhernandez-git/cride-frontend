@@ -4,7 +4,7 @@ import Tab from 'react-bootstrap/Tab'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
-import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersClasses.scss"
+import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersClasses.scss"
 import TeachersProfileInfo from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileInfo"
 import TeachersProfileImage from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileImage"
 import TeachersProfilePresentation from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePresentation"

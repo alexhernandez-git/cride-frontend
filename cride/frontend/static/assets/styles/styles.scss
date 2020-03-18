@@ -4,9 +4,9 @@
 $theme-colors: (
   "primary": #3c6754,
   // "primary": #66bcf2,
-    // "secondary": #56b389,
-    "secondary": #459489,
-  // "success": #9cbf78,
+    "secondary": #56b389,
+  // "secondary": #459489,
+    // "success": #9cbf78,
     "success": #28526d,
   "danger": #684e73,
   "warning": #e5c07b,
@@ -56,24 +56,40 @@ img {
   box-shadow: none;
 }
 // Utils
-
+button:focus {
+  outline: none !important;
+}
 .btn-outline-green {
   border-radius: 50rem !important;
   background-color: none;
   border: 1px solid #56b389 !important;
   color: #56b389 !important;
 }
-.btn.btn-outline-green:hover,
-.btn.btn-outline-green:focus {
+.btn-outline-green:hover,
+.btn-outline-green:focus {
   // background: linear-gradient(45deg, #56b389, #2e6a89);
   // border: 1px solid white !important;
   color: #56b389 !important;
+  outline: none !important;
 }
 .btn-outline-success {
   border: none !important;
 }
 .btn-gradient-green {
   padding: 7px 15px !important;
+}
+.btn-outline-cancel {
+  border-radius: 50rem !important;
+  background-color: none;
+  border: 1px solid #757575 !important;
+  color: #757575 !important;
+}
+.btn-outline-cancel:hover,
+.btn-outline-cancel:focus {
+  // background: linear-gradient(45deg, #56b389, #2e6a89);
+  // border: 1px solid white !important;
+  color: #757575 !important;
+  outline: none !important;
 }
 // gradients
 .bg-gradient-light-blue {
@@ -169,21 +185,20 @@ input.custom-control-input:focus {
     margin-bottom: 20px;
   }
 }
-.fc-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.fc-content .fc-title {
+  padding: 0 !important;
+  vertical-align: baseline !important;
+  vertical-align: baseline;
 }
-// .fc-content {
-//   background: linear-gradient(45deg, #56b389, #2e6a89) !important;
-//   border-radius: 5px !important;
-// }
+.fc-content {
+  text-align: center;
+}
+
 .fc-time-grid-event.fc-event.fc-start.fc-end.fc-short {
+  top: inherit;
   border: 0 !important;
   border-radius: 5px !important;
-}
-.fc-title {
-  padding: 10px !important;
 }
 .fc-next-button {
   background: linear-gradient(45deg, #56b389, #2e6a89) !important;
@@ -245,6 +260,8 @@ input.custom-control-input:focus {
 .fc-timeGridDay-button:hover,
 .fc-timeGridDay-button:focus {
   border-color: inherit !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 .fc-left h2 {
   font-size: 15pt;

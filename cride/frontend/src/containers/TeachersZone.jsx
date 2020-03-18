@@ -1,5 +1,4 @@
 import React from 'react'
-import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersMenu.scss"
 import "static/assets/styles/containers/TeachersZone.scss"
 import TeachersMenu from "src/components/Users/Teachers/TeachersZone/TeachersMenu"
 import { Route } from 'react-router-dom';

@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
-import "static/assets/styles/components/Users/Teachers/TeachersZone/TeachersProfileImage.scss"
 const TeachersProfileImage = () => {
     const cropper = useRef(null);
     const inputFile = useRef(null);
