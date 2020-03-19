@@ -40,18 +40,7 @@ const TeachersProfileWork = () => {
         console.log(worksSorted)
         setWorks(worksSorted)
     }
-    const [formErrors, setFormErrors] = useState({
-        title: false,
-        company: false,
-        currentWorking: false,
-        startDate: false,
-        endDate: false,
-        description: false
-    })
-
     const handleAddWork = () => {
-
-
         const workComplete = {}
         workComplete.id = Math.random().toString(36).substr(2);
         workComplete.title = valueWork.title
@@ -63,9 +52,7 @@ const TeachersProfileWork = () => {
         const newArrayWorks = [...works, workComplete]
         sortWorks(newArrayWorks)
 
-
         handleCloseWork()
-
     }
     const handleStartDateChange = (d) => {
         setValueWork({ ...valueWork, startDate: d })

@@ -135,6 +135,7 @@ export const TeachersProfileProvider = ({ children }) => {
         handleClose()
     }
 
+
     return (
         <TeachersProfileContext.Provider value={{
             myPendingClassState,
@@ -157,7 +158,7 @@ export const TeachersProfileProvider = ({ children }) => {
             classesAssignedLeft,
             addTemporaryClass,
             removeTemporaryClass,
-            handleBuy
+            handleBuy,
         }}>
             {children}
         </TeachersProfileContext.Provider>

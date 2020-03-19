@@ -80,12 +80,15 @@ button:focus {
 .btn-gradient-green {
   padding: 7px 15px !important;
 }
+.btn.btn-outline-cancel,
 .btn-outline-cancel {
   border-radius: 50rem !important;
   background-color: none;
   border: 1px solid #757575 !important;
   color: #757575 !important;
 }
+.btn.btn-outline-cancel:hover,
+.btn.btn-outline-cancel:focus,
 .btn-outline-cancel:hover,
 .btn-outline-cancel:focus {
   // background: linear-gradient(45deg, #56b389, #2e6a89);
