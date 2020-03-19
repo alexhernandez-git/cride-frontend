@@ -39,10 +39,10 @@ export default function TeachersProfileSkills() {
         handleCloseSkills()
     }
     const handleDelete = (id) => {
-        console.log('entra');
 
         const newArrayLang = skills.filter((skill) => skill.id != id)
-        setSkills(newArrayLang);
+        if (confirm('¿Estas seguro?'))
+            setSkills(newArrayLang);
 
     }
     return (

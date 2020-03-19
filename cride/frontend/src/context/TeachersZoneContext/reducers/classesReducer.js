@@ -39,11 +39,34 @@ export const classesReducer = (state, action) => {
                 isFetching: false
             };
         case 'CONFIRM_CLASS':
-            console.log(action);
+            action.payload.confirmedDate = new Date()
+            const newArray = state.classesToBeConfirmed.filter((classElement) => {
+                return classElement.id != action.payload.id
+            })
+            const newArrayConfirmed = [...state.classesConfirmed, action.payload]
+            const newArrayConfirmedSorted = newArrayConfirmed.sort((a, b) => (b.confirmedDate - a.confirmedDate))
 
-        case 'CANCEL_CLASS':
-            console.log(action);
-
+            return {
+                ...state,
+                classesConfirmed: newArrayConfirmedSorted,
+                classesToBeConfirmed: newArray
+            }
+        case 'CANCEL_CLASS_CONFIRMED':
+            const newArrayClassesConfirmed = state.classesConfirmed.filter((classElement) => {
+                return classElement.id != action.payload
+            })
+            return {
+                ...state,
+                classesConfirmed: newArrayClassesConfirmed
+            }
+        case 'CANCEL_CLASS_TO_BE_CONFIRMED':
+            const newArrayClassesToBeConfirmed = state.classesToBeConfirmed.filter((classElement) => {
+                return classElement.id != action.payload
+            })
+            return {
+                ...state,
+                classesToBeConfirmed: newArrayClassesToBeConfirmed
+            }
         default:
             return state;
     }

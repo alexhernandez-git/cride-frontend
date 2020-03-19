@@ -30,6 +30,7 @@ export const TeachersClassesProvider = ({ children }) => {
                             id: Math.random().toString(36).substr(2),
                             title: 'Clase',
                             start: new Date(),
+
                         }
                     ],
                     students: [
@@ -45,7 +46,9 @@ export const TeachersClassesProvider = ({ children }) => {
                             surname: 'Camins',
                             isAdmin: false
                         }
-                    ]
+                    ],
+                    createdDate: new Date(),
+                    confirmedDate: new Date()
                 },
                 {
                     id: Math.random().toString(36).substr(2),
@@ -69,7 +72,9 @@ export const TeachersClassesProvider = ({ children }) => {
                             surname: 'Hernandez',
                             isAdmin: false
                         }
-                    ]
+                    ],
+                    createdDate: new Date(),
+                    confirmedDate: new Date()
                 }
             ]
 
@@ -97,7 +102,9 @@ export const TeachersClassesProvider = ({ children }) => {
                             surname: 'Sanchez',
                             isAdmin: true
                         }
-                    ]
+                    ],
+                    createdDate: new Date(),
+                    confirmedDate: null
                 },
                 {
                     id: Math.random().toString(36).substr(2),
@@ -121,7 +128,9 @@ export const TeachersClassesProvider = ({ children }) => {
                             surname: 'Sanchez',
                             isAdmin: false
                         }
-                    ]
+                    ],
+                    createdDate: new Date(),
+                    confirmedDate: null
                 }
             ]
 

@@ -46,7 +46,8 @@ const TeachersProfileLanguages = () => {
     }
     const handleDelete = (id) => {
         const newArrayLang = language.filter((lang) => lang.id != id)
-        setLanguage(newArrayLang);
+        if (confirm('¿Estas seguro?'))
+            setLanguage(newArrayLang);
 
     }
     return (

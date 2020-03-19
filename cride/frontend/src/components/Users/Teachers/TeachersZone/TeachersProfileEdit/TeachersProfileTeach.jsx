@@ -43,23 +43,25 @@ export default function TeachersProfileTeach() {
     }
     const handleDelete = (id) => {
 
-        console.log(subjects.length);
+        if (confirm('¿Estas seguro?')) {
 
-        if (subjects.length == 1) {
-            setIsEditing(false)
-            setSubjects([
-                {
-                    id: Math.random().toString(36).substr(2),
-                    subjectValue: ''
-                }
-            ]);
 
-        } else {
-            const newArrayLang = subjects.filter((subject) => subject.id != id)
-            setSubjects(newArrayLang);
+            if (subjects.length == 1) {
+                setIsEditing(false)
+                setSubjects([
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        subjectValue: ''
+                    }
+                ]);
+
+            } else {
+                const newArrayLang = subjects.filter((subject) => subject.id != id)
+                setSubjects(newArrayLang);
+
+            }
 
         }
-
     }
     const handleSave = () => {
         console.log(subjects);

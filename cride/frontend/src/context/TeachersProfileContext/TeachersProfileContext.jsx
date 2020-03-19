@@ -1,41 +1,25 @@
 import React, { createContext, useState, useEffect, useReducer } from 'react'
 export const TeachersProfileContext = createContext()
 import {
-    classesLeftReducer,
-    ADD_CLASS,
-    REMOVE_CLASS,
-    SET_CLASSES_LEFT
+    classesLeftReducer
 } from './reducers/classesLeftReducer'
 import {
     myClassReducer,
-    ADD_MY_CLASS,
-    MERGE_MY_CLASS,
-    SET_MY_CLASS,
 } from './reducers/myClassReducer'
+import {
+    temporaryClassReducer,
+} from './reducers/temporaryClassReducer'
 
 export const TeachersProfileProvider = ({ children }) => {
     // Your classes
-    const [myClassState, dispatchMyClass] = useReducer(myClassReducer, []);
-    const addMyClass = (newClass) => {
-        dispatchMyClass({ type: ADD_MY_CLASS, newClass: newClass })
-    }
-    const setMyClass = (myClassNew) => {
-        dispatchMyClass({ type: SET_MY_CLASS, myClassNew: myClassNew })
-    }
+    const [myPendingClassState, dispatchMyPendingClass] = useReducer(myClassReducer, []);
+
     // Temporary classes
-    const [temporaryClass, setTemporaryClass] = useState({
-        classes: [],
-    })
+    const [temporaryClassState, dispatchTemporaryClass] = useReducer(temporaryClassReducer, []);
+
     // State de lecciones restantes
     const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, 0);
 
-    const addClass = () => {
-        dispatchClassesLeft({ type: ADD_CLASS })
-    }
-    const removeClass = () => {
-        dispatchClassesLeft({ type: REMOVE_CLASS })
-
-    }
     // State buisness hours
     const [businessHours, setBusinessHours] = useState()
     useEffect(() => {
@@ -77,9 +61,7 @@ export const TeachersProfileProvider = ({ children }) => {
     const [key, setKey] = useState(0);
     useEffect(() => {
         if (key == 0) {
-            setTemporaryClass({
-                classes: []
-            })
+            dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
             setSelectedClasses(0)
         }
     }, [key])
@@ -130,11 +112,6 @@ export const TeachersProfileProvider = ({ children }) => {
 
     }
     // State de asignacion temporal de clases
-    const addMyTemporaryClass = (newEvent) => {
-        setTemporaryClass({
-            classes: [...temporaryClass.classes, newEvent]
-        })
-    }
     const addTemporaryClass = () => {
         let classesAssigned = classesAssignedLeft - 1
         setClassesAssignedLeft(classesAssigned)
@@ -144,15 +121,12 @@ export const TeachersProfileProvider = ({ children }) => {
         setClassesAssignedLeft(classesAssigned)
     }
     const handleBuy = () => {
-        console.log('temporaryClass ', temporaryClass.classes);
+        dispatchMyPendingClass({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClassState })
 
-        dispatchMyClass({ type: MERGE_MY_CLASS, tempClasses: temporaryClass.classes })
+        dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
 
-        setTemporaryClass({
-            classes: []
-        })
         dispatchClassesLeft({
-            type: SET_CLASSES_LEFT,
+            type: 'SET_CLASSES_LEFT',
             classesAssignedLeft: classesAssignedLeft
         })
         // setLessonsLeft(lessonsLeft + classesAssignedLeft)
@@ -163,12 +137,10 @@ export const TeachersProfileProvider = ({ children }) => {
 
     return (
         <TeachersProfileContext.Provider value={{
-            myClassState,
-            addMyClass,
-            setMyClass,
+            myPendingClassState,
+            dispatchMyPendingClass,
             classesLeftState,
-            addClass,
-            removeClass,
+            dispatchClassesLeft,
             showScheduleClass,
             businessHours,
             key,
@@ -180,10 +152,9 @@ export const TeachersProfileProvider = ({ children }) => {
             calcPriceClass,
             selectedClasses,
             selectClasses,
-            temporaryClass,
-            setTemporaryClass,
+            temporaryClassState,
+            dispatchTemporaryClass,
             classesAssignedLeft,
-            addMyTemporaryClass,
             addTemporaryClass,
             removeTemporaryClass,
             handleBuy

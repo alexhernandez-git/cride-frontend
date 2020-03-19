@@ -22,7 +22,7 @@ const TeachersCalendar = () => {
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
 
-        let result = teacherContext.myClassState.filter(element => String(element.start) == String(roundDown._d));
+        let result = teacherContext.myPendingClassState.filter(element => String(element.start) == String(roundDown._d));
 
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -35,13 +35,13 @@ const TeachersCalendar = () => {
                     alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
                     if (teacherContext.classesLeftState > 0) {
-                        teacherContext.addClass()
-
-                        teacherContext.addMyClass({
-                            // creates a new array
-                            id: Math.random().toString(36).substr(2),
-                            title: 'Reservado',
-                            start: roundDown._d,
+                        teacherContext.dispatchClassesLeft({ type: 'ADD_CLASS' })
+                        teacherContext.dispatchMyPendingClass({
+                            type: 'ADD_MY_PENDING_CLASS',
+                            myPendingClass: {
+                                id: Math.random().toString(36).substr(2),
+                                start: roundDown._d,
+                            }
                         })
 
                     } else {
@@ -57,13 +57,14 @@ const TeachersCalendar = () => {
     }
     function handleEventClick(args) {
         if (confirm('¿Are you sure you want remove this event?')) {
-            let newEventsArray = teacherContext.myClassState.filter(event => {
+            console.log(teacherContext.myPendingClassState);
+
+            let newEventsArray = teacherContext.myPendingClassState.filter(event => {
 
                 return event.start.toString() !== args.event.start.toString()
             })
-
-            teacherContext.setMyClass(newEventsArray)
-            teacherContext.removeClass()
+            teacherContext.dispatchMyPendingClass({ type: 'SET_MY_PENDING_CLASS', myPendingClass: newEventsArray })
+            teacherContext.dispatchClassesLeft({ type: REMOVE_CLASS })
             args.event.remove()
 
         }
@@ -133,8 +134,8 @@ const TeachersCalendar = () => {
                             eventLimit={true}
                             eventSources={[
                                 {
-                                    events: teacherContext.myClassState,
-                                    color: '#3f8989',
+                                    events: teacherContext.myPendingClassState,
+                                    color: '#757575',
                                 },
                             ]}
                             dateClick={handleDateClick}

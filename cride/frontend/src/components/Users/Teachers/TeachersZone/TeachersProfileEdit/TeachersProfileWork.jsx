@@ -88,9 +88,11 @@ const TeachersProfileWork = () => {
         }
     }
     const handleDelete = (id) => {
-        const newArrayWorks = works.filter((w) => w.id != id)
-        setWorks(newArrayWorks)
-        handleCloseWork()
+        if (confirm('¿Estas seguro?')) {
+            const newArrayWorks = works.filter((w) => w.id != id)
+            setWorks(newArrayWorks)
+            handleCloseWork()
+        }
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {
@@ -243,20 +245,20 @@ const TeachersProfileWork = () => {
                     <div className="d-flex justify-content-between">
                         <div>
                             {isEditing ?
-                                <Button variant="btn-success" className="btn btn-outline-green" onClick={() => handleDelete(valueWork.id)}>
+                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueWork.id)}>
                                     Eliminar
-                         </Button>
+                         </button>
                                 :
                                 ''
                             }
                         </div>
                         <div>
                             {isEditing ?
-                                <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleEdit}>
+                                <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0" onClick={handleEdit}>
                                     Guardar
                          </Button>
                                 :
-                                <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleAddWork}>
+                                <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0" onClick={handleAddWork}>
                                     Añadir
                         </Button>
 

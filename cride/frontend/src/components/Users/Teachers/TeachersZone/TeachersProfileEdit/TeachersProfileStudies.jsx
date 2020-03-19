@@ -93,9 +93,12 @@ const TeachersProfileStudies = () => {
         }
     }
     const handleDelete = (id) => {
-        const newArrayStudiess = studies.filter((w) => w.id != id)
-        setStudiess(newArrayStudiess)
-        handleCloseStudies()
+        if (confirm('¿Estas seguro?')) {
+
+            const newArrayStudiess = studies.filter((w) => w.id != id)
+            setStudiess(newArrayStudiess)
+            handleCloseStudies()
+        }
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {
@@ -249,20 +252,20 @@ const TeachersProfileStudies = () => {
                     <div className="d-flex justify-content-between">
                         <div>
                             {isEditing ?
-                                <Button variant="btn-success" className="btn btn-outline-green" onClick={() => handleDelete(valueStudies.id)}>
+                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueStudies.id)}>
                                     Eliminar
-                         </Button>
+                     </button>
                                 :
                                 ''
                             }
                         </div>
                         <div>
                             {isEditing ?
-                                <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleEdit}>
+                                <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0" onClick={handleEdit}>
                                     Guardar
                          </Button>
                                 :
-                                <Button className="btn-gradient-green bg-gradient-green border-0" onClick={handleAddStudies}>
+                                <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0" onClick={handleAddStudies}>
                                     Añadir
                         </Button>
 

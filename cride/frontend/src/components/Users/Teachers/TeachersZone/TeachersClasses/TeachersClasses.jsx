@@ -113,7 +113,7 @@ const TeacherProfileEdit = () => {
                                                                 ))}
                                                             </>
                                                             :
-                                                            'No tienes clases'
+                                                            'No tienes clases por confirmar'
                                                     )
                                             }
                                         </Tab.Pane>

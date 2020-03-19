@@ -21,6 +21,23 @@ const TeachersClassesToBeConfirmed = (props) => {
     const [showClassModal, setShowClassModal] = useState(false);
     const handleCloseClass = () => setShowClassModal(false)
     const handleShowClass = () => setShowClassModal(true);
+
+    const handleConfirmClasse = (classElement) => {
+        if (confirm('¿Estas seguro?')) {
+            classesContext.dispatch({
+                type: 'CONFIRM_CLASS',
+                payload: classElement
+            })
+        }
+    }
+    const handleCancelClass = (id) => {
+        if (confirm('¿Estas seguro?')) {
+            classesContext.dispatch({
+                type: 'CANCEL_CLASS_TO_BE_CONFIRMED',
+                payload: id
+            })
+        }
+    }
     return (
         <TeachersClassesContext.Consumer>
             {classesContext => (
@@ -65,10 +82,11 @@ const TeachersClassesToBeConfirmed = (props) => {
                         </IconContext.Provider>
                             </button>
                             <button
-                                className="btn-outline-green mr-2 d-none d-md-block rounded-pill bg-white"
+                                className="btn btn-outline-green mr-2 d-none d-md-block rounded-pill bg-white"
                                 style={{
                                     height: '40px'
                                 }}
+                                onClick={() => handleConfirmClasse(props.classElement)}
                             >
                                 <IconContext.Provider value={{
                                     className: "cursor-ponter align-text-bottom",
@@ -83,6 +101,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                                 style={{
                                     height: '40px'
                                 }}
+                                onClick={() => handleCancelClass(id)}
                             >
                                 <IconContext.Provider value={{
                                     className: "cursor-ponter align-text-bottom",
@@ -159,7 +178,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                                 <FaInfoCircle /> Ver más
                     </IconContext.Provider>
                         </button>
-                        <button className="btn-outline-green btn-block bg-white mb-2 py-1">
+                        <button className="btn btn-outline-green btn-block bg-white mb-2 py-1" onClick={() => handleConfirmClasse(props.classElement)}>
                             <IconContext.Provider value={{
                                 className: "cursor-ponter",
                                 size: '20px'
@@ -167,7 +186,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                                 <FaRegHandshake /> Confirmar clase
                     </IconContext.Provider>
                         </button>
-                        <button className="btn-outline-cancel btn-block bg-white py-1">
+                        <button className="btn-outline-cancel btn-block bg-white py-1" onClick={() => handleCancelClass(id)}>
                             <IconContext.Provider value={{
                                 className: "cursor-ponter",
                                 size: '20px'
@@ -209,7 +228,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                             </div>
                             <div className="d-flex justify-content-end align-items-center my-auto">
 
-                                <button className="btn-outline-green h-100 d-none d-sm-block rounded-pill bg-white ml-3">
+                                <button className="btn-outline-green h-100 d-none d-sm-block rounded-pill bg-white ml-3" onClick={() => handleConfirmClasse(props.classElement)}>
                                     <IconContext.Provider value={{
                                         className: "cursor-ponter align-text-bottom",
                                         size: '20px'
@@ -217,7 +236,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                                         <FaRegHandshake /> Confirmar clase
                         </IconContext.Provider>
                                 </button>
-                                <button className="btn-outline-cancel h-100 d-none d-sm-block rounded-pill bg-white ml-2">
+                                <button className="btn-outline-cancel h-100 d-none d-sm-block rounded-pill bg-white ml-2" onClick={() => handleCancelClass(id)}>
                                     <IconContext.Provider value={{
                                         className: "cursor-ponter align-text-bottom",
                                         size: '20px'

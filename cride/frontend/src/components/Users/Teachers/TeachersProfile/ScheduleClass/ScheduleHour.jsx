@@ -26,8 +26,8 @@ export default function ScheduleHour() {
 
         // Miramos que no haya ninguna hora parecida en el array de eventos
 
-        let result = teacherContext.temporaryClass.classes.filter(element => String(element.start) == String(roundDown._d));
-        let result2 = teacherContext.myClassState.filter(element => String(element.start) == String(roundDown._d));
+        let result = teacherContext.temporaryClassState.filter(element => String(element.start) == String(roundDown._d));
+        let result2 = teacherContext.myPendingClassState.filter(element => String(element.start) == String(roundDown._d));
         result = [...result, ...result2]
 
         if (!moment().isAfter(roundDown._d) > 0) {
@@ -42,13 +42,14 @@ export default function ScheduleHour() {
 
                     if (teacherContext.classesAssignedLeft > 0) {
                         teacherContext.addTemporaryClass()
-
-                        teacherContext.addMyTemporaryClass({
-                            // creates a new array
-                            id: Math.random().toString(36).substr(2),
-                            title: 'Reservado',
-                            start: roundDown._d,
+                        teacherContext.dispatchTemporaryClass({
+                            type: 'ADD_TEMPORARY_CLASS', newClass: {
+                                // creates a new array
+                                id: Math.random().toString(36).substr(2),
+                                start: roundDown._d,
+                            }
                         })
+
                     } else {
                         alert("Ya has assignado todas las clases")
                     }
@@ -62,10 +63,11 @@ export default function ScheduleHour() {
         if (args.el != undefined && args.el.style.backgroundColor == "grey") {
             return
         }
-        let newEventsArray = teacherContext.temporaryClass.classes.filter(event => {
+        let newEventsArray = teacherContext.temporaryClassState.filter(event => {
             return event.start.toString() !== args.event.start.toString()
         })
-        teacherContext.setTemporaryClass({ classes: newEventsArray })
+
+        teacherContext.dispatchTemporaryClass({ type: 'SET_TEMPORARY_CLASS', classes: newEventsArray })
         teacherContext.removeTemporaryClass()
         args.event.remove()
     }
@@ -136,7 +138,7 @@ export default function ScheduleHour() {
                                     editable: false,
                                 },
                                 {
-                                    events: teacherContext.temporaryClass.classes,
+                                    events: teacherContext.temporaryClassState,
                                     color: '#3f8989'
                                 },
                             ]
