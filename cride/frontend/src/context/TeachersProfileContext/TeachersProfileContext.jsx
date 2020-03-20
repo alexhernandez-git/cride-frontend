@@ -21,41 +21,41 @@ export const TeachersProfileProvider = ({ children }) => {
     const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, 0);
 
     // State buisness hours
-    const [businessHours, setBusinessHours] = useState()
-    useEffect(() => {
-        setBusinessHours([ // specify an array instead
-            {
-                daysOfWeek: [1], // Monday, Tuesday, Wednesday
-                startTime: '08:00', // 8am
-                endTime: '18:00' // 6pm
-            },
-            {
-                daysOfWeek: [2], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [3], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [4], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [5], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            },
-            {
-                daysOfWeek: [0], // Thursday, Friday
-                startTime: '10:00', // 10am
-                endTime: '16:00' // 4pm
-            }
-        ])
-    }, []);
+    const [businessHours, setBusinessHours] = useState([ // specify an array instead
+        {
+            daysOfWeek: [1], // Monday, Tuesday, Wednesday
+            startTime: '08:00', // 8am
+            endTime: '18:00' // 6pm
+        },
+        {
+            daysOfWeek: [2], // Thursday, Friday
+            startTime: '10:00', // 10am
+            endTime: '16:00' // 4pm
+        },
+        {
+            daysOfWeek: [3], // Thursday, Friday
+            startTime: '10:00', // 10am
+            endTime: '16:00' // 4pm
+        },
+        {
+            daysOfWeek: [4], // Thursday, Friday
+            startTime: '10:00', // 10am
+            endTime: '16:00' // 4pm
+        },
+        {
+            daysOfWeek: [5], // Thursday, Friday
+            startTime: '10:00', // 10am
+            endTime: '16:00' // 4pm
+        },
+        {
+            daysOfWeek: [0], // Thursday, Friday
+            startTime: '10:00', // 10am
+            endTime: '16:00' // 4pm
+        }
+    ])
+    // State of selected classes
+    const [selectedClasses, setSelectedClasses] = useState(0);
+
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
     const [key, setKey] = useState(0);
@@ -85,9 +85,7 @@ export const TeachersProfileProvider = ({ children }) => {
     };
 
     const [classPrice, setClassPrice] = useState(20);
-    useEffect(() => {
-        setClassPrice(20)
-    }, []);
+
     const calcPriceClass = (numClass) => {
         let finalPrice
         if (numClass > 5) {
@@ -97,12 +95,6 @@ export const TeachersProfileProvider = ({ children }) => {
         }
         return Math.round(finalPrice)
     }
-    // State of selected classes
-    const [selectedClasses, setSelectedClasses] = useState();
-    useEffect(() => {
-        setSelectedClasses(0)
-    }, []);
-
 
     const [classesAssignedLeft, setClassesAssignedLeft] = useState(0)
 
@@ -134,6 +126,19 @@ export const TeachersProfileProvider = ({ children }) => {
         setSelectedClasses(0)
         handleClose()
     }
+    const [showDetailsClassForm, setShowDetailsClassForm] = useState(false)
+    const handleShowDetailsClassForm = () => {
+        setShowDetailsClassForm(true)
+    }
+    const handleHideDetailsClassForm = () => {
+        setShowDetailsClassForm(false)
+    }
+    const [classData, setClassData] = useState({
+        id: Math.random().toString(36).substr(2),
+        title: '',
+        start: null,
+        description: 'fewafawefawe'
+    })
 
 
     return (
@@ -159,6 +164,11 @@ export const TeachersProfileProvider = ({ children }) => {
             addTemporaryClass,
             removeTemporaryClass,
             handleBuy,
+            showDetailsClassForm,
+            handleShowDetailsClassForm,
+            handleHideDetailsClassForm,
+            classData,
+            setClassData
         }}>
             {children}
         </TeachersProfileContext.Provider>

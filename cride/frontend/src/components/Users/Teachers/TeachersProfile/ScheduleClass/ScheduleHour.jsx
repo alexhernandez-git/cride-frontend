@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext, useCallback } from 'react';
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -8,56 +8,16 @@ import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCa
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
 import { Form, Button } from 'react-bootstrap'
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-
+import ClassDetailsForm from "src/components/Users/Teachers/TeachersProfile/ClassDetailsForm"
 import moment from 'moment'
 // import ClassModal from 'src/components/Users/Teachers/TeachersProfile/ClassModal';
 export default function ScheduleHour() {
     const teacherContext = useContext(TeachersProfileContext);
     const calendarComponentRef = useRef(null)
-    const calendarDiv = useRef(null)
-    const classDataForm = useRef(null)
 
     const [calendarView, setCalendarView] = useState(null)
     // recoje la fecha del evento que queremos crear
-    const [classData, setClassData] = useState({
-        id: '',
-        start: '',
-        description: '',
-        isEditing: false
-    })
-    useEffect(() => {
-        console.log(classData);
 
-    }, [classData]);
-
-    const handleShowClassDataForm = () => {
-        classDataForm.current.classList = 'd-block'
-        calendarDiv.current.classList = 'd-none'
-    }
-    const handleAddClassInCalendar = () => {
-        teacherContext.dispatchTemporaryClass({
-            type: 'ADD_TEMPORARY_CLASS', newClass: classData
-        })
-        setClassData({
-            id: '',
-            start: false,
-            description: '',
-            isEditing: false
-        })
-        classDataForm.current.classList = 'd-none'
-        calendarDiv.current.classList = 'd-block'
-    }
-
-    const handleCancelAddClassInCalendar = () => {
-        setClassData({
-            id: '',
-            start: false,
-            description: '',
-            isEditing: false
-        })
-        classDataForm.current.classList = 'd-none'
-        calendarDiv.current.classList = 'd-block'
-    }
     function handleDateClick(arg) {
 
         // Creamos la fecha con moment para poder modificarla
@@ -83,20 +43,12 @@ export default function ScheduleHour() {
 
                     if (teacherContext.classesAssignedLeft > 0) {
 
-                        setClassData(() => {
-                            return {
-                                id: Math.random().toString(36).substr(2),
-                                start: roundDown._d,
-                                description: 'dwqwqwqd',
-                                isEditing: false
-                            }
+                        teacherContext.setClassData([{
+                            ...teacherContext.classData,
+                            start: roundDown._d
+                        }])
 
-                        })
-
-
-                        handleShowClassDataForm();
-
-                        // teacherContext.addTemporaryClass()
+                        teacherContext.handleShowDetailsClassForm()
 
 
                     } else {
@@ -153,12 +105,12 @@ export default function ScheduleHour() {
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
-                <div className="teacher-calendar w-100 rounded text-center">
+                <div className="teacher-calendar w-100 rounded">
 
                     <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
                         Este paso es 100% opcional, podras asignar las clases cuando quieras
                     </div>
-                    <div ref={calendarDiv}>
+                    <div className={teacherContext.showDetailsClassForm ? 'd-none' : 'd-block'}>
 
                         <div className='demo-app-calendar'>
                             <FullCalendar
@@ -206,49 +158,7 @@ export default function ScheduleHour() {
                             Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft}</span>
                         </div>
                     </div>
-
-                    <div className="d-none" ref={classDataForm}>
-                        <div>
-                            <span className="d-block">Tu clase estara programada para la fecha:</span>
-                            {classData.start ?
-                                <span className="d-block">{moment(classData.start).format('LLLL', 'es')}</span>
-                                :
-                                <span className="d-block">Ha habido algun error al introducir la fecha</span>
-                            }
-                        </div>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Descripción</Form.Label>
-
-                            <Form.Control as="textarea" rows="3" value={classData.description} onChange={e => setClassData({ ...classData, description: e.target.value })} />
-                            <Form.Label>Pon una breve descripción de lo que queres aprender en esa clase</Form.Label>
-                        </Form.Group>
-                        <div className="d-flex justify-content-between">
-                            <div>
-                                <button className="btn btn-outline-cancel" onClick={handleCancelAddClassInCalendar}>
-                                    Volver
-                                </button>
-                                {classData.isEditing ?
-                                    <button className="btn btn-outline-green ">
-                                        Eliminar
-                         </button>
-                                    :
-                                    ''
-                                }
-                            </div>
-                            <div>
-                                {classData.isEditing ?
-                                    <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0">
-                                        Guardar
-                         </Button>
-                                    :
-                                    <Button className="btn-gradient-green rounded-pill bg-gradient-green border-0" onClick={handleAddClassInCalendar}>
-                                        Añadir clase
-                        </Button>
-
-                                }
-                            </div>
-                        </div>
-                    </div>
+                    <ClassDetailsForm />
                 </div>
             )}
         </TeachersProfileContext.Consumer>
