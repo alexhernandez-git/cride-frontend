@@ -133,12 +133,6 @@ export const TeachersProfileProvider = ({ children }) => {
     const handleHideDetailsClassForm = () => {
         setShowDetailsClassForm(false)
     }
-    const [classData, setClassData] = useState({
-        id: Math.random().toString(36).substr(2),
-        title: '',
-        start: null,
-        description: 'fewafawefawe'
-    })
 
 
     return (
@@ -167,8 +161,6 @@ export const TeachersProfileProvider = ({ children }) => {
             showDetailsClassForm,
             handleShowDetailsClassForm,
             handleHideDetailsClassForm,
-            classData,
-            setClassData
         }}>
             {children}
         </TeachersProfileContext.Provider>

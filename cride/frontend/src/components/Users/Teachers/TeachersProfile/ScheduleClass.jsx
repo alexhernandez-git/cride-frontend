@@ -247,7 +247,7 @@ export default function ScheduleClass() {
                         </div >
                     </Modal.Body >
                     <Modal.Footer className="pt-0 border-0">
-                        <div className="d-flex justify-content-end">
+                        <div className={teacherContext.showDetailsClassForm ? 'd-none' : 'd-flex justify-content-end'}>
 
 
                             {

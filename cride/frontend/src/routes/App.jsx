@@ -8,7 +8,8 @@ import ScrollToTop from "src/utils/ScrollToTop"
 import TeachersProfile from "src/containers/TeachersProfile"
 import StudentsZone from 'src/containers/StudentsZone';
 import TeachersZone from 'src/containers/TeachersZone';
-const App = props => {
+
+const App = () => {
     return (
         <BrowserRouter>
             <Layout>

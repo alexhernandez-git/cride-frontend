@@ -45,32 +45,3 @@ const TeachersTeach = () => {
 }
 
 export default TeachersTeach;
-
-{/* <Table striped hover size="lg" className="text-break">
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th className="text-right">Ability</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>HTfewfawefaewawefaweawfeawfaweewfafaewfwaeMLfewaafweefewaafweawfeawewefafewaewffaewafweaweewafawe</td>
-            <td className="text-right">
-                <Punctuation />
-            </td>
-        </tr>
-        <tr>
-            <td>HTfewfawefaewawefaweawfeawfaweewfafaewfwaeMLfewaafweefewaafweawfeawewefafewaewffaewafweaweewafawe</td>
-            <td className="text-right">
-                <Punctuation />
-            </td>
-        </tr>
-        <tr>
-            <td>HTfewfawefaewawefaweawfeawfaweewfafaewfwaeMLfewaafweefewaafweawfeawewefafewaewffaewafweaweewafawe</td>
-            <td className="text-right">
-                <Punctuation />
-            </td>
-        </tr>
-    </tbody>
-</Table> */}

@@ -16,6 +16,7 @@ import { Row } from 'react-bootstrap';
 const TeachersProfile = () => {
     return (
         <TeachersProfileProvider>
+
             <TeachersProfileContext.Consumer>
                 {teacherContext => (
 
@@ -50,7 +51,8 @@ const TeachersProfile = () => {
                 )
                 }
             </TeachersProfileContext.Consumer >
-        </TeachersProfileProvider>
+        </TeachersProfileProvider >
+
     );
 }
 

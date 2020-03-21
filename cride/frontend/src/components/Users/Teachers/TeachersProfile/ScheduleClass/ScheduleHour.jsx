@@ -6,7 +6,7 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
-import { Form, Button } from 'react-bootstrap'
+
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import ClassDetailsForm from "src/components/Users/Teachers/TeachersProfile/ClassDetailsForm"
 import moment from 'moment'
@@ -14,6 +14,7 @@ import moment from 'moment'
 export default function ScheduleHour() {
     const teacherContext = useContext(TeachersProfileContext);
     const calendarComponentRef = useRef(null)
+    const [startDate, setStartDate] = useState()
 
     const [calendarView, setCalendarView] = useState(null)
     // recoje la fecha del evento que queremos crear
@@ -43,11 +44,7 @@ export default function ScheduleHour() {
 
                     if (teacherContext.classesAssignedLeft > 0) {
 
-                        teacherContext.setClassData([{
-                            ...teacherContext.classData,
-                            start: roundDown._d
-                        }])
-
+                        setStartDate(roundDown._d)
                         teacherContext.handleShowDetailsClassForm()
 
 
@@ -158,7 +155,7 @@ export default function ScheduleHour() {
                             Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft}</span>
                         </div>
                     </div>
-                    <ClassDetailsForm />
+                    <ClassDetailsForm startDate={startDate} />
                 </div>
             )}
         </TeachersProfileContext.Consumer>

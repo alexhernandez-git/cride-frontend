@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher, FaCalendarAlt } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
+import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher } from "react-icons/fa";
+import { MdAddCircleOutline, MdCancel } from "react-icons/md";
 import EnrolledStudents from "src/components/Users/Teachers/TeachersZone/TeachersClasses/EnrolledStudents"
 import CalendarClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/CalendarClass"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
@@ -16,7 +16,18 @@ import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 
 import moment from 'moment'
-const ClassDetailsForm = () => {
+const ClassDetailsForm = (props) => {
+    const [classData, setClassData] = useState({
+        id: '',
+        title: 'Clase',
+        start: null,
+        description: ''
+    })
+    useEffect(() => {
+        setClassData(() => ({ ...classData, start: props.startDate }))
+
+    }, [props.startDate])
+
     const [calendarView, setCalendarView] = useState(null)
     const calendarComponentRef = useRef(null)
     function getSize() {
@@ -62,7 +73,7 @@ const ClassDetailsForm = () => {
             id: Math.random().toString(36).substr(2),
             name: 'Alex',
             surname: 'Hernandez',
-            isAdmin: true
+            isAdmin: true,
         }
     ])
 
@@ -72,9 +83,39 @@ const ClassDetailsForm = () => {
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className={teacherContext.showDetailsClassForm ? 'd-block' : 'd-none'}>
-                    <span className="h5">Detalles de la clase</span>
-                    <div className="mt-3 mb-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <button
+                            className="btn-cancel text-white d-none d-sm-block rounded-pill mr-2 px-3 float-right shadow"
+                            style={{
+                                height: '40px'
+                            }}>
+                            <IconContext.Provider value={{
+                                className: " text-white cursor-ponter",
+                                size: '25px'
+                            }}>
+                                <MdCancel /> Volver
+                            </IconContext.Provider>
 
+                        </button>
+                        <button
+                            className="btn-green text-white d-none d-sm-block rounded-pill mr-2 px-3 float-right shadow"
+                            style={{
+                                height: '40px'
+                            }}>
+                            <IconContext.Provider value={{
+                                className: " text-white cursor-ponter",
+                                size: '25px'
+                            }}>
+                                <MdAddCircleOutline /> Añadir clase
+                            </IconContext.Provider>
+
+                        </button>
+
+                    </div>
+
+                    <span className="h5">Detalles de la clase</span>
+
+                    <div className="mt-3 mb-4">
                         <Row className="mb-2">
                             <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
                                 <span className="font-weight-normal text-primary">
@@ -127,7 +168,7 @@ const ClassDetailsForm = () => {
                             </Col>
                             <Col sm={6} md={8} className="d-flex justify-content-center d-sm-inline">
                                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control as="textarea" value={teacherContext.classData.description} onChange={(e) => { teacherContext.setClassData({ ...teacherContext.classData, description: e.target.value }) }} rows="3" />
+                                    <Form.Control as="textarea" value={classData.description} onChange={(e) => { setClassData({ ...classData, description: e.target.value }) }} rows="3" />
                                 </Form.Group>
                             </Col>
 
@@ -173,7 +214,7 @@ const ClassDetailsForm = () => {
                                 contentHeight="auto"
                                 eventSources={[
                                     {
-                                        events: [teacherContext.classData],
+                                        events: [classData],
                                         color: '#3f8989',
                                         textColor: '#fff'
                                     }
@@ -191,7 +232,7 @@ const ClassDetailsForm = () => {
                     </div>
                 </div>
             )}
-        </TeachersProfileContext.Consumer>
+        </TeachersProfileContext.Consumer >
     );
 }
 
