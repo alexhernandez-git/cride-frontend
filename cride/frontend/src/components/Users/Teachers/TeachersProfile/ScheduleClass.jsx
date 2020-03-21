@@ -20,16 +20,32 @@ import { MdPayment } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
+import PayClass from "./ScheduleClass/PayClass"
 export default function ScheduleClass() {
     const [invitationPriceState, setInvitationPriceState] = useState(false)
     const handleClickInvitationEarning = () => {
         if (invitationPriceState) {
-            setInvitationPriceState(false)
+            setInvitationPriceState(() => false)
         } else {
-            setInvitationPriceState(true)
+            setInvitationPriceState(() => true)
         }
     }
+    const invitationText = useRef()
+    const handleWindowClick = (e) => {
 
+        if (e.target != invitationText.current) {
+            setInvitationPriceState(false)
+        }
+
+
+    }
+    const handleClick = () => {
+        if (invitationPriceState) {
+            window.onclick = handleWindowClick
+        }
+    }
+    useEffect(() => {
+    }, [window.onclick = handleClick])
     return (
 
         <TeachersProfileContext.Consumer>
@@ -75,7 +91,7 @@ export default function ScheduleClass() {
                             className={invitationPriceState ? "d-block text-center p-2 shadow rounded-bottom text-grey position-absolute bg-white" : "d-none"}
                             style={{ width: '85%', zIndex: '1000', left: '0', right: '0', margin: '0 auto' }}
                         >
-                            <span className="d-block">
+                            <span className="d-block" ref={invitationText}>
                                 Al compañero que invites le va a costar la classe exactamente{' '}
                                 <span className="font-weight-bold">{Math.round(teacherContext.classPrice - teacherContext.classPrice * 0.2)}€</span><br />
                                 que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
@@ -140,14 +156,14 @@ export default function ScheduleClass() {
                                     </div >
                                 </Col >
                                 <Col lg={9}>
-                                    <Tab.Container id="left-tabs-example" activeKey={teacherContext.key} onSelect={k => teacherContext.setKey(k)} defaultActiveKey="first" className="p-3">
+                                    <Tab.Container id="left-tabs-example" activeKey={teacherContext.key} defaultActiveKey="first" className="p-3">
 
                                         <Form onSubmit={(e) => e.preventDefault()}>
                                             <Row className="mb-3">
                                                 <Col sm={12}>
                                                     <Nav variant="pills" className="d-flex justify-content-center">
                                                         <Nav.Item>
-                                                            <Nav.Link eventKey={0} className="rounded-pill">
+                                                            <Nav.Link eventKey={0} className="rounded-pill cursor-no-pointer">
                                                                 <IconContext.Provider
                                                                     value={{
                                                                         className: "global-class-name",
@@ -162,7 +178,7 @@ export default function ScheduleClass() {
                                                         </Nav.Item>
                                                         <Nav.Item>
                                                             {teacherContext.selectedClasses > 0 ?
-                                                                <Nav.Link eventKey={1} className="rounded-pill">
+                                                                <Nav.Link eventKey={1} className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -173,7 +189,7 @@ export default function ScheduleClass() {
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
-                                                                < Nav.Link className="rounded-pill">
+                                                                < Nav.Link className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -187,7 +203,7 @@ export default function ScheduleClass() {
                                                         </Nav.Item>
                                                         <Nav.Item>
                                                             {teacherContext.selectedClasses > 0 ?
-                                                                <Nav.Link eventKey={2} className="rounded-pill">
+                                                                <Nav.Link eventKey={2} className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -198,7 +214,7 @@ export default function ScheduleClass() {
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
-                                                                <Nav.Link className="rounded-pill">
+                                                                <Nav.Link className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{
                                                                             className: "global-class-name",
@@ -226,14 +242,7 @@ export default function ScheduleClass() {
                                                             <ScheduleHour />
                                                         </Tab.Pane>
                                                         <Tab.Pane eventKey={2} className="text-grey">
-                                                            <div className="d-flex justify-content-center">
-                                                                <a
-                                                                    className="btn btn-green text-white"
-                                                                    onClick={teacherContext.handleBuy}
-                                                                >
-                                                                    Adquirir
-                                                                </a>
-                                                            </div>
+                                                            <PayClass />
                                                         </Tab.Pane>
                                                     </Tab.Content>
                                                 </Col>
@@ -246,26 +255,6 @@ export default function ScheduleClass() {
                             </Row >
                         </div >
                     </Modal.Body >
-                    <Modal.Footer className="pt-0 border-0">
-                        <div className={teacherContext.showDetailsClassForm ? 'd-none' : 'd-flex justify-content-end'}>
-
-
-                            {
-
-
-                                teacherContext.selectedClasses < 1 || teacherContext.key == 2 ?
-                                    (
-
-                                        <a className='btn text-white btn-green disabled' onClick={teacherContext.handleNext}>Siguiente paso</a>
-                                    )
-                                    :
-                                    (
-                                        <a className='btn text-white btn-green' onClick={teacherContext.handleNext}>Siguiente paso</a>
-                                    )
-                            }
-
-                        </div>
-                    </Modal.Footer>
 
 
                 </Modal >

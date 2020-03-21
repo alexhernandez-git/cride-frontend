@@ -3,9 +3,15 @@
     outline: none !important;
     box-shadow: none;
   }
+  .nav-link:hover {
+    color: #3c6754;
+  }
   .nav-link.active {
     background: linear-gradient(45deg, #56b389, #2e6a89);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  .nav-link.active:hover {
+    color: #fff;
   }
   .form-control:focus {
     box-shadow: none;

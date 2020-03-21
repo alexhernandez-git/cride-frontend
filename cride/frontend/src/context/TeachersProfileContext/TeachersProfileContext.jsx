@@ -73,13 +73,19 @@ export const TeachersProfileProvider = ({ children }) => {
             }
         }
     }
-    const handleClose = () => {
+    const handlePrevious = () => {
+        if (selectedClasses > 0) {
+            setKey(parseInt(key) - 1)
 
+        }
+    }
+    const handleClose = () => {
+        handleHideDetailsClassForm()
         setKey(0)
         setShowScheduleClass(false)
     };
     const handleShow = () => {
-
+        handleHideDetailsClassForm()
         setKey(0)
         setShowScheduleClass(true)
     };
@@ -148,6 +154,7 @@ export const TeachersProfileProvider = ({ children }) => {
             handleClose,
             handleShow,
             handleNext,
+            handlePrevious,
             classPrice,
             calcPriceClass,
             selectedClasses,

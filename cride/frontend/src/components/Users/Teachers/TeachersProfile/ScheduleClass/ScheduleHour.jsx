@@ -6,7 +6,10 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
+import { IconContext } from "react-icons";
 
+import { MdAddCircleOutline } from "react-icons/md";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import ClassDetailsForm from "src/components/Users/Teachers/TeachersProfile/ClassDetailsForm"
 import moment from 'moment'
@@ -58,16 +61,17 @@ export default function ScheduleHour() {
         }
     }
     function handleEventClick(args) {
-        if (args.el != undefined && args.el.style.backgroundColor == "grey") {
-            return
-        }
-        let newEventsArray = teacherContext.temporaryClassState.filter(event => {
-            return event.start.toString() !== args.event.start.toString()
-        })
+        if (confirm('¿Estas seguro?')) {
 
-        teacherContext.dispatchTemporaryClass({ type: 'SET_TEMPORARY_CLASS', classes: newEventsArray })
-        teacherContext.removeTemporaryClass()
-        args.event.remove()
+            let newEventsArray = teacherContext.temporaryClassState.filter(event => {
+                return event.start.toString() !== args.event.start.toString()
+            })
+
+            teacherContext.dispatchTemporaryClass({ type: 'SET_TEMPORARY_CLASS', classes: newEventsArray })
+            teacherContext.removeTemporaryClass()
+            args.event.remove()
+
+        }
     }
     function getSize() {
         return {
@@ -103,11 +107,43 @@ export default function ScheduleHour() {
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className="teacher-calendar w-100 rounded">
-
-                    <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
-                        Este paso es 100% opcional, podras asignar las clases cuando quieras
-                    </div>
                     <div className={teacherContext.showDetailsClassForm ? 'd-none' : 'd-block'}>
+                        <div className="d-sm-flex justify-content-between align-items-center my-4">
+                            <button
+                                className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-sm-block"
+                                style={{
+                                    height: '40px'
+                                }}
+                                onClick={teacherContext.handlePrevious}
+                            >
+                                <IconContext.Provider value={{
+                                    className: "cursor-ponter",
+                                    size: '25px'
+                                }}>
+                                    <IoIosArrowBack /> Atras
+                            </IconContext.Provider>
+
+                            </button>
+                            <button
+                                className="btn-green text-white rounded-pill mr-2 pr-2 pl-3 shadow btn-sm-block"
+                                style={{
+                                    height: '40px'
+                                }}
+                                onClick={teacherContext.handleNext}
+                            >
+                                <IconContext.Provider value={{
+                                    className: " text-white cursor-ponter",
+                                    size: '25px'
+                                }}>
+                                    Siguiente <IoIosArrowForward />
+                                </IconContext.Provider>
+
+                            </button>
+
+                        </div>
+                        <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
+                            Este paso es 100% opcional, podras asignar las clases cuando quieras
+                        </div>
 
                         <div className='demo-app-calendar'>
                             <FullCalendar

@@ -14,23 +14,14 @@ $theme-colors: (
   "light": #f8f9fa,
   "dark": #323840
 );
-// Posibles colores
-// background: linear-gradient(#64c8e6, #9198e5);
-// background: linear-gradient(45deg, #56b389 , #85892e ); // verde amarillo
-// linear-gradient(45deg, #56b389 , #b6b419 ); // verde amarillo
-//background: linear-gradient(45deg, #56b389 , #2e6a89 );
-// General
-// .btn {
-//   border-radius: 0 !important;
-// }
-// @media only screen and (max-width: 768px) {
-//   .header-btn.btn-outline-secondary:hover,
-//   .header-btn.btn-outline-secondary:focus {
-//     color: #56b389 !important;
-//     background-color: #fff !important;
-//     border-color: #56b389 !important;
-//   }
-// }
+
+// Custom bootstrap
+@media only screen and (max-width: 576px) {
+  .btn-sm-block {
+    width: 100%;
+    margin: 5px;
+  }
+}
 .disable-default-a {
   text-decoration: none !important;
   background-color: transparent !important;
@@ -108,6 +99,9 @@ button:focus {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.cursor-no-pointer {
+  cursor: inherit !important;
 }
 .box-shadow {
   box-shadow: 0 0 20px black;

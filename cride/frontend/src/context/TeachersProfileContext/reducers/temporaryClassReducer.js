@@ -2,10 +2,9 @@
 export const temporaryClassReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_TEMPORARY_CLASS':
-            action.newClass.title = 'Clase'
-            console.log(action.newClass);
+            console.log(action);
 
-            return [...state, action.newClass]
+            return [...state, action.classData]
         case 'SET_TEMPORARY_CLASS':
             return action.classes
         case 'RESET_TEMPORARY_CLASS':

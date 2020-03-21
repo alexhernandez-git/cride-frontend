@@ -2,10 +2,10 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher } from "react-icons/fa";
-import { MdAddCircleOutline, MdCancel } from "react-icons/md";
-import EnrolledStudents from "src/components/Users/Teachers/TeachersZone/TeachersClasses/EnrolledStudents"
-import CalendarClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/CalendarClass"
+import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaRegQuestionCircle } from "react-icons/fa";
+import { MdAddCircleOutline, MdPersonAdd, MdMessage } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
+
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from '@fullcalendar/react'
@@ -14,6 +14,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
+import ClassStudents from "src/components/Users/Teachers/TeachersProfile/ClassStudents"
 
 import moment from 'moment'
 const ClassDetailsForm = (props) => {
@@ -68,40 +69,57 @@ const ClassDetailsForm = (props) => {
 
 
 
-    const [students, setStudents] = useState([
-        {
-            id: Math.random().toString(36).substr(2),
-            name: 'Alex',
-            surname: 'Hernandez',
-            isAdmin: true,
+    const addClass = () => {
+        teacherContext.dispatchTemporaryClass({
+            type: 'ADD_TEMPORARY_CLASS',
+            classData
+        })
+        teacherContext.handleHideDetailsClassForm()
+        setClassData({
+            id: '',
+            title: 'Clase',
+            start: null,
+            description: ''
+        })
+    }
+
+    useEffect(() => {
+        return () => {
+            setClassData({
+                id: '',
+                title: 'Clase',
+                start: null,
+                description: ''
+            })
         }
-    ])
-
-
+    }, []);
 
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className={teacherContext.showDetailsClassForm ? 'd-block' : 'd-none'}>
-                    <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-sm-flex justify-content-between align-items-center my-4">
                         <button
-                            className="btn-cancel text-white d-none d-sm-block rounded-pill mr-2 px-3 float-right shadow"
+                            className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-sm-block"
                             style={{
                                 height: '40px'
-                            }}>
+                            }}
+                            onClick={teacherContext.handleHideDetailsClassForm}
+                        >
                             <IconContext.Provider value={{
-                                className: " text-white cursor-ponter",
+                                className: "cursor-ponter",
                                 size: '25px'
                             }}>
-                                <MdCancel /> Volver
+                                <IoIosArrowBack /> Volver al calendario
                             </IconContext.Provider>
 
                         </button>
                         <button
-                            className="btn-green text-white d-none d-sm-block rounded-pill mr-2 px-3 float-right shadow"
+                            className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-sm-block"
                             style={{
                                 height: '40px'
-                            }}>
+                            }}
+                            onClick={addClass}>
                             <IconContext.Provider value={{
                                 className: " text-white cursor-ponter",
                                 size: '25px'
@@ -117,7 +135,7 @@ const ClassDetailsForm = (props) => {
 
                     <div className="mt-3 mb-4">
                         <Row className="mb-2">
-                            <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                            <Col sm={5} xl={4} className="d-flex justify-content-center d-sm-inline">
                                 <span className="font-weight-normal text-primary">
                                     <IconContext.Provider value={{
                                         className: "mr-2 text-primary cursor-ponter",
@@ -128,7 +146,7 @@ const ClassDetailsForm = (props) => {
 
                                 </span>{' '}
                             </Col>
-                            <Col sm={6} className="d-flex justify-content-center d-sm-inline">
+                            <Col sm={7} lg={6} className="d-flex justify-content-center d-sm-inline">
 
                                 Friday, 20 de March, 13:20
                 </Col>
@@ -137,54 +155,47 @@ const ClassDetailsForm = (props) => {
 
 
                         <Row className="mb-2">
-                            <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                            <Col sm={5} xl={4} className="d-flex justify-content-center d-sm-inline">
                                 <span className="font-weight-normal text-primary">
                                     <IconContext.Provider value={{
                                         className: "mr-2 text-primary cursor-ponter",
                                         size: '20px'
                                     }}>
                                         <FaUserGraduate /> Num. alumnos:
-                    </IconContext.Provider>
+                                    </IconContext.Provider>
 
                                 </span>{' '}
                             </Col>
-                            <Col sm={6} className="d-flex justify-content-center d-sm-inline">
-                                2
+                            <Col sm={7} lg={6} className="d-flex justify-content-center d-sm-inline">
+                                1
                 </Col>
 
                         </Row>
 
-                        <Row className="">
-                            <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
-                                <span className="font-weight-normal text-primary">
-                                    <IconContext.Provider value={{
-                                        className: "mr-2 text-primary cursor-ponter",
-                                        size: '20px'
-                                    }}>
-                                        <FaChalkboardTeacher />
-                                    </IconContext.Provider> Temas a tocar:
-
-                    </span>{' '}
-                            </Col>
-                            <Col sm={6} md={8} className="d-flex justify-content-center d-sm-inline">
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Control as="textarea" value={classData.description} onChange={(e) => { setClassData({ ...classData, description: e.target.value }) }} rows="3" />
-                                </Form.Group>
-                            </Col>
-
-                        </Row>
                     </div>
-                    <div className="mt-4 mb-3">
 
-                        <span className="h5">Estudiantes inscritos</span>
+                    <span className="h5">De que va a ir esta clase</span>
+
+                    <div className="mt-3 mb-4">
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Control as="textarea" rows="3" placeholder='' value={classData.description} onChange={(e) => setClassData({ ...classData, description: e.target.value })} />
+                            <small>
+                                Al poner tus objetivos en esta clase conseguiras lo siguiente:
+                                <ol>
+                                    <li>Que el profesor obtenga información de tu clase y pueda ofrecerte un mejor servicio</li>
+                                    <li>Que otros alumnos que tengan tus mismos intereses te pidan una invitación a esa clase y asi ganar dinero</li>
+                                </ol>
+
+                            </small>
+                        </Form.Group>
+
                     </div>
-                    <div className="">
-                        {
-                            students.map(student => (
-                                <EnrolledStudents key={student.id} student={student} />
-                            ))
-                        }
-                    </div>
+                    <Row>
+                        <Col sm={12}>
+                            <ClassStudents />
+                        </Col>
+
+                    </Row>
                     <div className="mt-4 mb-3">
 
                         <span className="h5">Calendario</span>
@@ -231,7 +242,8 @@ const ClassDetailsForm = (props) => {
                         </div>
                     </div>
                 </div>
-            )}
+            )
+            }
         </TeachersProfileContext.Consumer >
     );
 }

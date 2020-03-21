@@ -24,6 +24,7 @@ const TeachersNextClasses = (props) => {
             })
         }
     }
+
     return (
         <TeachersClassesContext.Consumer>
             {classesContext => (
