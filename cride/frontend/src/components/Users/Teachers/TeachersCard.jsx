@@ -40,17 +40,7 @@ function TeachersCard() {
                                     </div>
                                 </div>
                             </Card.Body>
-                            <Card.Footer className="bg-white pr-2 pl-2 pt-1" style={{ height: '33px' }}>
-                                {randColor.map((col) => {
-                                    return (
-                                        <Badge className={'badge-card text-' + col + ' border border-' + col + ' p-1 rounded font-weight-light mr-1 mb-4 cursor-pointer rounded-pill'}>
-                                            HTML
-                                        </Badge>
-                                    )
-                                })}
 
-
-                            </Card.Footer>
                         </Card>
                     </div >
                 </Link>

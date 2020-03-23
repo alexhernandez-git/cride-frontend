@@ -1,4 +1,4 @@
-const ADD_MY_PENDING_CLASSCLASS = 'ADD_MY_PENDING_CLASS'
+const ADD_MY_PENDING_CLASS = 'ADD_MY_PENDING_CLASS'
 const MERGE_MY_PENDING_CLASS = 'MERGE_MY_PENDING_CLASS'
 const SET_MY_PENDING_CLASS = 'SET_MY_PENDING_CLASS'
 
@@ -13,7 +13,7 @@ const addMyPendingClass = (myPendingClass, state) => {
 
 export const myClassReducer = (state, action) => {
     switch (action.type) {
-        case ADD_MY_PENDING_CLASSCLASS:
+        case ADD_MY_PENDING_CLASS:
             action.myPendingClass.title = 'Pendiente'
             return addMyPendingClass(action.myPendingClass, state)
         case MERGE_MY_PENDING_CLASS:

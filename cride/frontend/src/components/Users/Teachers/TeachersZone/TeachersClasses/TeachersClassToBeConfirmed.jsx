@@ -9,7 +9,7 @@ import {
     FaRegHandshake,
 
 } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdTimer } from "react-icons/md";
 import EnrolledStudents from "src/components/Users/Teachers/TeachersZone/TeachersClasses/EnrolledStudents"
 import CalendarClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/CalendarClass"
 import { TeachersClassesContext } from "src/context/TeachersZoneContext/TeachersClassesContext"
@@ -115,7 +115,7 @@ const TeachersClassesToBeConfirmed = (props) => {
 
                     </div>
                     <Row className="mb-2">
-                        <Col sm={6} lg={3} xl={2} className="d-flex justify-content-center d-sm-inline">
+                        <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
                             <span className="font-weight-normal text-primary">
                                 <IconContext.Provider value={{
                                     className: "mr-2 text-primary cursor-ponter",
@@ -135,7 +135,7 @@ const TeachersClassesToBeConfirmed = (props) => {
 
 
                     <Row className="mb-2">
-                        <Col sm={6} lg={3} xl={2} className="d-flex justify-content-center d-sm-inline">
+                        <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
                             <span className="font-weight-normal text-primary">
                                 <IconContext.Provider value={{
                                     className: "mr-2 text-primary cursor-ponter",
@@ -151,9 +151,25 @@ const TeachersClassesToBeConfirmed = (props) => {
                 </Col>
 
                     </Row>
+                    <Row className="mb-2">
+                        <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                            <span className="font-weight-normal text-primary">
+                                <IconContext.Provider value={{
+                                    className: "mr-2 text-primary cursor-ponter",
+                                    size: '20px'
+                                }}>
+                                    <MdTimer /> Duración de la clase:
+                                    </IconContext.Provider>
 
+                            </span>{' '}
+                        </Col>
+                        <Col sm={6} className="d-flex justify-content-center d-sm-inline">
+                            1 hora
+                </Col>
+
+                    </Row>
                     <Row className="">
-                        <Col sm={6} lg={3} xl={2} className="d-flex justify-content-center d-sm-inline">
+                        <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
                             <span className="font-weight-normal text-primary">
                                 <IconContext.Provider value={{
                                     className: "mr-2 text-primary cursor-ponter",
@@ -249,7 +265,7 @@ const TeachersClassesToBeConfirmed = (props) => {
                         <Modal.Body className="bg-white text-grey border-0 rounded pt-0">
 
                             <Row className="mb-2">
-                                <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                                <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
                                     <span className="font-weight-normal text-primary">
                                         <IconContext.Provider value={{
                                             className: "mr-2 text-primary cursor-ponter",
@@ -269,7 +285,7 @@ const TeachersClassesToBeConfirmed = (props) => {
 
 
                             <Row className="mb-2">
-                                <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                                <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
                                     <span className="font-weight-normal text-primary">
                                         <IconContext.Provider value={{
                                             className: "mr-2 text-primary cursor-ponter",
@@ -285,9 +301,25 @@ const TeachersClassesToBeConfirmed = (props) => {
                 </Col>
 
                             </Row>
+                            <Row className="mb-2">
+                                <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
+                                    <span className="font-weight-normal text-primary">
+                                        <IconContext.Provider value={{
+                                            className: "mr-2 text-primary cursor-ponter",
+                                            size: '20px'
+                                        }}>
+                                            <MdTimer /> Duración de la clase:
+                                    </IconContext.Provider>
 
+                                    </span>{' '}
+                                </Col>
+                                <Col sm={6} className="d-flex justify-content-center d-sm-inline">
+                                    1 hora
+                </Col>
+
+                            </Row>
                             <Row className="">
-                                <Col sm={6} lg={3} className="d-flex justify-content-center d-sm-inline">
+                                <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
                                     <span className="font-weight-normal text-primary">
                                         <IconContext.Provider value={{
                                             className: "mr-2 text-primary cursor-ponter",

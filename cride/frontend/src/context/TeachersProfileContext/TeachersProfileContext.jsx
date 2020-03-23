@@ -48,6 +48,11 @@ export const TeachersProfileProvider = ({ children }) => {
             endTime: '16:00' // 4pm
         },
         {
+            daysOfWeek: [6], // Thursday, Friday
+            startTime: '13:00', // 10am
+            endTime: '16:00' // 4pm
+        },
+        {
             daysOfWeek: [0], // Thursday, Friday
             startTime: '10:00', // 10am
             endTime: '16:00' // 4pm

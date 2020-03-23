@@ -1,5 +1,4 @@
 .div-welcome {
-  height: calc(100vh - 306px);
   display: flex;
   align-items: center;
   min-height: 500px;
@@ -9,7 +8,6 @@
     margin: 10px 0;
   }
   .div-welcome {
-    height: calc(100vh);
     display: flex;
     align-items: center;
     min-height: 600px;

@@ -12,7 +12,7 @@ $theme-colors: (
   "warning": #e5c07b,
   "info": #757575,
   "light": #f8f9fa,
-  "dark": #323840
+  "dark": #323840,
 );
 
 // Custom bootstrap
@@ -169,6 +169,7 @@ input.custom-control-input:focus {
   margin: 0 auto;
   max-width: 900px;
 }
+
 .fc-today {
   background-color: inherit !important;
 }
@@ -184,7 +185,18 @@ input.custom-control-input:focus {
     margin-bottom: 20px;
   }
 }
-
+a.fc-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.fc-event {
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  cursor: move;
+  background: linear-gradient(45deg, #2e6a89, #56b389);
+  border: 0;
+}
 .fc-content .fc-title {
   padding: 0 !important;
   vertical-align: baseline !important;
@@ -192,6 +204,7 @@ input.custom-control-input:focus {
 }
 .fc-content {
   text-align: center;
+  cursor: pointer;
 }
 
 .fc-time-grid-event.fc-event.fc-start.fc-end.fc-short {

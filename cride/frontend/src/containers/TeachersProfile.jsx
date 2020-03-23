@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "static/assets/styles/containers/TeachersProfile.scss"
 
 import { TeachersProfileProvider, TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
+import { AssignClassProvider } from "src/context/TeachersProfileContext/AssignClassContext"
 
 import TeacherSidebar from "src/components/Users/Teachers/TeachersProfile/TeacherSidebar"
 import TeacherWorkExperience from "src/components/Users/Teachers/TeachersProfile/TeacherWorkExperience"
@@ -16,43 +17,43 @@ import { Row } from 'react-bootstrap';
 const TeachersProfile = () => {
     return (
         <TeachersProfileProvider>
+            <AssignClassProvider>
+                <TeachersProfileContext.Consumer>
+                    {teacherContext => (
 
-            <TeachersProfileContext.Consumer>
-                {teacherContext => (
+                        <div className="profile-content container mt-5 mb-5 text-grey">
+                            <Row>
 
-                    <div className="profile-content container mt-5 mb-5 text-grey">
-                        <Row>
+                                <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
+                                    <span>
+                                        Por cada compañero que invites a la clase obtendrás{' '}
+                                        <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span>
+                                    </span>
+                                </div>
+                            </Row>
+                            <div className="row">
+                                <div className="col-md-4 shadow p-0 rounded overflow-hidden h-100 mb-4">
 
-                            <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
-                                <span>
-                                    Por cada compañero que invites a la clase obtendrás{' '}
-                                    <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span>
-                                </span>
-                            </div>
-                        </Row>
-                        <div className="row">
-                            <div className="col-md-4 shadow p-0 rounded overflow-hidden h-100 mb-4">
-
-                                <TeacherSidebar />
-                            </div>
-                            <div className="col-md-8 mb-4 p-0 pl-md-3">
-                                <TeacherPresentation />
-                                <TeacherTeach />
-                                <TeacherSkills />
-                                <TeacherWorkExperience />
-                                <TeacherEducation />
-                                <TeacherCalendar />
-                                <StudentFeedback />
-                                <ScheduleClass />
+                                    <TeacherSidebar />
+                                </div>
+                                <div className="col-md-8 mb-4 p-0 pl-md-3">
+                                    <TeacherPresentation />
+                                    <TeacherTeach />
+                                    <TeacherSkills />
+                                    <TeacherWorkExperience />
+                                    <TeacherEducation />
+                                    <TeacherCalendar />
+                                    <StudentFeedback />
+                                    <ScheduleClass />
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                )
-                }
-            </TeachersProfileContext.Consumer >
+                    )
+                    }
+                </TeachersProfileContext.Consumer >
+            </AssignClassProvider>
         </TeachersProfileProvider >
-
     );
 }
 

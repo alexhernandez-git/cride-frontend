@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaRegQuestionCircle } from "react-icons/fa";
-import { MdAddCircleOutline, MdPersonAdd, MdMessage } from "react-icons/md";
+import { FaRegCalendarAlt, FaUserGraduate } from "react-icons/fa";
+import { MdAddCircleOutline, MdTimer } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
@@ -19,13 +19,21 @@ import ClassStudents from "src/components/Users/Teachers/TeachersProfile/ClassSt
 import moment from 'moment'
 const ClassDetailsForm = (props) => {
     const [classData, setClassData] = useState({
-        id: '',
+        id: Math.random().toString(36).substr(2),
         title: 'Clase',
         start: null,
+        constraint: 'businessHours',
         description: ''
     })
     useEffect(() => {
-        setClassData(() => ({ ...classData, start: props.startDate }))
+
+        setClassData(() => ({
+            id: Math.random().toString(36).substr(2),
+            title: 'Clase',
+            start: props.startDate,
+            constraint: 'businessHours',
+            description: ''
+        }))
 
     }, [props.startDate])
 
@@ -70,10 +78,23 @@ const ClassDetailsForm = (props) => {
 
 
     const addClass = () => {
-        teacherContext.dispatchTemporaryClass({
-            type: 'ADD_TEMPORARY_CLASS',
-            classData
-        })
+        if (props.teacherProfile) {
+            teacherContext.dispatchMyPendingClass({
+                type: 'ADD_MY_PENDING_CLASS',
+                myPendingClass: classData
+            })
+            teacherContext.dispatchClassesLeft({
+                type: 'ADD_CLASS',
+            })
+        } else {
+            teacherContext.dispatchTemporaryClass({
+                type: 'ADD_TEMPORARY_CLASS',
+                classData
+            })
+            teacherContext.addTemporaryClass()
+
+        }
+
         teacherContext.handleHideDetailsClassForm()
         setClassData({
             id: '',
@@ -93,12 +114,16 @@ const ClassDetailsForm = (props) => {
             })
         }
     }, []);
-
+    moment.locale('es')
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className={teacherContext.showDetailsClassForm ? 'd-block' : 'd-none'}>
-                    <div className="d-sm-flex justify-content-between align-items-center my-4">
+                    <div className="mb-2 w-100 border-bottom rounded pb-2 text-grey text-center">
+
+                        Comprueba los detalles de la clase
+</div>
+                    <div className="d-sm-flex justify-content-between align-items-center mt-3 mb-4">
                         <button
                             className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-sm-block"
                             style={{
@@ -148,8 +173,8 @@ const ClassDetailsForm = (props) => {
                             </Col>
                             <Col sm={7} lg={6} className="d-flex justify-content-center d-sm-inline">
 
-                                Friday, 20 de March, 13:20
-                </Col>
+                                {moment(classData.start).format('LLL')}
+                            </Col>
 
                         </Row>
 
@@ -172,9 +197,27 @@ const ClassDetailsForm = (props) => {
 
                         </Row>
 
+                        <Row className="mb-2">
+                            <Col sm={5} xl={4} className="d-flex justify-content-center d-sm-inline">
+                                <span className="font-weight-normal text-primary">
+                                    <IconContext.Provider value={{
+                                        className: "mr-2 text-primary cursor-ponter",
+                                        size: '20px'
+                                    }}>
+                                        <MdTimer /> Duración de la clase:
+                                    </IconContext.Provider>
+
+                                </span>{' '}
+                            </Col>
+                            <Col sm={7} lg={6} className="d-flex justify-content-center d-sm-inline">
+                                1 hora
+                </Col>
+
+                        </Row>
+
                     </div>
 
-                    <span className="h5">De que va a ir esta clase</span>
+                    <span className="h5">Que quieres aprender en esta clase</span>
 
                     <div className="mt-3 mb-4">
                         <Form.Group controlId="exampleForm.ControlTextarea1">

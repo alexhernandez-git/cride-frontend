@@ -1,106 +1,50 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
 import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher } from "react-icons/fa";
-import { MdAddCircleOutline, MdPersonAdd, MdMessage } from "react-icons/md";
+import { MdAddCircleOutline, MdPersonAdd, MdMessage, MdCancel } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-
+import { AssignClassContext } from "src/context/TeachersProfileContext/AssignClassContext"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ClassStudents.scss"
 
 import moment from 'moment'
 const ClassStudents = () => {
-    const [inviteStudentsState, setInviteStudentsState] = useState(false)
+    const assignClassContext = useContext(AssignClassContext)
 
-    const handleClickInviteStudents = () => {
-        if (inviteStudentsState) {
-            setInviteStudentsState(false)
-        } else {
-            setInviteStudentsState(true)
+    const invitationStudent = useRef()
+    const handleWindowClick = (e) => {
+        console.log();
+
+
+        if (e.target.closest("#invitaitonDiv") != invitationStudent.current) {
+            assignClassContext.setInviteStudentsState(false)
+        }
+
+
+    }
+    const handleClick = () => {
+        if (assignClassContext.inviteStudentsState) {
+            window.onclick = handleWindowClick
         }
     }
+    useEffect(() => {
+    }, [window.onclick = handleClick])
+    useEffect(() => {
 
-    const initialStudents = {
-        users: [
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-        ],
-        students: [
-
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-                isAdmin: true,
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-                isAdmin: false,
-                isInvited: true
-            },
-
-        ]
-    }
-
-    const handleInviteUser = (user) => {
-        if (confirm(`¿Añadir a ${user.name}?`)) {
-
-            dispatchStudents({ type: 'INVITE_STUDENT', user })
-            setInviteStudentsState(false)
+        return () => {
+            assignClassContext.resetStudents()
+            assignClassContext.setInviteStudentsState(false)
+            console.log('entra');
 
         }
-    }
-    const reducer = (state, action) => {
-        switch (action.type) {
-            case 'INVITE_STUDENT':
-                action.user.isAdmin = false
-                action.user.isInvited = true
-                return {
-                    ...state,
-                    students: [...state.students, action.user]
-                }
-            default:
-                return state;
-        }
-    }
+    }, [])
 
-
-    const [studentState, dispatchStudents] = useReducer(reducer, initialStudents);
-    // useEffect(
-    //     () => {
-    //         setInviteStudentsState(false)
-    //     },
-    //     []
-    // );
     return (
-        <TeachersProfileContext.Consumer>
-            {teacherContext => (
+        <AssignClassContext.Consumer>
+            {assignClassContext => (
                 <>
                     <div className="position-relative">
 
@@ -111,13 +55,13 @@ const ClassStudents = () => {
                                 style={{
                                     height: '40px'
                                 }}
-                                onClick={handleClickInviteStudents}
+                                onClick={assignClassContext.handleClickInviteStudents}
                             >
                                 <IconContext.Provider value={{
                                     className: " text-white cursor-ponter",
                                     size: '25px'
                                 }}>
-                                    {inviteStudentsState ?
+                                    {assignClassContext.inviteStudentsState ?
                                         <>
                                             <IoMdCloseCircleOutline /> Cerrar
                                         </>
@@ -132,13 +76,16 @@ const ClassStudents = () => {
 
                         </div>
                         <div
-                            className={inviteStudentsState ? 'd-block shadow rounded' : 'd-none'}
+                            className={assignClassContext.inviteStudentsState ? 'd-block shadow rounded col-12 col-xl-6 p-0' : 'd-none'}
                             style={{
                                 cursor: 'pointer',
                                 width: '100%',
                                 position: 'absolute',
+                                right: '0',
                                 zIndex: '500'
                             }}
+                            ref={invitationStudent}
+                            id="invitaitonDiv"
                         >
 
                             <div className="bg-gradient-green p-2 rounded-top text-white d-sm-flex justify-content-between align-items-center">
@@ -155,11 +102,11 @@ const ClassStudents = () => {
                             <div
                                 className="p-2 overflow-auto bg-white rounded-bottom"
                                 style={{
-                                    height: '200px',
+                                    height: '400px',
                                 }}
                             >
 
-                                {studentState.users.map(user => (
+                                {assignClassContext.studentState.users.map(user => (
                                     <div className="my-1"  >
                                         <div className=" px-3 py-2 bg-white rounded-pill shadow">
                                             <div className="div-delegate-student d-flex justify-content-between align-items-center">
@@ -188,7 +135,7 @@ const ClassStudents = () => {
                                                 </div>
 
                                                 <button className="btn btn-green text-white"
-                                                    onClick={() => handleInviteUser(user)}>
+                                                    onClick={() => assignClassContext.handleInviteUser(user)}>
                                                     <IconContext.Provider value={{
                                                         className: " text-white cursor-ponter",
                                                         size: '20px'
@@ -205,8 +152,8 @@ const ClassStudents = () => {
                         </div>
 
                     </div>
-                    {studentState.students.map(student => (
-                        <div className="pt-1 mb-1">
+                    {assignClassContext.studentState.students.map(student => (
+                        <div className="my-1">
                             <div className=" px-3 py-2 bg-white rounded-pill shadow">
                                 <div className="div-delegate-student d-flex justify-content-between align-items-center">
                                     <div className="d-flex justify-content-start align-items-center w-100">
@@ -254,15 +201,21 @@ const ClassStudents = () => {
 
                                         </div>
                                     </div>
+                                    {student.isInvited ?
+                                        <button
+                                            className="btn btn-green text-white d-flex px-2"
+                                            onClick={() => { handleDeleteInvited(student) }}
+                                        >
+                                            <IconContext.Provider value={{
+                                                className: " text-white cursor-ponter",
+                                                size: '20px'
+                                            }}>
+                                                <MdCancel />
+                                            </IconContext.Provider>
+                                        </button>
+                                        :
+                                        ''}
 
-                                    {/* <button className="btn btn-green text-white">
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '20px'
-                                        }}>
-                                            <MdMessage />
-                                        </IconContext.Provider>
-                                    </button> */}
                                 </div>
                             </div>
                         </div>
@@ -270,7 +223,7 @@ const ClassStudents = () => {
                 </>
             )
             }
-        </TeachersProfileContext.Consumer >
+        </AssignClassContext.Consumer >
     );
 }
 

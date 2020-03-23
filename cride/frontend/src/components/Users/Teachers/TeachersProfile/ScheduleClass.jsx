@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass.scss"
+import { Draggable } from "@fullcalendar/interaction";
+
 import {
     FaRegStar,
     FaStar,
@@ -21,7 +23,11 @@ import { IconContext } from "react-icons";
 import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
 import PayClass from "./ScheduleClass/PayClass"
+
+
 export default function ScheduleClass() {
+
+    const teacherContext = useContext(TeachersProfileContext);
     const [invitationPriceState, setInvitationPriceState] = useState(false)
     const handleClickInvitationEarning = () => {
         if (invitationPriceState) {
@@ -32,6 +38,7 @@ export default function ScheduleClass() {
     }
     const invitationText = useRef()
     const handleWindowClick = (e) => {
+        console.log(e.target != invitationText.current);
 
         if (e.target != invitationText.current) {
             setInvitationPriceState(false)
@@ -40,12 +47,29 @@ export default function ScheduleClass() {
 
     }
     const handleClick = () => {
+
         if (invitationPriceState) {
+
             window.onclick = handleWindowClick
         }
     }
     useEffect(() => {
+        window.onclick = handleClick
+        return () => {
+            window.onclick = handleClick
+        }
     }, [window.onclick = handleClick])
+
+    const eventsForAssign = () => {
+        let list = []
+        // Outer loop to create parent
+        for (let i = 0; i < teacherContext.classesAssignedLeft; i++) {
+            //Create the parent and add the children
+            list.push(<div className='fc-event'>Clase</div>)
+        }
+        return list
+    }
+
     return (
 
         <TeachersProfileContext.Consumer>
@@ -152,7 +176,10 @@ export default function ScheduleClass() {
                                             }
 
                                         </div >
+                                        <div id='external-events'>
 
+                                            {eventsForAssign()}
+                                        </div>
                                     </div >
                                 </Col >
                                 <Col lg={9}>
