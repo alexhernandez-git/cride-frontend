@@ -9,6 +9,9 @@ import {
 import {
     temporaryClassReducer,
 } from './reducers/temporaryClassReducer'
+import {
+    classesAssignedLeftReducer,
+} from './reducers/classesAssignedLeftReducer'
 
 export const TeachersProfileProvider = ({ children }) => {
     // Your classes
@@ -20,54 +23,63 @@ export const TeachersProfileProvider = ({ children }) => {
     // State de lecciones restantes
     const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, 0);
 
+    // Reducer de classes assigned left
+    const [classesAssignedLeft, dispatchClassesAssignedLeft] = useReducer(classesAssignedLeftReducer, []);
+
     // State buisness hours
     const [businessHours, setBusinessHours] = useState([ // specify an array instead
+
         {
-            daysOfWeek: [1], // Monday, Tuesday, Wednesday
-            startTime: '08:00', // 8am
-            endTime: '18:00' // 6pm
+            daysOfWeek: [0],
+            startTime: '08:00',
+            endTime: '18:00'
         },
         {
-            daysOfWeek: [2], // Thursday, Friday
-            startTime: '10:00', // 10am
-            endTime: '16:00' // 4pm
+            daysOfWeek: [1],
+            startTime: '08:00',
+            endTime: '18:00'
         },
         {
-            daysOfWeek: [3], // Thursday, Friday
-            startTime: '10:00', // 10am
-            endTime: '16:00' // 4pm
+            daysOfWeek: [2],
+            startTime: '10:00',
+            endTime: '16:00'
         },
         {
-            daysOfWeek: [4], // Thursday, Friday
-            startTime: '10:00', // 10am
-            endTime: '16:00' // 4pm
+            daysOfWeek: [3],
+            startTime: '10:00',
+            endTime: '16:00'
         },
         {
-            daysOfWeek: [5], // Thursday, Friday
-            startTime: '10:00', // 10am
-            endTime: '16:00' // 4pm
+            daysOfWeek: [4],
+            startTime: '10:00',
+            endTime: '16:00'
         },
         {
-            daysOfWeek: [6], // Thursday, Friday
-            startTime: '13:00', // 10am
-            endTime: '16:00' // 4pm
+            daysOfWeek: [5],
+            startTime: '10:00',
+            endTime: '16:00'
         },
         {
-            daysOfWeek: [0], // Thursday, Friday
-            startTime: '10:00', // 10am
-            endTime: '16:00' // 4pm
-        }
+            daysOfWeek: [6],
+            startTime: '13:00',
+            endTime: '16:00'
+        },
+
     ])
     // State of selected classes
     const [selectedClasses, setSelectedClasses] = useState(0);
 
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
+
+
     const [key, setKey] = useState(0);
     useEffect(() => {
         if (key == 0) {
             dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
             setSelectedClasses(0)
+            dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: 0 })
+
         }
     }, [key])
     const handleNext = () => {
@@ -79,6 +91,8 @@ export const TeachersProfileProvider = ({ children }) => {
         }
     }
     const handlePrevious = () => {
+
+
         if (selectedClasses > 0) {
             setKey(parseInt(key) - 1)
 
@@ -107,34 +121,33 @@ export const TeachersProfileProvider = ({ children }) => {
         return Math.round(finalPrice)
     }
 
-    const [classesAssignedLeft, setClassesAssignedLeft] = useState(0)
-
     const selectClasses = (classesSelected) => {
         setSelectedClasses(classesSelected)
-        setClassesAssignedLeft(classesSelected)
-
+        dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: classesSelected })
     }
     // State de asignacion temporal de clases
     const addTemporaryClass = () => {
-        let classesAssigned = classesAssignedLeft - 1
-        setClassesAssignedLeft(classesAssigned)
+        dispatchClassesAssignedLeft({ type: 'REMOVE_ASSIGNED_CLASS' })
+
     }
     const removeTemporaryClass = () => {
-        let classesAssigned = classesAssignedLeft + 1
-        setClassesAssignedLeft(classesAssigned)
+        dispatchClassesAssignedLeft({ type: 'ADD_ASSIGNED_CLASS' })
+
     }
     const handleBuy = () => {
         dispatchMyPendingClass({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClassState })
 
         dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
+        console.log('Classes left: ', classesAssignedLeft.length);
 
         dispatchClassesLeft({
             type: 'SET_CLASSES_LEFT',
-            classesAssignedLeft: classesAssignedLeft
+            classesAssignedLeft: classesAssignedLeft.length
         })
         // setLessonsLeft(lessonsLeft + classesAssignedLeft)
-        setClassesAssignedLeft(0)
         setSelectedClasses(0)
+        dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: 0 })
+
         handleClose()
     }
     const [showDetailsClassForm, setShowDetailsClassForm] = useState(false)
@@ -142,9 +155,10 @@ export const TeachersProfileProvider = ({ children }) => {
         setShowDetailsClassForm(true)
     }
     const handleHideDetailsClassForm = () => {
+        setIsEdit(false)
         setShowDetailsClassForm(false)
     }
-
+    const [isEdit, setIsEdit] = useState(false)
 
     return (
         <TeachersProfileContext.Provider value={{
@@ -173,6 +187,8 @@ export const TeachersProfileProvider = ({ children }) => {
             showDetailsClassForm,
             handleShowDetailsClassForm,
             handleHideDetailsClassForm,
+            isEdit,
+            setIsEdit
         }}>
             {children}
         </TeachersProfileContext.Provider>

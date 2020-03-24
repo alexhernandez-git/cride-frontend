@@ -26,7 +26,7 @@ import PayClass from "./ScheduleClass/PayClass"
 
 
 export default function ScheduleClass() {
-
+    const modalRef = useRef(null)
     const teacherContext = useContext(TeachersProfileContext);
     const [invitationPriceState, setInvitationPriceState] = useState(false)
     const handleClickInvitationEarning = () => {
@@ -39,17 +39,12 @@ export default function ScheduleClass() {
     const invitationText = useRef()
     const handleWindowClick = (e) => {
         console.log(e.target != invitationText.current);
-
         if (e.target != invitationText.current) {
             setInvitationPriceState(false)
         }
-
-
     }
     const handleClick = () => {
-
         if (invitationPriceState) {
-
             window.onclick = handleWindowClick
         }
     }
@@ -59,16 +54,6 @@ export default function ScheduleClass() {
             window.onclick = handleClick
         }
     }, [window.onclick = handleClick])
-
-    const eventsForAssign = () => {
-        let list = []
-        // Outer loop to create parent
-        for (let i = 0; i < teacherContext.classesAssignedLeft; i++) {
-            //Create the parent and add the children
-            list.push(<div className='fc-event'>Clase</div>)
-        }
-        return list
-    }
 
     return (
 
@@ -168,6 +153,11 @@ export default function ScheduleClass() {
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
 
+                                            <div id='external-events'>
+                                                {teacherContext.classesAssignedLeft.map(() => (
+                                                    <div class="fc-event">Clase</div>
+                                                ))}
+                                            </div>
                                             <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
                                             {teacherContext.selectedClasses == 1 ?
                                                 <span className="d-block">Clase seleccionada</span>
@@ -176,10 +166,7 @@ export default function ScheduleClass() {
                                             }
 
                                         </div >
-                                        <div id='external-events'>
 
-                                            {eventsForAssign()}
-                                        </div>
                                     </div >
                                 </Col >
                                 <Col lg={9}>

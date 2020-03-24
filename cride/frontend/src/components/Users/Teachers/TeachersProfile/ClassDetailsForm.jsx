@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaUserGraduate } from "react-icons/fa";
-import { MdAddCircleOutline, MdTimer } from "react-icons/md";
+import { FaRegCalendarAlt, FaUserGraduate, FaSave } from "react-icons/fa";
+import { MdAddCircleOutline, MdTimer, MdCancel } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
@@ -18,6 +18,8 @@ import ClassStudents from "src/components/Users/Teachers/TeachersProfile/ClassSt
 
 import moment from 'moment'
 const ClassDetailsForm = (props) => {
+
+    const myRef = useRef(null)
     const [classData, setClassData] = useState({
         id: Math.random().toString(36).substr(2),
         title: 'Clase',
@@ -26,16 +28,30 @@ const ClassDetailsForm = (props) => {
         description: ''
     })
     useEffect(() => {
+        if (props.args) {
 
-        setClassData(() => ({
-            id: Math.random().toString(36).substr(2),
-            title: 'Clase',
-            start: props.startDate,
-            constraint: 'businessHours',
-            description: ''
-        }))
+            if (teacherContext.isEdit) {
 
-    }, [props.startDate])
+                setClassData(() => ({
+                    id: Math.random().toString(36).substr(2),
+                    title: 'Clase',
+                    start: props.args.date,
+                    constraint: 'businessHours',
+                    description: props.args.event.extendedProps.description
+                }))
+            } else {
+                setClassData(() => ({
+                    id: Math.random().toString(36).substr(2),
+                    title: 'Clase',
+                    start: props.args.date,
+                    constraint: 'businessHours',
+                    description: ''
+                }))
+            }
+
+        }
+
+    }, [props.args])
 
     const [calendarView, setCalendarView] = useState(null)
     const calendarComponentRef = useRef(null)
@@ -47,6 +63,7 @@ const ClassDetailsForm = (props) => {
     const teacherContext = useContext(TeachersProfileContext);
 
     useEffect(() => {
+
         if (getSize().width < 480) {
             calendarComponentRef.current.calendar.changeView('timeGridDay')
         } else if (getSize().width < 992) {
@@ -103,7 +120,35 @@ const ClassDetailsForm = (props) => {
             description: ''
         })
     }
+    const deleteClass = () => {
+        if (props.teacherProfile) {
 
+        } else {
+            if (confirm('¿Estas seguro?')) {
+                console.log(classData);
+
+                teacherContext.dispatchTemporaryClass({
+                    type: 'DELETE_TEMPORARY_CLASS',
+                    classData
+                })
+                teacherContext.removeTemporaryClass()
+                teacherContext.handleHideDetailsClassForm()
+
+                props.args.event.remove()
+                // let event = props.calendar.current.getResourceById(classData.id);
+                // event.remove()
+                setClassData({
+                    id: '',
+                    title: 'Clase',
+                    start: null,
+                    description: ''
+                })
+            }
+        }
+    }
+    const updateClass = () => {
+
+    }
     useEffect(() => {
         return () => {
             setClassData({
@@ -119,7 +164,7 @@ const ClassDetailsForm = (props) => {
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className={teacherContext.showDetailsClassForm ? 'd-block' : 'd-none'}>
-                    <div className="mb-2 w-100 border-bottom rounded pb-2 text-grey text-center">
+                    <div className="mb-2 w-100 border-bottom rounded pb-2 text-grey text-center" ref={myRef}>
 
                         Comprueba los detalles de la clase
 </div>
@@ -139,20 +184,72 @@ const ClassDetailsForm = (props) => {
                             </IconContext.Provider>
 
                         </button>
-                        <button
-                            className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-sm-block"
-                            style={{
-                                height: '40px'
-                            }}
-                            onClick={addClass}>
-                            <IconContext.Provider value={{
-                                className: " text-white cursor-ponter",
-                                size: '25px'
-                            }}>
-                                <MdAddCircleOutline /> Añadir clase
-                            </IconContext.Provider>
+                        {teacherContext.isEdit ?
 
-                        </button>
+                            <div className="d-flex justify-content-between align-items-center">
+
+
+                                <button
+                                    className="btn-outline-cancel bg-white rounded-pill mr-2 pl-2 pr-3 btn-sm-block"
+                                    style={{
+                                        height: '40px'
+                                    }}
+                                    onClick={deleteClass}>
+                                    <IconContext.Provider value={{
+                                        className: "cursor-ponter",
+                                        size: '25px'
+                                    }}>
+                                        <MdCancel /> Cancelar
+                                  </IconContext.Provider>
+
+                                </button>
+                                <button
+                                    className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-sm-block"
+                                    style={{
+                                        height: '40px'
+                                    }}
+                                    onClick={updateClass}>
+                                    <IconContext.Provider value={{
+                                        className: " text-white cursor-ponter",
+                                        size: '25px'
+                                    }}>
+                                        <FaRegCalendarAlt /> Cambiar de fecha
+              </IconContext.Provider>
+
+                                </button>
+                                <button
+                                    className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-sm-block"
+                                    style={{
+                                        height: '40px'
+                                    }}
+                                    onClick={updateClass}>
+                                    <IconContext.Provider value={{
+                                        className: " text-white cursor-ponter",
+                                        size: '25px'
+                                    }}>
+                                        <FaSave /> Guardar
+              </IconContext.Provider>
+
+                                </button>
+                            </div>
+
+                            :
+                            <button
+                                className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-sm-block"
+                                style={{
+                                    height: '40px'
+                                }}
+                                onClick={addClass}>
+                                <IconContext.Provider value={{
+                                    className: " text-white cursor-ponter",
+                                    size: '25px'
+                                }}>
+                                    <MdAddCircleOutline /> Añadir clase
+              </IconContext.Provider>
+
+                            </button>
+                        }
+
 
                     </div>
 

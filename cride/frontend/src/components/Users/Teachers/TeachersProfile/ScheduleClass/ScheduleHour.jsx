@@ -16,10 +16,11 @@ import moment from 'moment'
 export default function ScheduleHour() {
     const teacherContext = useContext(TeachersProfileContext);
     const calendarComponentRef = useRef(null)
-    const [startDate, setStartDate] = useState()
+    const [args, setArgs] = useState()
 
     const [calendarView, setCalendarView] = useState(null)
     // recoje la fecha del evento que queremos crear
+
     useEffect(() => {
         let draggableEl = document.getElementById("external-events");
         new Draggable(draggableEl, {
@@ -40,15 +41,17 @@ export default function ScheduleHour() {
     function handleDateClick(args) {
         // Miramos que no haya ninguna hora parecida en el array de eventos
         let result = false;
+
+
         teacherContext.businessHours.forEach((hours) => {
-            if (hours.daysOfWeek[0] == args.dayEl.cellIndex) {
+            let day = moment(args.date).isoWeekday();
+
+            if (day == 7) {
+                day = 0
+            }
+            if (hours.daysOfWeek[0] == day) {
                 const formatTimeStart = moment(args.date).format("HH:mm");
                 const formatTimeEnd = moment(args.date).add(30, 'minutes').format("HH:mm");
-                console.log(formatTimeStart);
-                console.log(hours.startTime);
-
-                console.log(formatTimeEnd == hours.endTime || formatTimeEnd > hours.endTime);
-                console.log(formatTimeStart < hours.startTime);
 
                 if (formatTimeEnd == hours.endTime || formatTimeEnd > hours.endTime) {
                     result = true;
@@ -69,9 +72,11 @@ export default function ScheduleHour() {
                     alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
 
-                    if (teacherContext.classesAssignedLeft > 0) {
+                    if (teacherContext.classesAssignedLeft.length > 0) {
 
-                        setStartDate(args.date)
+
+                        setArgs(() => (args))
+                        teacherContext.setIsEdit(() => false)
                         teacherContext.handleShowDetailsClassForm()
 
 
@@ -88,47 +93,59 @@ export default function ScheduleHour() {
 
         // let result = teacherContext.temporaryClassState.filter(element => String(element.start) == String(args.date) || String(moment(element.start)) == String(moment(args.date).subtract(30, 'minutes')));
         // let result2 = teacherContext.myPendingClassState.filter(element => String(element.start) == String(args.date) || String(moment(element.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        const index = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        const index2 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        const index3 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
-        const index4 = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
+        // const index = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
+        // const index2 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
+        // const index3 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
+        // const index4 = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
 
-        if (!~index && !~index2 && !~index3 && !~index4) {
-            setStartDate(args.date)
-            teacherContext.handleShowDetailsClassForm()
-        }
+        // if (!~index && !~index2 && !~index3 && !~index4) {
+
+
+        setArgs(args)
+        teacherContext.handleShowDetailsClassForm()
+        // }
 
         args.event.remove()
 
 
     }
     const handleEventDrop = (args) => {
-        const index = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes')));
-        const index2 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes')));
-        const index3 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes')));
-        const index4 = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes')));
+        // const index = teacherContext.temporaryClassState.findIndex(event => {
+        //     if (event.id != args.event.id) {
+        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes'))
+        //     }
+        // });
+        // const index2 = teacherContext.myPendingClassState.findIndex(event => {
+        //     if (event.id != args.event.id) {
+        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes'))
+        //     }
+        // });
+        // const index3 = teacherContext.myPendingClassState.findIndex(event => {
+        //     if (event.id != args.event.id) {
+        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes'))
+        //     }
+        // });
+        // const index4 = teacherContext.temporaryClassState.findIndex(event => {
+        //     if (event.id != args.event.id) {
+        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes'))
+        //     }
+        // });
 
-        if (!~index && !~index2 && !~index3 && !~index4) {
-            teacherContext.dispatchTemporaryClass({ type: 'UPDATE_TEMPORARY_CLASS', event: args.event })
-        } else {
-            args.revert()
-        }
+        // if (!~index && !~index2 && !~index3 && !~index4) {
+        teacherContext.dispatchTemporaryClass({ type: 'UPDATE_TEMPORARY_CLASS', event: args.event })
+        //     } else {
+        //         args.revert()
+        // }
 
 
     }
     const handleEventClick = (args) => {
 
-        // if (confirm('¿Estas seguro?')) {
+        teacherContext.setIsEdit(true)
+        setArgs(args)
 
-        //     let newEventsArray = teacherContext.temporaryClassState.filter(event => {
-        //         return event.start.toString() !== args.event.start.toString()
-        //     })
+        teacherContext.handleShowDetailsClassForm()
 
-        //     teacherContext.dispatchTemporaryClass({ type: 'SET_TEMPORARY_CLASS', classes: newEventsArray })
-        //     teacherContext.removeTemporaryClass()
-        //     args.event.remove()
-
-        // }
     }
     function getSize() {
         return {
@@ -230,17 +247,18 @@ export default function ScheduleHour() {
 
                                 eventSources={[
                                     {
+                                        events: teacherContext.temporaryClassState,
+                                        color: '#3f8989'
+                                    },
+                                    {
                                         events: teacherContext.myPendingClassState,
                                         color: 'grey',
                                         editable: false,
                                     },
-                                    {
-                                        events: teacherContext.temporaryClassState,
-                                        color: '#3f8989'
-                                    },
                                 ]
 
                                 }
+                                eventOverlap={false}
                                 dateClick={handleDateClick}
                                 eventClick={handleEventClick}
                                 displayEventTime={false}
@@ -252,10 +270,10 @@ export default function ScheduleHour() {
                         </div>
                         <small className="float-right d-none d-lg-block">Este paso es 100% opcional, podras asignar las clases cuando quieras</small>
                         <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
-                            Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft}</span>
+                            Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft.length}</span>
                         </div>
                     </div>
-                    <ClassDetailsForm startDate={startDate} teacherProfile={false} />
+                    <ClassDetailsForm args={args} teacherProfile={false} calendar={calendarComponentRef} />
                 </div>
             )}
         </TeachersProfileContext.Consumer>

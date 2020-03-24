@@ -36,12 +36,8 @@ const TeachersCalendar = () => {
                     alert('Esta hora no esta disponible, habla con el profesor para mas informacion')
                 } else {
                     if (teacherContext.classesLeftState > 0) {
-
                         setStartDate(roundDown._d)
                         teacherContext.handleShowDetailsClassForm()
-
-
-
                     } else {
                         if (confirm('No te quedan clases, ¿quieres adquirir mas?')) {
                             teacherContext.handleShow()

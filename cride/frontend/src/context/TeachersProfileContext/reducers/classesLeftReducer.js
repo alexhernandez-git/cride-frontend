@@ -11,11 +11,7 @@ const removeClass = (state) => {
     let classes = state + 1
     return classes
 }
-const setClassesLeft = (classesAssigned, state) => {
 
-    return state + classesAssigned
-
-}
 export const classesLeftReducer = (state, action) => {
 
     switch (action.type) {
@@ -24,7 +20,8 @@ export const classesLeftReducer = (state, action) => {
         case REMOVE_CLASS:
             return removeClass(state)
         case SET_CLASSES_LEFT:
-            return setClassesLeft(action.classesAssignedLeft, state)
+            console.log('classesLeft :', action.classesAssignedLeft + state)
+            return action.classesAssignedLeft + state
         default:
             return state;
     }
