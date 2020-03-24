@@ -4,8 +4,13 @@ export const temporaryClassReducer = (state, action) => {
         case 'ADD_TEMPORARY_CLASS':
             return [...state, action.classData]
         case 'UPDATE_TEMPORARY_CLASS':
-            const index = state.findIndex(event => event.id === action.event.id);
-            state[index].start = action.event.start
+            console.log('State: ', state);
+            console.log('action.classData: ', action.classData);
+
+            const index = state.findIndex(event => event.id === action.classData.id);
+            console.log('State[index]: ', state[index]);
+
+            state[index].description = action.classData.description
             return state
         case 'DELETE_TEMPORARY_CLASS':
             const index1 = state.findIndex(event => event.id === action.classData.id);

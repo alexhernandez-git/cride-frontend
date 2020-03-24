@@ -91,15 +91,6 @@ export default function ScheduleHour() {
     }
     const handleDropedEvent = (args) => {
 
-        // let result = teacherContext.temporaryClassState.filter(element => String(element.start) == String(args.date) || String(moment(element.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        // let result2 = teacherContext.myPendingClassState.filter(element => String(element.start) == String(args.date) || String(moment(element.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        // const index = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        // const index2 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).subtract(30, 'minutes')));
-        // const index3 = teacherContext.myPendingClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
-        // const index4 = teacherContext.temporaryClassState.findIndex(event => String(event.start) == String(args.date) || String(moment(event.start)) == String(moment(args.date).add(30, 'minutes')));
-
-        // if (!~index && !~index2 && !~index3 && !~index4) {
-
 
         setArgs(args)
         teacherContext.handleShowDetailsClassForm()
@@ -109,36 +100,7 @@ export default function ScheduleHour() {
 
 
     }
-    const handleEventDrop = (args) => {
-        // const index = teacherContext.temporaryClassState.findIndex(event => {
-        //     if (event.id != args.event.id) {
-        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes'))
-        //     }
-        // });
-        // const index2 = teacherContext.myPendingClassState.findIndex(event => {
-        //     if (event.id != args.event.id) {
-        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).subtract(30, 'minutes'))
-        //     }
-        // });
-        // const index3 = teacherContext.myPendingClassState.findIndex(event => {
-        //     if (event.id != args.event.id) {
-        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes'))
-        //     }
-        // });
-        // const index4 = teacherContext.temporaryClassState.findIndex(event => {
-        //     if (event.id != args.event.id) {
-        //         return String(event.start) == String(args.event.start) || String(moment(event.start)) == String(moment(args.event.start).add(30, 'minutes'))
-        //     }
-        // });
 
-        // if (!~index && !~index2 && !~index3 && !~index4) {
-        teacherContext.dispatchTemporaryClass({ type: 'UPDATE_TEMPORARY_CLASS', event: args.event })
-        //     } else {
-        //         args.revert()
-        // }
-
-
-    }
     const handleEventClick = (args) => {
 
         teacherContext.setIsEdit(true)
@@ -234,17 +196,23 @@ export default function ScheduleHour() {
                                 locale='es'
                                 allDaySlot={false}
                                 slotDuration='00:30:00'
+                                // slotLabelInterval='00:30:00'
+                                slotLabelFormat={{
+                                    hour: "numeric",
+                                    minute: "2-digit",
+                                    omitZeroMinute: false,
+                                    hour12: false,
+                                    meridiem: "short"
+                                }}
                                 minTime="06:00:00"
                                 maxTime="24:00:00"
                                 contentHeight="auto"
                                 droppable={true}
-                                editable={true}
+                                editable={false}
                                 eventDurationEditable={false}
-                                eventDrop={handleEventDrop}
                                 ref={calendarComponentRef}
                                 businessHours={teacherContext.businessHours}
                                 eventLimit={true}
-
                                 eventSources={[
                                     {
                                         events: teacherContext.temporaryClassState,
@@ -262,6 +230,7 @@ export default function ScheduleHour() {
                                 dateClick={handleDateClick}
                                 eventClick={handleEventClick}
                                 displayEventTime={false}
+                                eventResourceEditable={true}
                                 selectAllow={function (selectInfo) {
                                     return moment().diff(selectInfo.start) <= 0
                                 }}

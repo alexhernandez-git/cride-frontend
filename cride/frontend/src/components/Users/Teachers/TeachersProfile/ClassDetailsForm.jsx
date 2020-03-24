@@ -33,9 +33,9 @@ const ClassDetailsForm = (props) => {
             if (teacherContext.isEdit) {
 
                 setClassData(() => ({
-                    id: Math.random().toString(36).substr(2),
+                    id: props.args.event.id,
                     title: 'Clase',
-                    start: props.args.date,
+                    start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description
                 }))
@@ -147,7 +147,23 @@ const ClassDetailsForm = (props) => {
         }
     }
     const updateClass = () => {
+        if (confirm('¿Estas seguro?')) {
+            console.log(classData);
 
+            teacherContext.dispatchTemporaryClass({
+                type: 'UPDATE_TEMPORARY_CLASS',
+                classData
+            })
+            teacherContext.handleHideDetailsClassForm()
+            props.args.event.setExtendedProp('description', classData.description)
+
+            setClassData({
+                id: '',
+                title: 'Clase',
+                start: null,
+                description: ''
+            })
+        }
     }
     useEffect(() => {
         return () => {
@@ -199,7 +215,7 @@ const ClassDetailsForm = (props) => {
                                         className: "cursor-ponter",
                                         size: '25px'
                                     }}>
-                                        <MdCancel /> Cancelar
+                                        <MdCancel /> Cancelar clase
                                   </IconContext.Provider>
 
                                 </button>
