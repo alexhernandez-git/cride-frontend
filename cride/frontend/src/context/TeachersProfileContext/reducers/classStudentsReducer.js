@@ -2,7 +2,7 @@ export const init = (initialStudents) => {
     return initialStudents
 }
 
-export const reducer = (state, action) => {
+export const studentsReducer = (state, action) => {
     switch (action.type) {
         case 'INVITE_STUDENT':
             action.user.isAdmin = false

@@ -9,15 +9,19 @@ import Form from 'react-bootstrap/Form'
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass.scss"
 import { Draggable } from "@fullcalendar/interaction";
 
+import { IoMdCloseCircleOutline } from "react-icons/io";
 import {
     FaRegStar,
     FaStar,
+    FaUserGraduate,
     FaChalkboardTeacher,
+    FaInfoCircle,
+    FaRegCalendarAlt,
     FaRegCalendarCheck,
     FaRegQuestionCircle
 } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { MdPayment } from 'react-icons/md';
+import { MdPayment, MdPersonAdd, MdMessage, MdCancel, MdAddCircleOutline } from 'react-icons/md';
 
 import { IconContext } from "react-icons";
 import ClassSubject from "./ScheduleClass/ClassSubject"
@@ -149,6 +153,8 @@ export default function ScheduleClass() {
                                                     <FaRegStar />
                                                 </div>
                                             </IconContext.Provider>
+
+
                                             <div>
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
@@ -158,16 +164,17 @@ export default function ScheduleClass() {
                                                     {teacherContext.classesAssignedLeft.map(() => (
                                                         teacherContext.classesAssignedLeft.length == 1 ?
                                                             < Col >
-                                                                <div class="fc-event text-center">Clase</div>
+                                                                <div className="fc-event text-center">Clase</div>
                                                             </Col>
                                                             :
                                                             < Col lg={6} >
-                                                                <div class="fc-event text-center">Clase</div>
+                                                                <div className="fc-event text-center">Clase</div>
                                                             </Col>
                                                     ))}
                                                 </Row>
                                             </div>
-                                            <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
+
+                                            <span className="h3 p-2 shadow mt-2 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
                                             {teacherContext.selectedClasses == 1 ?
                                                 <span className="d-block">Clase seleccionada</span>
                                                 :

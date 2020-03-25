@@ -51,18 +51,18 @@ const TeachersSidebar = () => {
                             <a className="btn btn-block btn-outline-green">Enviar mensaje</a>
                         </div>
 
-                        <div className="call-to-action pt-3 pl-3 pr-3">
+                        <div className="call-to-action pt-3 pl-3 pr-3" onClick={teachersContext.handleShow}>
                             <small className="d-block pb-2 border-bottom mb-2">Las clases tienen una duración de 60 minutos</small>
 
-                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
+                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">1 clase</span>
                                 <span className="text-primary">19€</span>
                             </div>
-                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
+                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">5 clases</span>
                                 <span className="text-primary">15€/clase</span>
                             </div>
-                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2">
+                            <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">10 clases</span>
                                 <span className="text-primary">10€/clase</span>
                             </div>

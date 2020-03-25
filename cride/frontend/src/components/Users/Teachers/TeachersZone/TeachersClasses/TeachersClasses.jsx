@@ -73,6 +73,21 @@ const TeacherProfileEdit = () => {
                                                 </span>
                                             </Nav.Link>
                                         </Nav.Item>
+                                        <Nav.Item>
+                                            <Nav.Link eventKey={2} className="text-grey">
+                                                <span className="font-weight-bold">CAMBIOS DE FECHA POR CONFIRMAR</span>{' '}
+                                                <span className="badge badge-pill badge-secondary">
+                                                    {classesContext.isFetching ? (
+                                                        <span>0</span>
+                                                    ) : classesContext.hasError ? (
+                                                        <span>0</span>
+                                                    ) : (
+                                                                <span>{classesContext.classes.classesToBeConfirmed.length}</span>
+                                                            )
+                                                    }
+                                                </span>
+                                            </Nav.Link>
+                                        </Nav.Item>
 
                                     </Nav>
                                 </Col>
@@ -101,6 +116,23 @@ const TeacherProfileEdit = () => {
                                             }
                                         </Tab.Pane>
                                         <Tab.Pane eventKey={1} className="text-grey">
+                                            {classesContext.isFetching ? (
+                                                <span>LOADING...</span>
+                                            ) : classesContext.hasError ? (
+                                                <span className="error">Ha ocurrido un error</span>
+                                            ) : (
+                                                        classesContext.classes.classesToBeConfirmed.length > 0 ?
+                                                            <>
+                                                                {classesContext.classes.classesToBeConfirmed.map(classElement => (
+                                                                    <TeachersClassToBeConfirmed key={classElement.id} classElement={classElement} />
+                                                                ))}
+                                                            </>
+                                                            :
+                                                            'No tienes clases por confirmar'
+                                                    )
+                                            }
+                                        </Tab.Pane>
+                                        <Tab.Pane eventKey={2} className="text-grey">
                                             {classesContext.isFetching ? (
                                                 <span>LOADING...</span>
                                             ) : classesContext.hasError ? (

@@ -103,6 +103,7 @@ export default function ScheduleHour() {
 
     const handleEventClick = (args) => {
         if (args.event.source.id == 0) {
+            console.log(args);
 
             teacherContext.setIsEdit(true)
             setArgs(args)
@@ -188,12 +189,14 @@ export default function ScheduleHour() {
                         </div>
 
                         <div className='demo-app-calendar'>
+                            {console.log(moment().day())}
                             <FullCalendar
                                 view={calendarView}
                                 defaultView={calendarView}
-                                start={moment().day()}
+                                start={moment().day() + 8}
                                 plugins={[timeGridPlugin, interactionPlugin, bootstrapPlugin]}
-                                firstDay={moment().day()}
+
+                                firstDay={moment().day() + 8}
                                 weekends={true}
                                 themeSystem='bootstrap'
                                 timeZone='local'
@@ -248,7 +251,9 @@ export default function ScheduleHour() {
                             Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft.length}</span>
                         </div>
                     </div>
-                    <ClassDetailsForm args={args} teacherProfile={false} calendar={calendarComponentRef} />
+                    <div className={teacherContext.showDetailsClassForm ? 'd-block' : 'd-none'}>
+                        <ClassDetailsForm args={args} teacherProfile={false} calendar={calendarComponentRef} />
+                    </div>
                 </div>
             )}
         </TeachersProfileContext.Consumer>

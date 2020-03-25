@@ -12,7 +12,10 @@ import {
 import {
     classesAssignedLeftReducer,
 } from './reducers/classesAssignedLeftReducer'
-
+import { init, studentsReducer } from "./reducers/classStudentsReducer"
+import {
+    requestDateChangeReducer,
+} from './reducers/requestDateChangeReducer'
 export const TeachersProfileProvider = ({ children }) => {
     // Your classes
     const [myPendingClassState, dispatchMyPendingClass] = useReducer(myClassReducer, []);
@@ -79,7 +82,7 @@ export const TeachersProfileProvider = ({ children }) => {
             dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
             setSelectedClasses(0)
             dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: 0 })
-
+            resetStudents()
         }
     }, [key])
     const handleNext = () => {
@@ -99,9 +102,18 @@ export const TeachersProfileProvider = ({ children }) => {
         }
     }
     const handleClose = () => {
-        handleHideDetailsClassForm()
-        setKey(0)
-        setShowScheduleClass(false)
+        if (key > 0) {
+            if (confirm('¿Estas seguro?, si sales perderas todos los cambios.')) {
+                handleHideDetailsClassForm()
+                setKey(0)
+                setShowScheduleClass(false)
+            }
+        } else {
+            handleHideDetailsClassForm()
+            setKey(0)
+            setShowScheduleClass(false)
+        }
+
     };
     const handleShow = () => {
         handleHideDetailsClassForm()
@@ -126,14 +138,8 @@ export const TeachersProfileProvider = ({ children }) => {
         dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: classesSelected })
     }
     // State de asignacion temporal de clases
-    const addTemporaryClass = () => {
-        dispatchClassesAssignedLeft({ type: 'REMOVE_ASSIGNED_CLASS' })
 
-    }
-    const removeTemporaryClass = () => {
-        dispatchClassesAssignedLeft({ type: 'ADD_ASSIGNED_CLASS' })
 
-    }
     const handleBuy = () => {
         dispatchMyPendingClass({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClassState })
 
@@ -155,11 +161,137 @@ export const TeachersProfileProvider = ({ children }) => {
         setShowDetailsClassForm(true)
     }
     const handleHideDetailsClassForm = () => {
+        setInviteStudentsState(false)
         setIsEdit(false)
         setShowDetailsClassForm(false)
+        resetStudents()
     }
     const [isEdit, setIsEdit] = useState(false)
+    const [inviteStudentsState, setInviteStudentsState] = useState(false)
 
+    const handleClickInviteStudents = () => {
+        if (inviteStudentsState) {
+            setInviteStudentsState(false)
+        } else {
+            setInviteStudentsState(true)
+        }
+    }
+    const initialStudents = {
+        users: [
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+
+            },
+        ],
+        students: [
+
+            {
+                id: Math.random().toString(36).substr(2),
+                name: 'Alex',
+                surname: 'Hernandez',
+                isAdmin: true,
+            },
+
+        ]
+    }
+
+    const handleInviteUser = (user) => {
+
+        dispatchStudents({ type: 'INVITE_STUDENT', user })
+
+    }
+    const handleDeleteInvited = (student) => {
+        if (confirm(`¿Eliminar invitación de ${student.name}?`)) {
+            dispatchStudents({ type: 'DELETE_INVITED', student })
+        }
+    }
+    const resetStudents = () => {
+        dispatchStudents({ type: 'RESET', payload: initialStudents })
+    }
+    const [studentState, dispatchStudents] = useReducer(studentsReducer, initialStudents, init);
+
+    const addTemporaryClassEvent = (classData) => {
+        classData.students = studentState.students
+        resetStudents()
+
+        dispatchClassesAssignedLeft({ type: 'REMOVE_ASSIGNED_CLASS' })
+        dispatchTemporaryClass({
+            type: 'ADD_TEMPORARY_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const updateTemporaryClassEvent = (classData) => {
+        classData.students = studentState.students
+        resetStudents()
+        console.log('Class Data: ', classData);
+
+        dispatchTemporaryClass({
+            type: 'UPDATE_TEMPORARY_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const removeTemporaryClassEvent = (classData) => {
+        dispatchClassesAssignedLeft({ type: 'ADD_ASSIGNED_CLASS' })
+        resetStudents()
+        dispatchTemporaryClass({
+            type: 'DELETE_TEMPORARY_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+
+    }
+    const [isDateEditing, setIsDateEditing] = useState(false)
+    const [editableClassData, setEditableClassData] = useState(false)
+    const [requestDateChangeState, dispatchRequestDateChange] = useReducer(requestDateChangeReducer, {})
+    const addRequestDateChange = (classData) => {
+        dispatchRequestDateChange({ type: 'ADD_REQUEST_DATE_CHANGE', classData })
+    }
     return (
         <TeachersProfileContext.Provider value={{
             myPendingClassState,
@@ -181,14 +313,28 @@ export const TeachersProfileProvider = ({ children }) => {
             temporaryClassState,
             dispatchTemporaryClass,
             classesAssignedLeft,
-            addTemporaryClass,
-            removeTemporaryClass,
             handleBuy,
             showDetailsClassForm,
             handleShowDetailsClassForm,
             handleHideDetailsClassForm,
             isEdit,
-            setIsEdit
+            setIsEdit,
+            studentState,
+            dispatchStudents,
+            handleInviteUser,
+            handleDeleteInvited,
+            inviteStudentsState,
+            setInviteStudentsState,
+            handleClickInviteStudents,
+            resetStudents,
+            addTemporaryClassEvent,
+            updateTemporaryClassEvent,
+            removeTemporaryClassEvent,
+            editableClassData,
+            setEditableClassData,
+            isDateEditing,
+            setIsDateEditing,
+            addRequestDateChange
         }}>
             {children}
         </TeachersProfileContext.Provider>
