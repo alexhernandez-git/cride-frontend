@@ -153,10 +153,19 @@ export default function ScheduleClass() {
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
 
-                                            <div id='external-events'>
-                                                {teacherContext.classesAssignedLeft.map(() => (
-                                                    <div class="fc-event">Clase</div>
-                                                ))}
+                                            <div id='external-events' className="d-none d-lg-block">
+                                                <Row>
+                                                    {teacherContext.classesAssignedLeft.map(() => (
+                                                        teacherContext.classesAssignedLeft.length == 1 ?
+                                                            < Col >
+                                                                <div class="fc-event text-center">Clase</div>
+                                                            </Col>
+                                                            :
+                                                            < Col lg={6} >
+                                                                <div class="fc-event text-center">Clase</div>
+                                                            </Col>
+                                                    ))}
+                                                </Row>
                                             </div>
                                             <span className="h3 p-2 shadow mt-3 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
                                             {teacherContext.selectedClasses == 1 ?

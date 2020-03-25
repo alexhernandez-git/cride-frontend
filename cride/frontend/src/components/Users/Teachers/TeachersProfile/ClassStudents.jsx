@@ -6,7 +6,6 @@ import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher } f
 import { MdAddCircleOutline, MdPersonAdd, MdMessage, MdCancel } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
-import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import { AssignClassContext } from "src/context/TeachersProfileContext/AssignClassContext"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ClassStudents.scss"
 
@@ -204,7 +203,7 @@ const ClassStudents = () => {
                                     {student.isInvited ?
                                         <button
                                             className="btn btn-green text-white d-flex px-2"
-                                            onClick={() => { handleDeleteInvited(student) }}
+                                            onClick={() => { assignClassContext.handleDeleteInvited(student) }}
                                         >
                                             <IconContext.Provider value={{
                                                 className: " text-white cursor-ponter",

@@ -102,11 +102,15 @@ export default function ScheduleHour() {
     }
 
     const handleEventClick = (args) => {
+        if (args.event.source.id == 0) {
 
-        teacherContext.setIsEdit(true)
-        setArgs(args)
+            teacherContext.setIsEdit(true)
+            setArgs(args)
 
-        teacherContext.handleShowDetailsClassForm()
+            teacherContext.handleShowDetailsClassForm()
+        } else {
+            alert('No es posible editar este evento')
+        }
 
     }
     function getSize() {
@@ -179,7 +183,8 @@ export default function ScheduleHour() {
                         </div>
                         <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
 
-                            Clica la casilla en la que quieres realizar la classe
+                            <small className="">Este paso es 100% opcional, podras asignar las clases cuando quieras</small>
+
                         </div>
 
                         <div className='demo-app-calendar'>
@@ -215,10 +220,12 @@ export default function ScheduleHour() {
                                 eventLimit={true}
                                 eventSources={[
                                     {
+                                        id: 0,
                                         events: teacherContext.temporaryClassState,
                                         color: '#3f8989'
                                     },
                                     {
+                                        id: 1,
                                         events: teacherContext.myPendingClassState,
                                         color: 'grey',
                                         editable: false,
@@ -237,7 +244,6 @@ export default function ScheduleHour() {
                                 drop={handleDropedEvent}
                             />
                         </div>
-                        <small className="float-right d-none d-lg-block">Este paso es 100% opcional, podras asignar las clases cuando quieras</small>
                         <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
                             Clases por asignar <span className="font-weight-bold">{teacherContext.classesAssignedLeft.length}</span>
                         </div>
