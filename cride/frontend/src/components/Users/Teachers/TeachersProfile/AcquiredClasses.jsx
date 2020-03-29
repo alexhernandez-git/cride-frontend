@@ -28,7 +28,7 @@ const AcquiredClasses = () => {
             {context => (
                 <div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
                     <span>Clases adquiridas</span>{' '}
-                    <span className="">{context.myPendingClassState.length + context.classesLeftState}</span>
+                    <span className="">{context.myPendingClassState.length + context.classesLeftState.length}</span>
                 </div>
             )}
         </TeachersProfileContext.Consumer>

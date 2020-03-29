@@ -107,57 +107,61 @@ const TeachersCalendar = () => {
                 <div className="teacher-calendar shadow w-100 pt-4 pl-4 pr-4 pb-3 rounded mb-3 overflow-hidden">
                     <span className="d-block h3 font-weight-normal text-primary text-center">Programa la clase</span>
 
-                    <div className={teacherContext.showDetailsClassForm ? 'd-none' : 'd-block'}>
+                    {!teacherContext.showDetailsClassForm ?
+                        <>
+                            <div className="mb-2 w-100 border-bottom rounded pb-2 text-grey text-center">
 
-                        <div className="mb-2 w-100 border-bottom rounded pb-2 text-grey text-center">
+                                Clica la casilla en la que quieres realizar la classe
+                            </div>
+                            <div className='demo-app-calendar'>
+                                <FullCalendar
+                                    view={calendarView}
+                                    defaultView={calendarView}
+                                    start={moment().day()}
+                                    plugins={[timeGridPlugin, interactionPlugin, bootstrapPlugin]}
+                                    firstDay={moment().day()}
+                                    weekends={true}
+                                    themeSystem='bootstrap'
+                                    timeZone='local'
+                                    locales={allLocales}
+                                    locale='es'
+                                    allDaySlot={false}
+                                    slotDuration='00:60:00'
+                                    minTime="06:00:00"
+                                    maxTime="24:00:00"
+                                    contentHeight="auto"
 
-                            Clica la casilla en la que quieres realizar la classe
-                        </div>
-                        <div className='demo-app-calendar'>
-                            <FullCalendar
-                                view={calendarView}
-                                defaultView={calendarView}
-                                start={moment().day()}
-                                plugins={[timeGridPlugin, interactionPlugin, bootstrapPlugin]}
-                                firstDay={moment().day()}
-                                weekends={true}
-                                themeSystem='bootstrap'
-                                timeZone='local'
-                                locales={allLocales}
-                                locale='es'
-                                allDaySlot={false}
-                                slotDuration='00:60:00'
-                                minTime="06:00:00"
-                                maxTime="24:00:00"
-                                contentHeight="auto"
+                                    ref={calendarComponentRef}
+                                    businessHours={teacherContext.businessHours}
+                                    eventLimit={true}
+                                    eventSources={[
+                                        {
+                                            events: teacherContext.myPendingClassState,
+                                            color: '#757575',
+                                        },
+                                    ]}
+                                    dateClick={handleDateClick}
+                                    eventClick={handleEventClick}
+                                    eventDrop={handleEventDrop}
+                                    displayEventTime={false}
+                                    selectAllow={function (selectInfo) {
+                                        return moment().diff(selectInfo.start) <= 0
+                                    }}
+                                />
+                            </div>
+                            <div className="classes-to-assign mt-2 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer">
+                                Clases por asignar <span className="font-weight-bold">{teacherContext.classesLeftState}</span>
+                            </div>
+                        </>
+                        :
+                        ''
+                    }
 
-                                ref={calendarComponentRef}
-                                businessHours={teacherContext.businessHours}
-                                eventLimit={true}
-                                eventSources={[
-                                    {
-                                        events: teacherContext.myPendingClassState,
-                                        color: '#757575',
-                                    },
-                                ]}
-                                dateClick={handleDateClick}
-                                eventClick={handleEventClick}
-                                eventDrop={handleEventDrop}
-                                displayEventTime={false}
-                                selectAllow={function (selectInfo) {
-                                    return moment().diff(selectInfo.start) <= 0
-                                }}
-                            />
-                        </div>
-                        <div className="classes-to-assign mt-2 bg-gradient-green shadow rounded p-2 text-white text-center cursor-pointer">
-                            Clases por asignar <span className="font-weight-bold">{teacherContext.classesLeftState}</span>
-                        </div>
-                    </div>
-                    <ClassDetailsForm startDate={startDate} teacherProfile={true} />
                 </div>
 
-            )}
-        </TeachersProfileContext.Consumer>
+            )
+            }
+        </TeachersProfileContext.Consumer >
     );
 }
 

@@ -7,9 +7,6 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass.scss"
-import { Draggable } from "@fullcalendar/interaction";
-
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import {
     FaRegStar,
     FaStar,
@@ -28,9 +25,7 @@ import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
 import PayClass from "./ScheduleClass/PayClass"
 
-
 export default function ScheduleClass() {
-    const modalRef = useRef(null)
     const teacherContext = useContext(TeachersProfileContext);
     const [invitationPriceState, setInvitationPriceState] = useState(false)
     const handleClickInvitationEarning = () => {
@@ -59,6 +54,18 @@ export default function ScheduleClass() {
         }
     }, [window.onclick = handleClick])
 
+    const handleClickHideModal = () => {
+        console.log('key: ', teacherContext.key);
+
+        if (teacherContext.key > 0) {
+            if (confirm('¿Estas seguro? Si sales al perfil del profesor los cambios se perderan'))
+                teacherContext.handleClose()
+        } else {
+            teacherContext.handleClose()
+
+        }
+
+    }
     return (
 
         <TeachersProfileContext.Consumer>
@@ -123,7 +130,7 @@ export default function ScheduleClass() {
                                         size: '20px'
                                     }}
                                 >
-                                    <div onClick={teacherContext.handleClose}>
+                                    <div onClick={handleClickHideModal}>
                                         <IoMdClose />
 
                                     </div>
@@ -131,7 +138,7 @@ export default function ScheduleClass() {
                             </div>
 
                             <Row>
-                                <Col lg={3} className="d-none d-sm-block">
+                                <Col lg={3} className="">
                                     <div className="student-info d-flex flex-column justify-content-center align-items-center text-grey">
                                         <div className="d-flex flex-column justify-content-center align-items-center p-3">
                                             <div className="div-img mb-4">
@@ -158,32 +165,43 @@ export default function ScheduleClass() {
                                             <div>
                                                 <span className="text-small">500 puntuaciones</span>
                                             </div>
+                                            <div
+                                                id='external-events'
+                                                className="text-center draggable-events"
+                                            >
+                                                {teacherContext.classesAssignedLeft.length > 0 ?
+                                                    <>
 
-                                            <div id='external-events' className="d-none d-lg-block">
-                                                <Row>
-                                                    {teacherContext.classesAssignedLeft.map(() => (
-                                                        teacherContext.classesAssignedLeft.length == 1 ?
-                                                            < Col >
-                                                                <div className="fc-event text-center">Clase</div>
-                                                            </Col>
+
+
+                                                        <div className="py-2 d-none d-lg-block"></div>
+                                                        <div className="pt-3 d-block d-lg-none"></div>
+                                                        {teacherContext.classesAssignedLeft.length > 0 ?
+                                                            <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases</span>
                                                             :
-                                                            < Col lg={6} >
-                                                                <div className="fc-event text-center">Clase</div>
-                                                            </Col>
-                                                    ))}
-                                                </Row>
+                                                            ''
+                                                        }
+                                                        <Row>
+                                                            {teacherContext.classesAssignedLeft.map(() => (
+                                                                teacherContext.classesAssignedLeft.length == 1 ?
+                                                                    < Col >
+                                                                        <div className="fc-event text-center">Clase</div>
+                                                                    </Col>
+                                                                    :
+                                                                    < Col lg={6} >
+                                                                        <div className="fc-event text-center">Clase</div>
+                                                                    </Col>
+                                                            ))}
+                                                        </Row>
+                                                    </>
+                                                    :
+                                                    ''
+                                                }
                                             </div>
-
-                                            <span className="h3 p-2 shadow mt-2 rounded bg-gradient-green text-white text-center">{teacherContext.selectedClasses}</span>
-                                            {teacherContext.selectedClasses == 1 ?
-                                                <span className="d-block">Clase seleccionada</span>
-                                                :
-                                                <span className="d-block">Clases seleccionadas</span>
-                                            }
-
-                                        </div >
+                                        </div>
 
                                     </div >
+
                                 </Col >
                                 <Col lg={9}>
                                     <Tab.Container id="left-tabs-example" activeKey={teacherContext.key} defaultActiveKey="first" className="p-3">
@@ -269,7 +287,7 @@ export default function ScheduleClass() {
                                                             <ClassSubject />
                                                         </Tab.Pane>
                                                         <Tab.Pane eventKey={1} className="text-grey">
-                                                            <ScheduleHour />
+                                                            <ScheduleHour profile={false} />
                                                         </Tab.Pane>
                                                         <Tab.Pane eventKey={2} className="text-grey">
                                                             <PayClass />

@@ -3,25 +3,38 @@ export const REMOVE_CLASS = 'REMOVE_CLASS'
 export const ADD_CLASSES_LEFT = 'ADD_CLASSES_LEFT'
 export const SET_CLASSES_LEFT = 'SET_CLASSES_LEFT'
 
-const addClass = (state) => {
-    let classes = state - 1
-    return classes
-}
-const removeClass = (state) => {
-    let classes = state + 1
-    return classes
-}
 
 export const classesLeftReducer = (state, action) => {
 
     switch (action.type) {
         case ADD_CLASS:
-            return addClass(state)
+            state.pop()
+            return state
         case REMOVE_CLASS:
-            return removeClass(state)
+
+            return [...state, {
+                id: null,
+                title: '',
+                start: null,
+                constraint: 'businessHours',
+                description: ''
+            }]
         case SET_CLASSES_LEFT:
-            console.log('classesLeft :', action.classesAssignedLeft + state)
-            return action.classesAssignedLeft + state
+
+            const newArray = [];
+            for (let index = 0; index < action.classesAssignedLeft; index++) {
+                newArray[index] = {
+                    id: null,
+                    title: '',
+                    start: null,
+                    constraint: 'businessHours',
+                    description: ''
+                };
+
+            }
+            console.log('New array with state: ', [...newArray, ...state]);
+
+            return [...newArray, ...state]
         default:
             return state;
     }

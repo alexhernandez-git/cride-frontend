@@ -10,6 +10,7 @@ import TeacherPresentation from "src/components/Users/Teachers/TeachersProfile/T
 import TeacherTeach from "src/components/Users/Teachers/TeachersProfile/TeacherTeach"
 import TeacherSkills from "src/components/Users/Teachers/TeachersProfile/TeacherSkills"
 import TeacherCalendar from "src/components/Users/Teachers/TeachersProfile/TeacherCalendar"
+import ScheduleHour from "src/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour"
 import StudentFeedback from 'src/components/Users/Teachers/TeachersProfile/StudentFeedback';
 import ScheduleClass from 'src/components/Users/Teachers/TeachersProfile/ScheduleClass';
 import { Row } from 'react-bootstrap';
@@ -40,7 +41,11 @@ const TeachersProfile = () => {
                                 <TeacherSkills />
                                 <TeacherWorkExperience />
                                 <TeacherEducation />
-                                <TeacherCalendar />
+                                {!teacherContext.showScheduleClass ?
+                                    <ScheduleHour profile={true} />
+                                    :
+                                    ''
+                                }
                                 <StudentFeedback />
                                 <ScheduleClass />
                             </div>

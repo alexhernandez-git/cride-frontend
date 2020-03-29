@@ -44,6 +44,17 @@ const ClassStudents = () => {
 
         }
     }, [])
+    const handleInviteStudent = (user) => {
+        console.log(!teacherContext.studentState.students.some(student => student === user));
+
+
+        if (!teacherContext.studentState.students.some(student => student === user)) {
+            teacherContext.handleInviteUser(user)
+        } else {
+            alert('Ya has invitado a este amigo')
+
+        }
+    }
 
     return (
         <TeachersProfileContext.Consumer>
@@ -136,7 +147,7 @@ const ClassStudents = () => {
                                             </div>
 
                                             <button className="btn btn-green text-white"
-                                                onClick={() => teacherContext.handleInviteUser(user)}
+                                                onClick={() => handleInviteStudent(user)}
                                             >
                                                 <IconContext.Provider value={{
                                                     className: " text-white cursor-ponter",

@@ -14,9 +14,129 @@ import {
 } from './reducers/classesAssignedLeftReducer'
 import { init, studentsReducer } from "./reducers/classStudentsReducer"
 import {
-    requestDateChangeReducer,
-} from './reducers/requestDateChangeReducer'
+    myAcceptedClassesReducer,
+} from './reducers/myAcceptedClasses'
+import {
+    reservedClassesReducer,
+} from './reducers/reservedClassesReducer'
 export const TeachersProfileProvider = ({ children }) => {
+    const [reservedClasses, dispatchReservedClass] = useReducer(reservedClassesReducer, [
+        {
+            id: 'fudhnl6tja5',
+            title: 'Reservada',
+            start: Date.now() + 6.04e+8 / 2.4,
+            end: null,
+            constraint: 'businessHours',
+            description: 'Esta es una clase aceptada',
+            students: [
+                {
+                    id: "fudhnl6tja5",
+                    name: "DOMINGO",
+                    surname: "CAYUELA",
+                    isAdmin: true,
+                    isInvited: false,
+                },
+                {
+                    id: "opopmuiueib",
+                    name: "SALVADOR",
+                    surname: "POPESCU",
+                    isAdmin: false,
+                    isInvited: false,
+                },
+                {
+                    id: "g3kr0ue1c7q",
+                    name: "ALVARO",
+                    surname: "MORO",
+                    isAdmin: false,
+                    isInvited: false,
+                },
+                {
+                    id: "picuplfo8n",
+                    name: "CESAR",
+                    surname: "RIOJA",
+                    isAdmin: false,
+                    isInvited: false,
+                }
+            ]
+        },
+        {
+            id: 'fudhnl6tja5',
+            title: 'Reservada',
+            start: Date.now() + 6.04e+8 / 1.4,
+            end: null,
+            constraint: 'businessHours',
+            description: 'Esta es una clase aceptada',
+            students: [
+                {
+                    id: "fudhnl6tja5",
+                    name: "DOMINGO",
+                    surname: "CAYUELA",
+                    isAdmin: true,
+                    isInvited: false,
+                },
+                {
+                    id: "opopmuiueib",
+                    name: "SALVADOR",
+                    surname: "POPESCU",
+                    isAdmin: false,
+                    isInvited: false,
+                },
+                {
+                    id: "g3kr0ue1c7q",
+                    name: "ALVARO",
+                    surname: "MORO",
+                    isAdmin: false,
+                    isInvited: false,
+                },
+                {
+                    id: "picuplfo8n",
+                    name: "CESAR",
+                    surname: "RIOJA",
+                    isAdmin: false,
+                    isInvited: false,
+                }
+            ]
+        }
+    ])
+
+    const [myAcceptedClasses, dispatchMyAcceptedClass] = useReducer(myAcceptedClassesReducer, [{
+        id: 'fudhnl6tja5',
+        title: 'Aceptada',
+        start: Date.now() + 6.04e+8,
+        end: null,
+        constraint: 'businessHours',
+        description: 'Esta es una clase aceptada',
+        students: [
+            {
+                id: "fudhnl6tja5",
+                name: "DOMINGO",
+                surname: "CAYUELA",
+                isAdmin: true,
+                isInvited: false,
+            },
+            {
+                id: "opopmuiueib",
+                name: "SALVADOR",
+                surname: "POPESCU",
+                isAdmin: false,
+                isInvited: false,
+            },
+            {
+                id: "g3kr0ue1c7q",
+                name: "ALVARO",
+                surname: "MORO",
+                isAdmin: false,
+                isInvited: false,
+            },
+            {
+                id: "picuplfo8n",
+                name: "CESAR",
+                surname: "RIOJA",
+                isAdmin: false,
+                isInvited: false,
+            }
+        ]
+    }])
     // Your classes
     const [myPendingClassState, dispatchMyPendingClass] = useReducer(myClassReducer, []);
 
@@ -24,7 +144,7 @@ export const TeachersProfileProvider = ({ children }) => {
     const [temporaryClassState, dispatchTemporaryClass] = useReducer(temporaryClassReducer, []);
 
     // State de lecciones restantes
-    const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, 0);
+    const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, []);
 
     // Reducer de classes assigned left
     const [classesAssignedLeft, dispatchClassesAssignedLeft] = useReducer(classesAssignedLeftReducer, []);
@@ -34,39 +154,84 @@ export const TeachersProfileProvider = ({ children }) => {
 
         {
             daysOfWeek: [0],
-            startTime: '08:00',
-            endTime: '18:00'
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [0],
+            startTime: '16:00',
+            endTime: '19:00'
         },
         {
             daysOfWeek: [1],
-            startTime: '08:00',
-            endTime: '18:00'
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [1],
+            startTime: '16:00',
+            endTime: '19:00'
         },
         {
             daysOfWeek: [2],
-            startTime: '10:00',
-            endTime: '16:00'
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [2],
+            startTime: '16:00',
+            endTime: '19:00'
         },
         {
             daysOfWeek: [3],
-            startTime: '10:00',
-            endTime: '16:00'
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [3],
+            startTime: '16:00',
+            endTime: '19:00'
         },
         {
             daysOfWeek: [4],
-            startTime: '10:00',
-            endTime: '16:00'
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [4],
+            startTime: '16:00',
+            endTime: '19:00'
+        },
+        {
+            daysOfWeek: [4],
+            startTime: '09:00',
+            endTime: '14:00'
+        },
+        {
+            daysOfWeek: [4],
+            startTime: '16:00',
+            endTime: '19:00'
         },
         {
             daysOfWeek: [5],
-            startTime: '10:00',
-            endTime: '16:00'
+            startTime: '09:00',
+            endTime: '14:00'
         },
         {
-            daysOfWeek: [6],
-            startTime: '13:00',
-            endTime: '16:00'
+            daysOfWeek: [5],
+            startTime: '16:00',
+            endTime: '19:00'
         },
+        // {
+        //     daysOfWeek: [6],
+        //     startTime: '09:00',
+        //     endTime: '14:00'
+        // },
+        // {
+        //     daysOfWeek: [6],
+        //     startTime: '16:00',
+        //     endTime: '19:00'
+        // },
 
     ])
     // State of selected classes
@@ -75,9 +240,12 @@ export const TeachersProfileProvider = ({ children }) => {
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
 
+    const [studentState, dispatchStudents] = useReducer(studentsReducer, initialStudents, init);
+
 
     const [key, setKey] = useState(0);
     useEffect(() => {
+
         if (key == 0) {
             dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
             setSelectedClasses(0)
@@ -86,6 +254,8 @@ export const TeachersProfileProvider = ({ children }) => {
         }
     }, [key])
     const handleNext = () => {
+        document.querySelector('.modal').scrollTop = 0
+
         if (key <= 1) {
             if (selectedClasses > 0) {
                 setKey(parseInt(key) + 1)
@@ -95,6 +265,7 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const handlePrevious = () => {
 
+        document.querySelector('.modal').scrollTop = 0
 
         if (selectedClasses > 0) {
             setKey(parseInt(key) - 1)
@@ -103,11 +274,9 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const handleClose = () => {
         if (key > 0) {
-            if (confirm('¿Estas seguro?, si sales perderas todos los cambios.')) {
-                handleHideDetailsClassForm()
-                setKey(0)
-                setShowScheduleClass(false)
-            }
+            handleHideDetailsClassForm()
+            setKey(0)
+            setShowScheduleClass(false)
         } else {
             handleHideDetailsClassForm()
             setKey(0)
@@ -144,7 +313,6 @@ export const TeachersProfileProvider = ({ children }) => {
         dispatchMyPendingClass({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClassState })
 
         dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
-        console.log('Classes left: ', classesAssignedLeft.length);
 
         dispatchClassesLeft({
             type: 'SET_CLASSES_LEFT',
@@ -158,15 +326,21 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const [showDetailsClassForm, setShowDetailsClassForm] = useState(false)
     const handleShowDetailsClassForm = () => {
+
         setShowDetailsClassForm(true)
+        if (showScheduleClass) {
+            document.querySelector('.modal').scrollTop = 0
+        }
     }
     const handleHideDetailsClassForm = () => {
         setInviteStudentsState(false)
         setIsEdit(false)
         setShowDetailsClassForm(false)
         resetStudents()
+
     }
     const [isEdit, setIsEdit] = useState(false)
+    const [isMyClass, setIsMyClass] = useState(false)
     const [inviteStudentsState, setInviteStudentsState] = useState(false)
 
     const handleClickInviteStudents = () => {
@@ -252,8 +426,17 @@ export const TeachersProfileProvider = ({ children }) => {
     const resetStudents = () => {
         dispatchStudents({ type: 'RESET', payload: initialStudents })
     }
-    const [studentState, dispatchStudents] = useReducer(studentsReducer, initialStudents, init);
+    const addMyPendingClass = (classData) => {
+        classData.students = studentState.students
+        dispatchMyPendingClass({
+            type: 'ADD_MY_PENDING_CLASS',
+            myPendingClass: classData
+        })
 
+        dispatchClassesLeft({
+            type: 'ADD_CLASS',
+        })
+    }
     const addTemporaryClassEvent = (classData) => {
         classData.students = studentState.students
         resetStudents()
@@ -266,12 +449,38 @@ export const TeachersProfileProvider = ({ children }) => {
         handleHideDetailsClassForm()
     }
     const updateTemporaryClassEvent = (classData) => {
-        classData.students = studentState.students
-        resetStudents()
         console.log('Class Data: ', classData);
 
         dispatchTemporaryClass({
             type: 'UPDATE_TEMPORARY_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const updatePendingClassEvent = (classData) => {
+        console.log('Class Data: ', classData);
+
+        dispatchMyPendingClass({
+            type: 'UPDATE_MY_PENDING_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const updateMyAcceptedClass = (classData) => {
+        resetStudents()
+        console.log('Class Data: ', classData);
+
+        dispatchMyAcceptedClass({
+            type: 'UPDATE_MY_ACCEPTED_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const removeMyPendingClassEvent = (classData) => {
+        dispatchClassesLeft({ type: 'REMOVE_CLASS' })
+        resetStudents()
+        dispatchMyPendingClass({
+            type: 'DELETE_MY_PENDING_CLASS',
             classData
         })
         handleHideDetailsClassForm()
@@ -288,16 +497,18 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const [isDateEditing, setIsDateEditing] = useState(false)
     const [editableClassData, setEditableClassData] = useState(false)
-    const [requestDateChangeState, dispatchRequestDateChange] = useReducer(requestDateChangeReducer, {})
-    const addRequestDateChange = (classData) => {
-        dispatchRequestDateChange({ type: 'ADD_REQUEST_DATE_CHANGE', classData })
-    }
     return (
         <TeachersProfileContext.Provider value={{
+            reservedClasses,
+            myAcceptedClasses,
+            updateMyAcceptedClass,
             myPendingClassState,
             dispatchMyPendingClass,
+            addMyPendingClass,
+            removeMyPendingClassEvent,
             classesLeftState,
             dispatchClassesLeft,
+            updatePendingClassEvent,
             showScheduleClass,
             businessHours,
             key,
@@ -319,6 +530,8 @@ export const TeachersProfileProvider = ({ children }) => {
             handleHideDetailsClassForm,
             isEdit,
             setIsEdit,
+            isMyClass,
+            setIsMyClass,
             studentState,
             dispatchStudents,
             handleInviteUser,
@@ -334,7 +547,7 @@ export const TeachersProfileProvider = ({ children }) => {
             setEditableClassData,
             isDateEditing,
             setIsDateEditing,
-            addRequestDateChange
+
         }}>
             {children}
         </TeachersProfileContext.Provider>

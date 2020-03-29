@@ -1,0 +1,80 @@
+@media only screen and (max-width: 992px) {
+  .schedule-class {
+    padding-bottom: 500px;
+  }
+  #external-events.draggable-events {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 15;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  #external-events.draggable-events .row {
+    display: inherit !important;
+    flex-wrap: inherit;
+    margin: inherit;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  #external-events.draggable-events .col-lg-6 {
+    width: inherit !important;
+    display: table-cell;
+  }
+  #external-events div.fc-event {
+    animation: none !important;
+    width: 150px !important;
+  }
+}
+
+#external-profile-events.draggable-events {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 15;
+  background-color: white;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#external-profile-events.draggable-events .row {
+  justify-content: center;
+  margin: inherit;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+}
+#external-profile-events.draggable-events .col-lg-6 {
+  width: inherit !important;
+  display: table-cell;
+  flex: inherit;
+}
+#external-profile-events.draggable-events .col {
+  width: inherit !important;
+  display: table-cell;
+  flex: inherit;
+}
+.div.fc-event {
+  width: 150px !important;
+}
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+div.fc-event {
+  animation: 0.8s infinite beat;
+}
+#external-profile-events div.fc-event {
+  width: 150px !important;
+}
+a.fc-event {
+  animation: none;
+}

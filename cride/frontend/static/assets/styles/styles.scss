@@ -16,6 +16,13 @@ $theme-colors: (
 );
 
 // Custom bootstrap
+
+@media only screen and (max-width: 992px) {
+  .btn-md-block {
+    width: 100%;
+    margin: 5px;
+  }
+}
 @media only screen and (max-width: 576px) {
   .btn-sm-block {
     width: 100%;
@@ -189,6 +196,7 @@ a.fc-event {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 div.fc-event {
   padding: 0.5em 1em;
