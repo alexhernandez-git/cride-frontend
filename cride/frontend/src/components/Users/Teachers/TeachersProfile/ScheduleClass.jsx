@@ -113,9 +113,9 @@ export default function ScheduleClass() {
                         >
                             <span className="d-block" ref={invitationText}>
                                 Al compañero que invites le va a costar la classe exactamente{' '}
-                                <span className="font-weight-bold">{Math.round(teacherContext.classPrice - teacherContext.classPrice * 0.2)}€</span><br />
+                                <span className="font-weight-bold">{Math.round(teacherContext.teacherProfile.teacher.classPrice - teacherContext.teacherProfile.teacher.classPrice * 0.2)}€</span><br />
                                 que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
-                                <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span> por cada invitado que adquiera la clase
+                                <span className="font-weight-bold">{Math.round(teacherContext.teacherProfile.teacher.classPrice * 0.2)}€</span> por cada invitado que adquiera la clase
                                 </span>
                         </div>
 

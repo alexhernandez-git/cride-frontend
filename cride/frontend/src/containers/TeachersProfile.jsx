@@ -26,7 +26,7 @@ const TeachersProfile = () => {
                             <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
                                 <span>
                                     Por cada compañero que invites a la clase obtendrás{' '}
-                                    <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span>
+                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherProfile.teacher.classPrice * 0.2)}€</span>
                                 </span>
                             </div>
                         </Row>

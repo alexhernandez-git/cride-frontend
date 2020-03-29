@@ -50,6 +50,8 @@ const TeachersProfileWork = () => {
         workComplete.endDate = valueWork.endDate
         workComplete.description = valueWork.description
         const newArrayWorks = [...works, workComplete]
+        console.log(workComplete);
+
         sortWorks(newArrayWorks)
 
         handleCloseWork()

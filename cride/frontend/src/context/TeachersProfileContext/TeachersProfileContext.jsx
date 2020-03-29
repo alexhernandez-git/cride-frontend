@@ -1,246 +1,369 @@
 import React, { createContext, useState, useEffect, useReducer } from 'react'
 export const TeachersProfileContext = createContext()
-import {
-    classesLeftReducer
-} from './reducers/classesLeftReducer'
-import {
-    myClassReducer,
-} from './reducers/myClassReducer'
+import moment from 'moment'
+
 import {
     temporaryClassReducer,
 } from './reducers/temporaryClassReducer'
 import {
     classesAssignedLeftReducer,
 } from './reducers/classesAssignedLeftReducer'
-import { init, studentsReducer } from "./reducers/classStudentsReducer"
+
 import {
-    myAcceptedClassesReducer,
-} from './reducers/myAcceptedClasses'
-import {
-    reservedClassesReducer,
-} from './reducers/reservedClassesReducer'
+    teacherProfileReducer,
+} from './reducers/teacherProfileReducer'
+
 export const TeachersProfileProvider = ({ children }) => {
-    const [reservedClasses, dispatchReservedClass] = useReducer(reservedClassesReducer, [
-        {
-            id: 'fudhnl6tja5',
-            title: 'Reservada',
-            start: Date.now() + 6.04e+8 / 2.4,
-            end: null,
-            constraint: 'businessHours',
-            description: 'Esta es una clase aceptada',
-            students: [
-                {
-                    id: "fudhnl6tja5",
-                    name: "DOMINGO",
-                    surname: "CAYUELA",
-                    isAdmin: true,
-                    isInvited: false,
-                },
-                {
-                    id: "opopmuiueib",
-                    name: "SALVADOR",
-                    surname: "POPESCU",
-                    isAdmin: false,
-                    isInvited: false,
-                },
-                {
-                    id: "g3kr0ue1c7q",
-                    name: "ALVARO",
-                    surname: "MORO",
-                    isAdmin: false,
-                    isInvited: false,
-                },
-                {
-                    id: "picuplfo8n",
-                    name: "CESAR",
-                    surname: "RIOJA",
-                    isAdmin: false,
-                    isInvited: false,
-                }
-            ]
-        },
-        {
-            id: 'fudhnl6tja5',
-            title: 'Reservada',
-            start: Date.now() + 6.04e+8 / 1.4,
-            end: null,
-            constraint: 'businessHours',
-            description: 'Esta es una clase aceptada',
-            students: [
-                {
-                    id: "fudhnl6tja5",
-                    name: "DOMINGO",
-                    surname: "CAYUELA",
-                    isAdmin: true,
-                    isInvited: false,
-                },
-                {
-                    id: "opopmuiueib",
-                    name: "SALVADOR",
-                    surname: "POPESCU",
-                    isAdmin: false,
-                    isInvited: false,
-                },
-                {
-                    id: "g3kr0ue1c7q",
-                    name: "ALVARO",
-                    surname: "MORO",
-                    isAdmin: false,
-                    isInvited: false,
-                },
-                {
-                    id: "picuplfo8n",
-                    name: "CESAR",
-                    surname: "RIOJA",
-                    isAdmin: false,
-                    isInvited: false,
-                }
-            ]
-        }
-    ])
 
-    const [myAcceptedClasses, dispatchMyAcceptedClass] = useReducer(myAcceptedClassesReducer, [{
-        id: 'fudhnl6tja5',
-        title: 'Aceptada',
-        start: Date.now() + 6.04e+8,
-        end: null,
-        constraint: 'businessHours',
-        description: 'Esta es una clase aceptada',
-        students: [
-            {
-                id: "fudhnl6tja5",
-                name: "DOMINGO",
-                surname: "CAYUELA",
-                isAdmin: true,
-                isInvited: false,
-            },
-            {
-                id: "opopmuiueib",
-                name: "SALVADOR",
-                surname: "POPESCU",
-                isAdmin: false,
-                isInvited: false,
-            },
-            {
-                id: "g3kr0ue1c7q",
-                name: "ALVARO",
-                surname: "MORO",
-                isAdmin: false,
-                isInvited: false,
-            },
-            {
-                id: "picuplfo8n",
-                name: "CESAR",
-                surname: "RIOJA",
-                isAdmin: false,
-                isInvited: false,
-            }
-        ]
-    }])
-    // Your classes
-    const [myPendingClassState, dispatchMyPendingClass] = useReducer(myClassReducer, []);
 
-    // Temporary classes
-    const [temporaryClassState, dispatchTemporaryClass] = useReducer(temporaryClassReducer, []);
-
-    // State de lecciones restantes
-    const [classesLeftState, dispatchClassesLeft] = useReducer(classesLeftReducer, []);
-
-    // Reducer de classes assigned left
-    const [classesAssignedLeft, dispatchClassesAssignedLeft] = useReducer(classesAssignedLeftReducer, []);
-
-    // State buisness hours
-    const [businessHours, setBusinessHours] = useState([ // specify an array instead
-
-        {
-            daysOfWeek: [0],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [0],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [1],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [1],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [2],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [2],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [3],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [3],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [4],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [4],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [4],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [4],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        {
-            daysOfWeek: [5],
-            startTime: '09:00',
-            endTime: '14:00'
-        },
-        {
-            daysOfWeek: [5],
-            startTime: '16:00',
-            endTime: '19:00'
-        },
-        // {
-        //     daysOfWeek: [6],
-        //     startTime: '09:00',
-        //     endTime: '14:00'
-        // },
-        // {
-        //     daysOfWeek: [6],
-        //     startTime: '16:00',
-        //     endTime: '19:00'
-        // },
-
-    ])
-    // State of selected classes
-    const [selectedClasses, setSelectedClasses] = useState(0);
 
     //State de show modal scheduleClass
     const [showScheduleClass, setShowScheduleClass] = useState(false);
 
-    const [studentState, dispatchStudents] = useReducer(studentsReducer, initialStudents, init);
+
+    const initialState = {
+        loading: true,
+        error: '',
+        teacher: {
+            name: '',
+            surname: '',
+            rating: null,
+            classPrice: null,
+            presentation: '',
+            videoPresentation: '',
+            teach: [],
+            idioms: [],
+            skills: [],
+            workExperience: [],
+            academicExperience: [],
+            businessHours: [],
+            reservedClasses: [],
+            myAcceptedClasses: [],
+            myPendingClasses: [],
+            eventClassesLeft: [],
+            ratings: []
+        }
+    }
+
+    const [teacherProfile, dispatch] = useReducer(teacherProfileReducer, initialState)
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_SUCCESS', payload: {
+                name: 'Alex',
+                surname: 'Hernandez',
+                rating: 4.7,
+                classPrice: 19.99,
+                presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
+                videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
+                teach: [
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        subjectValue: 'Desarrollo con Swift'
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        subjectValue: 'Desarrollo con React'
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        subjectValue: 'Desarrollo con Angular'
+                    },
+                ],
+                idioms: [
+                    {
+                        id: "wcppkede79c",
+                        languageValue: "hr",
+                        languageLabel: "Croatian",
+                        levelValue: "b1",
+                        levelLabel: "B1, Usuario independiente",
+                    },
+                    {
+                        id: "ar44m6450dl",
+                        languageValue: "es",
+                        languageLabel: "Spanish; Castilian",
+                        levelValue: "b1",
+                        levelLabel: "B1, Usuario independiente",
+                    }
+                ],
+                skills: [
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        skillValue: 'HTML',
+                        levelValue: 100
+                    }
+                ],
+                workExperience: [
+                    {
+                        id: "uljz5zio2fj",
+                        title: "Programador frontend",
+                        company: "Microsoft",
+                        currentWorking: true,
+                        startDate: moment('Sun Mar 29 2020 17: 46: 56 GMT + 0200'),
+                        endDate: false,
+                        description: "En ese trabajo cumplía las funciónes de programador frontend",
+                    },
+                    {
+                        id: "gx6s2r3urlv",
+                        title: "Programador backend",
+                        company: "Apple",
+                        currentWorking: false,
+                        startDate: moment('Tue Feb 12 2019 00: 00: 00 GMT + 0100'),
+                        endDate: moment('Thu Jun 13 2019 00: 00: 00 GMT + 0200'),
+                        description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
+                    }
+                ],
+                academicExperience: [
+                    {
+                        id: "px41nfl2vhh",
+                        title: "Grado Superior de administración de sistemas",
+                        school: "CESF",
+                        currentStudiesing: true,
+                        startDate: moment('Wed Jan 03 2018 00:00:00 GMT+0100'),
+                        endDate: false,
+                        description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos"
+                    },
+                    {
+                        id: "mwcr7atzbca",
+                        title: "Grado Medio de administración de sistemas",
+                        school: "CESF",
+                        currentStudiesing: false,
+                        startDate: moment('Wed Sep 21 2016 00:00:00 GMT+0200'),
+                        endDate: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
+                        description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos",
+                    }
+                ],
+                businessHours: [
+                    {
+                        daysOfWeek: [0],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [0],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [1],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [1],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [2],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [2],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [3],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [3],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [4],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [4],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [4],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [4],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [5],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [5],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                    {
+                        daysOfWeek: [6],
+                        startTime: '09:00',
+                        endTime: '14:00'
+                    },
+                    {
+                        daysOfWeek: [6],
+                        startTime: '16:00',
+                        endTime: '19:00'
+                    },
+                ],
+                reservedClasses: [
+                    {
+                        id: 'fudhnl6tja5',
+                        title: 'Reservada',
+                        start: Date.now() + 6.04e+8 / 2.4,
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase aceptada',
+                        students: [
+                            {
+                                id: "fudhnl6tja5",
+                                name: "DOMINGO",
+                                surname: "CAYUELA",
+                                isAdmin: true,
+                                isInvited: false,
+                            },
+                            {
+                                id: "opopmuiueib",
+                                name: "SALVADOR",
+                                surname: "POPESCU",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "g3kr0ue1c7q",
+                                name: "ALVARO",
+                                surname: "MORO",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "picuplfo8n",
+                                name: "CESAR",
+                                surname: "RIOJA",
+                                isAdmin: false,
+                                isInvited: false,
+                            }
+                        ]
+                    },
+                    {
+                        id: 'fudhnl6tja5',
+                        title: 'Reservada',
+                        start: Date.now() + 6.04e+8 / 1.4,
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase aceptada',
+                        students: [
+                            {
+                                id: "fudhnl6tja5",
+                                name: "DOMINGO",
+                                surname: "CAYUELA",
+                                isAdmin: true,
+                                isInvited: false,
+                            },
+                            {
+                                id: "opopmuiueib",
+                                name: "SALVADOR",
+                                surname: "POPESCU",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "g3kr0ue1c7q",
+                                name: "ALVARO",
+                                surname: "MORO",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "picuplfo8n",
+                                name: "CESAR",
+                                surname: "RIOJA",
+                                isAdmin: false,
+                                isInvited: false,
+                            }
+                        ]
+                    }
+                ],
+                myAcceptedClasses: [
+                    {
+                        id: 'fudhnl6tja5',
+                        title: 'Aceptada',
+                        start: Date.now() + 6.04e+8,
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase aceptada',
+                        students: [
+                            {
+                                id: "fudhnl6tja5",
+                                name: "DOMINGO",
+                                surname: "CAYUELA",
+                                isAdmin: true,
+                                isInvited: false,
+                            },
+                            {
+                                id: "opopmuiueib",
+                                name: "SALVADOR",
+                                surname: "POPESCU",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "g3kr0ue1c7q",
+                                name: "ALVARO",
+                                surname: "MORO",
+                                isAdmin: false,
+                                isInvited: false,
+                            },
+                            {
+                                id: "picuplfo8n",
+                                name: "CESAR",
+                                surname: "RIOJA",
+                                isAdmin: false,
+                                isInvited: false,
+                            }
+                        ]
+                    }
+                ],
+                myPendingClasses: [],
+                temporaryClasses: [],
+                eventClassesLeft: [],
+                ratings: [
+                    {
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 4.7,
+                        comment: 'Un buen tipo'
+                    }
+                ]
+            }
+
+        })
+
+    }, []);
+
+    setTimeout(() => {
+        console.log(teacherProfile)
+
+    }, 2000);
+    // Temporary classes
+    const [temporaryClasses, dispatchTemporaryClass] = useReducer(temporaryClassReducer, []);
+
+    // Reducer de classes assigned left
+    const [classesAssignedLeft, dispatchClassesAssignedLeft] = useReducer(classesAssignedLeftReducer, []);
+
+    // State of selected classes
+    const [selectedClasses, setSelectedClasses] = useState(0);
 
 
     const [key, setKey] = useState(0);
@@ -250,7 +373,6 @@ export const TeachersProfileProvider = ({ children }) => {
             dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
             setSelectedClasses(0)
             dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: 0 })
-            resetStudents()
         }
     }, [key])
     const handleNext = () => {
@@ -290,14 +412,12 @@ export const TeachersProfileProvider = ({ children }) => {
         setShowScheduleClass(true)
     };
 
-    const [classPrice, setClassPrice] = useState(20);
-
     const calcPriceClass = (numClass) => {
         let finalPrice
         if (numClass > 5) {
-            finalPrice = classPrice / 1.5
+            finalPrice = teacherProfile.teacher.classPrice / 1.5
         } else {
-            finalPrice = classPrice / 1.4
+            finalPrice = teacherProfile.teacher.classPrice / 1.4
         }
         return Math.round(finalPrice)
     }
@@ -310,11 +430,11 @@ export const TeachersProfileProvider = ({ children }) => {
 
 
     const handleBuy = () => {
-        dispatchMyPendingClass({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClassState })
+        dispatch({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClasses })
 
         dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
 
-        dispatchClassesLeft({
+        dispatch({
             type: 'SET_CLASSES_LEFT',
             classesAssignedLeft: classesAssignedLeft.length
         })
@@ -336,7 +456,6 @@ export const TeachersProfileProvider = ({ children }) => {
         setInviteStudentsState(false)
         setIsEdit(false)
         setShowDetailsClassForm(false)
-        resetStudents()
 
     }
     const [isEdit, setIsEdit] = useState(false)
@@ -350,96 +469,26 @@ export const TeachersProfileProvider = ({ children }) => {
             setInviteStudentsState(true)
         }
     }
-    const initialStudents = {
-        users: [
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
 
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
+    // const handleDeleteInvited = (student) => {
+    //     if (confirm(`¿Eliminar invitación de ${student.name}?`)) {
+    //         dispatchStudents({ type: 'DELETE_INVITED', student })
+    //     }
+    // }
 
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-
-            },
-        ],
-        students: [
-
-            {
-                id: Math.random().toString(36).substr(2),
-                name: 'Alex',
-                surname: 'Hernandez',
-                isAdmin: true,
-            },
-
-        ]
-    }
-
-    const handleInviteUser = (user) => {
-
-        dispatchStudents({ type: 'INVITE_STUDENT', user })
-
-    }
-    const handleDeleteInvited = (student) => {
-        if (confirm(`¿Eliminar invitación de ${student.name}?`)) {
-            dispatchStudents({ type: 'DELETE_INVITED', student })
-        }
-    }
-    const resetStudents = () => {
-        dispatchStudents({ type: 'RESET', payload: initialStudents })
-    }
     const addMyPendingClass = (classData) => {
         classData.students = studentState.students
-        dispatchMyPendingClass({
+        dispatch({
             type: 'ADD_MY_PENDING_CLASS',
             myPendingClass: classData
         })
 
-        dispatchClassesLeft({
+        dispatch({
             type: 'ADD_CLASS',
         })
     }
     const addTemporaryClassEvent = (classData) => {
         classData.students = studentState.students
-        resetStudents()
 
         dispatchClassesAssignedLeft({ type: 'REMOVE_ASSIGNED_CLASS' })
         dispatchTemporaryClass({
@@ -460,26 +509,24 @@ export const TeachersProfileProvider = ({ children }) => {
     const updatePendingClassEvent = (classData) => {
         console.log('Class Data: ', classData);
 
-        dispatchMyPendingClass({
+        dispatch({
             type: 'UPDATE_MY_PENDING_CLASS',
             classData
         })
         handleHideDetailsClassForm()
     }
     const updateMyAcceptedClass = (classData) => {
-        resetStudents()
         console.log('Class Data: ', classData);
 
-        dispatchMyAcceptedClass({
+        dispatch({
             type: 'UPDATE_MY_ACCEPTED_CLASS',
             classData
         })
         handleHideDetailsClassForm()
     }
     const removeMyPendingClassEvent = (classData) => {
-        dispatchClassesLeft({ type: 'REMOVE_CLASS' })
-        resetStudents()
-        dispatchMyPendingClass({
+        dispatch({ type: 'REMOVE_CLASS' })
+        dispatch({
             type: 'DELETE_MY_PENDING_CLASS',
             classData
         })
@@ -487,7 +534,6 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const removeTemporaryClassEvent = (classData) => {
         dispatchClassesAssignedLeft({ type: 'ADD_ASSIGNED_CLASS' })
-        resetStudents()
         dispatchTemporaryClass({
             type: 'DELETE_TEMPORARY_CLASS',
             classData
@@ -499,30 +545,22 @@ export const TeachersProfileProvider = ({ children }) => {
     const [editableClassData, setEditableClassData] = useState(false)
     return (
         <TeachersProfileContext.Provider value={{
-            reservedClasses,
-            myAcceptedClasses,
+            teacherProfile,
             updateMyAcceptedClass,
-            myPendingClassState,
-            dispatchMyPendingClass,
             addMyPendingClass,
             removeMyPendingClassEvent,
-            classesLeftState,
-            dispatchClassesLeft,
             updatePendingClassEvent,
             showScheduleClass,
-            businessHours,
             key,
             setKey,
             handleClose,
             handleShow,
             handleNext,
             handlePrevious,
-            classPrice,
             calcPriceClass,
             selectedClasses,
             selectClasses,
-            temporaryClassState,
-            dispatchTemporaryClass,
+            temporaryClasses,
             classesAssignedLeft,
             handleBuy,
             showDetailsClassForm,
@@ -532,14 +570,9 @@ export const TeachersProfileProvider = ({ children }) => {
             setIsEdit,
             isMyClass,
             setIsMyClass,
-            studentState,
-            dispatchStudents,
-            handleInviteUser,
-            handleDeleteInvited,
             inviteStudentsState,
             setInviteStudentsState,
             handleClickInviteStudents,
-            resetStudents,
             addTemporaryClassEvent,
             updateTemporaryClassEvent,
             removeTemporaryClassEvent,

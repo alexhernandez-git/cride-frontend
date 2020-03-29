@@ -52,6 +52,8 @@ const TeachersProfileStudies = () => {
         studiesComplete.startDate = valueStudies.startDate
         studiesComplete.endDate = valueStudies.endDate
         studiesComplete.description = valueStudies.description
+        console.log(studiesComplete);
+
         const newArrayStudiess = [...studies, studiesComplete]
         sortStudiess(newArrayStudiess)
 

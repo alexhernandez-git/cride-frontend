@@ -35,6 +35,8 @@ const TeachersProfileLanguages = () => {
             languageComplete.languageLabel = valueLanguage.label
             languageComplete.levelValue = valueLevel.value
             languageComplete.levelLabel = valueLevel.label
+            console.log(languageComplete);
+
             setLanguage([...language, languageComplete])
             console.log(language);
 

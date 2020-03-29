@@ -25,13 +25,19 @@ const AcquiredClasses = () => {
     }, []);
     return (
         <TeachersProfileContext.Consumer>
-            {context => (
-                <div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
+
+            {teacherContext => (
+
+                < div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
+                    {
+                        console.log(teacherContext)
+                    }
                     <span>Clases adquiridas</span>{' '}
-                    <span className="">{context.myPendingClassState.length + context.classesLeftState.length}</span>
+                    <span className="">{teacherContext.teacherProfile.teacher.myPendingClasses.length + teacherContext.teacherProfile.teacher.eventClassesLeft.length}</span>
                 </div>
-            )}
-        </TeachersProfileContext.Consumer>
+            )
+            }
+        </TeachersProfileContext.Consumer >
     );
 }
 

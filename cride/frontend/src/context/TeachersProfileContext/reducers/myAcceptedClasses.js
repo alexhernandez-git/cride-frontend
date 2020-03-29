@@ -11,8 +11,7 @@ const addMyPendingClass = (myPendingClass, state) => {
 
 export const myAcceptedClassesReducer = (state, action) => {
     switch (action.type) {
-        case 'REQUEST_ACCEPTED_CLASS':
-            return state
+
         case 'UPDATE_MY_ACCEPTED_CLASS':
             console.log('State: ', state);
             console.log('action.classData: ', action.classData);

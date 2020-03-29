@@ -218,21 +218,21 @@ export default function ScheduleHour(props) {
                             id='external-profile-events'
                             className="text-center draggable-events"
                         >
-                            {teacherContext.classesLeftState.length > 0 && !teacherContext.showScheduleClass ?
+                            {teacherContext.teacherProfile.teacher.eventClassesLeft.length > 0 && !teacherContext.showScheduleClass ?
                                 <>
 
 
 
                                     <div className="py-2 d-none d-lg-block"></div>
                                     <div className="pt-3 d-block d-lg-none"></div>
-                                    {teacherContext.classesLeftState.length > 0 ?
+                                    {teacherContext.teacherProfile.teacher.eventClassesLeft.length > 0 ?
                                         <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases</span>
                                         :
                                         ''
                                     }
                                     <Row>
-                                        {teacherContext.classesLeftState.map(() => (
-                                            teacherContext.classesLeftState.length == 1 ?
+                                        {teacherContext.teacherProfile.teacher.eventClassesLeft.map(() => (
+                                            teacherContext.teacherProfile.teacher.eventClassesLeft.length == 1 ?
                                                 < Col >
                                                     <div className="fc-event text-center">Clase</div>
                                                 </Col>
@@ -287,20 +287,20 @@ export default function ScheduleHour(props) {
                                         [
                                             {
                                                 id: 0,
-                                                events: teacherContext.myPendingClassState,
+                                                events: teacherContext.teacherProfile.teacher.myPendingClasses,
                                                 color: '#e5c07b',
                                                 editable: false,
                                             },
                                             {
                                                 id: 2,
-                                                events: teacherContext.myAcceptedClasses,
+                                                events: teacherContext.teacherProfile.teacher.myAcceptedClasses,
                                                 color: '#56b389',
                                                 editable: false,
 
                                             },
                                             {
                                                 id: 3,
-                                                events: teacherContext.reservedClasses,
+                                                events: teacherContext.teacherProfile.teacher.reservedClasses,
                                                 color: 'grey',
                                                 editable: false,
 
@@ -311,25 +311,25 @@ export default function ScheduleHour(props) {
                                         [
                                             {
                                                 id: 0,
-                                                events: teacherContext.temporaryClassState,
+                                                events: teacherContext.temporaryClasses,
                                                 color: '#3f8989'
                                             },
                                             {
                                                 id: 1,
-                                                events: teacherContext.myPendingClassState,
+                                                events: teacherContext.teacherProfile.teacher.myPendingClasses,
                                                 color: 'grey',
                                                 editable: false,
                                             },
                                             {
                                                 id: 2,
-                                                events: teacherContext.myAcceptedClasses,
+                                                events: teacherContext.teacherProfile.teacher.myAcceptedClasses,
                                                 color: 'grey',
                                                 editable: false,
 
                                             },
                                             {
                                                 id: 3,
-                                                events: teacherContext.reservedClasses,
+                                                events: teacherContext.teacherProfile.teacher.reservedClasses,
                                                 color: 'grey',
                                                 editable: false,
 
@@ -351,7 +351,7 @@ export default function ScheduleHour(props) {
                         <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
                             Clases por asignar
                             <span className="font-weight-bold">{' '}
-                                {props.profile ? teacherContext.classesLeftState.length : teacherContext.classesAssignedLeft.length}
+                                {props.profile ? teacherContext.teacherProfile.teacher.eventClassesLeft.length : teacherContext.classesAssignedLeft.length}
                             </span>
                         </div>
                     </div>
@@ -391,7 +391,7 @@ export default function ScheduleHour(props) {
 
                                         }
 
-                                        <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span></span>
+                                        <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherProfile.teacher.classPrice * 0.2)}€</span></span>
 
                                     </div>
                                     <div

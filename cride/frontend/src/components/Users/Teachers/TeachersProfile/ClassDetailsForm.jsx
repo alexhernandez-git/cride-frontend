@@ -46,7 +46,6 @@ const ClassDetailsForm = (props) => {
             console.log(props.args);
 
             if (teacherContext.isEdit) {
-                teacherContext.studentState.students = props.args.event.extendedProps.students
 
                 setClassData(() => ({
                     id: props.args.event.id,
@@ -54,18 +53,17 @@ const ClassDetailsForm = (props) => {
                     start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
-                    students: teacherContext.studentState.students
+                    students: props.args.event.extendedProps.students
 
                 }))
             } else if (teacherContext.isMyClass) {
-                teacherContext.studentState.students = props.args.event.extendedProps.students
                 setClassData(() => ({
                     id: props.args.event.id,
                     title: props.args.event.title,
                     start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
-                    students: teacherContext.studentState.students
+                    students: props.args.event.extendedProps.students
 
                 }))
             } else {
@@ -148,7 +146,6 @@ const ClassDetailsForm = (props) => {
             }
 
             props.args.event.setExtendedProp('description', classData.description)
-            props.args.event.setExtendedProp('students', teacherContext.studentState.students)
 
             setClassData({
                 id: '',

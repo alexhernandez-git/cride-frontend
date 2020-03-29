@@ -23,7 +23,7 @@ export default function ClassSubject() {
         title: 'Resolver dudas',
         sessions: '1 clase',
         description: `Realiza una clase con Miguel Ángel. Esta es la opción ideal para resolver una duda de cara a un exámen, una entrega, una entrevista...`,
-        price: teacherContext.classPrice,
+        price: teacherContext.teacherProfile.teacher.classPrice,
         classes: 1
     },
     {
