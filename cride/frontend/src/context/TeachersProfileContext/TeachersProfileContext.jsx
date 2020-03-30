@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useReducer } from 'react'
 export const TeachersProfileContext = createContext()
 import moment from 'moment'
-
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {
     temporaryClassReducer,
 } from './reducers/temporaryClassReducer'
@@ -13,7 +13,7 @@ import {
     teacherProfileReducer,
 } from './reducers/teacherProfileReducer'
 
-export const TeachersProfileProvider = ({ children }) => {
+export const TeachersProfileProvider = ({ children, id }) => {
 
 
 
@@ -48,6 +48,9 @@ export const TeachersProfileProvider = ({ children }) => {
     const [teacherProfile, dispatch] = useReducer(teacherProfileReducer, initialState)
 
     useEffect(() => {
+        console.log(id);
+
+
         dispatch({
             type: 'FETCH_SUCCESS', payload: {
                 name: 'Alex',
@@ -215,6 +218,48 @@ export const TeachersProfileProvider = ({ children }) => {
                         endTime: '19:00'
                     },
                 ],
+                classes: [{
+
+                    id: 'fudhnl6tja5',
+                    title: null,
+                    start: Date.now() + 6.04e+8 / 2.4,
+                    end: null,
+                    constraint: 'businessHours',
+                    description: 'Esta es una clase aceptada',
+                    students: [
+                        {
+                            id: "elcapo123",
+                            name: "DOMINGO",
+                            surname: "CAYUELA",
+                            isAdmin: true,
+                            isInvited: false,
+                        },
+                        {
+                            id: "opopmuiueib",
+                            name: "SALVADOR",
+                            surname: "POPESCU",
+                            isAdmin: false,
+                            isInvited: false,
+                        },
+                        {
+                            id: "g3kr0ue1c7q",
+                            name: "ALVARO",
+                            surname: "MORO",
+                            isAdmin: false,
+                            isInvited: false,
+                        },
+                        {
+                            id: "picuplfo8n",
+                            name: "CESAR",
+                            surname: "RIOJA",
+                            isAdmin: false,
+                            isInvited: false,
+                        }
+
+
+                    ]
+
+                }],
                 reservedClasses: [
                     {
                         id: 'fudhnl6tja5',
@@ -225,7 +270,7 @@ export const TeachersProfileProvider = ({ children }) => {
                         description: 'Esta es una clase aceptada',
                         students: [
                             {
-                                id: "fudhnl6tja5",
+                                id: "elcapo123",
                                 name: "DOMINGO",
                                 surname: "CAYUELA",
                                 isAdmin: true,
@@ -263,7 +308,7 @@ export const TeachersProfileProvider = ({ children }) => {
                         description: 'Esta es una clase aceptada',
                         students: [
                             {
-                                id: "fudhnl6tja5",
+                                id: "elcapo123",
                                 name: "DOMINGO",
                                 surname: "CAYUELA",
                                 isAdmin: true,
@@ -303,7 +348,7 @@ export const TeachersProfileProvider = ({ children }) => {
                         description: 'Esta es una clase aceptada',
                         students: [
                             {
-                                id: "fudhnl6tja5",
+                                id: "oipfewaopiweaf",
                                 name: "DOMINGO",
                                 surname: "CAYUELA",
                                 isAdmin: true,
@@ -352,10 +397,7 @@ export const TeachersProfileProvider = ({ children }) => {
 
     }, []);
 
-    setTimeout(() => {
-        console.log(teacherProfile)
 
-    }, 2000);
     // Temporary classes
     const [temporaryClasses, dispatchTemporaryClass] = useReducer(temporaryClassReducer, []);
 
@@ -430,6 +472,8 @@ export const TeachersProfileProvider = ({ children }) => {
 
 
     const handleBuy = () => {
+
+
         dispatch({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClasses })
 
         dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
@@ -453,6 +497,8 @@ export const TeachersProfileProvider = ({ children }) => {
         }
     }
     const handleHideDetailsClassForm = () => {
+        setIsMyClass(false)
+        setIsEdit(false)
         setInviteStudentsState(false)
         setIsEdit(false)
         setShowDetailsClassForm(false)
@@ -460,6 +506,7 @@ export const TeachersProfileProvider = ({ children }) => {
     }
     const [isEdit, setIsEdit] = useState(false)
     const [isMyClass, setIsMyClass] = useState(false)
+    const [onlyShow, setOnlyShow] = useState(false)
     const [inviteStudentsState, setInviteStudentsState] = useState(false)
 
     const handleClickInviteStudents = () => {
@@ -470,25 +517,19 @@ export const TeachersProfileProvider = ({ children }) => {
         }
     }
 
-    // const handleDeleteInvited = (student) => {
-    //     if (confirm(`¿Eliminar invitación de ${student.name}?`)) {
-    //         dispatchStudents({ type: 'DELETE_INVITED', student })
-    //     }
-    // }
 
     const addMyPendingClass = (classData) => {
-        classData.students = studentState.students
+        setIsMyClass(false)
+        setIsEdit(false)
         dispatch({
             type: 'ADD_MY_PENDING_CLASS',
             myPendingClass: classData
         })
-
         dispatch({
             type: 'ADD_CLASS',
         })
     }
     const addTemporaryClassEvent = (classData) => {
-        classData.students = studentState.students
 
         dispatchClassesAssignedLeft({ type: 'REMOVE_ASSIGNED_CLASS' })
         dispatchTemporaryClass({
@@ -497,8 +538,9 @@ export const TeachersProfileProvider = ({ children }) => {
         })
         handleHideDetailsClassForm()
     }
+
     const updateTemporaryClassEvent = (classData) => {
-        console.log('Class Data: ', classData);
+
 
         dispatchTemporaryClass({
             type: 'UPDATE_TEMPORARY_CLASS',
@@ -507,8 +549,9 @@ export const TeachersProfileProvider = ({ children }) => {
         handleHideDetailsClassForm()
     }
     const updatePendingClassEvent = (classData) => {
-        console.log('Class Data: ', classData);
 
+        setIsMyClass(false)
+        setIsEdit(false)
         dispatch({
             type: 'UPDATE_MY_PENDING_CLASS',
             classData
@@ -516,7 +559,8 @@ export const TeachersProfileProvider = ({ children }) => {
         handleHideDetailsClassForm()
     }
     const updateMyAcceptedClass = (classData) => {
-        console.log('Class Data: ', classData);
+        setIsMyClass(false)
+        setIsEdit(false)
 
         dispatch({
             type: 'UPDATE_MY_ACCEPTED_CLASS',
@@ -525,9 +569,21 @@ export const TeachersProfileProvider = ({ children }) => {
         handleHideDetailsClassForm()
     }
     const removeMyPendingClassEvent = (classData) => {
+        setIsMyClass(false)
+        setIsEdit(false)
         dispatch({ type: 'REMOVE_CLASS' })
         dispatch({
             type: 'DELETE_MY_PENDING_CLASS',
+            classData
+        })
+        handleHideDetailsClassForm()
+    }
+    const removeMyAcceptedClassEvent = (classData) => {
+        setIsMyClass(false)
+        setIsEdit(false)
+        dispatch({ type: 'REMOVE_CLASS' })
+        dispatch({
+            type: 'DELETE_MY_ACCEPTED_CLASS',
             classData
         })
         handleHideDetailsClassForm()
@@ -541,12 +597,13 @@ export const TeachersProfileProvider = ({ children }) => {
         handleHideDetailsClassForm()
 
     }
-    const [isDateEditing, setIsDateEditing] = useState(false)
+
     const [editableClassData, setEditableClassData] = useState(false)
     return (
         <TeachersProfileContext.Provider value={{
             teacherProfile,
             updateMyAcceptedClass,
+            removeMyAcceptedClassEvent,
             addMyPendingClass,
             removeMyPendingClassEvent,
             updatePendingClassEvent,
@@ -570,6 +627,8 @@ export const TeachersProfileProvider = ({ children }) => {
             setIsEdit,
             isMyClass,
             setIsMyClass,
+            onlyShow,
+            setOnlyShow,
             inviteStudentsState,
             setInviteStudentsState,
             handleClickInviteStudents,
@@ -578,9 +637,6 @@ export const TeachersProfileProvider = ({ children }) => {
             removeTemporaryClassEvent,
             editableClassData,
             setEditableClassData,
-            isDateEditing,
-            setIsDateEditing,
-
         }}>
             {children}
         </TeachersProfileContext.Provider>

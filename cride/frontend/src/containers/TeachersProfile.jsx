@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "static/assets/styles/containers/TeachersProfile.scss"
 
 import { TeachersProfileProvider, TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
@@ -14,9 +14,14 @@ import ScheduleHour from "src/components/Users/Teachers/TeachersProfile/Schedule
 import StudentFeedback from 'src/components/Users/Teachers/TeachersProfile/StudentFeedback';
 import ScheduleClass from 'src/components/Users/Teachers/TeachersProfile/ScheduleClass';
 import { Row } from 'react-bootstrap';
-const TeachersProfile = () => {
+import { useLocation } from 'react-router-dom'
+const TeachersProfile = props => {
+    const { match } = props;
+    let { id } = match.params;
+    console.log(id);
+
     return (
-        <TeachersProfileProvider>
+        <TeachersProfileProvider id={id}>
             <TeachersProfileContext.Consumer>
                 {teacherContext => (
 

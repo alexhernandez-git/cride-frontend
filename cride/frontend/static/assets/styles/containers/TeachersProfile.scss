@@ -27,6 +27,35 @@
     width: 150px !important;
   }
 }
+@media only screen and (max-height: 800px) {
+  .schedule-class {
+    padding-bottom: 500px;
+  }
+  #external-events.draggable-events {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 15;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  #external-events.draggable-events .row {
+    display: inherit !important;
+    flex-wrap: inherit;
+    margin: inherit;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  #external-events.draggable-events .col-lg-6 {
+    width: inherit !important;
+    display: table-cell;
+  }
+  #external-events div.fc-event {
+    animation: none !important;
+    width: 150px !important;
+  }
+}
 
 #external-profile-events.draggable-events {
   position: fixed;

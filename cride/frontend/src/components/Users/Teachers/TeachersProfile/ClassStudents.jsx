@@ -9,8 +9,7 @@ import "static/assets/styles/components/Users/Teachers/TeachersProfile/ClassStud
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import { AppContext } from "src/context/AppContext"
 
-import moment from 'moment'
-const ClassStudents = () => {
+const ClassStudents = (props) => {
     const teacherContext = useContext(TeachersProfileContext);
     const appContext = useContext(AppContext);
 
@@ -40,14 +39,11 @@ const ClassStudents = () => {
     useEffect(() => {
 
         return () => {
-            teacherContext.resetStudents()
             teacherContext.setInviteStudentsState(false)
-            console.log('entra');
 
         }
     }, [])
     const handleInviteStudent = (user) => {
-        console.log(!appContext.user.friends.some(student => student === user));
 
 
         if (!appContext.user.friends.some(student => student === user)) {
@@ -68,29 +64,34 @@ const ClassStudents = () => {
 
                                 <div className="d-flex justify-content-between align-items-center my-2">
                                     <span className="h5 m-0">Estudiantes</span>
-                                    <button
-                                        className="btn-green border text-white rounded-pill px-3 shadow"
-                                        style={{
-                                            height: '40px'
-                                        }}
-                                        onClick={teacherContext.handleClickInviteStudents}
-                                    >
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '25px'
-                                        }}>
-                                            {teacherContext.inviteStudentsState ?
-                                                <>
-                                                    <IoMdCloseCircleOutline /> Cerrar
+                                    {console.log(props.isAdmin)}
+                                    {props.isAdmin ?
+                                        <button
+                                            className="btn-green border text-white rounded-pill px-3 shadow"
+                                            style={{
+                                                height: '40px'
+                                            }}
+                                            onClick={teacherContext.handleClickInviteStudents}
+                                        >
+                                            <IconContext.Provider value={{
+                                                className: " text-white cursor-ponter",
+                                                size: '25px'
+                                            }}>
+                                                {teacherContext.inviteStudentsState ?
+                                                    <>
+                                                        <IoMdCloseCircleOutline /> Cerrar
                                         </>
-                                                :
-                                                <>
-                                                    <MdPersonAdd /> Invitar
+                                                    :
+                                                    <>
+                                                        <MdPersonAdd /> Invitar
                                         </>
 
-                                            }
-                                        </IconContext.Provider>
-                                    </button>
+                                                }
+                                            </IconContext.Provider>
+                                        </button>
+                                        :
+                                        ''
+                                    }
 
                                 </div>
 
@@ -122,7 +123,7 @@ const ClassStudents = () => {
                                         height: '400px',
                                     }}
                                 >
-                                    {appContext.user.friends.map(user => (
+                                    {appContext.userProfile.user.friends.map(user => (
                                         <div className="my-1"  >
                                             <div className=" px-3 py-2 bg-white rounded-pill shadow">
                                                 <div className="div-delegate-student d-flex justify-content-between align-items-center">
@@ -167,76 +168,84 @@ const ClassStudents = () => {
 
                                 </div>
                             </div>
+                            {console.log(props.classData)}
+                            {props.classData.students ?
+                                <>
+                                    {
+                                        props.classData.students.map(student => (
+                                            <div className="my-1">
+                                                <div className=" px-3 py-2 bg-white rounded-pill shadow">
+                                                    <div className="div-delegate-student d-flex justify-content-between align-items-center">
+                                                        <div className="d-flex justify-content-start align-items-center w-100">
 
-                            {appContext.user.friends.map(student => (
-                                <div className="my-1">
-                                    <div className=" px-3 py-2 bg-white rounded-pill shadow">
-                                        <div className="div-delegate-student d-flex justify-content-between align-items-center">
-                                            <div className="d-flex justify-content-start align-items-center w-100">
+                                                            <div
+                                                                className="delegate-img mr-3"
+                                                                style={{
+                                                                    overflow: 'hidden',
+                                                                    height: '50px',
+                                                                    width: '50px',
+                                                                    borderRadius: '50%'
+                                                                }}>
+                                                                <img
+                                                                    src={`https://source.unsplash.com/random/1`}
+                                                                    alt=""
+                                                                    style={{
+                                                                        height: '50px',
+                                                                        width: '50px'
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                            <div className="d-flex flex-column">
+                                                                <span className="h6 font-weight-normal m-0">{student.name} {student.surname}</span>
+                                                                {student.isAdmin ?
 
-                                                <div
-                                                    className="delegate-img mr-3"
-                                                    style={{
-                                                        overflow: 'hidden',
-                                                        height: '50px',
-                                                        width: '50px',
-                                                        borderRadius: '50%'
-                                                    }}>
-                                                    <img
-                                                        src={`https://source.unsplash.com/random/1`}
-                                                        alt=""
-                                                        style={{
-                                                            height: '50px',
-                                                            width: '50px'
-                                                        }}
-                                                    />
-                                                </div>
-                                                <div className="d-flex flex-column">
-                                                    <span className="h6 font-weight-normal m-0">{student.name} {student.surname}</span>
-                                                    {student.isAdmin ?
+                                                                    <span
+                                                                        className="badge badge-pill bg-gradient-green font-weight-normal text-white mt-2"
+                                                                        style={{
+                                                                            width: 'max-content'
+                                                                        }}
+                                                                    >Delegado</span>
 
-                                                        <span
-                                                            className="badge badge-pill bg-gradient-green font-weight-normal text-white mt-2"
-                                                            style={{
-                                                                width: 'max-content'
-                                                            }}
-                                                        >Delegado</span>
-
-                                                        :
-                                                        ''}
-                                                    {student.isInvited ?
-                                                        <span
-                                                            className="badge badge-pill badge-warning font-weight-normal text-white mt-2"
-                                                            style={{
-                                                                width: 'max-content'
-                                                            }}
-                                                        >Invitado</span>
-                                                        :
-                                                        ''}
+                                                                    :
+                                                                    ''}
+                                                                {student.isInvited ?
+                                                                    <span
+                                                                        className="badge badge-pill badge-warning font-weight-normal text-white mt-2"
+                                                                        style={{
+                                                                            width: 'max-content'
+                                                                        }}
+                                                                    >Invitado</span>
+                                                                    :
+                                                                    ''}
 
 
+                                                            </div>
+                                                        </div>
+                                                        {student.isInvited ?
+                                                            <button
+                                                                className="btn btn-green text-white d-flex px-2"
+                                                                onClick={() => { teacherContext.handleDeleteInvited(student) }}
+                                                            >
+                                                                <IconContext.Provider value={{
+                                                                    className: " text-white cursor-ponter",
+                                                                    size: '20px'
+                                                                }}>
+                                                                    <MdCancel />
+                                                                </IconContext.Provider>
+                                                            </button>
+                                                            :
+                                                            ''}
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                            {student.isInvited ?
-                                                <button
-                                                    className="btn btn-green text-white d-flex px-2"
-                                                    onClick={() => { teacherContext.handleDeleteInvited(student) }}
-                                                >
-                                                    <IconContext.Provider value={{
-                                                        className: " text-white cursor-ponter",
-                                                        size: '20px'
-                                                    }}>
-                                                        <MdCancel />
-                                                    </IconContext.Provider>
-                                                </button>
-                                                :
-                                                ''}
+                                        ))
 
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-
+                                    }
+                                </>
+                                :
+                                ''
+                            }
                         </>
                     )
                     }

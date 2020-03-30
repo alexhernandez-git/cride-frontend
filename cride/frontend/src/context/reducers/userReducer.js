@@ -4,7 +4,6 @@ export const userReducer = (state, action) => {
 
     switch (action.type) {
         case 'FETCH_SUCCESS':
-            console.log(action.payload);
 
             return {
                 loading: false,

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
 export const AppContext = createContext()
 import { userReducer } from './reducers/userReducer'
 export const AppProvider = ({ children }) => {
@@ -15,76 +15,72 @@ export const AppProvider = ({ children }) => {
         }
 
     }
-    const [user, dispatch] = useReducer(userReducer, initialUser);
+    const [userProfile, dispatch] = useReducer(userReducer, initialUser);
     useEffect(() => {
         dispatch({
             type: 'FETCH_SUCCESS', payload: {
-                loading: true,
-                error: '',
-                user: {
-                    name: 'Alex',
-                    surname: 'Hernandez',
-                    email: 'ah20456@gmail.com',
-                    friends: [
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                id: 'alex1234h',
+                name: 'Alex',
+                surname: 'Hernandez',
+                email: 'ah20456@gmail.com',
+                friends: [
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Alex',
-                            surname: 'Hernandez',
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        name: 'Alex',
+                        surname: 'Hernandez',
 
-                        },
-                    ],
-                    teacher: false
-                }
-
+                    },
+                ],
+                teacher: false
             }
         })
 
     }, []);
     return (
         <AppContext.Provider value={{
-            user,
+            userProfile,
         }}>
             {children}
         </AppContext.Provider>

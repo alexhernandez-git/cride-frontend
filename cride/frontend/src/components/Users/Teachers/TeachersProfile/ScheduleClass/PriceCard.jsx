@@ -6,12 +6,11 @@ import { TeachersProfileContext } from "src/context/TeachersProfileContext/Teach
 
 export default function PriceCard(props) {
     const teacherContext = useContext(TeachersProfileContext);
-    const card = useRef()
     const [discount, setDiscount] = useState(0);
     const { id, title, sessions, description, price, classes } = props.content
     useEffect(() => {
         if (classes > 1) {
-            setDiscount(teacherContext.classPrice * classes - price * classes)
+            setDiscount(parseFloat(teacherContext.teacherProfile.teacher.classPrice * classes - price * classes).toFixed(2))
         }
     }, []);
     const handleSelectClasses = () => {

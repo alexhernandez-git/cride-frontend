@@ -2,30 +2,29 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaUserGraduate, FaSave } from "react-icons/fa";
+import { FaRegCalendarAlt, FaUserGraduate, FaSave, FaChalkboardTeacher } from "react-icons/fa";
 import { MdAddCircleOutline, MdTimer, MdCancel } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-import interactionPlugin from "@fullcalendar/interaction";
-import FullCalendar from '@fullcalendar/react'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import bootstrapPlugin from '@fullcalendar/bootstrap';
-import allLocales from '@fullcalendar/core/locales-all';
+
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import ClassStudents from "src/components/Users/Teachers/TeachersProfile/ClassStudents"
-
+import { AppContext } from "src/context/AppContext"
 import moment from 'moment'
 const ClassDetailsForm = (props) => {
     const teacherContext = useContext(TeachersProfileContext);
-
+    const appContext = useContext(AppContext);
+    const [isAdmin, setIsAdmin] = useState(false)
     const myRef = useRef(null)
-    useEffect(() => {
-        console.log(props);
 
+    useEffect(() => {
         const el = document.querySelector('.teacher-calendar');
         el.scrollIntoView(true)
+
+        // if (adminStudents.map((student) => student.id == appContext.userProfile.user.id)) {
+
+        // }
     }, [])
     const [classData, setClassData] = useState({
         id: Math.random().toString(36).substr(2),
@@ -38,15 +37,11 @@ const ClassDetailsForm = (props) => {
     const handleBack = () => {
         teacherContext.setIsDateEditing(false)
     }
-    const updateDate = () => {
 
-    }
     useEffect(() => {
         if (props.args) {
-            console.log(props.args);
 
             if (teacherContext.isEdit) {
-
                 setClassData(() => ({
                     id: props.args.event.id,
                     title: 'Clase',
@@ -56,6 +51,12 @@ const ClassDetailsForm = (props) => {
                     students: props.args.event.extendedProps.students
 
                 }))
+                let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
+                const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
+
+                if (result.length > 0) {
+                    setIsAdmin(true)
+                }
             } else if (teacherContext.isMyClass) {
                 setClassData(() => ({
                     id: props.args.event.id,
@@ -66,14 +67,40 @@ const ClassDetailsForm = (props) => {
                     students: props.args.event.extendedProps.students
 
                 }))
-            } else {
+                let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
+                const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
+
+                if (result.length > 0) {
+                    setIsAdmin(true)
+                }
+            } else if (teacherContext.onlyShow) {
+                setClassData(() => ({
+                    id: props.args.event.id,
+                    title: props.args.event.title,
+                    start: props.args.event.start,
+                    constraint: 'businessHours',
+                    description: props.args.event.extendedProps.description,
+                    students: props.args.event.extendedProps.students
+
+                }))
+            }
+            else {
+
+                setIsAdmin(true)
                 setClassData(() => ({
                     id: Math.random().toString(36).substr(2),
                     title: 'Clase',
                     start: props.args.date,
                     constraint: 'businessHours',
                     description: '',
-                    students: []
+                    students: [{
+                        id: appContext.userProfile.user.id,
+                        name: appContext.userProfile.user.name,
+                        surname: appContext.userProfile.user.surname,
+                        name: appContext.userProfile.user.name,
+                        isAdmin: true,
+                        isInvited: false,
+                    }]
                 }))
             }
 
@@ -84,6 +111,7 @@ const ClassDetailsForm = (props) => {
     const [calendarView, setCalendarView] = useState(null)
 
     const addClass = () => {
+
         if (props.profile) {
             teacherContext.addMyPendingClass(classData)
 
@@ -103,9 +131,16 @@ const ClassDetailsForm = (props) => {
     }
     const deleteClass = () => {
         if (props.profile) {
-            if (confirm('¿Estas seguro?')) {
 
-                teacherContext.removeMyPendingClassEvent(classData)
+            if (confirm('¿Estas seguro?')) {
+                if (teacherContext.isMyClass) {
+                    teacherContext.removeMyAcceptedClassEvent(classData)
+
+                } else {
+
+                    teacherContext.removeMyPendingClassEvent(classData)
+
+                }
                 props.args.event.remove()
                 // let event = props.calendar.current.getResourceById(classData.id);
                 // event.remove()
@@ -163,6 +198,9 @@ const ClassDetailsForm = (props) => {
                 start: null,
                 description: ''
             })
+            setIsAdmin(false)
+            teacherContext.setIsEdit(false)
+            teacherContext.setOnlyShow(false)
         }
     }, []);
     moment.locale('es')
@@ -175,50 +213,42 @@ const ClassDetailsForm = (props) => {
                         ref={myRef}
                         id="class-details-form"
                     >
-
-                        Comprueba los detalles de la clase
-</div>
-                    <div className="d-lg-flex justify-content-between align-items-center mt-3 mb-4">
-                        {teacherContext.isDateEditing
-                            ?
-                            <button
-                                className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-sm-block"
-                                style={{
-                                    height: '40px'
-                                }}
-                                onClick={handleBack}
-                            >
-                                <IconContext.Provider value={{
-                                    className: "cursor-ponter",
-                                    size: '25px'
-                                }}>
-                                    <IoIosArrowBack /> Volver
-                        </IconContext.Provider>
-
-                            </button>
+                        {teacherContext.onlyShow ?
+                            <>
+                                Detalles de la clase
+                           </>
                             :
-                            <button
-                                className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-md-block"
-                                style={{
-                                    height: '40px'
-                                }}
-                                onClick={teacherContext.handleHideDetailsClassForm}
-                            >
-                                <IconContext.Provider value={{
-                                    className: "cursor-ponter",
-                                    size: '25px'
-                                }}>
-                                    <IoIosArrowBack /> Volver al calendario
+                            <>
+                                Comprueba los detalles de la clase
+                            </>
+                        }
+                    </div>
+                    <div className="d-lg-flex justify-content-between align-items-center mt-3 mb-4">
+
+                        <button
+                            className="btn-outline-cancel bg-white rounded-pill mr-2 pr-3 pl-2 btn-md-block"
+                            style={{
+                                height: '40px'
+                            }}
+                            onClick={teacherContext.handleHideDetailsClassForm}
+                        >
+                            <IconContext.Provider value={{
+                                className: "cursor-ponter",
+                                size: '25px'
+                            }}>
+                                <IoIosArrowBack /> Volver al calendario
                             </IconContext.Provider>
 
-                            </button>
-                        }
-                        {teacherContext.isEdit ?
+                        </button>
 
-                            <div className="d-sm-flex justify-content-between align-items-cente  btn-md-block">
+                        {!teacherContext.onlyShow && isAdmin ?
+                            <>
 
-                                {!teacherContext.isDateEditing ?
-                                    <>
+                                {teacherContext.isEdit || teacherContext.isMyClass ?
+
+                                    <div className="d-sm-flex justify-content-between align-items-cente  btn-md-block">
+
+
                                         <button
                                             className="btn-outline-cancel bg-white rounded-pill mr-2 pl-2 pr-3 btn-md-block"
                                             style={{
@@ -233,87 +263,71 @@ const ClassDetailsForm = (props) => {
                                   </IconContext.Provider>
 
                                         </button>
-                                    </>
-                                    :
-                                    ''
-                                }
-                                {teacherContext.isDateEditing ?
-                                    <button
-                                        className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
-                                        style={{
-                                            height: '40px'
-                                        }}
 
-                                        onClick={updateDate}>
 
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '25px'
-                                        }}>
-                                            <FaSave /> Solicitar cambio de fecha
+
+                                        <button
+                                            className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
+                                            style={{
+                                                height: '40px'
+                                            }}
+
+                                            onClick={updateClass}>
+
+                                            <IconContext.Provider value={{
+                                                className: " text-white cursor-ponter",
+                                                size: '25px'
+                                            }}>
+                                                <FaSave />  Guardar
                                         </IconContext.Provider>
 
-                                    </button>
+                                        </button>
+
+                                    </div>
+
                                     :
-                                    <button
-                                        className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
-                                        style={{
-                                            height: '40px'
-                                        }}
+                                    <>
+                                        {teacherContext.isMyClass ?
+                                            <button
+                                                className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
+                                                style={{
+                                                    height: '40px'
+                                                }}
 
-                                        onClick={updateClass}>
+                                                onClick={updateClass}>
 
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '25px'
-                                        }}>
-                                            <FaSave />  Guardar
-                                        </IconContext.Provider>
-
-                                    </button>
-                                }
-                            </div>
-
-                            :
-                            <>
-                                {teacherContext.isMyClass ?
-                                    <button
-                                        className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
-                                        style={{
-                                            height: '40px'
-                                        }}
-
-                                        onClick={updateClass}>
-
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '25px'
-                                        }}>
-                                            <FaSave />  Guardar
+                                                <IconContext.Provider value={{
+                                                    className: " text-white cursor-ponter",
+                                                    size: '25px'
+                                                }}>
+                                                    <FaSave />  Guardar
                                     </IconContext.Provider>
 
-                                    </button>
+                                            </button>
 
-                                    :
+                                            :
 
-                                    < button
-                                        className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
-                                        style={{
-                                            height: '40px'
-                                        }}
-                                        onClick={addClass}>
-                                        <IconContext.Provider value={{
-                                            className: " text-white cursor-ponter",
-                                            size: '25px'
-                                        }}>
-                                            <MdAddCircleOutline /> Añadir clase
+                                            < button
+                                                className="btn-green text-white rounded-pill mr-2 px-3 shadow btn-md-block"
+                                                style={{
+                                                    height: '40px'
+                                                }}
+                                                onClick={addClass}>
+                                                <IconContext.Provider value={{
+                                                    className: " text-white cursor-ponter",
+                                                    size: '25px'
+                                                }}>
+                                                    <MdAddCircleOutline /> Añadir clase
                                                    </IconContext.Provider>
 
-                                    </button>
+                                            </button>
+                                        }
+                                    </>
                                 }
                             </>
+                            :
+                            ''
                         }
-
 
                     </div>
                     <span className="h5">Detalles de la clase</span>
@@ -375,30 +389,55 @@ const ClassDetailsForm = (props) => {
 
                         </Row>
 
-                    </div>
+                        {teacherContext.onlyShow || !isAdmin ?
+                            <>
+                                <Row className="mb-2">
+                                    <Col sm={5} xl={4} className="d-flex justify-content-center d-sm-inline">
+                                        <span className="font-weight-normal text-primary">
+                                            <IconContext.Provider value={{
+                                                className: "mr-2 text-primary cursor-ponter",
+                                                size: '20px'
+                                            }}>
+                                                <FaChalkboardTeacher /> Temas a tocar:
+                                    </IconContext.Provider>
 
-                    <span className="h5">Que quieres aprender en esta clase</span>
+                                        </span>{' '}
+                                    </Col>
+                                    <Col sm={7} lg={6} className="d-flex justify-content-center d-sm-inline">
+                                        {classData.description}
+                                    </Col>
 
-                    <div className="mt-3 mb-4">
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Control as="textarea" rows="3" placeholder='' value={classData.description} onChange={(e) => setClassData({ ...classData, description: e.target.value })} />
-                            <small>
-                                Al poner tus objetivos en esta clase conseguiras lo siguiente:
+                                </Row>
+                            </>
+                            :
+                            <>
+
+                                <span className="h5">Que quieres aprender en esta clase</span>
+
+                                <div className="mt-3 mb-4">
+                                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                                        <Form.Control as="textarea" rows="3" placeholder='' value={classData.description} onChange={(e) => setClassData({ ...classData, description: e.target.value })} />
+                                        <small>
+                                            Al poner tus objetivos en esta clase conseguiras lo siguiente:
                                 <ol>
-                                    <li>Que el profesor obtenga información de tu clase y pueda ofrecerte un mejor servicio</li>
-                                    <li>Que otros alumnos que tengan tus mismos intereses te pidan una invitación a esa clase y asi ganar dinero</li>
-                                </ol>
+                                                <li>Que el profesor obtenga información de tu clase y pueda ofrecerte un mejor servicio</li>
+                                                <li>Que otros alumnos que tengan tus mismos intereses te pidan una invitación a esa clase y asi ganar dinero</li>
+                                            </ol>
 
-                            </small>
-                        </Form.Group>
+                                        </small>
+                                    </Form.Group>
 
+                                </div>
+                            </>
+                        }
                     </div>
                     <Row>
                         <Col sm={12}>
-                            <ClassStudents />
+                            <ClassStudents isAdmin={isAdmin} classData={classData} />
                         </Col>
 
                     </Row>
+
                 </div>
             )
             }

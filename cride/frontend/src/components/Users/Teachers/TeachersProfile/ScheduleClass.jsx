@@ -37,7 +37,6 @@ export default function ScheduleClass() {
     }
     const invitationText = useRef()
     const handleWindowClick = (e) => {
-        console.log(e.target != invitationText.current);
         if (e.target != invitationText.current) {
             setInvitationPriceState(false)
         }
@@ -55,7 +54,6 @@ export default function ScheduleClass() {
     }, [window.onclick = handleClick])
 
     const handleClickHideModal = () => {
-        console.log('key: ', teacherContext.key);
 
         if (teacherContext.key > 0) {
             if (confirm('¿Estas seguro? Si sales al perfil del profesor los cambios se perderan'))
@@ -104,7 +102,7 @@ export default function ScheduleClass() {
 
                             }
 
-                            <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.classPrice * 0.2)}€</span></span>
+                            <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherProfile.teacher.classPrice * 0.2)}€</span></span>
 
                         </div>
                         <div

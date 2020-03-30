@@ -29,9 +29,7 @@ const AcquiredClasses = () => {
             {teacherContext => (
 
                 < div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
-                    {
-                        console.log(teacherContext)
-                    }
+                    {console.log(teacherContext.teacherProfile)}
                     <span>Clases adquiridas</span>{' '}
                     <span className="">{teacherContext.teacherProfile.teacher.myPendingClasses.length + teacherContext.teacherProfile.teacher.eventClassesLeft.length}</span>
                 </div>

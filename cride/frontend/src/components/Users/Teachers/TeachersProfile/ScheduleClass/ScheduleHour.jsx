@@ -73,23 +73,21 @@ export default function ScheduleHour(props) {
     }
 
     const handleEventClick = (args) => {
+        setArgs(args)
         if (args.event.source.id == 0) {
-            console.log(args.event);
-
 
             teacherContext.setIsEdit(true)
-            setArgs(args)
 
             teacherContext.handleShowDetailsClassForm()
         } else if (args.event.source.id == 2 && props.profile) {
-            console.log(args);
 
-            setArgs(args)
             teacherContext.setIsMyClass(true)
 
             teacherContext.handleShowDetailsClassForm()
-        } else {
-            alert('No es posible editar este evento')
+        } else if (args.event.source.id == 3 || (args.event.source.id == 2 && !props.profile)) {
+
+            teacherContext.setOnlyShow(true)
+            teacherContext.handleShowDetailsClassForm()
         }
 
     }
@@ -133,7 +131,6 @@ export default function ScheduleHour(props) {
     }
     const invitationText = useRef()
     const handleWindowClick = (e) => {
-        console.log('entra');
 
         if (e.target != invitationText.current) {
             setInvitationPriceState(false)
@@ -154,14 +151,17 @@ export default function ScheduleHour(props) {
         };
     })
     const handleClickHideModal = () => {
-        console.log('key: ', teacherContext.key);
 
         if (teacherContext.key > 0) {
-            if (confirm('¿Estas seguro? Si sales al perfil del profesor los cambios se perderan'))
+            if (confirm('¿Estas seguro? Si sales al perfil del profesor los cambios se perderan')) {
                 teacherContext.handleClose()
+                teacherContext.setIsMyClass(false)
+                teacherContext.setIsEdit(false)
+            }
         } else {
             teacherContext.handleClose()
-
+            teacherContext.setIsMyClass(false)
+            teacherContext.setIsEdit(false)
         }
 
     }
@@ -279,7 +279,7 @@ export default function ScheduleHour(props) {
                                 editable={false}
                                 eventDurationEditable={false}
                                 ref={calendarComponentRef}
-                                businessHours={teacherContext.businessHours}
+                                businessHours={teacherContext.teacherProfile.teacher.businessHours}
                                 eventLimit={true}
                                 eventSources={
                                     props.profile ?

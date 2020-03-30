@@ -8,8 +8,6 @@ import { IoIosArrowBack } from "react-icons/io";
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 // import ClassModal from 'src/components/Users/Teachers/TeachersProfile/ClassModal';
 export default function ScheduleHour() {
-    const teacherContext = useContext(TeachersProfileContext);
-
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
