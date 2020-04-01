@@ -132,11 +132,11 @@ const TeachersCalendar = () => {
                                     contentHeight="auto"
 
                                     ref={calendarComponentRef}
-                                    businessHours={teacherContext.teacherProfile.teacher.businessHours}
+                                    businessHours={teacherContext.teacherState.teacher.businessHours}
                                     eventLimit={true}
                                     eventSources={[
                                         {
-                                            events: teacherContext.teacherProfile.teacher.myPendingClasses,
+                                            events: teacherContext.teacherState.teacher.myPendingClasses,
                                             color: '#757575',
                                         },
                                     ]}

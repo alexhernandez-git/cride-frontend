@@ -56,12 +56,10 @@
     "react-hook-form": "^5.1.1",
     "react-icons": "^3.9.0",
     "react-paginate": "^6.3.2",
-    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-select": "^3.0.8",
     "react-slick": "^0.25.2",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
+    "react-star-ratings": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "timezone": "^1.0.23"
   }

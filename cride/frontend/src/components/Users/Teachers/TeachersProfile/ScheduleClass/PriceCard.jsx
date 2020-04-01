@@ -10,7 +10,7 @@ export default function PriceCard(props) {
     const { id, title, sessions, description, price, classes } = props.content
     useEffect(() => {
         if (classes > 1) {
-            setDiscount(parseFloat(teacherContext.teacherProfile.teacher.classPrice * classes - price * classes).toFixed(2))
+            setDiscount((teacherContext.teacherState.teacher.classPrice * classes - price * classes).toFixed(2))
         }
     }, []);
     const handleSelectClasses = () => {
@@ -33,7 +33,7 @@ export default function PriceCard(props) {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="bg-white border-top-0">
-                    <span className="d-block h5 text-secondary">{price}{typeof price == 'number' ? '€' : ''}{classes > 1 ? '/classe' : ''}</span>
+                    <span className="d-block h5 text-secondary">{price}€{classes > 1 ? '/classe' : ''}</span>
                     {discount > 0 ?
                         <span>
                             <small className="d-block font-weight-light">

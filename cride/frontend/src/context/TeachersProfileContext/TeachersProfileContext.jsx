@@ -10,8 +10,8 @@ import {
 } from './reducers/classesAssignedLeftReducer'
 
 import {
-    teacherProfileReducer,
-} from './reducers/teacherProfileReducer'
+    teacherStateReducer,
+} from './reducers/teacherStateReducer'
 
 export const TeachersProfileProvider = ({ children, id }) => {
 
@@ -37,6 +37,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
             workExperience: [],
             academicExperience: [],
             businessHours: [],
+            classes: [],
             reservedClasses: [],
             myAcceptedClasses: [],
             myPendingClasses: [],
@@ -45,7 +46,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
         }
     }
 
-    const [teacherProfile, dispatch] = useReducer(teacherProfileReducer, initialState)
+    const [teacherState, dispatch] = useReducer(teacherStateReducer, initialState)
 
     useEffect(() => {
         console.log(id);
@@ -56,7 +57,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                 name: 'Alex',
                 surname: 'Hernandez',
                 rating: 4.7,
-                classPrice: 19.99,
+                classPrice: 24.99,
                 presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
                 videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
                 teach: [
@@ -94,6 +95,26 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         id: Math.random().toString(36).substr(2),
                         skillValue: 'HTML',
                         levelValue: 100
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        skillValue: 'CSS',
+                        levelValue: 95
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        skillValue: 'JavaScript',
+                        levelValue: 70
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        skillValue: 'PHP',
+                        levelValue: 95
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        skillValue: 'MySQL',
+                        levelValue: 32
                     }
                 ],
                 workExperience: [
@@ -102,7 +123,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         title: "Programador frontend",
                         company: "Microsoft",
                         currentWorking: true,
-                        startDate: moment('Sun Mar 29 2020 17: 46: 56 GMT + 0200'),
+                        startDate: new Date(),
                         endDate: false,
                         description: "En ese trabajo cumplía las funciónes de programador frontend",
                     },
@@ -111,8 +132,8 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         title: "Programador backend",
                         company: "Apple",
                         currentWorking: false,
-                        startDate: moment('Tue Feb 12 2019 00: 00: 00 GMT + 0100'),
-                        endDate: moment('Thu Jun 13 2019 00: 00: 00 GMT + 0200'),
+                        startDate: new Date(),
+                        endDate: new Date(),
                         description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
                     }
                 ],
@@ -135,6 +156,109 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         endDate: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
                         description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos",
                     }
+                ],
+                ratings: [
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 4.3,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 1,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 3.7,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 5,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+                    {
+                        id: Math.random().toString(36).substr(2),
+                        user: {
+                            name: 'Paco',
+                            surname: 'De la Cruz'
+                        },
+                        rating: 5,
+                        comment: 'Un buen tipo',
+                        date: new Date()
+                    },
+
                 ],
                 businessHours: [
                     {
@@ -218,94 +342,34 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         endTime: '19:00'
                     },
                 ],
-                classes: [{
-
-                    id: 'fudhnl6tja5',
-                    title: null,
-                    start: Date.now() + 6.04e+8 / 2.4,
-                    end: null,
-                    constraint: 'businessHours',
-                    description: 'Esta es una clase aceptada',
-                    students: [
-                        {
-                            id: "elcapo123",
-                            name: "DOMINGO",
-                            surname: "CAYUELA",
-                            isAdmin: true,
-                            isInvited: false,
-                        },
-                        {
-                            id: "opopmuiueib",
-                            name: "SALVADOR",
-                            surname: "POPESCU",
-                            isAdmin: false,
-                            isInvited: false,
-                        },
-                        {
-                            id: "g3kr0ue1c7q",
-                            name: "ALVARO",
-                            surname: "MORO",
-                            isAdmin: false,
-                            isInvited: false,
-                        },
-                        {
-                            id: "picuplfo8n",
-                            name: "CESAR",
-                            surname: "RIOJA",
-                            isAdmin: false,
-                            isInvited: false,
-                        }
-
-
-                    ]
-
-                }],
-                reservedClasses: [
+                classes: [
                     {
                         id: 'fudhnl6tja5',
-                        title: 'Reservada',
-                        start: Date.now() + 6.04e+8 / 2.4,
+                        title: null,
+                        start: Date.now() + 6.04e+8 / 3,
                         end: null,
                         constraint: 'businessHours',
                         description: 'Esta es una clase aceptada',
+                        accepted: true,
                         students: [
                             {
-                                id: "elcapo123",
+                                id: "alex1234h",
                                 name: "DOMINGO",
                                 surname: "CAYUELA",
                                 isAdmin: true,
                                 isInvited: false,
                             },
-                            {
-                                id: "opopmuiueib",
-                                name: "SALVADOR",
-                                surname: "POPESCU",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "g3kr0ue1c7q",
-                                name: "ALVARO",
-                                surname: "MORO",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "picuplfo8n",
-                                name: "CESAR",
-                                surname: "RIOJA",
-                                isAdmin: false,
-                                isInvited: false,
-                            }
+
                         ]
                     },
                     {
                         id: 'fudhnl6tja5',
-                        title: 'Reservada',
-                        start: Date.now() + 6.04e+8 / 1.4,
+                        title: null,
+                        start: Date.now() + 6.04e+8 / 2.4,
                         end: null,
                         constraint: 'businessHours',
                         description: 'Esta es una clase aceptada',
+                        accepted: false,
                         students: [
                             {
                                 id: "elcapo123",
@@ -314,83 +378,32 @@ export const TeachersProfileProvider = ({ children, id }) => {
                                 isAdmin: true,
                                 isInvited: false,
                             },
-                            {
-                                id: "opopmuiueib",
-                                name: "SALVADOR",
-                                surname: "POPESCU",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "g3kr0ue1c7q",
-                                name: "ALVARO",
-                                surname: "MORO",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "picuplfo8n",
-                                name: "CESAR",
-                                surname: "RIOJA",
-                                isAdmin: false,
-                                isInvited: false,
-                            }
+
                         ]
-                    }
-                ],
-                myAcceptedClasses: [
+                    },
                     {
                         id: 'fudhnl6tja5',
-                        title: 'Aceptada',
-                        start: Date.now() + 6.04e+8,
+                        title: null,
+                        start: Date.now() + 6.04e+8 / 2.2,
                         end: null,
                         constraint: 'businessHours',
-                        description: 'Esta es una clase aceptada',
+                        description: 'Esta es una clase no aceptada',
+                        accepted: false,
                         students: [
                             {
-                                id: "oipfewaopiweaf",
+                                id: "alex1234h",
                                 name: "DOMINGO",
                                 surname: "CAYUELA",
                                 isAdmin: true,
                                 isInvited: false,
                             },
-                            {
-                                id: "opopmuiueib",
-                                name: "SALVADOR",
-                                surname: "POPESCU",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "g3kr0ue1c7q",
-                                name: "ALVARO",
-                                surname: "MORO",
-                                isAdmin: false,
-                                isInvited: false,
-                            },
-                            {
-                                id: "picuplfo8n",
-                                name: "CESAR",
-                                surname: "RIOJA",
-                                isAdmin: false,
-                                isInvited: false,
-                            }
+
                         ]
                     }
                 ],
-                myPendingClasses: [],
                 temporaryClasses: [],
                 eventClassesLeft: [],
-                ratings: [
-                    {
-                        user: {
-                            name: 'Paco',
-                            surname: 'De la Cruz'
-                        },
-                        rating: 4.7,
-                        comment: 'Un buen tipo'
-                    }
-                ]
+
             }
 
         })
@@ -457,9 +470,9 @@ export const TeachersProfileProvider = ({ children, id }) => {
     const calcPriceClass = (numClass) => {
         let finalPrice
         if (numClass > 5) {
-            finalPrice = teacherProfile.teacher.classPrice / 1.5
+            finalPrice = teacherState.teacher.classPrice / 1.5
         } else {
-            finalPrice = teacherProfile.teacher.classPrice / 1.4
+            finalPrice = teacherState.teacher.classPrice / 1.4
         }
         return Math.round(finalPrice)
     }
@@ -474,7 +487,8 @@ export const TeachersProfileProvider = ({ children, id }) => {
     const handleBuy = () => {
 
 
-        dispatch({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClasses })
+        // dispatch({ type: 'MERGE_MY_PENDING_CLASS', tempClasses: temporaryClasses })
+        dispatch({ type: 'MERGE_CLASSES', tempClasses: temporaryClasses })
 
         dispatchTemporaryClass({ type: 'RESET_TEMPORARY_CLASS' })
 
@@ -487,6 +501,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
         dispatchClassesAssignedLeft({ type: 'SET_ASSIGNED_CLASS', classesSelected: 0 })
 
         handleClose()
+        document.querySelector('.teacher-calendar').scrollTop = 0
     }
     const [showDetailsClassForm, setShowDetailsClassForm] = useState(false)
     const handleShowDetailsClassForm = () => {
@@ -517,13 +532,12 @@ export const TeachersProfileProvider = ({ children, id }) => {
         }
     }
 
-
-    const addMyPendingClass = (classData) => {
+    const addClass = (classData) => {
         setIsMyClass(false)
         setIsEdit(false)
         dispatch({
-            type: 'ADD_MY_PENDING_CLASS',
-            myPendingClass: classData
+            type: 'ADD_CLASSES',
+            payload: classData
         })
         dispatch({
             type: 'ADD_CLASS',
@@ -548,43 +562,24 @@ export const TeachersProfileProvider = ({ children, id }) => {
         })
         handleHideDetailsClassForm()
     }
-    const updatePendingClassEvent = (classData) => {
+
+    const updateClass = (classData) => {
 
         setIsMyClass(false)
         setIsEdit(false)
         dispatch({
-            type: 'UPDATE_MY_PENDING_CLASS',
-            classData
+            type: 'UPDATE_CLASSES',
+            payload: classData
         })
         handleHideDetailsClassForm()
     }
-    const updateMyAcceptedClass = (classData) => {
-        setIsMyClass(false)
-        setIsEdit(false)
-
-        dispatch({
-            type: 'UPDATE_MY_ACCEPTED_CLASS',
-            classData
-        })
-        handleHideDetailsClassForm()
-    }
-    const removeMyPendingClassEvent = (classData) => {
+    const removeClass = (classData) => {
         setIsMyClass(false)
         setIsEdit(false)
         dispatch({ type: 'REMOVE_CLASS' })
         dispatch({
-            type: 'DELETE_MY_PENDING_CLASS',
-            classData
-        })
-        handleHideDetailsClassForm()
-    }
-    const removeMyAcceptedClassEvent = (classData) => {
-        setIsMyClass(false)
-        setIsEdit(false)
-        dispatch({ type: 'REMOVE_CLASS' })
-        dispatch({
-            type: 'DELETE_MY_ACCEPTED_CLASS',
-            classData
+            type: 'DELETE_CLASSES',
+            payload: classData
         })
         handleHideDetailsClassForm()
     }
@@ -601,12 +596,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
     const [editableClassData, setEditableClassData] = useState(false)
     return (
         <TeachersProfileContext.Provider value={{
-            teacherProfile,
-            updateMyAcceptedClass,
-            removeMyAcceptedClassEvent,
-            addMyPendingClass,
-            removeMyPendingClassEvent,
-            updatePendingClassEvent,
+            teacherState,
             showScheduleClass,
             key,
             setKey,
@@ -637,6 +627,9 @@ export const TeachersProfileProvider = ({ children, id }) => {
             removeTemporaryClassEvent,
             editableClassData,
             setEditableClassData,
+            addClass,
+            updateClass,
+            removeClass
         }}>
             {children}
         </TeachersProfileContext.Provider>

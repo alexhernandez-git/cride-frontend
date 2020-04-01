@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Badge from 'react-bootstrap/Badge'
 import { IconContext } from "react-icons";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherWorkExperience.scss"
+import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
+import moment from 'moment'
 export default function TeachersEducation() {
     const [isOpen, setIsOpen] = useState(false)
+    const teacherContext = useContext(TeachersProfileContext);
+
     useEffect(() => {
         const div = document.getElementById('professors-education')
 
@@ -37,67 +41,51 @@ export default function TeachersEducation() {
         }
     }
     return (
-        <div className="teacher-education shadow w-100 p-4 rounded mb-3 overflow-hidden" id="professors-education">
-            <div className="d-flex justify-content-between cursor-pointer" onClick={handleToogle}>
+        <TeachersProfileContext.Consumer>
+            {teacherContext => (
+                <div className="teacher-education shadow w-100 p-4 rounded mb-3 overflow-hidden" id="professors-education">
+                    <div className="d-flex justify-content-between cursor-pointer" onClick={handleToogle}>
 
-                <span className="d-block h3 font-weight-normal text-primary">Education</span>
-                <IconContext.Provider value={{
-                    className: "mr-2 text-primary toggle-icon-education",
-                    size: '30px'
-                }}>
-                    <IoIosArrowDown />
-                </IconContext.Provider>
-            </div>
-            <div className="work-experience border-bottom pb-4 mt-4">
+                        <span className="d-block h3 font-weight-normal text-primary">Education</span>
+                        <IconContext.Provider value={{
+                            className: "mr-2 text-primary toggle-icon-education",
+                            size: '30px'
+                        }}>
+                            <IoIosArrowDown />
+                        </IconContext.Provider>
+                    </div>
+                    {teacherContext.teacherState.teacher.workExperience.map(work => (
+                        <div className="work-experience mt-4 pb-2">
 
-                <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
-                <span className="font-weight-normal">
-                    <IconContext.Provider value={{
-                        className: "mr-2 text-primary",
-                        size: '20px'
-                    }}>
-                        <FaRegCalendarAlt />Jan 2015 - <Badge variant="primary" >Current</Badge>
-                    </IconContext.Provider>
-                </span>
-                <div className="mt-2">
+                            <span className="d-block h4 mb-1 font-weight-normal">{work.title} / {work.company}</span>
+                            <span className="font-weight-normal">
+                                <IconContext.Provider value={{
+                                    className: "mr-2 text-primary",
+                                    size: '20px'
+                                }}>
+                                    {console.log(work.startDate)}
+                                    <FaRegCalendarAlt />{' '}
+                                    {moment(work.startDate).format('L')}{' - '}
+                                    {work.currentWorking ?
+                                        <Badge variant="primary" >Current</Badge>
+                                        :
+                                        <>
+                                            {moment(work.endDate).format('L')}
+                                        </>
+                                    }
+                                </IconContext.Provider>
 
-                    Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.
+                            </span>
+                            <div className="mt-2">
+                                {work.description}
+                            </div>
+                        </div>
+                    ))}
+
+
                 </div>
-            </div>
-            <div className="work-experience border-bottom pb-4 mt-4">
-
-                <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
-                <span className="font-weight-normal">
-                    <IconContext.Provider value={{
-                        className: "mr-2 text-primary",
-                        size: '20px'
-                    }}>
-                        <FaRegCalendarAlt />             Jan 2015 - Dec 2014
-                    </IconContext.Provider>
-
-                </span>
-                <div className="mt-2">
-
-                    Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.
-                </div>
-            </div>
-            <div className="work-experience mt-4">
-
-                <span className="d-block h4 mb-1 font-weight-normal">Front End Developer / w3schools.com</span>
-                <span className="font-weight-normal">
-                    <IconContext.Provider value={{
-                        className: "mr-2 text-primary",
-                        size: '20px'
-                    }}>
-                        <FaRegCalendarAlt />Jan 2015 - Dec 2014
-                    </IconContext.Provider>
-
-                </span>
-                <div className="mt-2">
-
-                    Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.
-            </div>
-            </div>
-        </div>
+            )
+            }
+        </TeachersProfileContext.Consumer >
     )
 }

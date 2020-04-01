@@ -32,11 +32,9 @@ const ClassDetailsForm = (props) => {
         start: null,
         constraint: 'businessHours',
         description: '',
-        students: []
+        students: [],
+        accepted: null,
     })
-    const handleBack = () => {
-        teacherContext.setIsDateEditing(false)
-    }
 
     useEffect(() => {
         if (props.args) {
@@ -48,8 +46,8 @@ const ClassDetailsForm = (props) => {
                     start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
-                    students: props.args.event.extendedProps.students
-
+                    accepted: props.args.event.extendedProps.accepted,
+                    students: props.args.event.extendedProps.students,
                 }))
                 let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
                 const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
@@ -64,6 +62,7 @@ const ClassDetailsForm = (props) => {
                     start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
+                    accepted: props.args.event.extendedProps.accepted,
                     students: props.args.event.extendedProps.students
 
                 }))
@@ -80,8 +79,8 @@ const ClassDetailsForm = (props) => {
                     start: props.args.event.start,
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
-                    students: props.args.event.extendedProps.students
-
+                    accepted: props.args.event.extendedProps.accepted,
+                    students: props.args.event.extendedProps.students,
                 }))
             }
             else {
@@ -93,6 +92,7 @@ const ClassDetailsForm = (props) => {
                     start: props.args.date,
                     constraint: 'businessHours',
                     description: '',
+                    accepted: false,
                     students: [{
                         id: appContext.userProfile.user.id,
                         name: appContext.userProfile.user.name,
@@ -113,9 +113,10 @@ const ClassDetailsForm = (props) => {
     const addClass = () => {
 
         if (props.profile) {
-            teacherContext.addMyPendingClass(classData)
+            teacherContext.addClass(classData)
 
         } else {
+
             teacherContext.addTemporaryClassEvent(classData)
 
 
@@ -133,14 +134,8 @@ const ClassDetailsForm = (props) => {
         if (props.profile) {
 
             if (confirm('¿Estas seguro?')) {
-                if (teacherContext.isMyClass) {
-                    teacherContext.removeMyAcceptedClassEvent(classData)
+                teacherContext.removeClass(classData)
 
-                } else {
-
-                    teacherContext.removeMyPendingClassEvent(classData)
-
-                }
                 props.args.event.remove()
                 // let event = props.calendar.current.getResourceById(classData.id);
                 // event.remove()
@@ -148,7 +143,9 @@ const ClassDetailsForm = (props) => {
                     id: '',
                     title: 'Clase',
                     start: null,
-                    description: ''
+                    description: '',
+                    accepted: null,
+                    students: []
                 })
             }
         } else {
@@ -162,23 +159,23 @@ const ClassDetailsForm = (props) => {
                     id: '',
                     title: 'Clase',
                     start: null,
-                    description: ''
+                    description: '',
+                    accepted: null,
+                    students: []
                 })
             }
         }
     }
     const updateClass = () => {
         if (confirm('¿Estas seguro?')) {
-            if (teacherContext.isMyClass) {
-                teacherContext.updateMyAcceptedClass(classData)
+            if (props.profile) {
 
-            } else if (props.profile) {
-                teacherContext.updatePendingClassEvent(classData)
-
+                teacherContext.updateClass(classData)
             } else {
-
                 teacherContext.updateTemporaryClassEvent(classData)
+
             }
+
 
             props.args.event.setExtendedProp('description', classData.description)
 
@@ -186,7 +183,9 @@ const ClassDetailsForm = (props) => {
                 id: '',
                 title: 'Clase',
                 start: null,
-                description: ''
+                description: '',
+                accepted: null,
+                students: []
             })
         }
     }
@@ -196,7 +195,9 @@ const ClassDetailsForm = (props) => {
                 id: '',
                 title: 'Clase',
                 start: null,
-                description: ''
+                description: '',
+                accepted: null,
+                students: []
             })
             setIsAdmin(false)
             teacherContext.setIsEdit(false)

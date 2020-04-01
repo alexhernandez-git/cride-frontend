@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
@@ -8,6 +8,22 @@ import { IoIosArrowBack } from "react-icons/io";
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 // import ClassModal from 'src/components/Users/Teachers/TeachersProfile/ClassModal';
 export default function ScheduleHour() {
+    const teacherContext = useContext(TeachersProfileContext);
+    useEffect(() => {
+        console.log(teacherContext.selectedClasses);
+
+        if (teacherContext.selectedClasses == 1) {
+            console.log(1);
+            console.log(teacherContext.selectedClasses * teacherContext.teacherState.teacher.classPrice)
+        } else if (teacherContext.selectedClasses == 5) {
+            console.log(5);
+            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.teacher.classPrice / 1.5).toFixed(2))
+        } else {
+            console.log(10);
+            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.teacher.classPrice / 2).toFixed(2))
+        }
+
+    })
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
