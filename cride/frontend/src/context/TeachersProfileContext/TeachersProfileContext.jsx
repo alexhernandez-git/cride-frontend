@@ -49,6 +49,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
     const [teacherState, dispatch] = useReducer(teacherStateReducer, initialState)
 
     useEffect(() => {
+        console.log(id);
 
 
         dispatch({
@@ -549,6 +550,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
             type: 'ADD_TEMPORARY_CLASS',
             classData
         })
+        handleHideDetailsClassForm()
     }
 
     const updateTemporaryClassEvent = (classData) => {
