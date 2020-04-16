@@ -16,7 +16,6 @@ from cride.users.permissions import IsAccountOwner
 
 # Serializers
 from cride.users.serializers.profiles import ProfileModelSerializer
-from cride.circles.serializers import CircleModelSerializer
 from cride.users.serializers import (
     UserLoginSerializer,
     UserModelSerializer,
@@ -27,7 +26,6 @@ from cride.users.serializers import (
 
 # Models
 from cride.users.models import User
-from cride.circles.models import Circle
 
 
 class UserViewSet(mixins.RetrieveModelMixin,
@@ -104,13 +102,12 @@ class UserViewSet(mixins.RetrieveModelMixin,
     def retrieve(self, request, *args, **kwargs):
         """Add extra data to the response."""
         response = super(UserViewSet, self).retrieve(request, *args, **kwargs)
-        circles = Circle.objects.filter(
-            members=request.user,
-            membership__is_active=True
-        )
+        # circles = Circle.objects.filter(
+        #     members=request.user,
+        #     membership__is_active=True
+        # )
         data = {
             'user': response.data,
-            'circles': CircleModelSerializer(circles, many=True).data
         }
         response.data = data
         return response

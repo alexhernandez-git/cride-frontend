@@ -54,8 +54,6 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'cride.users.apps.UsersAppConfig',
-    'cride.circles.apps.CirclesAppConfig',
-    'cride.rides.apps.RidesAppConfig',
     'cride.frontend.apps.FrontendAppConfig'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -150,7 +148,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.s
 # Admin
 ADMIN_URL = 'admin/'
 ADMINS = [
-    ("""Pablo Trinidad""", 'pablotrinidad@ciencias.unam.mx'),
+    ("""Alex Hernandez""", 'alex@gmail.com'),
 ]
 MANAGERS = ADMINS
 
@@ -198,5 +196,4 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 ]
 SASS_PROCESSOR_AUTO_INCLUDE = False
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
-SASS_PRECISION = 8
 SASS_PRECISION = 8

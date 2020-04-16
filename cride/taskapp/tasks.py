@@ -8,7 +8,6 @@ from django.utils import timezone
 
 # Models
 from cride.users.models import User
-from cride.rides.models import Ride
 
 # Celery
 from celery.decorators import task, periodic_task

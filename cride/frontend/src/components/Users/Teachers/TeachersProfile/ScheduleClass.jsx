@@ -8,22 +8,18 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass.scss"
 import {
-    FaRegStar,
-    FaStar,
-    FaUserGraduate,
     FaChalkboardTeacher,
-    FaInfoCircle,
-    FaRegCalendarAlt,
     FaRegCalendarCheck,
     FaRegQuestionCircle
 } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { MdPayment, MdPersonAdd, MdMessage, MdCancel, MdAddCircleOutline } from 'react-icons/md';
+import { MdPayment } from 'react-icons/md';
 
 import { IconContext } from "react-icons";
 import ClassSubject from "./ScheduleClass/ClassSubject"
 import ScheduleHour from "./ScheduleClass/ScheduleHour"
 import PayClass from "./ScheduleClass/PayClass"
+import StarRating from 'src/components/Layout/StarRatings'
 
 export default function ScheduleClass() {
     const teacherContext = useContext(TeachersProfileContext);
@@ -143,25 +139,14 @@ export default function ScheduleClass() {
                                                 <img className="img-student" src={`https://source.unsplash.com/random/1`} />
                                             </div >
                                             <div>
-                                                <span className="d-block h5">Alex Hernandez</span>
+                                                <span className="d-block h5">{teacherContext.teacherState.teacher.name} {teacherContext.teacherState.teacher.surname}</span>
                                             </div>
-                                            <IconContext.Provider
-                                                value={{
-                                                    className: "global-class-name text-warning",
-                                                    size: '20px'
-                                                }}>
-                                                <div className="punctuation">
-                                                    <FaStar />
-                                                    <FaStar />
-                                                    <FaStar />
-                                                    <FaStar />
-                                                    <FaRegStar />
-                                                </div>
-                                            </IconContext.Provider>
+                                            <StarRating rating={teacherContext.teacherState.teacher.rating} />
+
 
 
                                             <div>
-                                                <span className="text-small">500 puntuaciones</span>
+                                                <span className="text-small">{teacherContext.teacherState.teacher.ratings.length} puntuaciones</span>
                                             </div>
                                             <div
                                                 id='external-events'
@@ -207,6 +192,7 @@ export default function ScheduleClass() {
                                         <Form onSubmit={(e) => e.preventDefault()}>
                                             <Row className="mb-3">
                                                 <Col sm={12}>
+
                                                     <Nav variant="pills" className="d-flex justify-content-center">
                                                         <Nav.Item>
                                                             <Nav.Link eventKey={0} className="rounded-pill cursor-no-pointer">
@@ -216,7 +202,7 @@ export default function ScheduleClass() {
                                                                         size: '20px'
                                                                     }}>
                                                                     <FaChalkboardTeacher />
-                                                                    {' '}Cuantas clases quieres?
+
 
                                                                 </IconContext.Provider>
 
@@ -231,7 +217,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <FaRegCalendarCheck />
-                                                                        {' '}Asigna tus clases
+
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
@@ -242,7 +228,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <FaRegCalendarCheck />
-                                                                        {' '}Asigna tus clases
+
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                             }
@@ -256,7 +242,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <MdPayment />
-                                                                        {' '}Completa el proceso
+
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                                 :
@@ -267,7 +253,7 @@ export default function ScheduleClass() {
                                                                             size: '20px'
                                                                         }}>
                                                                         <MdPayment />
-                                                                        {' '}Completa el proceso
+
                                                                     </IconContext.Provider>
                                                                 </Nav.Link>
                                                             }
