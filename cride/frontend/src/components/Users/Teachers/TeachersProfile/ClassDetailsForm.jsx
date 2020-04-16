@@ -214,13 +214,13 @@ const ClassDetailsForm = (props) => {
                         ref={myRef}
                         id="class-details-form"
                     >
-                        {teacherContext.onlyShow ?
+                        {teacherContext.onlyShow && !teacherContext.isEdit ?
                             <>
                                 Detalles de la clase
                            </>
                             :
                             <>
-                                Comprueba los detalles de la clase
+                                Antes de añadir tu clase comprueba los datos
                             </>
                         }
                     </div>

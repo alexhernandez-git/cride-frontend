@@ -68,20 +68,7 @@ const TeachersNextClasses = (props) => {
                             </IconContext.Provider>
                             </button>
 
-                            <button
-                                className="btn-outline-green mr-2 d-none d-md-block rounded-pill bg-white"
-                                style={{
-                                    height: '40px'
-                                }}
-                            >
-                                <IconContext.Provider value={{
-                                    className: "cursor-ponter align-text-bottom",
-                                    size: '20px'
 
-                                }}>
-                                    <FaCalendarAlt /> Cambiar fecha
-                            </IconContext.Provider>
-                            </button>
                             <button
                                 className="btn-outline-cancel d-none d-md-block rounded-pill bg-white"
                                 style={{
@@ -181,14 +168,7 @@ const TeachersNextClasses = (props) => {
                                 <FaInfoCircle /> Ver más
                     </IconContext.Provider>
                         </button>
-                        <button className="btn btn-outline-green btn-block bg-white mb-2 py-1">
-                            <IconContext.Provider value={{
-                                className: "cursor-ponter",
-                                size: '20px'
-                            }}>
-                                <FaRegCalendarAlt /> Cambiar fecha
-                    </IconContext.Provider>
-                        </button>
+
                         <button className="btn-outline-cancel btn-block bg-white py-1" onClick={() => handleCancelClass(id)}>
                             <IconContext.Provider value={{
                                 className: "cursor-ponter",
@@ -229,14 +209,7 @@ const TeachersNextClasses = (props) => {
                                 </div>
                                 <div className="d-flex justify-content-end align-items-center my-auto">
 
-                                    <button className="btn-outline-green h-100 d-none d-sm-block rounded-pill bg-white ml-3">
-                                        <IconContext.Provider value={{
-                                            className: "cursor-ponter align-text-bottom",
-                                            size: '20px'
-                                        }}>
-                                            <FaCalendarAlt /> Cambiar fecha
-</IconContext.Provider>
-                                    </button>
+
                                     <button className="btn-outline-cancel h-100 d-none d-sm-block rounded-pill bg-white ml-2" onClick={() => handleCancelClass(id)}>
                                         <IconContext.Provider value={{
                                             className: "cursor-ponter align-text-bottom",
@@ -250,7 +223,17 @@ const TeachersNextClasses = (props) => {
                             </div>
                         </Modal.Header>
                         <Modal.Body className="bg-white text-grey border-0 rounded pt-0">
+                            <div className="d-block d-sm-none mb-3">
 
+                                <button className="btn-outline-cancel btn-block bg-white py-1" onClick={() => handleCancelClass(id)}>
+                                    <IconContext.Provider value={{
+                                        className: "cursor-ponter",
+                                        size: '20px'
+                                    }}>
+                                        <MdCancel /> Cancelar clase
+                            </IconContext.Provider>
+                                </button>
+                            </div>
                             <Row className="mb-2">
                                 <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
                                     <span className="font-weight-normal text-primary">

@@ -1,9 +1,7 @@
 
-import React from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
+import React, { useState } from 'react'
+import { Navbar, Nav, Form, FormControl, Modal, Button } from 'react-bootstrap'
+
 import { FaSearch } from 'react-icons/fa';
 import { FaChalkboardTeacher } from 'react-icons/fa';
 import { IconContext } from "react-icons";
@@ -11,8 +9,22 @@ import { Link, useLocation } from "react-router-dom"
 import "static/assets/styles/components/Layout/Header.scss"
 
 export default function Header() {
+    const [showLogin, setShowLogin] = useState(false);
 
+    const handleCloseLogin = () => setShowLogin(false);
+    const handleShowLogin = () => setShowLogin(true);
+    const [showRegister, setShowRegister] = useState(false);
 
+    const handleCloseRegister = () => setShowRegister(false);
+    const handleShowRegister = () => setShowRegister(true);
+    const handleChangeToRegister = () => {
+        setShowLogin(false);
+        setShowRegister(true);
+    }
+    const handleChangeToLogin = () => {
+        setShowRegister(false);
+        setShowLogin(true);
+    }
     return (
         <>
             <Navbar bg="white" expand="md" className="header border-bottom p-0 shadow" sticky="top">
@@ -48,13 +60,72 @@ export default function Header() {
                     <Nav className="ml-auto mr-3">
 
                         <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">Profesor</Link>
-                        <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn">Iniciar sesión</Nav.Link>
-                        <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" href="">Registrate</Nav.Link>
+                        <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn" onClick={handleShowLogin}>Iniciar sesión</Nav.Link>
+                        <Nav.Link className="btn ml-3 btn-sm btn-green text-white header-btn" onClick={handleShowRegister}>Registrate</Nav.Link>
                     </Nav>
 
                 </Navbar.Collapse>
             </Navbar>
+            <Modal show={showLogin} onHide={handleCloseLogin} animation={true} size="sm" className="text-grey">
+                <Modal.Header closeButton>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-white rounded-bottom">
+                    <Form>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Control type="email" placeholder="Email" />
 
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+                        <button
+                            type="submit"
+                            className="btn btn-sm btn-green text-white header-btn w-100 mb-3"
+                            onClick={handleShowLogin}
+                        >Iniciar sesión</button>
+                        <div className="d-flex justify-content-end">
+                            <span onClick={handleChangeToRegister} className="cursor-pointer">O registrate</span>
+
+                        </div>
+
+                    </Form>
+                </Modal.Body>
+            </Modal>
+            <Modal show={showRegister} onHide={handleCloseRegister} animation={true} size="sm" className="text-grey">
+                <Modal.Header closeButton>
+                    <Modal.Title>Registro</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-white rounded-bottom">
+                    <Form>
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Nombre completo" />
+
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control type="email" placeholder="Email" />
+
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Control type="password" placeholder="Contraseña" />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control type="password" placeholder="Confirmar contraseña" />
+                        </Form.Group>
+                        <button
+                            type="submit"
+                            className="btn btn-sm btn-green text-white header-btn w-100 mb-3"
+                            onClick={handleShowRegister}
+                        >Registrate</button>
+                        <div className="d-flex justify-content-end">
+                            <span className="cursor-pointer" onClick={handleChangeToLogin}>O inicia sesión</span>
+                        </div>
+
+                    </Form>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }

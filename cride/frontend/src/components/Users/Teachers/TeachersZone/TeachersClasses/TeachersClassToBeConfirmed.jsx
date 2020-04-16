@@ -261,9 +261,28 @@ const TeachersClassesToBeConfirmed = (props) => {
                         </IconContext.Provider>
                                 </button>
                             </div>
+
                         </Modal.Header>
                         <Modal.Body className="bg-white text-grey border-0 rounded pt-0">
+                            <div className="d-block d-sm-none mb-3">
 
+                                <button className="btn btn-outline-green btn-block bg-white mb-2 py-1" onClick={() => handleConfirmClasse(props.classElement)}>
+                                    <IconContext.Provider value={{
+                                        className: "cursor-ponter",
+                                        size: '20px'
+                                    }}>
+                                        <FaRegHandshake /> Confirmar clase
+                    </IconContext.Provider>
+                                </button>
+                                <button className="btn-outline-cancel btn-block bg-white py-1" onClick={() => handleCancelClass(id)}>
+                                    <IconContext.Provider value={{
+                                        className: "cursor-ponter",
+                                        size: '20px'
+                                    }}>
+                                        <MdCancel /> Cancelar clase
+                    </IconContext.Provider>
+                                </button>
+                            </div>
                             <Row className="mb-2">
                                 <Col sm={6} lg={4} className="d-flex justify-content-center d-sm-inline">
                                     <span className="font-weight-normal text-primary">

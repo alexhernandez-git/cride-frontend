@@ -13,6 +13,7 @@ import TeachersProfileTeach from "src/components/Users/Teachers/TeachersZone/Tea
 import TeachersProfileWork from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileWork"
 import TeachersProfileStudies from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileStudies"
 import TeachersProfilePricing from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePricing"
+import ScheduleBusinessHours from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/ScheduleBusinessHours"
 
 
 import { IconContext } from "react-icons";
@@ -54,8 +55,14 @@ const TeacherProfileEdit = () => {
 
                                     </Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item>
+                                <Nav.Item className="d-none d-md-block">
                                     <Nav.Link eventKey={2} className="text-grey">
+                                        <span className="font-weight-bold">HORAS DISPONIBLES</span>
+
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link eventKey={3} className="text-grey">
                                         <span className="font-weight-bold">PRICING</span>
                                     </Nav.Link>
                                 </Nav.Item>
@@ -81,6 +88,9 @@ const TeacherProfileEdit = () => {
                                     <TeachersProfileStudies />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey={2} className="text-grey">
+                                    <ScheduleBusinessHours />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey={3} className="text-grey">
                                     <TeachersProfilePricing />
                                 </Tab.Pane>
                             </Tab.Content>
