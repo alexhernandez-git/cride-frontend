@@ -24,39 +24,45 @@ const TeachersProfile = props => {
         <TeachersProfileProvider id={id}>
             <TeachersProfileContext.Consumer>
                 {teacherContext => (
+                    <>
+                        {teacherContext.teacherState.loading ? 'Cargando...' :
+                            <>
 
-                    <div className="profile-content container mt-5 mb-5 text-grey">
-                        <Row>
+                                < div className="profile-content container mt-5 mb-5 text-grey">
+                                    <Row>
+                                        {console.log(teacherContext.teacherState)}
 
-                            <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
-                                <span>
-                                    Por cada compañero que invites a la clase obtendrás{' '}
-                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.teacher.classPrice * 0.2)}€</span>
-                                </span>
-                            </div>
-                        </Row>
-                        <div className="row">
-                            <div className="col-md-4 shadow p-0 rounded overflow-hidden h-100 mb-4">
+                                        <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
+                                            <span>
+                                                Por cada compañero que invites a la clase obtendrás{' '}
+                                                <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span>
+                                            </span>
+                                        </div>
+                                    </Row>
+                                    <div className="row">
+                                        <div className="col-md-4 shadow p-0 rounded overflow-hidden h-100 mb-4">
 
-                                <TeacherSidebar />
-                            </div>
-                            <div className="col-md-8 mb-4 p-0 pl-md-3">
-                                <TeacherPresentation />
-                                <TeacherTeach />
-                                <TeacherSkills />
-                                <TeacherWorkExperience />
-                                <TeacherEducation />
-                                {!teacherContext.showScheduleClass ?
-                                    <ScheduleHour profile={true} />
-                                    :
-                                    ''
-                                }
-                                <StudentFeedback />
-                                <ScheduleClass />
-                            </div>
-                        </div>
-                    </div>
-
+                                            <TeacherSidebar />
+                                        </div>
+                                        <div className="col-md-8 mb-4 p-0 pl-md-3">
+                                            <TeacherPresentation />
+                                            <TeacherTeach />
+                                            <TeacherSkills />
+                                            <TeacherWorkExperience />
+                                            <TeacherEducation />
+                                            {!teacherContext.showScheduleClass ?
+                                                <ScheduleHour profile={true} />
+                                                :
+                                                ''
+                                            }
+                                            <StudentFeedback />
+                                            <ScheduleClass />
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        }
+                    </>
                 )
                 }
             </TeachersProfileContext.Consumer >

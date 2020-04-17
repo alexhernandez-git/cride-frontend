@@ -13,7 +13,7 @@ const TeachersSkills = () => {
                 <div className="teacher-skills shadow w-100 p-4 rounded mb-3 d-none d-md-block">
 
                     <span className="d-block h3 font-weight-normal text-primary">Skills</span>
-                    {teacherContext.teacherState.teacher.skills.map(skill => (
+                    {teacherContext.teacherState.user.teacher.skills.map(skill => (
 
                         <div className="mt-2 mb-2" key={skill.id}>
                             <span>{skill.skillValue}</span>

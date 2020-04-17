@@ -31,13 +31,13 @@ const TeachersPresentation = () => {
                                 </div>
                             </IconContext.Provider>
                         </div>
-                        <p>{teacherContext.teacherState.teacher.presentation}</p>
+                        <p>{teacherContext.teacherState.user.teacher.presentation}</p>
                     </div>
                     <Modal show={show} onHide={handleClose} size="xl" centered>
                         <Modal.Body className="p-0">
                             <div style={{ width: 'auto', height: 'auto' }}>
                                 <ResponsiveEmbed aspectRatio="16by9">
-                                    <iframe width="1280" height="720" src={teacherContext.teacherState.teacher.videoPresentation} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="1280" height="720" src={teacherContext.teacherState.user.teacher.videoPresentation} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </ResponsiveEmbed>
                             </div>
                         </Modal.Body>

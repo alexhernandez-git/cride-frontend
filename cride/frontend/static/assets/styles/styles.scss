@@ -15,6 +15,11 @@ $theme-colors: (
   "dark": #323840,
 );
 
+.bg-red {
+  background-color: rgb(221, 51, 51) !important;
+  color: white !important;
+}
+
 // Custom bootstrap
 
 @media only screen and (max-width: 992px) {
@@ -155,6 +160,24 @@ input.custom-control-input:focus {
   box-shadow: none !important;
 }
 
+// Sweet alert
+.swal2-styled.swal2-confirm {
+  background: linear-gradient(45deg, #2e6a89, #56b389) !important;
+  border: none !important;
+  border-radius: 50rem !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.swal2-styled.swal2-confirm:focus {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.swal2-cancel.swal2-styled {
+  border: none !important;
+  border-radius: 50rem !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.swal2-cancel.swal2-styled:focus {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
 // Full calendar
 // you must include each plugins' css
 // paths prefixed with ~ signify node_modules
@@ -162,6 +185,10 @@ input.custom-control-input:focus {
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
 @import "~@fullcalendar/bootstrap/main.css";
+
+.fc-view.fc-dayGridMonth-view.fc-dayGrid-view .fc-nonbusiness.fc-bgevent {
+  background-color: white !important;
+}
 
 .demo-app {
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;

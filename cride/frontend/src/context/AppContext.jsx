@@ -6,8 +6,10 @@ export const AppProvider = ({ children }) => {
 
     const initialUser = {
         loading: true,
+        isAuthenicated: false,
         error: '',
         user: {
+            profile: false,
             name: '',
             surname: '',
             email: '',
@@ -25,8 +27,23 @@ export const AppProvider = ({ children }) => {
             type: 'FETCH_SUCCESS', payload: {
                 name: 'Alex',
                 surname: 'Hernandez',
-                picture: '',
-                friends: [],
+                profile: {
+                    picture: '../../../static/assets/img/profile-blank.png'
+                },
+                friends: [
+                    {
+                        id: "alex1efwa234h",
+                        name: "DOMIfeawNGO",
+                        surname: "CAYUewELA",
+
+                    },
+                    {
+                        id: "alex1few234h",
+                        name: "DOMIfewNGO",
+                        surname: "CAYUfewELA",
+
+                    },
+                ],
                 teacher: {
                     rating: 4.7,
                     classPrice: 24.99,
@@ -46,7 +63,7 @@ export const AppProvider = ({ children }) => {
                             subjectValue: 'Desarrollo con Angular'
                         },
                     ],
-                    idioms: [
+                    lenguages: [
                         {
                             id: "wcppkede79c",
                             languageValue: "hr",
@@ -245,11 +262,14 @@ export const AppProvider = ({ children }) => {
                             accepted: true,
                             students: [
                                 {
-                                    id: "alex1234h",
-                                    name: "DOMINGO",
-                                    surname: "CAYUELA",
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+                                    },
                                     isAdmin: true,
                                     isInvited: false,
+
                                 },
 
                             ]
@@ -264,9 +284,12 @@ export const AppProvider = ({ children }) => {
                             accepted: false,
                             students: [
                                 {
-                                    id: "elcapo123",
-                                    name: "DOMINGO",
-                                    surname: "CAYUELA",
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+
+                                    },
                                     isAdmin: true,
                                     isInvited: false,
                                 },
@@ -283,9 +306,12 @@ export const AppProvider = ({ children }) => {
                             accepted: false,
                             students: [
                                 {
-                                    id: "alex1234h",
-                                    name: "DOMINGO",
-                                    surname: "CAYUELA",
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+                                    },
+
                                     isAdmin: true,
                                     isInvited: false,
                                 },
@@ -307,13 +333,48 @@ export const AppProvider = ({ children }) => {
             payload: data
         })
         console.log(userProfile.user.teacher.businessHours);
-
     }
+    const uploadProfileImage = (data) => {
+        console.log(data);
 
+        dispatchUser({
+            type: "UPLOAD_PROFILE_IMAGE",
+            payload: data
+        })
+    }
+    const saveMainInformation = (data) => {
+        dispatchUser({
+            type: "SAVE_MAIN_INFORMATION",
+            payload: data
+        })
+    }
+    const uploadVideoPresentation = (data) => {
+        dispatchUser({
+            type: "UPLOAD_VIDEO_PRESENTATION",
+            payload: data
+        })
+    }
+    const savePresentation = (data) => {
+        dispatchUser({
+            type: "SAVE_PRESENTATION",
+            payload: data
+        })
+    }
+    const saveTeach = (data) => {
+        dispatchUser({
+            type: "SAVE_TEACH",
+            payload: data
+        })
+    }
     return (
         <AppContext.Provider value={{
             userProfile,
-            updateBusinessHours
+            updateBusinessHours,
+            uploadProfileImage,
+            saveMainInformation,
+            uploadVideoPresentation,
+            savePresentation,
+            saveTeach
         }}>
             {children}
         </AppContext.Provider>

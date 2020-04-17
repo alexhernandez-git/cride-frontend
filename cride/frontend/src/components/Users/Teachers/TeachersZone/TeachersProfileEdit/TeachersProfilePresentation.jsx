@@ -1,12 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Cropper from 'react-cropper';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { AppContext } from "src/context/AppContext"
 import 'cropperjs/dist/cropper.css';
-import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 const TeachersProfilePresentation = () => {
+    const appContext = useContext(AppContext);
     const inputFileVideo = useRef(null);
-    const [srcVideo, setSrcVideo] = useState();
+    const [srcVideo, setSrcVideo] = useState(appContext.userProfile.user.teacher.videoPresentation);
 
-    const [presentation, setPresentation] = useState('')
+    const [presentation, setPresentation] = useState(appContext.userProfile.user.teacher.presentation)
     const [isEditing, setIsEditing] = useState(false)
     useEffect(() => {
 
@@ -27,16 +28,14 @@ const TeachersProfilePresentation = () => {
 
         reader.onload = () => {
             setSrcVideo(reader.result);
+
         };
         reader.readAsDataURL(files[0]);
-
+        appContext.uploadVideoPresentation(files[0])
     }
     const handleSave = () => {
-
-
-
+        appContext.savePresentation(presentation)
         setIsEditing(false)
-
     }
     return (
         <div className="bg-white shadow p-3 rounded my-2">

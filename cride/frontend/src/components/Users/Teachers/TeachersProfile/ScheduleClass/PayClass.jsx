@@ -14,13 +14,13 @@ export default function ScheduleHour() {
 
         if (teacherContext.selectedClasses == 1) {
             console.log(1);
-            console.log(teacherContext.selectedClasses * teacherContext.teacherState.teacher.classPrice)
+            console.log(teacherContext.selectedClasses * teacherContext.teacherState.user.teacher.classPrice)
         } else if (teacherContext.selectedClasses == 5) {
             console.log(5);
-            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.teacher.classPrice / 1.5).toFixed(2))
+            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.user.teacher.classPrice / 1.5).toFixed(2))
         } else {
             console.log(10);
-            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.teacher.classPrice / 2).toFixed(2))
+            console.log('final-price: ', teacherContext.selectedClasses * (teacherContext.teacherState.user.teacher.classPrice / 2).toFixed(2))
         }
 
     })

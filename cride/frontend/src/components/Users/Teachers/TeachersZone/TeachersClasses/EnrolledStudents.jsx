@@ -44,9 +44,8 @@ export default function EnrolledStudents(props) {
 
                         </div>
                     </div>
-                    <button
+                    {/* <button
                         className="btn btn-green text-white d-flex px-2"
-                        onClick={() => { handleDeleteInvited(student) }}
                     >
                         <IconContext.Provider value={{
                             className: " text-white cursor-ponter",
@@ -54,7 +53,7 @@ export default function EnrolledStudents(props) {
                         }}>
                             <MdMessage />
                         </IconContext.Provider>
-                    </button>
+                    </button> */}
 
 
                 </div>

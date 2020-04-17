@@ -7,8 +7,10 @@ import { MdCancel, MdTimer } from "react-icons/md";
 import EnrolledStudents from "src/components/Users/Teachers/TeachersZone/TeachersClasses/EnrolledStudents"
 import CalendarClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/CalendarClass"
 import { TeachersClassesContext } from "src/context/TeachersZoneContext/TeachersClassesContext"
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const TeachersNextClasses = (props) => {
+    const MySwal = withReactContent(Swal)
     const { id, classEvent, students } = props.classElement
     const classesContext = useContext(TeachersClassesContext);
 
@@ -17,12 +19,26 @@ const TeachersNextClasses = (props) => {
     const handleCloseClass = () => setShowClassModal(false)
     const handleShowClass = () => setShowClassModal(true);
     const handleCancelClass = (id) => {
-        if (confirm('¿Estas seguro?')) {
-            classesContext.dispatch({
-                type: 'CANCEL_CLASS_CONFIRMED',
-                payload: id
-            })
-        }
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Cancelar',
+            cancelButtonText: 'Volver'
+        }).then((result) => {
+            if (result.value) {
+                classesContext.dispatch({
+                    type: 'CANCEL_CLASS_CONFIRMED',
+                    payload: id
+                })
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Clase cancelada',
+                })
+            }
+        })
     }
 
     return (

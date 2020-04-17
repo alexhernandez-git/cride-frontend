@@ -6,7 +6,8 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import allLocales from '@fullcalendar/core/locales-all';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ScheduleClass/ScheduleHour.scss"
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import { AppContext } from "src/context/AppContext"
 import { Modal, Button } from 'react-bootstrap'
@@ -14,17 +15,15 @@ import moment from 'moment'
 import momenttz from 'moment-timezone'
 // import ClassModal from 'src/components/Users/Teachers/TeachersProfile/ClassModal';
 export default function ScheduleBuisnessHours() {
+    const MySwal = withReactContent(Swal)
     const appContext = useContext(AppContext);
-    const [show, setShow] = useState(false);
     const [id, setId] = useState(null)
     const [saved, setSaved] = useState(true)
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const calendarComponentRef = useRef(null)
     const businessHoursReducer = (state, action) => {
         switch (action.type) {
             case 'SET_BUSINESS_HOURS':
-                return [...action.payload]
+                return action.payload
             case 'ADD_BUSINESS_HOUR':
                 return [...state, action.payload]
             case 'UPDATE_BUSINESS_HOUR':
@@ -32,6 +31,7 @@ export default function ScheduleBuisnessHours() {
 
                 state[indexClasses].start = action.payload.start
                 state[indexClasses].end = action.payload.end
+                state[indexClasses].day = action.payload.day
 
                 return state
             case 'DELETE_BUSINESS_HOUR':
@@ -81,7 +81,7 @@ export default function ScheduleBuisnessHours() {
                 title: '',
                 start: arg.event.start,
                 end: arg.event.end,
-                daysOfWeek: moment(arg.event.start).day()
+                day: moment(arg.event.start).day()
 
             }
         })
@@ -95,22 +95,38 @@ export default function ScheduleBuisnessHours() {
                 title: '',
                 start: arg.event.start,
                 end: arg.event.end,
-                daysOfWeek: moment(arg.event.start).day()
+                day: moment(arg.event.start).day()
             }
         })
     }
 
     const handleEventClick = (arg) => {
-        setId(arg.event.id)
-        handleShow()
 
-    }
-    const handleDelete = () => {
-        setSaved(false)
-        dispatchBuisnessHours({
-            type: 'DELETE_BUSINESS_HOUR', payload: id
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                console.log(arg.event.remove());
+                dispatchBuisnessHours({
+                    type: 'DELETE_BUSINESS_HOUR', payload: arg.event.id
+                })
+
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
         })
-        handleClose()
+
+
+
+
     }
     const handleSave = () => {
         appContext.updateBusinessHours(businessHours)
@@ -197,19 +213,7 @@ export default function ScheduleBuisnessHours() {
                         />
                     </div>
 
-                    <Modal show={show} onHide={handleClose} centered size={"sm"}>
-                        <Modal.Header className="border-0 pb-0 d-flex justify-content-center">
-                            <span className="h5 text-center text-grey">¿Quieres descartar estas horas?</span>
-                        </Modal.Header>
-                        <Modal.Footer className="border-0 d-flex justify-content-center">
-                            <Button variant="secondary" onClick={handleClose}>
-                                Volver
-                            </Button>
-                            <Button variant="danger" onClick={handleDelete}>
-                                Descartar
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>
+
                 </>
             )
             }

@@ -1,25 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import 'rc-slider/assets/index.css';
-import Select from 'react-select'
 
-import { MdPlaylistAdd, MdCancel } from 'react-icons/md';
-import { IoMdClose } from 'react-icons/io';
-
+import { AppContext } from "src/context/AppContext"
+import { MdCancel } from 'react-icons/md';
 import { IconContext } from "react-icons";
-import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 
 
 export default function TeachersProfileTeach() {
-
     const [isEditing, setIsEditing] = useState(false)
+    const appContext = useContext(AppContext);
 
-    const [subjects, setSubjects] = useState([
-        {
-            id: Math.random().toString(36).substr(2),
-            subjectValue: ''
-        }
-    ])
-
+    const [subjects, setSubjects] = useState(appContext.userProfile.user.teacher.teach)
 
     const handleUpdateSubjects = (e) => {
         console.log(e.target.parentElement.parentElement);
@@ -42,29 +34,23 @@ export default function TeachersProfileTeach() {
         }
     }
     const handleDelete = (id) => {
+        setIsEditing(true)
+        if (subjects.length == 1) {
+            setSubjects([
+                {
+                    id: Math.random().toString(36).substr(2),
+                    subjectValue: ''
+                }
+            ]);
 
-        if (confirm('¿Estas seguro?')) {
-
-
-            if (subjects.length == 1) {
-                setIsEditing(false)
-                setSubjects([
-                    {
-                        id: Math.random().toString(36).substr(2),
-                        subjectValue: ''
-                    }
-                ]);
-
-            } else {
-                const newArrayLang = subjects.filter((subject) => subject.id != id)
-                setSubjects(newArrayLang);
-
-            }
+        } else {
+            const newArrayLang = subjects.filter((subject) => subject.id != id)
+            setSubjects(newArrayLang);
 
         }
     }
     const handleSave = () => {
-        console.log(subjects);
+        appContext.saveTeach(subjects)
 
 
         setIsEditing(false)

@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useContext } from 'react';
-import { Form, Row, Col, Modal, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
-import { FaRegCalendarAlt, FaInfoCircle, FaUserGraduate, FaChalkboardTeacher } from "react-icons/fa";
-import { MdAddCircleOutline, MdPersonAdd, MdMessage, MdCancel } from "react-icons/md";
+import { MdPersonAdd, MdCancel } from "react-icons/md";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ClassStudents.scss"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import { AppContext } from "src/context/AppContext"
+import FriendsList from './FriendsList';
 
 const ClassStudents = (props) => {
     const teacherContext = useContext(TeachersProfileContext);
@@ -16,8 +16,7 @@ const ClassStudents = (props) => {
     const invitationStudent = useRef()
     const handleWindowClick = (e) => {
 
-
-        if (e.target.closest("#invitaitonDiv") != invitationStudent.current) {
+        if (e.target.closest("#invitaitonDiv") != invitationStudent.current && e.target.parentElement.parentElement !== null) {
             teacherContext.setInviteStudentsState(false)
         }
 
@@ -43,16 +42,7 @@ const ClassStudents = (props) => {
 
         }
     }, [])
-    const handleInviteStudent = (user) => {
 
-
-        if (!appContext.user.friends.some(student => student === user)) {
-            teacherContext.handleInviteUser(user)
-        } else {
-            alert('Ya has invitado a este amigo')
-
-        }
-    }
 
     return (
         <AppContext.Consumer>
@@ -124,56 +114,17 @@ const ClassStudents = (props) => {
                                     }}
                                 >
                                     {appContext.userProfile.user.friends.map(user => (
-                                        <div className="my-1"  >
-                                            <div className=" px-3 py-2 bg-white rounded-pill shadow">
-                                                <div className="div-delegate-student d-flex justify-content-between align-items-center">
-                                                    <div className="d-flex justify-content-start align-items-center w-100">
-
-                                                        <div
-                                                            className="delegate-img mr-3"
-                                                            style={{
-                                                                overflow: 'hidden',
-                                                                height: '50px',
-                                                                width: '50px',
-                                                                borderRadius: '50%'
-                                                            }}>
-                                                            <img
-                                                                src={`https://source.unsplash.com/random/1`}
-                                                                alt=""
-                                                                style={{
-                                                                    height: '50px',
-                                                                    width: '50px'
-                                                                }}
-                                                            />
-                                                        </div>
-                                                        <div className="d-flex flex-column">
-                                                            <span className="h6 font-weight-normal m-0">{user.name} {user.surname}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <button className="btn btn-green text-white"
-                                                        onClick={() => handleInviteStudent(user)}
-                                                    >
-                                                        <IconContext.Provider value={{
-                                                            className: " text-white cursor-ponter",
-                                                            size: '20px'
-                                                        }}>
-                                                            <MdPersonAdd />
-                                                        </IconContext.Provider>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <FriendsList user={user} classData={props.classData} />
                                     ))}
 
                                 </div>
                             </div>
-                            {console.log(props.classData)}
                             {props.classData.students ?
                                 <>
                                     {
                                         props.classData.students.map(student => (
                                             <div className="my-1">
+                                                {console.log(student)}
                                                 <div className=" px-3 py-2 bg-white rounded-pill shadow">
                                                     <div className="div-delegate-student d-flex justify-content-between align-items-center">
                                                         <div className="d-flex justify-content-start align-items-center w-100">
@@ -196,9 +147,8 @@ const ClassStudents = (props) => {
                                                                 />
                                                             </div>
                                                             <div className="d-flex flex-column">
-                                                                <span className="h6 font-weight-normal m-0">{student.name} {student.surname}</span>
+                                                                <span className="h6 font-weight-normal m-0">{student.user.name} {student.user.surname}</span>
                                                                 {student.isAdmin ?
-
                                                                     <span
                                                                         className="badge badge-pill bg-gradient-green font-weight-normal text-white mt-2"
                                                                         style={{
@@ -206,15 +156,6 @@ const ClassStudents = (props) => {
                                                                         }}
                                                                     >Delegado</span>
 
-                                                                    :
-                                                                    ''}
-                                                                {student.isInvited ?
-                                                                    <span
-                                                                        className="badge badge-pill badge-warning font-weight-normal text-white mt-2"
-                                                                        style={{
-                                                                            width: 'max-content'
-                                                                        }}
-                                                                    >Invitado</span>
                                                                     :
                                                                     ''}
 

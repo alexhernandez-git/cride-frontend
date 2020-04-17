@@ -18,11 +18,11 @@ const TeachersSidebar = () => {
                 <div>
                     <div className="main-info-profile p-4 shadow">
                         <div className="d-inline justify-content-between">
-                            <span className="d-block h3 mb-3 text-break font-weight-normal">{teacherContext.teacherState.teacher.name} {teacherContext.teacherState.teacher.surname}</span>
+                            <span className="d-block h3 mb-3 text-break font-weight-normal">{teacherContext.teacherState.user.teacher.name} {teacherContext.teacherState.user.teacher.surname}</span>
 
                             <div className="punctuation d-lg-flex justify-content-between align-items-center">
                                 <div>
-                                    <StarRating rating={teacherContext.teacherState.teacher.rating} />
+                                    <StarRating rating={teacherContext.teacherState.user.teacher.rating} />
                                     {/* <IconContext.Provider
                                         value={{
                                             className: "global-class-name text-warning",
@@ -37,7 +37,7 @@ const TeachersSidebar = () => {
                                 </div>
                                 <small className="font-weight-light ml-1 d-block text-primary">
                                     {
-                                        Math.round(teacherContext.teacherState.teacher.ratings.length)
+                                        Math.round(teacherContext.teacherState.user.teacher.ratings.length)
                                     }{' '}
                                     Valoraciones
                                 </small>
@@ -61,15 +61,15 @@ const TeachersSidebar = () => {
 
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">1 clase</span>
-                                <span className="text-primary">{teacherContext.teacherState.teacher.classPrice}€</span>
+                                <span className="text-primary">{teacherContext.teacherState.user.teacher.classPrice}€</span>
                             </div>
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">5 clases</span>
-                                <span className="text-primary">{(teacherContext.teacherState.teacher.classPrice / 1.5).toFixed(2)}€/clase</span>
+                                <span className="text-primary">{(teacherContext.teacherState.user.teacher.classPrice / 1.5).toFixed(2)}€/clase</span>
                             </div>
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">10 clases</span>
-                                <span className="text-primary">{(teacherContext.teacherState.teacher.classPrice / 2).toFixed(2)}€/clase</span>
+                                <span className="text-primary">{(teacherContext.teacherState.user.teacher.classPrice / 2).toFixed(2)}€/clase</span>
                             </div>
                         </div>
                         <div className="classes-acquired mt-3 text-center">

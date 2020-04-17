@@ -8,7 +8,11 @@ import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Badge } from 'react-bootstrap'
 import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersProfileWork.scss"
 import moment from 'moment'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const TeachersProfileWork = () => {
+
+    const MySwal = withReactContent(Swal)
     const [showWorkModal, setShowWorkModal] = useState(false);
     const handleCloseWork = () => {
         setIsEditing(false)
@@ -77,11 +81,25 @@ const TeachersProfileWork = () => {
         }
     }
     const handleDelete = (id) => {
-        if (confirm('¿Estas seguro?')) {
-            const newArrayWorks = works.filter((w) => w.id != id)
-            setWorks(newArrayWorks)
-            handleCloseWork()
-        }
+        const newArrayWorks = works.filter((w) => w.id != id)
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                setWorks(newArrayWorks)
+                handleCloseWork()
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
+        })
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {

@@ -7,12 +7,14 @@ import { MdAddCircleOutline, MdTimer, MdCancel } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherCalendar.scss"
 import ClassStudents from "src/components/Users/Teachers/TeachersProfile/ClassStudents"
 import { AppContext } from "src/context/AppContext"
 import moment from 'moment'
 const ClassDetailsForm = (props) => {
+    const MySwal = withReactContent(Swal)
     const teacherContext = useContext(TeachersProfileContext);
     const appContext = useContext(AppContext);
     const [isAdmin, setIsAdmin] = useState(false)
@@ -33,11 +35,14 @@ const ClassDetailsForm = (props) => {
         constraint: 'businessHours',
         description: '',
         students: [],
+        invitations: [],
         accepted: null,
     })
 
     useEffect(() => {
+
         if (props.args) {
+            console.log('Args: ', props.args);
 
             if (teacherContext.isEdit) {
                 setClassData(() => ({
@@ -48,6 +53,7 @@ const ClassDetailsForm = (props) => {
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
                     students: props.args.event.extendedProps.students,
+                    invitations: props.args.event.extendedProps.invitations
                 }))
                 let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
                 const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
@@ -63,8 +69,8 @@ const ClassDetailsForm = (props) => {
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
-                    students: props.args.event.extendedProps.students
-
+                    students: props.args.event.extendedProps.students,
+                    invitations: props.args.event.extendedProps.invitations
                 }))
                 let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
                 const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
@@ -81,6 +87,8 @@ const ClassDetailsForm = (props) => {
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
                     students: props.args.event.extendedProps.students,
+                    invitations: props.args.event.extendedProps.invitations
+
                 }))
             }
             else {
@@ -89,18 +97,21 @@ const ClassDetailsForm = (props) => {
                 setClassData(() => ({
                     id: Math.random().toString(36).substr(2),
                     title: 'Clase',
-                    start: props.args.date,
+                    start: props.args.dateStr,
                     constraint: 'businessHours',
                     description: '',
                     accepted: false,
                     students: [{
-                        id: appContext.userProfile.user.id,
-                        name: appContext.userProfile.user.name,
-                        surname: appContext.userProfile.user.surname,
-                        name: appContext.userProfile.user.name,
+                        user: {
+                            id: appContext.userProfile.user.id,
+                            name: appContext.userProfile.user.name,
+                            surname: appContext.userProfile.user.surname,
+                            name: appContext.userProfile.user.name,
+                        },
                         isAdmin: true,
                         isInvited: false,
-                    }]
+                    }],
+                    invitations: []
                 }))
             }
 
@@ -133,61 +144,110 @@ const ClassDetailsForm = (props) => {
     const deleteClass = () => {
         if (props.profile) {
 
-            if (confirm('¿Estas seguro?')) {
-                teacherContext.removeClass(classData)
+            MySwal.fire({
+                title: 'Estas seguro?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
 
-                props.args.event.remove()
-                // let event = props.calendar.current.getResourceById(classData.id);
-                // event.remove()
-                setClassData({
-                    id: '',
-                    title: 'Clase',
-                    start: null,
-                    description: '',
-                    accepted: null,
-                    students: []
-                })
-            }
+                    teacherContext.removeClass(classData)
+
+                    props.args.event.remove()
+                    // let event = props.calendar.current.getResourceById(classData.id);
+                    // event.remove()
+                    setClassData({
+                        id: '',
+                        title: 'Clase',
+                        start: null,
+                        description: '',
+                        accepted: null,
+                        students: []
+                    })
+                    return Swal.fire({
+                        icon: 'success',
+                        title: 'Eliminado',
+                    })
+
+                }
+            })
+
+
         } else {
-            if (confirm('¿Estas seguro?')) {
+            MySwal.fire({
+                title: 'Estas seguro?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
 
-                teacherContext.removeTemporaryClassEvent(classData)
-                props.args.event.remove()
-                // let event = props.calendar.current.getResourceById(classData.id);
-                // event.remove()
-                setClassData({
-                    id: '',
-                    title: 'Clase',
-                    start: null,
-                    description: '',
-                    accepted: null,
-                    students: []
-                })
-            }
+                    teacherContext.removeTemporaryClassEvent(classData)
+                    props.args.event.remove()
+                    // let event = props.calendar.current.getResourceById(classData.id);
+                    // event.remove()
+                    setClassData({
+                        id: '',
+                        title: 'Clase',
+                        start: null,
+                        description: '',
+                        accepted: null,
+                        students: []
+                    })
+                    return Swal.fire({
+                        icon: 'success',
+                        title: 'Eliminado',
+                    })
+
+                }
+            })
         }
     }
     const updateClass = () => {
-        if (confirm('¿Estas seguro?')) {
-            if (props.profile) {
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Actualizar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
 
-                teacherContext.updateClass(classData)
-            } else {
-                teacherContext.updateTemporaryClassEvent(classData)
+                if (props.profile) {
+
+                    teacherContext.updateClass(classData)
+                } else {
+                    teacherContext.updateTemporaryClassEvent(classData)
+
+                }
+
+
+                props.args.event.setExtendedProp('description', classData.description)
+
+                setClassData({
+                    id: '',
+                    title: 'Clase',
+                    start: null,
+                    description: '',
+                    accepted: null,
+                    students: []
+                })
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Actualizado',
+                })
 
             }
-
-
-            props.args.event.setExtendedProp('description', classData.description)
-
-            setClassData({
-                id: '',
-                title: 'Clase',
-                start: null,
-                description: '',
-                accepted: null,
-                students: []
-            })
-        }
+        })
     }
     useEffect(() => {
         return () => {
@@ -204,6 +264,7 @@ const ClassDetailsForm = (props) => {
             teacherContext.setOnlyShow(false)
         }
     }, []);
+
     moment.locale('es')
     return (
         <TeachersProfileContext.Consumer>

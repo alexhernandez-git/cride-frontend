@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Lang from "static/data/languages"
 import LangLevel from "static/data/languageLevel"
 import Select from 'react-select'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { MdCancel } from 'react-icons/md';
 
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
 const TeachersProfileLanguages = () => {
+    const MySwal = withReactContent(Swal)
     const [showLanguageModal, setShowLanguageModal] = useState(false);
 
     const handleCloseLanguage = () => setShowLanguageModal(false);
@@ -48,8 +51,27 @@ const TeachersProfileLanguages = () => {
     }
     const handleDelete = (id) => {
         const newArrayLang = language.filter((lang) => lang.id != id)
-        if (confirm('¿Estas seguro?'))
-            setLanguage(newArrayLang);
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+
+                setLanguage(newArrayLang);
+
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
+        })
+
+
 
     }
     return (

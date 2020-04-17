@@ -84,9 +84,9 @@ const WelcomeLayout = () => {
                     </div>
                     <div className="d-flex justify-content-center bg-gradient-green p-3">
                         {slideIndex == 0 ?
-                            <Link to="/teachers" className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a aprender</Link>
+                            <Link to="/teachers" className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 h4 font-weight-normal text-secondary shadow">Empieza a aprender</Link>
                             :
-                            <Link className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 text-secondary shadow">Empieza a enseñar</Link>
+                            <Link className="bg-white cursor-pointer rounded-pill text-grey h4 font-weight-normal px-3 py-2 text-secondary shadow">Empieza a enseñar</Link>
 
                         }
                     </div>

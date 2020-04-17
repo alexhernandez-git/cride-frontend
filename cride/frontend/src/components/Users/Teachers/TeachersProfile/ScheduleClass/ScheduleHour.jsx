@@ -10,6 +10,8 @@ import { IconContext } from "react-icons";
 import {
     FaRegQuestionCircle
 } from 'react-icons/fa';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { Row, Col, Modal } from 'react-bootstrap'
 import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
@@ -19,6 +21,7 @@ import ClassDetailsForm from "src/components/Users/Teachers/TeachersProfile/Clas
 import moment from 'moment'
 // import ClassModal from 'src/components/Users/Teachers/TeachersProfile/ClassModal';
 export default function ScheduleHour(props) {
+    const MySwal = withReactContent(Swal)
     const teacherContext = useContext(TeachersProfileContext);
     const appContext = useContext(AppContext);
 
@@ -72,7 +75,6 @@ export default function ScheduleHour(props) {
     const handleDropedEvent = (args) => {
         setArgs(args)
         teacherContext.handleShowDetailsClassForm()
-        // }
         args.event.remove()
     }
 
@@ -157,11 +159,26 @@ export default function ScheduleHour(props) {
     const handleClickHideModal = () => {
 
         if (teacherContext.key > 0) {
-            if (confirm('¿Estas seguro? Si sales al perfil del profesor los cambios se perderan')) {
-                teacherContext.handleClose()
-                teacherContext.setIsMyClass(false)
-                teacherContext.setIsEdit(false)
-            }
+            MySwal.fire({
+                title: 'Si sales al perfil los cambios se perderan',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Salir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+
+                    teacherContext.handleClose()
+                    teacherContext.setIsMyClass(false)
+                    teacherContext.setIsEdit(false)
+
+                }
+            })
+
+
+
         } else {
             teacherContext.handleClose()
             teacherContext.setIsMyClass(false)
@@ -169,28 +186,28 @@ export default function ScheduleHour(props) {
         }
 
     }
-    const getScheduleHours = () => {
-        let arrayHours = appContext.userProfile.user.teacher.businessHours
-        console.log(arrayHours);
-
-    }
     useEffect(() => {
-        if (!appContext.userProfile.loading) {
-            console.log(appContext.userProfile.user.teacher.businessHours);
-            const hour = appContext.userProfile.user.teacher.businessHours.map(hour => {
+        if (!teacherContext.teacherState.user.teacher.loading) {
+            const hours = teacherContext.teacherState.user.teacher.businessHours.map(hour => {
                 hour.daysOfWeek = []
                 hour.daysOfWeek[0] = hour.day
                 hour.startTime = moment(hour.start, "HH:mm").format("HH:mm").toString()
                 hour.endTime = moment(hour.end, "HH:mm").format("HH:mm").toString()
                 return hour
             })
-            // daysOfWeek: [0],
-            // startTime: '09:00',
-            // endTime: '14:00'
-            console.log(hour);
-            setBusinessHours(hour)
+            if (hours.length == 0) {
+                setBusinessHours([{
+                    startTime: "06:00:00",
+                    endTime: "24:00:00",
+                    daysOfWeek: [0, 1, 2, 3, 4, 5, 6]
+                }])
+            } else {
+                setBusinessHours(hours)
+            }
+
+
         }
-    }, [appContext.userProfile.loading]);
+    }, [teacherContext.teacherState.user.teacher.loading]);
     return (
         <AppContext.Consumer>
             {teacherContext => (
@@ -246,21 +263,21 @@ export default function ScheduleHour(props) {
                                     id='external-profile-events'
                                     className="text-center draggable-events"
                                 >
-                                    {teacherContext.teacherState.teacher.eventClassesLeft.length > 0 && !teacherContext.showScheduleClass ?
+                                    {teacherContext.teacherState.user.teacher.eventClassesLeft.length > 0 && !teacherContext.showScheduleClass ?
                                         <>
 
 
 
                                             <div className="py-2 d-none d-lg-block"></div>
                                             <div className="pt-3 d-block d-lg-none"></div>
-                                            {teacherContext.teacherState.teacher.eventClassesLeft.length > 0 ?
+                                            {teacherContext.teacherState.user.teacher.eventClassesLeft.length > 0 ?
                                                 <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases</span>
                                                 :
                                                 ''
                                             }
                                             <Row>
-                                                {teacherContext.teacherState.teacher.eventClassesLeft.map(() => (
-                                                    teacherContext.teacherState.teacher.eventClassesLeft.length == 1 ?
+                                                {teacherContext.teacherState.user.teacher.eventClassesLeft.map(() => (
+                                                    teacherContext.teacherState.user.teacher.eventClassesLeft.length == 1 ?
                                                         < Col >
                                                             <div className="fc-event text-center">Clase</div>
                                                         </Col>
@@ -315,8 +332,8 @@ export default function ScheduleHour(props) {
                                                 [
                                                     {
                                                         id: 0,
-                                                        // events: teacherContext.teacherState.teacher.myPendingClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.myPendingClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
                                                             if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
                                                                 return classEvent.accepted == false
@@ -328,8 +345,8 @@ export default function ScheduleHour(props) {
                                                     },
                                                     {
                                                         id: 2,
-                                                        // events: teacherContext.teacherState.teacher.myAcceptedClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.myAcceptedClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
                                                             if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
                                                                 return classEvent.accepted == true
@@ -342,8 +359,8 @@ export default function ScheduleHour(props) {
                                                     },
                                                     {
                                                         id: 3,
-                                                        // events: teacherContext.teacherState.teacher.reservedClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.reservedClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
                                                             return classEvent.students.some(student => student.id != appContext.userProfile.user.id)
                                                         }),
@@ -362,8 +379,8 @@ export default function ScheduleHour(props) {
                                                     },
                                                     {
                                                         id: 1,
-                                                        // events: teacherContext.teacherState.teacher.myPendingClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.myPendingClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
                                                                 classEvent.title = 'Clase'
                                                                 return classEvent.accepted == false
@@ -375,8 +392,8 @@ export default function ScheduleHour(props) {
                                                     },
                                                     {
                                                         id: 2,
-                                                        // events: teacherContext.teacherState.teacher.myAcceptedClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.myAcceptedClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
                                                                 classEvent.title = 'Clase'
                                                                 return classEvent.accepted == true
@@ -389,8 +406,8 @@ export default function ScheduleHour(props) {
                                                     },
                                                     {
                                                         id: 3,
-                                                        // events: teacherContext.teacherState.teacher.reservedClasses,
-                                                        events: teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+                                                        // events: teacherContext.teacherState.user.teacher.reservedClasses,
+                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
                                                             return classEvent.students.some(student => student.id != appContext.userProfile.user.id)
                                                         }),
@@ -415,7 +432,7 @@ export default function ScheduleHour(props) {
                                 <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
                                     Clases por asignar
                             <span className="font-weight-bold">{' '}
-                                        {props.profile ? teacherContext.teacherState.teacher.eventClassesLeft.length : teacherContext.classesAssignedLeft.length}
+                                        {props.profile ? teacherContext.teacherState.user.teacher.eventClassesLeft.length : teacherContext.classesAssignedLeft.length}
                                     </span>
                                 </div>
                             </div>
@@ -455,7 +472,7 @@ export default function ScheduleHour(props) {
 
                                                 }
 
-                                                <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.teacher.classPrice * 0.2)}€</span></span>
+                                                <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span></span>
 
                                             </div>
                                             <div
@@ -464,9 +481,9 @@ export default function ScheduleHour(props) {
                                             >
                                                 <span className="d-block" ref={invitationText}>
                                                     Al compañero que invites le va a costar la classe exactamente{' '}
-                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.teacher - teacherContext.teacherState.teacher.classPrice * 0.2)}€</span><br />
+                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher - teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span><br />
                                                         que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
-                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.teacher * 0.2)}€</span> por cada invitado que adquiera la clase
+                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher * 0.2)}€</span> por cada invitado que adquiera la clase
                                                         </span>
                                             </div>
 

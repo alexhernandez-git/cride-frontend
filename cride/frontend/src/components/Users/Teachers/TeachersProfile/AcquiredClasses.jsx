@@ -9,7 +9,7 @@ const AcquiredClasses = () => {
 
     const [myPendingClasses, setMyPendingClasses] = useState(false);
     useEffect(() => {
-        const result = teacherContext.teacherState.teacher.classes.filter((classEvent) => {
+        const result = teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
             if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
                 return classEvent.accepted == false
             }
@@ -42,8 +42,8 @@ const AcquiredClasses = () => {
                     {console.log(teacherContext.teacherState)}
                     <span>Clases adquiridas</span>{' '}
                     <span className="">
-                        {myPendingClasses && teacherContext.teacherState.teacher.eventClassesLeft ?
-                            myPendingClasses.length + teacherContext.teacherState.teacher.eventClassesLeft.length
+                        {myPendingClasses && teacherContext.teacherState.user.teacher.eventClassesLeft ?
+                            myPendingClasses.length + teacherContext.teacherState.user.teacher.eventClassesLeft.length
                             :
                             ''
                         }

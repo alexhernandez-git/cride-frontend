@@ -9,7 +9,7 @@ const Home = () => {
     return (
         <div className="text-grey" >
             <WelcomeLayout />
-            <TeachersCarousel />
+            {/* <TeachersCarousel />
             <div className="banner-home mt-5 border-danger bg-danger box-shadow">
                 <h4 className="h2">Nunca pares de aprender</h4>
                 <p>Y aprende como nunca lo has hecho</p>
@@ -30,7 +30,7 @@ const Home = () => {
                         <Button variant="outline-info">Empezar ahora</Button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

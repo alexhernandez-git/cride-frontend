@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Lang from "static/data/languages"
-import Countries from "static/data/countries"
-import Select from 'react-select'
+import React, { useContext, useState } from 'react';
+import { AppContext } from "src/context/AppContext"
 import { Form, Row, Col } from 'react-bootstrap'
 const TeachersProfileInfo = () => {
+    const appContext = useContext(AppContext);
     const [info, setInfo] = useState({
-        name: '',
-        surname: ''
+        name: appContext.userProfile.user.name,
+        surname: appContext.userProfile.user.surname
     })
     const [isEditing, setIsEditing] = useState(false)
 
     const handleSave = () => {
+        appContext.saveMainInformation(info)
         setIsEditing(false)
     }
     return (

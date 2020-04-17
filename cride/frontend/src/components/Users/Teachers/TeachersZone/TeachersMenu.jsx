@@ -41,7 +41,7 @@ export default function TeachersMenu() {
                     </small>
                 </div>
             </Link>
-            <Link to="/myzone/calendar">
+            {/* <Link to="/myzone/teacher/calendar">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -58,25 +58,8 @@ export default function TeachersMenu() {
                         Calendario
                     </small>
                 </div>
-            </Link>
-            <Link to="/myzone/classes">
-                <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle">
-
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-white",
-                                size: '20px'
-                            }}>
-                            <FaUserGraduate />
-                        </IconContext.Provider>
-                    </div>
-                    <small>
-                        Mis clases
-                                                            </small>
-                </div>
-            </Link>
-            <Link to="/myzone/messages">
+            </Link> */}
+            {/* <Link to="/myzone/messages">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -93,25 +76,7 @@ export default function TeachersMenu() {
                         Mensajes
                     </small>
                 </div>
-            </Link>
-            <Link to="/myzone/calendar">
-                <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle">
-
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-white",
-                                size: '20px'
-                            }}>
-                            <FaRegHeart />
-                        </IconContext.Provider>
-                    </div>
-
-                    <small>
-                        Favoritos
-                                        </small>
-                </div>
-            </Link>
+            </Link> */}
 
         </div>
 

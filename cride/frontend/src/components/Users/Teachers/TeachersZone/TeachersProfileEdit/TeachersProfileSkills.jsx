@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
-import Select from 'react-select'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { MdCancel } from 'react-icons/md';
 import Slider from 'rc-slider';
@@ -11,7 +12,7 @@ import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
 
 export default function TeachersProfileSkills() {
     const [showSkillsModal, setShowSkillsModal] = useState(false);
-
+    const MySwal = withReactContent(Swal)
     const handleCloseSkills = () => setShowSkillsModal(false);
     const handleShowSkills = () => setShowSkillsModal(true);
     const [valueSkills, setValueSkills] = useState('')
@@ -32,7 +33,6 @@ export default function TeachersProfileSkills() {
             setSkills([...skills, skill])
 
         }
-        console.log(skills);
 
         setValueSkills('');
         setValueLevel(0);
@@ -41,8 +41,26 @@ export default function TeachersProfileSkills() {
     const handleDelete = (id) => {
 
         const newArrayLang = skills.filter((skill) => skill.id != id)
-        if (confirm('¿Estas seguro?'))
-            setSkills(newArrayLang);
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+
+                setSkills(newArrayLang);
+
+
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
+        })
 
     }
     return (

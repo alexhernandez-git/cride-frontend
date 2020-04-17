@@ -9,12 +9,15 @@ import {
     FaRegHandshake,
 
 } from "react-icons/fa";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { MdCancel, MdTimer } from "react-icons/md";
 import EnrolledStudents from "src/components/Users/Teachers/TeachersZone/TeachersClasses/EnrolledStudents"
 import CalendarClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/CalendarClass"
 import { TeachersClassesContext } from "src/context/TeachersZoneContext/TeachersClassesContext"
 
 const TeachersClassesToBeConfirmed = (props) => {
+    const MySwal = withReactContent(Swal)
     const { id, classEvent, students } = props.classElement
     const classesContext = useContext(TeachersClassesContext);
 
@@ -23,20 +26,50 @@ const TeachersClassesToBeConfirmed = (props) => {
     const handleShowClass = () => setShowClassModal(true);
 
     const handleConfirmClasse = (classElement) => {
-        if (confirm('¿Estas seguro?')) {
-            classesContext.dispatch({
-                type: 'CONFIRM_CLASS',
-                payload: classElement
-            })
-        }
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                classesContext.dispatch({
+                    type: 'CONFIRM_CLASS',
+                    payload: classElement
+                })
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Clase aceptada',
+                })
+            }
+        })
     }
     const handleCancelClass = (id) => {
-        if (confirm('¿Estas seguro?')) {
-            classesContext.dispatch({
-                type: 'CANCEL_CLASS_TO_BE_CONFIRMED',
-                payload: id
-            })
-        }
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                classesContext.dispatch({
+                    type: 'CANCEL_CLASS_TO_BE_CONFIRMED',
+                    payload: id
+                })
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
+        })
+
+
     }
     return (
         <TeachersClassesContext.Consumer>

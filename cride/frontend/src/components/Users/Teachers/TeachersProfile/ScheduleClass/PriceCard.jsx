@@ -10,7 +10,7 @@ export default function PriceCard(props) {
     const { id, title, sessions, description, price, classes } = props.content
     useEffect(() => {
         if (classes > 1) {
-            setDiscount((teacherContext.teacherState.teacher.classPrice * classes - price * classes).toFixed(2))
+            setDiscount((teacherContext.teacherState.user.teacher.classPrice * classes - price * classes).toFixed(2))
         }
     }, []);
     const handleSelectClasses = () => {

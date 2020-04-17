@@ -8,7 +8,13 @@ import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Badge } from 'react-bootstrap'
 import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersProfileStudies.scss"
 import moment from 'moment'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 const TeachersProfileStudies = () => {
+
+    const MySwal = withReactContent(Swal)
+    const [showWorkModal, setShowWorkModal] = useState(false);
     const [showStudiesModal, setShowStudiesModal] = useState(false);
     const handleCloseStudies = () => {
         setIsEditing(false)
@@ -95,12 +101,29 @@ const TeachersProfileStudies = () => {
         }
     }
     const handleDelete = (id) => {
-        if (confirm('¿Estas seguro?')) {
+        const newArrayStudiess = studies.filter((w) => w.id != id)
 
-            const newArrayStudiess = studies.filter((w) => w.id != id)
-            setStudiess(newArrayStudiess)
-            handleCloseStudies()
-        }
+        MySwal.fire({
+            title: 'Estas seguro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.value) {
+
+                setStudiess(newArrayStudiess)
+                handleCloseStudies()
+                return Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                })
+            }
+        })
+
+
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {

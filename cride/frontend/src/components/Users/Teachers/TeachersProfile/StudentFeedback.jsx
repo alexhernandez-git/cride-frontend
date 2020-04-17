@@ -11,9 +11,9 @@ export default function TeacherPunctuation() {
     const [mean, setMean] = useState(false);
     const [percentages, setPercentages] = useState([])
     useEffect(() => {
-        if (teacherContext.teacherState.teacher.ratings.length > 0) {
+        if (teacherContext.teacherState.user.teacher.ratings.length > 0) {
             let oneStars = 0, twoStars = 0, threeStars = 0, fourStars = 0, fiveStars = 0;
-            teacherContext.teacherState.teacher.ratings.map((rating) => {
+            teacherContext.teacherState.user.teacher.ratings.map((rating) => {
                 if (rating.rating <= 1) {
                     oneStars++
                 } else if (rating.rating <= 2) {
@@ -30,7 +30,7 @@ export default function TeacherPunctuation() {
 
             const newArray = [fiveStars, fourStars, threeStars, twoStars, oneStars].map((percentage) => {
 
-                return percentage * 100 / teacherContext.teacherState.teacher.ratings.length
+                return percentage * 100 / teacherContext.teacherState.user.teacher.ratings.length
             })
             setPercentages(newArray);
 
@@ -38,7 +38,7 @@ export default function TeacherPunctuation() {
 
         }
 
-    }, [teacherContext.teacherState.teacher.ratings.length])
+    }, [teacherContext.teacherState.user.teacher.ratings.length])
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
@@ -48,7 +48,7 @@ export default function TeacherPunctuation() {
                         <div className="row mt-3">
                             <div className="col-12 col-lg-3 general-feedback d-flex justify-content-center align-items-center flex-column">
 
-                                <span className="h1">{teacherContext.teacherState.teacher.rating}</span>
+                                <span className="h1">{teacherContext.teacherState.user.teacher.rating}</span>
                                 <div>
                                     <IconContext.Provider
                                         value={{
@@ -56,7 +56,7 @@ export default function TeacherPunctuation() {
                                             size: '20px'
                                         }}>
                                         <div className="punctuation">
-                                            <StarRating rating={teacherContext.teacherState.teacher.rating} />
+                                            <StarRating rating={teacherContext.teacherState.user.teacher.rating} />
                                         </div>
                                     </IconContext.Provider>
                                 </div>
@@ -81,7 +81,7 @@ export default function TeacherPunctuation() {
                     </div>
                     <div className="students-reviews">
                         <span className="d-block h3 font-weight-normal text-primary pb-2">Reviews</span>
-                        {teacherContext.teacherState.teacher.ratings.map(rating => (
+                        {teacherContext.teacherState.user.teacher.ratings.map(rating => (
                             <StudentReview rating={rating} />
                         ))}
 
