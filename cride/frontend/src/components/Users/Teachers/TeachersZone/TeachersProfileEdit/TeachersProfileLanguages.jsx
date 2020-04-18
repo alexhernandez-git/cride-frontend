@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Lang from "static/data/languages"
 import LangLevel from "static/data/languageLevel"
 import Select from 'react-select'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import { AppContext } from "src/context/AppContext"
 import { MdCancel } from 'react-icons/md';
 
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
 const TeachersProfileLanguages = () => {
+    const appContext = useContext(AppContext);
     const MySwal = withReactContent(Swal)
     const [showLanguageModal, setShowLanguageModal] = useState(false);
 
@@ -17,7 +18,6 @@ const TeachersProfileLanguages = () => {
     const handleShowLanguage = () => setShowLanguageModal(true);
     const [valueLanguage, setValueLanguage] = useState(null)
     const [valueLevel, setValueLevel] = useState(null)
-    const [language, setLanguage] = useState([])
     const handleValueChange = (option) => {
         option.level = 'higth'
         console.log(option);
@@ -38,10 +38,7 @@ const TeachersProfileLanguages = () => {
             languageComplete.languageLabel = valueLanguage.label
             languageComplete.levelValue = valueLevel.value
             languageComplete.levelLabel = valueLevel.label
-            console.log(languageComplete);
-
-            setLanguage([...language, languageComplete])
-            console.log(language);
+            appContext.addLenguage(languageComplete)
 
         }
         setValueLanguage(null);
@@ -49,8 +46,7 @@ const TeachersProfileLanguages = () => {
         handleCloseLanguage()
 
     }
-    const handleDelete = (id) => {
-        const newArrayLang = language.filter((lang) => lang.id != id)
+    const handleDelete = (data) => {
         MySwal.fire({
             title: 'Estas seguro?',
             icon: 'warning',
@@ -62,7 +58,7 @@ const TeachersProfileLanguages = () => {
         }).then((result) => {
             if (result.value) {
 
-                setLanguage(newArrayLang);
+                appContext.deleteLenguage(data);
 
                 return Swal.fire({
                     icon: 'success',
@@ -89,15 +85,15 @@ const TeachersProfileLanguages = () => {
                     </Col>
 
                     <Col lg={{ offset: 1, span: 6 }}>
-                        {language.length != 0 ?
+                        {appContext.userProfile.user.teacher.lenguages.length != 0 ?
                             <Table responsive className="botder-top border-bottom text-grey">
                                 <tbody>
-                                    {language.map((lang) => (
+                                    {appContext.userProfile.user.teacher.lenguages.map((lang) => (
 
                                         <tr key={lang.id}>
                                             <td>{lang.languageLabel}</td>
                                             <td>{lang.levelLabel}</td>
-                                            <td onClick={() => handleDelete(lang.id)} className="pr-1" style={{ width: '25px' }}>
+                                            <td onClick={() => handleDelete(lang)} className="pr-1" style={{ width: '25px' }}>
                                                 <IconContext.Provider
                                                     value={{
                                                         className: "global-class-name cursor-pointer text-secondary",

@@ -46,7 +46,11 @@ export const AppProvider = ({ children }) => {
                 ],
                 teacher: {
                     rating: 4.7,
-                    classPrice: 24.99,
+                    classPrice: {
+                        label: "24.99$ por clase",
+                        value: 24.99,
+                        type: "usd"
+                    },
                     presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
                     videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
                     teach: [
@@ -366,6 +370,72 @@ export const AppProvider = ({ children }) => {
             payload: data
         })
     }
+    const addLenguage = data => {
+        dispatchUser({
+            type: "ADD_LENGUAGE",
+            payload: data
+        })
+    }
+    const deleteLenguage = data => {
+        dispatchUser({
+            type: "DELETE_LENGUAGE",
+            payload: data
+        })
+    }
+    const addSkill = data => {
+        dispatchUser({
+            type: "ADD_SKILL",
+            payload: data
+        })
+    }
+    const deleteSkill = data => {
+        dispatchUser({
+            type: "DELETE_SKILL",
+            payload: data
+        })
+    }
+    const addWork = data => {
+        dispatchUser({
+            type: "ADD_WORK",
+            payload: data
+        })
+    }
+    const deleteWork = data => {
+        dispatchUser({
+            type: "DELETE_WORK",
+            payload: data
+        })
+    }
+    const editWork = data => {
+        dispatchUser({
+            type: "EDIT_WORK",
+            payload: data
+        })
+    }
+    const addStudy = data => {
+        dispatchUser({
+            type: "ADD_STUDY",
+            payload: data
+        })
+    }
+    const deleteStudy = data => {
+        dispatchUser({
+            type: "DELETE_STUDY",
+            payload: data
+        })
+    }
+    const editStudy = data => {
+        dispatchUser({
+            type: "EDIT_STUDY",
+            payload: data
+        })
+    }
+    const setPrice = data => {
+        dispatchUser({
+            type: "SET_PRICE",
+            payload: data
+        })
+    }
     return (
         <AppContext.Provider value={{
             userProfile,
@@ -374,7 +444,18 @@ export const AppProvider = ({ children }) => {
             saveMainInformation,
             uploadVideoPresentation,
             savePresentation,
-            saveTeach
+            saveTeach,
+            addLenguage,
+            deleteLenguage,
+            addSkill,
+            deleteSkill,
+            addWork,
+            deleteWork,
+            editWork,
+            addStudy,
+            deleteStudy,
+            editStudy,
+            setPrice
         }}>
             {children}
         </AppContext.Provider>

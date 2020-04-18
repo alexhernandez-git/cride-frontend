@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 import { MdCancel } from 'react-icons/md';
 import Slider from 'rc-slider';
-import Tooltip from 'rc-tooltip';
 import { IconContext } from "react-icons";
 import { Form, Row, Col, Modal, Button, Table } from 'react-bootstrap'
-
+import { AppContext } from "src/context/AppContext"
 
 export default function TeachersProfileSkills() {
+    const appContext = useContext(AppContext);
     const [showSkillsModal, setShowSkillsModal] = useState(false);
     const MySwal = withReactContent(Swal)
     const handleCloseSkills = () => setShowSkillsModal(false);
     const handleShowSkills = () => setShowSkillsModal(true);
     const [valueSkills, setValueSkills] = useState('')
     const [valueLevel, setValueLevel] = useState(0)
-    const [skills, setSkills] = useState([])
 
     const handleLevelChange = (value) => {
 
@@ -30,17 +29,13 @@ export default function TeachersProfileSkills() {
             skill.id = Math.random().toString(36).substr(2);
             skill.skillValue = valueSkills
             skill.levelValue = valueLevel
-            setSkills([...skills, skill])
-
+            appContext.addSkill(skill)
         }
-
         setValueSkills('');
         setValueLevel(0);
         handleCloseSkills()
     }
-    const handleDelete = (id) => {
-
-        const newArrayLang = skills.filter((skill) => skill.id != id)
+    const handleDelete = (skill) => {
         MySwal.fire({
             title: 'Estas seguro?',
             icon: 'warning',
@@ -51,10 +46,7 @@ export default function TeachersProfileSkills() {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-
-                setSkills(newArrayLang);
-
-
+                appContext.deleteSkill(skill)
                 return Swal.fire({
                     icon: 'success',
                     title: 'Eliminado',
@@ -79,16 +71,15 @@ export default function TeachersProfileSkills() {
 
                     <Col lg={{ offset: 1, span: 6 }}>
 
-                        {skills.length != 0 ?
+                        {appContext.userProfile.user.teacher.skills.length != 0 ?
                             <div className="mb-3">
-
-                                {skills.map((skill) => (
+                                {appContext.userProfile.user.teacher.skills.map((skill) => (
                                     <div className="my-2" key={skill.id}>
                                         <div className="d-flex justify-content-between">
                                             <span className="h5 font-weight-light text-break">{skill.skillValue}</span>
                                             <div className="d-flex justify-content-between">
 
-                                                <span onClick={() => handleDelete(skill.id)}>
+                                                <span onClick={() => handleDelete(skill)}>
                                                     <IconContext.Provider
                                                         value={{
                                                             className: "global-class-name cursor-pointer text-secondary",

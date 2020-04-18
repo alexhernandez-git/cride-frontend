@@ -69,6 +69,142 @@ export const userReducer = (state, action) => {
                     }
                 }
             }
+        case 'ADD_LENGUAGE':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        lenguages: [...state.user.teacher.lenguages, action.payload]
+                    }
+                }
+            }
+        case 'DELETE_LENGUAGE':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        lenguages: state.user.teacher.lenguages.filter(lang => lang.id !== action.payload.id)
+                    }
+                }
+            }
+        case 'ADD_SKILL':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        skills: [...state.user.teacher.skills, action.payload]
+                    }
+                }
+            }
+        case 'DELETE_SKILL':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        skills: state.user.teacher.skills.filter(skill => skill.id !== action.payload.id)
+                    }
+                }
+            }
+        case 'ADD_WORK':
+            const arrayWorksAdd = [...state.user.teacher.workExperience, action.payload]
+            const worksAddSorted = arrayWorksAdd.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        workExperience: worksAddSorted
+                    }
+                }
+            }
+        case 'DELETE_WORK':
+            const arrayWorksDelete = state.user.teacher.workExperience.filter(work => work.id !== action.payload.id)
+            const worksDeleteSorted = arrayWorksDelete.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        workExperience: worksDeleteSorted
+                    }
+                }
+            }
+        case 'EDIT_WORK':
+            const workIndex = state.user.teacher.workExperience.findIndex((work => work.id == action.payload.id));
+            const arrayWorks = state.user.teacher.workExperience
+            arrayWorks[workIndex].title = action.payload.title
+            arrayWorks[workIndex].company = action.payload.company
+            arrayWorks[workIndex].currentWorking = action.payload.currentWorking
+            arrayWorks[workIndex].startDate = action.payload.startDate
+            arrayWorks[workIndex].endDate = action.payload.endDate
+            arrayWorks[workIndex].description = action.payload.description
+            const worksEditSorted = arrayWorks.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        workExperience: worksEditSorted
+                    }
+                }
+            }
+        case 'ADD_STUDY':
+            const arrayStudiesAdd = [...state.user.teacher.academicExperience, action.payload]
+            const studysAddSorted = arrayStudiesAdd.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        academicExperience: studysAddSorted
+                    }
+                }
+            }
+        case 'DELETE_STUDY':
+            const arrayStudiesDelete = state.user.teacher.academicExperience.filter(study => study.id !== action.payload.id)
+            const studysDeleteSorted = arrayStudiesDelete.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        academicExperience: studysDeleteSorted
+                    }
+                }
+            }
+        case 'EDIT_STUDY':
+            const studyIndex = state.user.teacher.academicExperience.findIndex((study => study.id == action.payload.id));
+            const arrayStudies = state.user.teacher.academicExperience
+            arrayStudies[studyIndex].title = action.payload.title
+            arrayStudies[studyIndex].company = action.payload.company
+            arrayStudies[studyIndex].currentWorking = action.payload.currentWorking
+            arrayStudies[studyIndex].startDate = action.payload.startDate
+            arrayStudies[studyIndex].endDate = action.payload.endDate
+            arrayStudies[studyIndex].description = action.payload.description
+            const studiesEditSorted = arrayStudies.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        academicExperience: studiesEditSorted
+                    }
+                }
+            }
         case 'SET_BUSINESS_HOURS':
             return {
                 ...state,
@@ -77,6 +213,17 @@ export const userReducer = (state, action) => {
                     teacher: {
                         ...state.user.teacher,
                         businessHours: action.payload
+                    }
+                }
+            }
+        case 'SET_PRICE':
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    teacher: {
+                        ...state.user.teacher,
+                        classPrice: action.payload
                     }
                 }
             }

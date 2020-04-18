@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Select from 'react-select'
 import DatePicker from 'react-date-picker';
@@ -10,9 +10,9 @@ import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/Teac
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import { AppContext } from "src/context/AppContext"
 const TeachersProfileStudies = () => {
-
+    const appContext = useContext(AppContext);
     const MySwal = withReactContent(Swal)
     const [showWorkModal, setShowWorkModal] = useState(false);
     const [showStudiesModal, setShowStudiesModal] = useState(false);
@@ -40,29 +40,10 @@ const TeachersProfileStudies = () => {
         endDate: new Date(),
         description: ''
     })
-    const [studies, setStudiess] = useState([])
-    const sortStudiess = (newArrayStudiess) => {
-        const studiesSorted = newArrayStudiess.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
-        setStudiess(studiesSorted)
-    }
-
 
     const handleAddStudies = () => {
 
-
-        const studiesComplete = {}
-        studiesComplete.id = Math.random().toString(36).substr(2);
-        studiesComplete.title = valueStudies.title
-        studiesComplete.company = valueStudies.company
-        studiesComplete.currentStudiesing = valueStudies.currentStudiesing
-        studiesComplete.startDate = valueStudies.startDate
-        studiesComplete.endDate = valueStudies.endDate
-        studiesComplete.description = valueStudies.description
-        console.log(studiesComplete);
-
-        const newArrayStudiess = [...studies, studiesComplete]
-        sortStudiess(newArrayStudiess)
-
+        appContext.addStudy(valueStudies)
 
         handleCloseStudies()
 
@@ -100,8 +81,7 @@ const TeachersProfileStudies = () => {
 
         }
     }
-    const handleDelete = (id) => {
-        const newArrayStudiess = studies.filter((w) => w.id != id)
+    const handleDelete = (study) => {
 
         MySwal.fire({
             title: 'Estas seguro?',
@@ -114,7 +94,7 @@ const TeachersProfileStudies = () => {
         }).then((result) => {
             if (result.value) {
 
-                setStudiess(newArrayStudiess)
+                appContext.deleteStudy(study)
                 handleCloseStudies()
                 return Swal.fire({
                     icon: 'success',
@@ -127,23 +107,14 @@ const TeachersProfileStudies = () => {
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {
-        const studiesEdit = studies.filter(studies => studies.id == id)[0]
+        const studiesEdit = appContext.userProfile.user.teacher.academicExperience.filter(studies => studies.id == id)[0]
         setValueStudies(studiesEdit)
         setIsEditing(true)
         setShowStudiesModal(true)
 
     }
     const handleEdit = () => {
-
-        const studiesIndex = studies.findIndex((studies => studies.id == valueStudies.id));
-        const arrayStudies = studies
-        arrayStudies[studiesIndex].title = valueStudies.title
-        arrayStudies[studiesIndex].company = valueStudies.company
-        arrayStudies[studiesIndex].currentStudiesing = valueStudies.currentStudiesing
-        arrayStudies[studiesIndex].startDate = valueStudies.startDate
-        arrayStudies[studiesIndex].endDate = valueStudies.endDate
-        arrayStudies[studiesIndex].description = valueStudies.description
-        sortStudiess(arrayStudies)
+        appContext.editStudy(valueStudies)
         setShowStudiesModal(false)
         handleCloseStudies()
     }
@@ -161,9 +132,9 @@ const TeachersProfileStudies = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {studies.length != 0 ?
+                    {appContext.userProfile.user.teacher.academicExperience.length != 0 ?
                         <div className="mb-3">
-                            {studies.map(studies => (
+                            {appContext.userProfile.user.teacher.academicExperience.map(studies => (
 
 
                                 <div className="studies-experience w-100 border-bottom pb-2 mb-2" key={studies.id}>
@@ -277,7 +248,7 @@ const TeachersProfileStudies = () => {
                     <div className="d-flex justify-content-between">
                         <div>
                             {isEditing ?
-                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueStudies.id)}>
+                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueStudies)}>
                                     Eliminar
                      </button>
                                 :

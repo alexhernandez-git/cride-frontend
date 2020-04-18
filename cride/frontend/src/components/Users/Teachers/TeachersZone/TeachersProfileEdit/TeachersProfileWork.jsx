@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Select from 'react-select'
 import DatePicker from 'react-date-picker';
@@ -10,7 +10,9 @@ import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/Teac
 import moment from 'moment'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { AppContext } from "src/context/AppContext"
 const TeachersProfileWork = () => {
+    const appContext = useContext(AppContext);
 
     const MySwal = withReactContent(Swal)
     const [showWorkModal, setShowWorkModal] = useState(false);
@@ -38,50 +40,25 @@ const TeachersProfileWork = () => {
         endDate: new Date(),
         description: ''
     })
-    const [works, setWorks] = useState([])
-    const sortWorks = (newArrayWorks) => {
-        const worksSorted = newArrayWorks.sort((a, b) => (new Date(b.startDate) - new Date(a.startDate)))
-        console.log(worksSorted)
-        setWorks(worksSorted)
-    }
+
     const handleAddWork = () => {
-        const workComplete = {}
-        workComplete.id = Math.random().toString(36).substr(2);
-        workComplete.title = valueWork.title
-        workComplete.company = valueWork.company
-        workComplete.currentWorking = valueWork.currentWorking
-        workComplete.startDate = valueWork.startDate
-        workComplete.endDate = valueWork.endDate
-        workComplete.description = valueWork.description
-        const newArrayWorks = [...works, workComplete]
-        console.log(workComplete);
-
-        sortWorks(newArrayWorks)
-
+        appContext.addWork(valueWork)
         handleCloseWork()
     }
     const handleStartDateChange = (d) => {
         setValueWork({ ...valueWork, startDate: d })
-
-
     }
     const handleEndDateChange = (d) => {
         setValueWork({ ...valueWork, endDate: d })
-
     }
     const handleCheckChange = e => {
         if (!valueWork.currentWorking) {
-
-
             setValueWork({ ...valueWork, endDate: false, currentWorking: e.target.checked })
-
         } else {
             setValueWork({ ...valueWork, endDate: new Date(), currentWorking: e.target.checked })
-
         }
     }
-    const handleDelete = (id) => {
-        const newArrayWorks = works.filter((w) => w.id != id)
+    const handleDelete = (work) => {
         MySwal.fire({
             title: 'Estas seguro?',
             icon: 'warning',
@@ -92,7 +69,7 @@ const TeachersProfileWork = () => {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-                setWorks(newArrayWorks)
+                appContext.deleteWork(work)
                 handleCloseWork()
                 return Swal.fire({
                     icon: 'success',
@@ -103,23 +80,14 @@ const TeachersProfileWork = () => {
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {
-        const workEdit = works.filter(work => work.id == id)[0]
+        const workEdit = appContext.userProfile.user.teacher.workExperience.filter(work => work.id == id)[0]
         setValueWork(workEdit)
         setIsEditing(true)
         setShowWorkModal(true)
 
     }
     const handleEdit = () => {
-
-        const workIndex = works.findIndex((work => work.id == valueWork.id));
-        const arrayWorks = works
-        arrayWorks[workIndex].title = valueWork.title
-        arrayWorks[workIndex].company = valueWork.company
-        arrayWorks[workIndex].currentWorking = valueWork.currentWorking
-        arrayWorks[workIndex].startDate = valueWork.startDate
-        arrayWorks[workIndex].endDate = valueWork.endDate
-        arrayWorks[workIndex].description = valueWork.description
-        sortWorks(arrayWorks)
+        appContext.editWork(valueWork)
         setShowWorkModal(false)
         handleCloseWork()
     }
@@ -137,10 +105,9 @@ const TeachersProfileWork = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {works.length != 0 ?
+                    {appContext.userProfile.user.teacher.workExperience.length != 0 ?
                         <div className="mb-3">
-                            {works.map(work => (
-
+                            {appContext.userProfile.user.teacher.workExperience.map(work => (
                                 <div className="work-experience w-100 border-bottom pb-2 mb-2" key={work.id}>
                                     <div className="d-flex justify-content-between">
 
@@ -151,7 +118,6 @@ const TeachersProfileWork = () => {
                                                     className: "global-class-name cursor-pointer text-secondary",
                                                     size: '25px'
                                                 }}
-
                                             >
                                                 <FiEdit2 />
 
@@ -164,7 +130,6 @@ const TeachersProfileWork = () => {
                                             size: '20px'
                                         }}>
                                             {work.currentWorking
-
                                                 ?
                                                 <>
                                                     <FaRegCalendarAlt />{moment(work.startDate).format('MM/YYYY')}  - <Badge variant="primary" >Actualidad</Badge>
@@ -252,7 +217,7 @@ const TeachersProfileWork = () => {
                     <div className="d-flex justify-content-between">
                         <div>
                             {isEditing ?
-                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueWork.id)}>
+                                <button className="btn btn-outline-green " onClick={() => handleDelete(valueWork)}>
                                     Eliminar
                          </button>
                                 :

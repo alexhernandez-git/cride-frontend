@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Select from 'react-select'
 import { Col, Row } from 'react-bootstrap';
 import Prices from "static/data/prices"
+import { AppContext } from "src/context/AppContext"
 const TeachersProfilePricing = () => {
-    const [price, setPrice] = useState(Prices[0])
+    const appContext = useContext(AppContext);
+    const [price, setPrice] = useState(appContext.userProfile.user.teacher.classPrice)
     const [isEditing, setIsEditing] = useState(false)
     useEffect(() => {
 
@@ -12,6 +14,7 @@ const TeachersProfilePricing = () => {
         };
     }, [price]);
     const handleSave = () => {
+        appContext.setPrice(price)
         setIsEditing(false)
     }
     return (
