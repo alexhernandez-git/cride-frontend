@@ -44,13 +44,13 @@ a {
 img {
   pointer-events: none;
 }
-* {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
-  // color: #323840;
-}
+// * {
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   -khtml-user-select: none;
+//   -ms-user-select: none;
+//   // color: #323840;
+// }
 .modal-content {
   border: none !important;
 }
@@ -158,6 +158,43 @@ input.form-control:focus,
 textarea.form-control:focus,
 input.custom-control-input:focus {
   box-shadow: none !important;
+}
+
+// My Zone
+.div-icon-rol {
+  border: 3px solid #f1ce70 !important;
+
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 44px;
+}
+@media only screen and (min-width: 768px) {
+  .my-zone {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
+    width: calc(100% - 100px);
+    position: absolute;
+    left: 100px;
+    right: 0;
+    top: 70px;
+    padding: 0 0 30px;
+  }
+  .content-zone {
+    width: calc(100% - 100px);
+    position: relative;
+    left: 100px;
+    right: 0;
+    padding: 0 0 30px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .div-margin-bottom {
+    margin-bottom: 10px;
+  }
 }
 
 // Sweet alert

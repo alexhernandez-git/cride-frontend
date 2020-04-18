@@ -14,7 +14,6 @@ import { AppContext } from "src/context/AppContext"
 const TeachersProfileStudies = () => {
     const appContext = useContext(AppContext);
     const MySwal = withReactContent(Swal)
-    const [showWorkModal, setShowWorkModal] = useState(false);
     const [showStudiesModal, setShowStudiesModal] = useState(false);
     const handleCloseStudies = () => {
         setIsEditing(false)

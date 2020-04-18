@@ -15,11 +15,11 @@ export default function TeachersZone() {
 
             <TeachersMenu />
 
-            <div className="content-teachers-zone">
+            <div className="content-zone">
                 <ScrollToTop />
                 <Route exact path="/myzone/teacher" component={TeachersProfileEdit} />
                 <Route exact path="/myzone/teacher/classes" component={TeachersClasses} />
-                {/* <Route exact path="/myzone/teacher/calendar" component={TeachersCalenadar} /> */}
+                <Route exact path="/myzone/teacher/messages" component={() => `Proximamente, demomento si quieres contactar con tus alumnos en tus clases tienes sus correos. Disculpe las molestias. `} />
             </div>
         </div>
     )

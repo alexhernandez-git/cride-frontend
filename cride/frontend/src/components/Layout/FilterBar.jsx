@@ -19,7 +19,6 @@ const FilterBar = () => {
             filterBox.classList = 'filter-bar shadow toggle-size'
             filterBox.style.animation = 'openFilters linear .2s'
 
-            hiddenContent.style.display = 'block'
             hiddenContent.style.animation = 'showFilters linear .2s'
 
             var x = window.matchMedia("(min-width: 768px)")
@@ -36,7 +35,6 @@ const FilterBar = () => {
 
             filterBox.style.animation = 'closeFilters linear .2s'
             filterBox.style.height = '112px'
-            hiddenContent.style.display = 'none'
 
 
             setState({ isOpen: false })
@@ -54,7 +52,7 @@ const FilterBar = () => {
                     <span className="h5 font-weight-normal">652</span> resultados para <span className="h5 font-weight-normal">react</span>
                 </div>
                 <div className="mt-3 d-md-flex justify-content-between">
-                    <div className="div-dropdown">
+                    {/* <div className="div-dropdown">
 
                         <Dropdown>
                             <Dropdown.Toggle variant="" className="btn purple d-none d-md-block" id="dropdown-basic">
@@ -77,7 +75,7 @@ const FilterBar = () => {
                             </Dropdown.Menu>
                         </Dropdown>
 
-                    </div>
+                    </div> */}
                     <div className="div-dropdown">
 
                         <Dropdown className="all-filters">
@@ -95,7 +93,7 @@ const FilterBar = () => {
 
 
                         </Dropdown>
-                        <Dropdown>
+                        {/* <Dropdown>
                             <Dropdown.Toggle variant="" className="btn d-none d-md-block" id="dropdown-basic">
                                 Ordenar{' '}
                             </Dropdown.Toggle>
@@ -104,7 +102,7 @@ const FilterBar = () => {
                                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                             </Dropdown.Menu>
-                        </Dropdown>
+                        </Dropdown> */}
                     </div>
                 </div>
                 <div className="mt-3 hidden-content border-top pt-3">

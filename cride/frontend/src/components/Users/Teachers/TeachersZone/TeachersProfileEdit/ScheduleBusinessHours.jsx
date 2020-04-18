@@ -36,7 +36,7 @@ export default function ScheduleBuisnessHours() {
                 return state
             case 'DELETE_BUSINESS_HOUR':
                 const newArray = state.filter(event => event.id !== action.payload);
-                console.log(newArray);
+
 
                 return newArray
             default:
@@ -45,15 +45,13 @@ export default function ScheduleBuisnessHours() {
     }
     useEffect(() => {
         if (!appContext.userProfile.loading) {
-            console.log(appContext.userProfile.user.teacher.businessHours)
+
 
             dispatchBuisnessHours({ type: "SET_BUSINESS_HOURS", payload: appContext.userProfile.user.teacher.businessHours })
         }
 
     }, [appContext.userProfile.loading]);
-    useEffect(() => {
-        console.log(businessHours)
-    });
+
     const [businessHours, dispatchBuisnessHours] = useReducer(businessHoursReducer, []);
 
 
@@ -112,7 +110,7 @@ export default function ScheduleBuisnessHours() {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-                console.log(arg.event.remove());
+
                 dispatchBuisnessHours({
                     type: 'DELETE_BUSINESS_HOUR', payload: arg.event.id
                 })

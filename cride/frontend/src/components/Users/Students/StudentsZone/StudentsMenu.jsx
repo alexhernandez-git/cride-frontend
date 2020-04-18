@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaChalkboardTeacher, FaRegCalendarAlt, FaUserAlt, FaRegHeart, FaUserGraduate } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaChalkboard, FaUserGraduate, FaUserEdit } from 'react-icons/fa';
 import { MdMessage } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
@@ -7,9 +7,9 @@ import "static/assets/styles/components/Users/Students/StudentsZone/StudentsMenu
 export default function StudentsMenu() {
     return (
         <div className="student-menu zone-sidebar shadow">
-            <Link to="/myzone/teacher">
+            <Link className="cursor-no-pointer">
                 <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle bg-white teacher active">
+                    <div className="div-icon-rol bg-gradient-green rounded-circle bg-white teacher active">
 
                         <IconContext.Provider
                             value={{
@@ -20,11 +20,12 @@ export default function StudentsMenu() {
                         </IconContext.Provider>
                     </div>
                     <small className="">
-                        Student
+                        Alumno
                     </small>
                 </div>
             </Link>
-            <Link to="/myzone/profile">
+
+            <Link to="/myzone/student">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -33,16 +34,16 @@ export default function StudentsMenu() {
                                 className: "global-class-name text-white",
                                 size: '20px'
                             }}>
-                            <FaUserAlt />
+                            <FaUserEdit />
                         </IconContext.Provider>
                     </div>
 
                     <small>
-                        Mi perfil
+                        Perfil
                     </small>
                 </div>
             </Link>
-            <Link to="/myzone/calendar">
+            <Link to="/myzone/student/classes">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -51,33 +52,16 @@ export default function StudentsMenu() {
                                 className: "global-class-name text-white",
                                 size: '20px'
                             }}>
-                            <FaRegCalendarAlt />
+                            <FaChalkboard />
                         </IconContext.Provider>
                     </div>
 
-                    <small>
-                        Calendario
-                    </small>
-                </div>
-            </Link>
-            <Link to="/myzone/classes">
-                <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle">
-
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-white",
-                                size: '20px'
-                            }}>
-                            <FaUserGraduate />
-                        </IconContext.Provider>
-                    </div>
                     <small>
                         Mis clases
-                                                            </small>
+                    </small>
                 </div>
             </Link>
-            <Link to="/myzone/messages">
+            <Link to="/myzone/student/messages">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -90,30 +74,28 @@ export default function StudentsMenu() {
                         </IconContext.Provider>
                     </div>
 
-                    <small className="">
+                    <small>
                         Mensajes
                     </small>
                 </div>
             </Link>
-            <Link to="/myzone/calendar">
+            <Link to="/myzone/teacher">
                 <div className="seccion">
-                    <div className="div-icon bg-gradient-green rounded-circle">
+                    <div className="div-icon bg-gradient-green rounded-circle bg-white">
 
                         <IconContext.Provider
                             value={{
                                 className: "global-class-name text-white",
                                 size: '20px'
                             }}>
-                            <FaRegHeart />
+                            <FaChalkboardTeacher />
                         </IconContext.Provider>
                     </div>
-
-                    <small>
-                        Favoritos
-                                        </small>
+                    <small className="">
+                        Profesor
+                    </small>
                 </div>
             </Link>
-
         </div>
 
     )

@@ -26,7 +26,6 @@ export default function TeacherPunctuation() {
                     fiveStars++
                 }
             })
-            console.log([oneStars, twoStars, threeStars, fourStars, fiveStars]);
 
             const newArray = [fiveStars, fourStars, threeStars, twoStars, oneStars].map((percentage) => {
 

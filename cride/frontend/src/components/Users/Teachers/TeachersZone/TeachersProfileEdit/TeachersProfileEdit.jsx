@@ -5,8 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersClasses.scss"
-import TeachersProfileInfo from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileInfo"
-import TeachersProfileImage from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileImage"
+import TeachersProfileInfo from "src/components/Users/Profile/ProfileInfo"
+import TeachersProfileImage from "src/components/Users/Profile/ProfileImage"
 import TeachersProfilePresentation from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfilePresentation"
 import TeachersProfileLanguages from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileLanguages"
 import TeachersProfileTeach from "src/components/Users/Teachers/TeachersZone/TeachersProfileEdit/TeachersProfileTeach"
@@ -25,7 +25,7 @@ const TeacherProfileEdit = () => {
             <div className="container teachers-profile-edit pt-5 text-grey">
                 <div className="d-sm-flex justify-content-start">
                     <div>
-                        <span className="h3 d-block mb-0 text-dark">Ajustes y perfil</span>
+                        <span className="h3 d-block mb-0 text-dark">Ajustes y perfil del profesor</span>
                         <span>Crea un perfil increible</span>
                     </div>
                 </div>

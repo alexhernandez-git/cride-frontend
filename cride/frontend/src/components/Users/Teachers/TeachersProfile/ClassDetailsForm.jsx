@@ -42,7 +42,6 @@ const ClassDetailsForm = (props) => {
     useEffect(() => {
 
         if (props.args) {
-            console.log('Args: ', props.args);
 
             if (teacherContext.isEdit) {
                 setClassData(() => ({
@@ -211,43 +210,27 @@ const ClassDetailsForm = (props) => {
         }
     }
     const updateClass = () => {
-        MySwal.fire({
-            title: 'Estas seguro?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Actualizar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.value) {
 
-                if (props.profile) {
+        if (props.profile) {
 
-                    teacherContext.updateClass(classData)
-                } else {
-                    teacherContext.updateTemporaryClassEvent(classData)
+            teacherContext.updateClass(classData)
+        } else {
+            teacherContext.updateTemporaryClassEvent(classData)
 
-                }
+        }
 
 
-                props.args.event.setExtendedProp('description', classData.description)
+        props.args.event.setExtendedProp('description', classData.description)
 
-                setClassData({
-                    id: '',
-                    title: 'Clase',
-                    start: null,
-                    description: '',
-                    accepted: null,
-                    students: []
-                })
-                return Swal.fire({
-                    icon: 'success',
-                    title: 'Actualizado',
-                })
-
-            }
+        setClassData({
+            id: '',
+            title: 'Clase',
+            start: null,
+            description: '',
+            accepted: null,
+            students: []
         })
+
     }
     useEffect(() => {
         return () => {

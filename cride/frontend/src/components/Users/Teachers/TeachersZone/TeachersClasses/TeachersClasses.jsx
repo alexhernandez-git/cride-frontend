@@ -5,9 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import "static/assets/styles/components/Users/Teachers/TeachersZone/Profile/TeachersClasses.scss"
 import "static/assets/styles/components/Users/Teachers/TeachersZone/Classes/TeachersMyClasses.scss"
+import TeachersClass from "src/components/Layout/TeachersClass"
 
-import TeachersNextClass from "src/components/Users/Teachers/TeachersZone/TeachersClasses/TeachersNextClass"
-import TeachersClassToBeConfirmed from "src/components/Users/Teachers/TeachersZone/TeachersClasses/TeachersClassToBeConfirmed"
 import { TeachersClassesProvider, TeachersClassesContext } from "src/context/TeachersZoneContext/TeachersClassesContext"
 
 
@@ -92,7 +91,7 @@ const TeacherProfileEdit = () => {
                                                         classesContext.classes.classesConfirmed.length > 0 ?
                                                             <>
                                                                 {classesContext.classes.classesConfirmed.map(classElement => (
-                                                                    <TeachersNextClass key={classElement.id} classElement={classElement} />
+                                                                    < TeachersClass key={classElement.id} classElement={classElement} type={0} />
                                                                 ))}
                                                             </>
                                                             :
@@ -109,7 +108,7 @@ const TeacherProfileEdit = () => {
                                                         classesContext.classes.classesToBeConfirmed.length > 0 ?
                                                             <>
                                                                 {classesContext.classes.classesToBeConfirmed.map(classElement => (
-                                                                    <TeachersClassToBeConfirmed key={classElement.id} classElement={classElement} />
+                                                                    <TeachersClass key={classElement.id} classElement={classElement} type={1} />
                                                                 ))}
                                                             </>
                                                             :

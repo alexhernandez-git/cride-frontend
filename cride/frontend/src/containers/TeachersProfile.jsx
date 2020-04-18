@@ -18,7 +18,6 @@ import { useLocation } from 'react-router-dom'
 const TeachersProfile = props => {
     const { match } = props;
     let { id } = match.params;
-    console.log(id);
 
     return (
         <TeachersProfileProvider id={id}>
@@ -30,7 +29,6 @@ const TeachersProfile = props => {
 
                                 < div className="profile-content container mt-5 mb-5 text-grey">
                                     <Row>
-                                        {console.log(teacherContext.teacherState)}
 
                                         <div onClick={teacherContext.handleShow} className="mb-4 w-100 bg-gradient-green shadow rounded-pill p-2 text-white text-center cursor-pointer">
                                             <span>

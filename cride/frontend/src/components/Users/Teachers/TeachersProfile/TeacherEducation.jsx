@@ -63,7 +63,6 @@ export default function TeachersEducation() {
                                     className: "mr-2 text-primary",
                                     size: '20px'
                                 }}>
-                                    {console.log(work.startDate)}
                                     <FaRegCalendarAlt />{' '}
                                     {moment(work.startDate).format('L')}{' - '}
                                     {work.currentWorking ?

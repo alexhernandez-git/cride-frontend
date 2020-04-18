@@ -253,7 +253,6 @@ export const TeachersProfileProvider = ({ children, id }) => {
                             end: null,
                             constraint: 'businessHours',
                             description: 'Esta es una clase aceptada',
-                            accepted: true,
                             students: [
                                 {
                                     user: {

@@ -18,7 +18,7 @@ const TeachersSidebar = () => {
                 <div>
                     <div className="main-info-profile p-4 shadow">
                         <div className="d-inline justify-content-between">
-                            <span className="d-block h3 mb-3 text-break font-weight-normal">{teacherContext.teacherState.user.teacher.name} {teacherContext.teacherState.user.teacher.surname}</span>
+                            <span className="d-block h3 mb-3 text-break font-weight-normal">{teacherContext.teacherState.user.name} {teacherContext.teacherState.user.surname}</span>
 
                             <div className="punctuation d-lg-flex justify-content-between align-items-center">
                                 <div>

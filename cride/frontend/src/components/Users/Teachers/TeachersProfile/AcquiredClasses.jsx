@@ -39,7 +39,6 @@ const AcquiredClasses = () => {
             {teacherContext => (
 
                 < div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
-                    {console.log(teacherContext.teacherState)}
                     <span>Clases adquiridas</span>{' '}
                     <span className="">
                         {myPendingClasses && teacherContext.teacherState.user.teacher.eventClassesLeft ?

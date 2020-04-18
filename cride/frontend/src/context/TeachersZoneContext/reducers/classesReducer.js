@@ -53,7 +53,7 @@ export const classesReducer = (state, action) => {
             }
         case 'CANCEL_CLASS_CONFIRMED':
             const newArrayClassesConfirmed = state.classesConfirmed.filter((classElement) => {
-                return classElement.id != action.payload
+                return classElement.id != action.payload.id
             })
             return {
                 ...state,
@@ -61,7 +61,7 @@ export const classesReducer = (state, action) => {
             }
         case 'CANCEL_CLASS_TO_BE_CONFIRMED':
             const newArrayClassesToBeConfirmed = state.classesToBeConfirmed.filter((classElement) => {
-                return classElement.id != action.payload
+                return classElement.id != action.payload.id
             })
             return {
                 ...state,

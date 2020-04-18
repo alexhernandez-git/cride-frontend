@@ -20,13 +20,11 @@ const TeachersProfileLanguages = () => {
     const [valueLevel, setValueLevel] = useState(null)
     const handleValueChange = (option) => {
         option.level = 'higth'
-        console.log(option);
 
         setValueLanguage(option);
     }
     const handleLevelChange = (option) => {
         option.level = 'higth'
-        console.log(option);
 
         setValueLevel(option);
     }

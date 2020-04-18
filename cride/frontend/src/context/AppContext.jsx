@@ -13,7 +13,6 @@ export const AppProvider = ({ children }) => {
             name: '',
             surname: '',
             email: '',
-            friends: [],
             teacher: false
         }
 
@@ -28,22 +27,88 @@ export const AppProvider = ({ children }) => {
                 name: 'Alex',
                 surname: 'Hernandez',
                 profile: {
-                    picture: '../../../static/assets/img/profile-blank.png'
+                    picture: '../../../static/assets/img/profile-blank.png',
+                    friends: [
+                        {
+                            id: "alex1efwa234h",
+                            name: "DOMIfeawNGO",
+                            surname: "CAYUewELA",
+
+                        },
+                        {
+                            id: "alex1few234h",
+                            name: "DOMIfewNGO",
+                            surname: "CAYUfewELA",
+
+                        },
+                    ],
+                    invitations: [
+                        {
+                            id: 'fudhnl6tja5',
+                            title: null,
+                            start: Date.now() + 6.04e+8 / 3,
+                            end: null,
+                            constraint: 'businessHours',
+                            description: 'Esta es una clase aceptada',
+                            accepted: true,
+                            students: [
+                                {
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+                                    },
+                                    isAdmin: true,
+
+                                },
+
+                            ]
+                        },
+                        {
+                            id: 'fudhnl6tja5',
+                            title: null,
+                            start: Date.now() + 6.04e+8 / 2.4,
+                            end: null,
+                            constraint: 'businessHours',
+                            description: 'Esta es una clase aceptada',
+                            accepted: false,
+                            students: [
+                                {
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+
+                                    },
+                                    isAdmin: true,
+                                },
+
+                            ]
+                        },
+                        {
+                            id: 'fudhnl6tja5',
+                            title: null,
+                            start: Date.now() + 6.04e+8 / 2.2,
+                            end: null,
+                            constraint: 'businessHours',
+                            description: 'Esta es una clase no aceptada',
+                            accepted: false,
+                            students: [
+                                {
+                                    user: {
+                                        id: "alex1234h",
+                                        name: "DOMINGO",
+                                        surname: "CAYUELA",
+                                    },
+
+                                    isAdmin: true,
+                                },
+
+                            ]
+                        }
+                    ],
                 },
-                friends: [
-                    {
-                        id: "alex1efwa234h",
-                        name: "DOMIfeawNGO",
-                        surname: "CAYUewELA",
 
-                    },
-                    {
-                        id: "alex1few234h",
-                        name: "DOMIfewNGO",
-                        surname: "CAYUfewELA",
-
-                    },
-                ],
                 teacher: {
                     rating: 4.7,
                     classPrice: {
@@ -272,7 +337,6 @@ export const AppProvider = ({ children }) => {
                                         surname: "CAYUELA",
                                     },
                                     isAdmin: true,
-                                    isInvited: false,
 
                                 },
 
@@ -295,7 +359,6 @@ export const AppProvider = ({ children }) => {
 
                                     },
                                     isAdmin: true,
-                                    isInvited: false,
                                 },
 
                             ]
@@ -317,7 +380,6 @@ export const AppProvider = ({ children }) => {
                                     },
 
                                     isAdmin: true,
-                                    isInvited: false,
                                 },
 
                             ]
