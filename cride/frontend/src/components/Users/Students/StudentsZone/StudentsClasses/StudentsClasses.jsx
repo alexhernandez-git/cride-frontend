@@ -46,13 +46,10 @@ const TeacherProfileEdit = () => {
                                             <Nav.Link eventKey={0} className="text-grey">
                                                 <span className="font-weight-bold">PRÓXIMAS CLASES</span>{' '}
                                                 <span className="badge badge-pill badge-secondary align-text-bottom">
-                                                    {classesContext.isFetching ? (
-                                                        <span>0</span>
-                                                    ) : classesContext.hasError ? (
-                                                        <span>0</span>
-                                                    ) : (
-                                                                <span>{classesContext.classes.classesConfirmed.length}</span>
-                                                            )
+                                                    {appContext.userProfile.classes ?
+                                                        <span>{appContext.userProfile.classes.length}</span>
+                                                        :
+                                                        '0'
                                                     }
                                                 </span>
                                             </Nav.Link>
@@ -62,13 +59,11 @@ const TeacherProfileEdit = () => {
                                             <Nav.Link eventKey={1} className="text-grey">
                                                 <span className="font-weight-bold">INVITACIONES</span>{' '}
                                                 <span className="badge badge-pill badge-secondary">
-                                                    {classesContext.isFetching ? (
-                                                        <span>0</span>
-                                                    ) : classesContext.hasError ? (
-                                                        <span>0</span>
-                                                    ) : (
-                                                                <span>{classesContext.classes.classesToBeConfirmed.length}</span>
-                                                            )
+                                                    {appContext.userProfile.invitations ?
+
+                                                        <span>{appContext.userProfile.invitations.length}</span>
+                                                        :
+                                                        '0'
                                                     }
                                                 </span>
                                             </Nav.Link>
@@ -83,38 +78,31 @@ const TeacherProfileEdit = () => {
 
                                     <Tab.Content>
                                         <Tab.Pane eventKey={0} className="text-grey">
-                                            {classesContext.isFetching ? (
-                                                <span>LOADING...</span>
-                                            ) : classesContext.hasError ? (
-                                                <span className="error">Ha ocurrido un error</span>
-                                            ) : (
-
-                                                        classesContext.classes.classesConfirmed.length > 0 ?
-                                                            <>
-                                                                {classesContext.classes.classesConfirmed.map(classElement => (
-                                                                    <TeachersClass key={classElement.id} classElement={classElement} />
-                                                                ))}
-                                                            </>
-                                                            :
-                                                            'No tienes clases'
-                                                    )
+                                            {appContext.userProfile.classes ?
+                                                appContext.userProfile.classes.length > 0 ?
+                                                    <>
+                                                        {appContext.userProfile.classes.map(classElement => (
+                                                            <TeachersClass key={classElement.id} classElement={classElement} type={2} />
+                                                        ))}
+                                                    </>
+                                                    :
+                                                    'No tienes clases'
+                                                :
+                                                ''
                                             }
                                         </Tab.Pane>
                                         <Tab.Pane eventKey={1} className="text-grey">
-                                            {classesContext.isFetching ? (
-                                                <span>LOADING...</span>
-                                            ) : classesContext.hasError ? (
-                                                <span className="error">Ha ocurrido un error</span>
-                                            ) : (
-                                                        classesContext.classes.classesToBeConfirmed.length > 0 ?
-                                                            <>
-                                                                {classesContext.classes.classesToBeConfirmed.map(classElement => (
-                                                                    <TeachersClass key={classElement.id} classElement={classElement} />
-                                                                ))}
-                                                            </>
-                                                            :
-                                                            'No tienes clases por confirmar'
-                                                    )
+                                            {appContext.userProfile.invitations ?
+                                                appContext.userProfile.invitations.length > 0 ?
+                                                    <>
+                                                        {appContext.userProfile.invitations.map(invitation => (
+                                                            <TeachersClass key={invitation.id} invitation={invitation.code} classElement={invitation.class} type={3} />
+                                                        ))}
+                                                    </>
+                                                    :
+                                                    'No tienes invitaciones'
+                                                :
+                                                ''
                                             }
                                         </Tab.Pane>
 

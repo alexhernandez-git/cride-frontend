@@ -1,9 +1,7 @@
 import React from 'react'
-import { IconContext } from "react-icons";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
+
 export default function EnrolledStudents(props) {
-    const { id, name, surname, isAdmin, email } = props.student
+    const { name, surname, email } = props.student.user
     return (
         <div className="my-1">
             <div className=" px-3 py-2 bg-white rounded-pill shadow">
@@ -29,7 +27,7 @@ export default function EnrolledStudents(props) {
                         </div>
                         <div className="d-flex flex-column">
                             <span className="h6 font-weight-normal m-0">{name} {surname}</span>
-                            {isAdmin ?
+                            {props.student.isAdmin ?
 
                                 <span
                                     className="badge badge-pill bg-gradient-green font-weight-normal text-white mt-2"

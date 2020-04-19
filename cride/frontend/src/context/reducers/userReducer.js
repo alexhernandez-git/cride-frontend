@@ -7,7 +7,10 @@ export const userReducer = (state, action) => {
             return {
                 isAuthenticated: true,
                 loading: false,
-                user: action.payload,
+                user: action.payload.user,
+                invitations: action.payload.invitations,
+                friends: action.payload.friends,
+                classes: action.payload.classes,
                 error: ''
             }
         case 'FETCH_ERROR':
@@ -226,6 +229,25 @@ export const userReducer = (state, action) => {
                         classPrice: action.payload
                     }
                 }
+            }
+        case 'CANCEL_CLASS':
+            return {
+                ...state,
+                classes: state.classes.filter(classData => classData.id != action.payload.id)
+            }
+        case 'DISCARD_INVITATION':
+
+            return {
+                ...state,
+                invitations: state.invitations.filter(invitation => invitation.code != action.payload)
+            }
+
+        case 'ACCEPT_INVITATION':
+
+            return {
+                ...state,
+                classes: [...state.classes, action.payload.classData],
+                invitations: state.invitations.filter(invitation => invitation.code != action.payload.invitation)
             }
         default:
             return state;

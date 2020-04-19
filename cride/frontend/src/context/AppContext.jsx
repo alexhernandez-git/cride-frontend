@@ -14,7 +14,9 @@ export const AppProvider = ({ children }) => {
             surname: '',
             email: '',
             teacher: false
-        }
+        },
+        friends: [],
+        invitations: []
 
     }
     const [userProfile, dispatchUser] = useReducer(userReducer, initialUser);
@@ -24,311 +26,424 @@ export const AppProvider = ({ children }) => {
 
         dispatchUser({
             type: 'FETCH_SUCCESS', payload: {
-                name: 'Alex',
-                surname: 'Hernandez',
-                profile: {
-                    picture: '../../../static/assets/img/profile-blank.png',
-                    friends: [
-                        {
-                            id: "alex1efwa234h",
-                            name: "DOMIfeawNGO",
-                            surname: "CAYUewELA",
-
-                        },
-                        {
-                            id: "alex1few234h",
-                            name: "DOMIfewNGO",
-                            surname: "CAYUfewELA",
-
-                        },
-                    ],
-                    invitations: [
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 3,
-                            end: null,
-                            constraint: 'businessHours',
-                            description: 'Esta es una clase aceptada',
-                            accepted: true,
-                            students: [
-                                {
-                                    user: {
-                                        id: "alex1234h",
-                                        name: "DOMINGO",
-                                        surname: "CAYUELA",
-                                    },
-                                    isAdmin: true,
-
-                                },
-
-                            ]
-                        },
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 2.4,
-                            end: null,
-                            constraint: 'businessHours',
-                            description: 'Esta es una clase aceptada',
-                            accepted: false,
-                            students: [
-                                {
-                                    user: {
-                                        id: "alex1234h",
-                                        name: "DOMINGO",
-                                        surname: "CAYUELA",
-
-                                    },
-                                    isAdmin: true,
-                                },
-
-                            ]
-                        },
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 2.2,
-                            end: null,
-                            constraint: 'businessHours',
-                            description: 'Esta es una clase no aceptada',
-                            accepted: false,
-                            students: [
-                                {
-                                    user: {
-                                        id: "alex1234h",
-                                        name: "DOMINGO",
-                                        surname: "CAYUELA",
-                                    },
-
-                                    isAdmin: true,
-                                },
-
-                            ]
-                        }
-                    ],
-                },
-
-                teacher: {
-                    rating: 4.7,
-                    classPrice: {
-                        label: "24.99$ por clase",
-                        value: 24.99,
-                        type: "usd"
+                user: {
+                    id: Math.random().toString(36).substr(2),
+                    name: 'Alex',
+                    surname: 'Hernandez',
+                    profile: {
+                        picture: '../../../static/assets/img/profile-blank.png',
                     },
-                    presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
-                    videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
-                    teach: [
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            subjectValue: 'Desarrollo con Swift'
+                    teacher: {
+                        rating: 4.7,
+                        classPrice: {
+                            label: "24.99$ por clase",
+                            value: 24.99,
+                            type: "usd"
                         },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            subjectValue: 'Desarrollo con React'
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            subjectValue: 'Desarrollo con Angular'
-                        },
-                    ],
-                    lenguages: [
-                        {
-                            id: "wcppkede79c",
-                            languageValue: "hr",
-                            languageLabel: "Croatian",
-                            levelValue: "b1",
-                            levelLabel: "B1, Usuario independiente",
-                        },
-                        {
-                            id: "ar44m6450dl",
-                            languageValue: "es",
-                            languageLabel: "Spanish; Castilian",
-                            levelValue: "b1",
-                            levelLabel: "B1, Usuario independiente",
-                        }
-                    ],
-                    skills: [
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            skillValue: 'HTML',
-                            levelValue: 100
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            skillValue: 'CSS',
-                            levelValue: 95
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            skillValue: 'JavaScript',
-                            levelValue: 70
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            skillValue: 'PHP',
-                            levelValue: 95
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            skillValue: 'MySQL',
-                            levelValue: 32
-                        }
-                    ],
-                    workExperience: [
-                        {
-                            id: "uljz5zio2fj",
-                            title: "Programador frontend",
-                            company: "Microsoft",
-                            currentWorking: true,
-                            startDate: new Date(),
-                            endDate: false,
-                            description: "En ese trabajo cumplía las funciónes de programador frontend",
-                        },
-                        {
-                            id: "gx6s2r3urlv",
-                            title: "Programador backend",
-                            company: "Apple",
-                            currentWorking: false,
-                            startDate: new Date(),
-                            endDate: new Date(),
-                            description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
-                        }
-                    ],
-                    academicExperience: [
-                        {
-                            id: "px41nfl2vhh",
-                            title: "Grado Superior de administración de sistemas",
-                            school: "CESF",
-                            currentStudiesing: true,
-                            startDate: moment('Wed Jan 03 2018 00:00:00 GMT+0100'),
-                            endDate: false,
-                            description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos"
-                        },
-                        {
-                            id: "mwcr7atzbca",
-                            title: "Grado Medio de administración de sistemas",
-                            school: "CESF",
-                            currentStudiesing: false,
-                            startDate: moment('Wed Sep 21 2016 00:00:00 GMT+0200'),
-                            endDate: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
-                            description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos",
-                        }
-                    ],
-                    ratings: [
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                        presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
+                        videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
+                        teach: [
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                subjectValue: 'Desarrollo con Swift'
                             },
-                            rating: 4.3,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                subjectValue: 'Desarrollo con React'
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                subjectValue: 'Desarrollo con Angular'
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                        ],
+                        lenguages: [
+                            {
+                                id: "wcppkede79c",
+                                languageValue: "hr",
+                                languageLabel: "Croatian",
+                                levelValue: "b1",
+                                levelLabel: "B1, Usuario independiente",
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: "ar44m6450dl",
+                                languageValue: "es",
+                                languageLabel: "Spanish; Castilian",
+                                levelValue: "b1",
+                                levelLabel: "B1, Usuario independiente",
+                            }
+                        ],
+                        skills: [
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                skillValue: 'HTML',
+                                levelValue: 100
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                skillValue: 'CSS',
+                                levelValue: 95
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                skillValue: 'JavaScript',
+                                levelValue: 70
                             },
-                            rating: 1,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                skillValue: 'PHP',
+                                levelValue: 95
                             },
-                            rating: 3.7,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                skillValue: 'MySQL',
+                                levelValue: 32
+                            }
+                        ],
+                        workExperience: [
+                            {
+                                id: "uljz5zio2fj",
+                                title: "Programador frontend",
+                                company: "Microsoft",
+                                currentWorking: true,
+                                startDate: new Date(),
+                                endDate: false,
+                                description: "En ese trabajo cumplía las funciónes de programador frontend",
                             },
-                            rating: 5,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
-                        {
-                            id: Math.random().toString(36).substr(2),
-                            user: {
-                                name: 'Paco',
-                                surname: 'De la Cruz'
+                            {
+                                id: "gx6s2r3urlv",
+                                title: "Programador backend",
+                                company: "Apple",
+                                currentWorking: false,
+                                startDate: new Date(),
+                                endDate: new Date(),
+                                description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
+                            }
+                        ],
+                        academicExperience: [
+                            {
+                                id: "px41nfl2vhh",
+                                title: "Grado Superior de administración de sistemas",
+                                school: "CESF",
+                                currentStudiesing: true,
+                                startDate: moment('Wed Jan 03 2018 00:00:00 GMT+0100'),
+                                endDate: false,
+                                description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos"
                             },
-                            rating: 5,
-                            comment: 'Un buen tipo',
-                            date: new Date()
-                        },
+                            {
+                                id: "mwcr7atzbca",
+                                title: "Grado Medio de administración de sistemas",
+                                school: "CESF",
+                                currentStudiesing: false,
+                                startDate: moment('Wed Sep 21 2016 00:00:00 GMT+0200'),
+                                endDate: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
+                                description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos",
+                            }
+                        ],
+                        ratings: [
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 4.3,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 1,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 3.7,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 5,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
+                            {
+                                id: Math.random().toString(36).substr(2),
+                                user: {
+                                    name: 'Paco',
+                                    surname: 'De la Cruz'
+                                },
+                                rating: 5,
+                                comment: 'Un buen tipo',
+                                date: new Date()
+                            },
 
-                    ],
-                    businessHours: [
-                    ],
-                    classes: [
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 3,
+                        ],
+                        businessHours: [
+                        ],
+                        classes: [
+                            {
+                                id: 'fudhnl6tja5',
+                                title: null,
+                                start: Date.now() + 6.04e+8 / 3,
+                                end: null,
+                                constraint: 'businessHours',
+                                description: 'Esta es una clase aceptada',
+                                accepted: true,
+                                students: [
+                                    {
+                                        user: {
+                                            id: "alex1234h",
+                                            name: "DOMINGO",
+                                            surname: "CAYUELA",
+                                        },
+                                        isAdmin: true,
+
+                                    },
+
+                                ]
+                            },
+                            {
+                                id: 'fudhnl6tja5',
+                                title: null,
+                                start: Date.now() + 6.04e+8 / 2.4,
+                                end: null,
+                                constraint: 'businessHours',
+                                description: 'Esta es una clase aceptada',
+                                accepted: false,
+                                students: [
+                                    {
+                                        user: {
+                                            id: "alex1234h",
+                                            name: "DOMINGO",
+                                            surname: "CAYUELA",
+
+                                        },
+                                        isAdmin: true,
+                                    },
+
+                                ]
+                            },
+                            {
+                                id: 'fudhnl6tja5',
+                                title: null,
+                                start: Date.now() + 6.04e+8 / 2.2,
+                                end: null,
+                                constraint: 'businessHours',
+                                description: 'Esta es una clase no aceptada',
+                                accepted: false,
+                                students: [
+                                    {
+                                        user: {
+                                            id: "alex1234h",
+                                            name: "DOMINGO",
+                                            surname: "CAYUELA",
+                                        },
+
+                                        isAdmin: true,
+                                    },
+
+                                ]
+                            }
+                        ],
+                    },
+                },
+                friends: [
+                    {
+                        id: "alex1efwa234h",
+                        name: "DOMIfeawNGO",
+                        surname: "CAYUewELA",
+
+                    },
+                    {
+                        id: "alex1few234h",
+                        name: "DOMIfewNGO",
+                        surname: "CAYUfewELA",
+
+                    },
+                ],
+                classes: [
+                    {
+                        id: 'fudhnfewal6tja5',
+                        title: 'Clase',
+                        start: new Date(Date.now() + 6.04e+8 / 3).toString(),
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase aceptada',
+                        accepted: true,
+                        teacher: {
+                            name: 'Alex',
+                            surname: 'Hernandez',
+                            email: 'alex@gmail.com',
+                            profile: {
+                                picture: '../../../static/assets/img/profile-blank.png',
+                            },
+                        },
+                        students: [
+                            {
+                                user: {
+                                    id: "alex1234h",
+                                    name: "DOMINGO",
+                                    surname: "CAYUELA",
+                                    profile: {
+                                        picture: '../../../static/assets/img/profile-blank.png',
+                                    },
+                                },
+                                isAdmin: true,
+
+                            },
+
+                        ]
+                    },
+                    {
+                        id: 'fudhfewanl6tja5',
+                        title: 'Clase',
+                        start: new Date(Date.now() + 6.04e+8 / 2.4).toString(),
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase aceptada',
+                        accepted: false,
+
+                        teacher: {
+                            name: 'Alex',
+                            surname: 'Hernandez',
+                            email: 'alex@gmail.com',
+                            profile: {
+                                picture: '../../../static/assets/img/profile-blank.png',
+                            },
+                        },
+                        students: [
+                            {
+                                user: {
+                                    id: "alex1234h",
+                                    name: "DOMINGO",
+                                    surname: "CAYUELA",
+                                    profile: {
+                                        picture: '../../../static/assets/img/profile-blank.png',
+                                    },
+
+                                },
+                                isAdmin: true,
+                            },
+
+                        ]
+                    },
+                    {
+                        id: 'fudhnawfel6tja5',
+                        title: 'Clase',
+                        start: new Date(Date.now() + 6.04e+8 / 2.2).toString(),
+                        end: null,
+                        constraint: 'businessHours',
+                        description: 'Esta es una clase no aceptada',
+                        accepted: false,
+                        teacher: {
+                            id: "alex1234h",
+                            name: 'Alex',
+                            surname: 'Hernandez',
+                            email: 'alex@gmail.com',
+                            profile: {
+                                picture: '../../../static/assets/img/profile-blank.png',
+                            },
+                        },
+                        students: [
+                            {
+                                user: {
+                                    id: "alex1234h",
+                                    name: "DOMINGO",
+                                    surname: "CAYUELA",
+                                    profile: {
+                                        picture: '../../../static/assets/img/profile-blank.png',
+                                    },
+                                },
+
+                                isAdmin: true,
+                            },
+
+                        ]
+                    }
+                ],
+                invitations: [
+                    {
+                        code: Math.random().toString(36).substr(2),
+                        class: {
+                            id: Math.random().toString(36).substr(2),
+                            start: new Date(Date.now() + 6.04e+8 / 2.4).toString(),
+                            title: 'Clase',
                             end: null,
                             constraint: 'businessHours',
                             description: 'Esta es una clase aceptada',
-                            accepted: true,
+                            teacher: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Alex',
+                                surname: 'Hernandez',
+                                email: 'alex@gmail.com',
+                                profile: {
+                                    picture: '../../../static/assets/img/profile-blank.png',
+                                },
+                            },
                             students: [
                                 {
                                     user: {
@@ -342,35 +457,63 @@ export const AppProvider = ({ children }) => {
 
                             ]
                         },
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 2.4,
+
+                        accepted: true,
+
+                    },
+                    {
+                        code: Math.random().toString(36).substr(2),
+                        class: {
+                            id: 'fudhfewanl6tja5',
+                            start: new Date(Date.now() + 6.04e+8 / 2.4).toString(),
+                            title: 'Clase',
                             end: null,
                             constraint: 'businessHours',
                             description: 'Esta es una clase aceptada',
-                            accepted: false,
+                            teacher: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Alex',
+                                surname: 'Hernandez',
+                                email: 'alex@gmail.com',
+                                profile: {
+                                    picture: '../../../static/assets/img/profile-blank.png',
+                                },
+                            },
                             students: [
                                 {
                                     user: {
                                         id: "alex1234h",
                                         name: "DOMINGO",
                                         surname: "CAYUELA",
-
                                     },
                                     isAdmin: true,
+
                                 },
 
                             ]
                         },
-                        {
-                            id: 'fudhnl6tja5',
-                            title: null,
-                            start: Date.now() + 6.04e+8 / 2.2,
+
+                        accepted: true,
+
+                    },
+                    {
+                        code: Math.random().toString(36).substr(2),
+                        class: {
+                            id: 'fudhfewanl6tja5',
+
+                            start: new Date(Date.now() + 6.04e+8 / 2.4).toString(),
+                            title: 'Clase',
                             end: null,
                             constraint: 'businessHours',
-                            description: 'Esta es una clase no aceptada',
-                            accepted: false,
+                            description: 'Esta es una clase aceptada',
+                            teacher: {
+                                name: 'Alex',
+                                surname: 'Hernandez',
+                                email: 'alex@gmail.com',
+                                profile: {
+                                    picture: '../../../static/assets/img/profile-blank.png',
+                                },
+                            },
                             students: [
                                 {
                                     user: {
@@ -378,14 +521,17 @@ export const AppProvider = ({ children }) => {
                                         name: "DOMINGO",
                                         surname: "CAYUELA",
                                     },
-
                                     isAdmin: true,
+
                                 },
 
                             ]
-                        }
-                    ],
-                }
+                        },
+
+                        accepted: true,
+
+                    },
+                ],
 
             }
 
@@ -398,7 +544,6 @@ export const AppProvider = ({ children }) => {
             type: "SET_BUSINESS_HOURS",
             payload: data
         })
-        console.log(userProfile.user.teacher.businessHours);
     }
     const uploadProfileImage = (data) => {
         console.log(data);
@@ -498,6 +643,27 @@ export const AppProvider = ({ children }) => {
             payload: data
         })
     }
+    const cancelClass = data => {
+        dispatchUser({
+            type: "CANCEL_CLASS",
+            payload: data
+        })
+    }
+    const discardInvitation = data => {
+        dispatchUser({
+            type: "DISCARD_INVITATION",
+            payload: data
+        })
+    }
+    const acceptInvitation = (classData, invitation) => {
+        dispatchUser({
+            type: "ACCEPT_INVITATION",
+            payload: {
+                classData: classData,
+                invitation: invitation
+            }
+        })
+    }
     return (
         <AppContext.Provider value={{
             userProfile,
@@ -517,7 +683,10 @@ export const AppProvider = ({ children }) => {
             addStudy,
             deleteStudy,
             editStudy,
-            setPrice
+            setPrice,
+            cancelClass,
+            discardInvitation,
+            acceptInvitation
         }}>
             {children}
         </AppContext.Provider>

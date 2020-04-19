@@ -31,7 +31,7 @@ export default function ClassSubject() {
         title: 'Puntualmente',
         sessions: 'Bono de 5 clases',
         description: `Compra el bono de 5 clases, ahorrarás y podrás realizar las clases cuando quieras. \n Tendrás 6 meses para utilizarlas.`,
-        price: (teacherContext.teacherState.user.teacher.classPrice / 1.5).toFixed(2),
+        price: Math.round(teacherContext.teacherState.user.teacher.classPrice - 2).toFixed(2) - 0.01,
         classes: 5
     },
     {
@@ -39,7 +39,7 @@ export default function ClassSubject() {
         title: 'Regularmente',
         sessions: 'Bono de 10 clases',
         description: `Podrás realizar 10 clases, tú decides la frecuencia: cada semana, cada 2 días...o de forma puntual.\nTendrás 6 meses para utilizarlas.`,
-        price: (teacherContext.teacherState.user.teacher.classPrice / 2).toFixed(2),
+        price: Math.round(teacherContext.teacherState.user.teacher.classPrice - 4).toFixed(2) - 0.01,
         classes: 10
     },
     ]);

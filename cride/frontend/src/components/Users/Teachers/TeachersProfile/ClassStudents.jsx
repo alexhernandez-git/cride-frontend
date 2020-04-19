@@ -113,7 +113,7 @@ const ClassStudents = (props) => {
                                         height: '400px',
                                     }}
                                 >
-                                    {appContext.userProfile.user.profile.friends.map(user => (
+                                    {appContext.userProfile.friends.map(user => (
                                         <FriendsList user={user} classData={props.classData} />
                                     ))}
 

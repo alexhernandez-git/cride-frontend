@@ -29,17 +29,21 @@ export const TeachersClassesProvider = ({ children }) => {
                     description: 'Quiero aprender programación en C#',
                     students: [
                         {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Marcos',
-                            surname: 'Sanchez',
-                            email: 'alex@gmail.com',
+                            user: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Marcos',
+                                surname: 'Sanchez',
+                                email: 'alex@gmail.com',
+                            },
                             isAdmin: true
                         },
                         {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Adria',
-                            surname: 'Camins',
-                            email: 'adria@gmail.com',
+                            user: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Adria',
+                                surname: 'Camins',
+                                email: 'adria@gmail.com',
+                            },
                             isAdmin: false
                         }
                     ],
@@ -59,17 +63,22 @@ export const TeachersClassesProvider = ({ children }) => {
                     description: 'Quiero aprender programación en C#',
                     students: [
                         {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Marcos',
-                            surname: 'Sanchez',
-                            email: 'alex@gmail.com',
+                            user: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Marcos',
+                                surname: 'Sanchez',
+                                email: 'alex@gmail.com',
+                            },
+
                             isAdmin: true
                         },
                         {
-                            id: Math.random().toString(36).substr(2),
-                            name: 'Adria',
-                            surname: 'Camins',
-                            email: 'adria@gmail.com',
+                            user: {
+                                id: Math.random().toString(36).substr(2),
+                                name: 'Adria',
+                                surname: 'Camins',
+                                email: 'adria@gmail.com',
+                            },
                             isAdmin: false
                         }
                     ],

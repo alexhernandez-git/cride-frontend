@@ -18,7 +18,7 @@ const CalendarClass = (props) => {
         setClasses([{
             id: classEvent.id,
             title: classEvent.title,
-            start: classEvent.start,
+            start: new Date(classEvent.start),
         }])
     }, [])
 

@@ -39,7 +39,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                 },
                 teacher: {
                     rating: 4.7,
-                    classPrice: 24.99,
+                    classPrice: 19.99,
                     presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
                     videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
                     teach: [

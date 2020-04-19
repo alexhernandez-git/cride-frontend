@@ -27,7 +27,7 @@
     width: 150px !important;
   }
 }
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 900px) {
   .schedule-class {
     padding-bottom: 500px;
   }
@@ -41,15 +41,21 @@
     transform: translate(-50%, 0);
   }
   #external-events.draggable-events .row {
-    display: inherit !important;
-    flex-wrap: inherit;
+    justify-content: center;
     margin: inherit;
     overflow-x: auto;
+    flex-wrap: nowrap;
     overflow-y: hidden;
   }
   #external-events.draggable-events .col-lg-6 {
     width: inherit !important;
     display: table-cell;
+    flex: inherit;
+  }
+  #external-events.draggable-events .col {
+    width: inherit !important;
+    display: table-cell;
+    flex: inherit;
   }
   #external-events div.fc-event {
     animation: none !important;

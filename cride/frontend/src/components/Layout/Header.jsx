@@ -58,6 +58,7 @@ export default function Header() {
                 </Form>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto mr-3">
+                        <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">Usuarios</Link>
 
                         <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">Profesor</Link>
                         <Nav.Link className="btn ml-3 btn-sm btn-outline-green header-btn" onClick={handleShowLogin}>Iniciar sesión</Nav.Link>
