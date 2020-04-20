@@ -1,16 +1,29 @@
 
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Navbar, Nav, Form, FormControl, Modal, Button } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa';
 import { FaChalkboardTeacher } from 'react-icons/fa';
 import { IconContext } from "react-icons";
-import { Link, useLocation } from "react-router-dom"
+import { Link, Redirect, useLocation } from "react-router-dom"
 import "static/assets/styles/components/Layout/Header.scss"
 import { AppContext } from 'src/context/AppContext'
 
 export default function Header() {
-    const [showLogin, setShowLogin] = useState(false);
+
     const appContext = useContext(AppContext);
+    const [showLogin, setShowLogin] = useState(false);
+    const [search, setSearch] = useState();
+    useEffect(() => {
+        setSearch(appContext.search)
+    }, [appContext.search])
+    let location = useLocation();
+    useEffect(() => {
+        let result = /\/teachers/.test(location.pathname)
+        if (!result) {
+            appContext.setSearch('')
+        }
+    })
+    const [send, setSend] = useState(false);
     const handleCloseLogin = () => setShowLogin(false);
     const handleShowLogin = () => setShowLogin(true);
     const [showRegister, setShowRegister] = useState(false);
@@ -32,6 +45,20 @@ export default function Header() {
         e.preventDefault()
         appContext.login(loginForm)
         handleCloseLogin()
+    }
+    const handleSubmitRegister = (e) => {
+        e.preventDefault()
+        handleCloseRegister()
+    }
+    const handleSubmitSearch = (e) => {
+        e.preventDefault()
+        setSend(true)
+        setTimeout(() => {
+            setSend(false)
+
+        }, '500')
+        appContext.setSearch(search)
+
     }
     return (
         <AppContext.Consumer>
@@ -56,27 +83,49 @@ export default function Header() {
                         <Nav className="ml-auto mr-3 d-none d-md-block">
                             <Nav.Link className="align-self-center text-center text-grey">Categories</Nav.Link>
                         </Nav>
-                        <Form inline className="position-relative form-search-parent border-left">
+                        <Form inline className="position-relative form-search-parent border-left" onSubmit={handleSubmitSearch}>
                             <FormControl
                                 border="none"
                                 type="text"
                                 placeholder="Search"
-                                className="border-0 w-100 align-middle form-search" />
+                                className="border-0 w-100 align-middle form-search"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)} />
                             <div className="search-icon">
                                 <FaSearch />
                             </div>
                         </Form>
+                        {send > 0 &&
+                            <Redirect to={{
+                                pathname: '/teachers/' + search,
+                            }} />
+                        }
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto mr-3">
-                                <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">
-                                    <IconContext.Provider
-                                        value={{
-                                            className: "global-class-name mr-2",
-                                            size: '20px'
-                                        }}>
-                                        <FaChalkboardTeacher />
-                                    </IconContext.Provider>
-                    Profesor</Link>
+                                {appContext.userProfile.isAuthenticated ?
+
+                                    <Link to="/myzone/teacher" className="d-flex align-self-center text-grey text-center header-btn font-weight-light p-2">
+                                        <IconContext.Provider
+                                            value={{
+                                                className: "global-class-name mr-2",
+                                                size: '20px'
+                                            }}>
+                                            <FaChalkboardTeacher />
+                                        </IconContext.Provider>
+                                    Profesor</Link>
+                                    :
+                                    <span className="d-flex cursor-pointer align-self-center text-grey text-center header-btn font-weight-light p-2"
+                                        onClick={handleShowRegister}
+                                    >
+                                        <IconContext.Provider
+                                            value={{
+                                                className: "global-class-name mr-2",
+                                                size: '20px'
+                                            }}>
+                                            <FaChalkboardTeacher />
+                                        </IconContext.Provider>
+                                    Profesor</span>
+                                }
                                 {appContext.userProfile.isAuthenticated ?
                                     <>
                                         <Link to="/myzone/student">
@@ -136,7 +185,7 @@ export default function Header() {
                             <Modal.Title>Registro</Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="bg-white rounded-bottom">
-                            <Form>
+                            <Form onSubmit={handleSubmitRegister}>
                                 <Form.Group>
                                     <Form.Control type="text" placeholder="Nombre completo" />
 

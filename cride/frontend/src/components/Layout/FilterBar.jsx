@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import "../../../static/assets/styles/components/Layout/FilterBar.scss"
-import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
-import { Checkbox } from 'react-bootstrap';
-
-const FilterBar = () => {
+import {
+    useParams
+} from "react-router-dom";
+import { AppContext } from 'src/context/AppContext';
+const FilterBar = (props) => {
+    const appContext = useContext(AppContext)
+    const [search, setSearch] = useState(useParams().id)
+    useEffect(() => {
+        appContext.setSearch(search)
+    }, [search]);
 
     const [state, setState] = useState({
         isOpen: false,
@@ -48,34 +54,23 @@ const FilterBar = () => {
     return (
         <div className="filter-bar shadow">
             <div className="container pt-3 pb-3">
-                <div className="text-dark font-weight-light">
-                    <span className="h5 font-weight-normal">652</span> resultados para <span className="h5 font-weight-normal">react</span>
-                </div>
+                {search ?
+                    <>
+                        <div className="text-dark font-weight-light pb-1">
+                            <span className="h5 font-weight-normal">32</span> resultados para <span className="h5 font-weight-normal">{appContext.search}</span>
+                        </div>
+                    </>
+
+                    :
+                    <>
+                        <div className="text-dark font-weight-light pb-2">
+                            <span className="">Filtra a los profesores por tus preferencias</span>
+                        </div>
+                    </>
+                }
+
                 <div className="mt-3 d-md-flex justify-content-between">
-                    {/* <div className="div-dropdown">
 
-                        <Dropdown>
-                            <Dropdown.Toggle variant="" className="btn purple d-none d-md-block" id="dropdown-basic">
-                                Valoraciones{' '}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="border-0 shadow">
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="" className="btn yellow d-none d-md-block" id="dropdown-basic">
-                                Duracion{' '}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="border-0 shadow">
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-
-                    </div> */}
                     <div className="div-dropdown">
 
                         <Dropdown className="all-filters">
@@ -93,16 +88,7 @@ const FilterBar = () => {
 
 
                         </Dropdown>
-                        {/* <Dropdown>
-                            <Dropdown.Toggle variant="" className="btn d-none d-md-block" id="dropdown-basic">
-                                Ordenar{' '}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="border-0 shadow">
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown> */}
+
                     </div>
                 </div>
                 <div className="mt-3 hidden-content border-top pt-3">

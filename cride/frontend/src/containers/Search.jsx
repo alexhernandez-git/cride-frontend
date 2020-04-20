@@ -3,10 +3,17 @@ import Sidebar from 'src/components/Layout/Sidebar'
 import TeachersFeed from 'src/components/Users/Teachers/TeachersFeed'
 import FilterBar from "src/components/Layout/FilterBar"
 import Pagination from "src/components/Layout/Pagination"
+import {
+    useParams
+} from "react-router-dom";
 const Search = () => {
+    console.log(useParams());
+
     return (
         <>
+
             <FilterBar />
+
             <div className="container text-info">
                 <div className="row mt-5">
                     <div className="col-md-8">

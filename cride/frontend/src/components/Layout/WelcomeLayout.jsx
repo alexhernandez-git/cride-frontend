@@ -3,13 +3,18 @@ import "static/assets/styles/components/Layout/WelcomeLayout.scss"
 import Blackboard from "./Blackboard"
 import Form from "react-bootstrap/Form"
 import Slider from "react-slick";
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import { IconContext } from "react-icons";
 import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
 const WelcomeLayout = () => {
     const slider = useRef()
     const [slideIndex, setSlideIndex] = useState(0)
-    const [slideIndex2, setSlideIndex2] = useState(0)
+    const [search, setSearch] = useState('');
+    const [send, setSend] = useState(false);
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setSend(true)
+    }
 
     const settings = {
         initialSlide: 0,
@@ -34,7 +39,21 @@ const WelcomeLayout = () => {
                     <div className="row">
                         <div className="col-md-6 align-self-center">
                             <span className="mt-3 text-light h4 font-weight-light text-shadow">Bienvenido a <h2 className="h2 mb-4">ClassLine Academy</h2></span>
-                            <Form.Control className="mb-2" type="email" placeholder="¿Que estas buscando?" />
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Control
+                                    className="mb-2"
+                                    type="text"
+                                    placeholder="¿Que estas buscando?"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                                {send > 0 &&
+                                    <Redirect to={{
+                                        pathname: '/teachers/' + search,
+                                    }} />
+                                }
+                            </Form>
+
                             <span className="mt-3 text-light h4 font-weight-light text-shadow">Clases virtuales efectivas</span>
 
                         </div>

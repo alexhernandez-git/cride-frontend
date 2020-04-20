@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 export const AppContext = createContext()
 import { userReducer } from './reducers/userReducer'
 import moment from 'moment'
@@ -721,6 +721,7 @@ export const AppProvider = ({ children }) => {
         }
 
     }
+    const [search, setSearch] = useState('');
     return (
         <AppContext.Provider value={{
             login,
@@ -745,7 +746,9 @@ export const AppProvider = ({ children }) => {
             cancelClass,
             discardInvitation,
             acceptInvitation,
-            handleActivateTeacher
+            handleActivateTeacher,
+            search,
+            setSearch
         }}>
             {children}
         </AppContext.Provider>
