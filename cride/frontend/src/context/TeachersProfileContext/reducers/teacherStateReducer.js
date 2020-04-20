@@ -199,12 +199,23 @@ export const teacherStateReducer = (state, action) => {
                 selected_classes: action.payload
             }
         case 'BUY_CLASSES':
+            const newArray4 = [];
+            for (let index4 = 0; index4 < state.selected_classes; index4++) {
+                newArray4[index4] = {
+                    id: null,
+                    title: '',
+                    start: null,
+                    constraint: 'businessHours',
+                    description: ''
+                };
+
+            }
             return {
                 ...state,
                 classes: [...state.classes, ...state.temporary_classes],
                 temporary_classes: [],
                 classes_assigned_left: [],
-                event_classes_left: [...state.event_classes_left, ...state.classes_assigned_left],
+                event_classes_left: [...state.event_classes_left, ...newArray4],
                 selected_classes: 0,
                 classes_buyed: state.classes_buyed + state.selected_classes,
             }

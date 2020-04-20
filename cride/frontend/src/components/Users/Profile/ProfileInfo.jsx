@@ -5,7 +5,8 @@ const TeachersProfileInfo = () => {
     const appContext = useContext(AppContext);
     const [info, setInfo] = useState({
         name: appContext.userProfile.user.name,
-        surname: appContext.userProfile.user.surname
+        surname: appContext.userProfile.user.surname,
+        birth_date: appContext.userProfile.user.profile.birth_date
     })
     const [isEditing, setIsEditing] = useState(false)
 
@@ -40,6 +41,15 @@ const TeachersProfileInfo = () => {
                     <Col lg={{ offset: 1, span: 6 }}>
                         <Form.Group controlId="formGroupName">
                             <Form.Control value={info.surname} onChange={(e) => { setInfo({ ...info, surname: e.target.value }); setIsEditing(true) }} type="text" placeholder="Tus apellidos" />
+                        </Form.Group>
+                    </Col>
+                    <Col lg={{ span: 4 }} className="mb-3 text-center d-lg-flex justify-content-end align-items-center">
+                        <span className="h5 m-0 font-weight-normal">Fecha de nacimiento</span>
+                    </Col>
+
+                    <Col lg={{ offset: 1, span: 6 }}>
+                        <Form.Group controlId="formGroupName">
+                            <Form.Control value={info.birth_date} onChange={(e) => { setInfo({ ...info, birth_date: e.target.value }); setIsEditing(true) }} type="date" placeholder="Fecha de nacimiento" />
                         </Form.Group>
                     </Col>
                 </Row>

@@ -7,41 +7,14 @@ import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherWo
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import moment from 'moment'
 export default function TeachersWorkExperience() {
-    const [isOpen, setIsOpen] = useState(false)
     const teacherContext = useContext(TeachersProfileContext);
 
-    useEffect(() => {
-        const div = document.getElementById('professors-work-experience')
 
-        if (!isOpen) {
-            div.style.height = '80px'
-        }
-
-    }, [])
-    function handleToogle() {
-        // console.log('entra');
-
-        const div = document.getElementById('professors-work-experience')
-        const toggleIcon = document.querySelector('.toggle-icon-work')
-        if (!isOpen) {
-            toggleIcon.style.transform = 'rotate(180deg)'
-
-            div.style.height = 'inherit'
-            setIsOpen(true)
-
-        } else {
-            toggleIcon.style.transform = 'inherit'
-
-            div.style.height = '80px'
-            setIsOpen(false)
-
-        }
-    }
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
                 <div className="teacher-work-experience shadow w-100 p-4 rounded mb-3 overflow-hidden" id="professors-work-experience">
-                    <div className="d-flex justify-content-between cursor-pointer" onClick={handleToogle}>
+                    <div className="d-flex justify-content-between cursor-pointer">
 
                         <span className="d-block h3 font-weight-normal text-primary">Work experience</span>
                         <IconContext.Provider value={{

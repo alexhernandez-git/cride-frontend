@@ -299,7 +299,10 @@ export default function ScheduleHour(props) {
                                         defaultView={calendarView}
                                         start={moment().day() + 8}
                                         plugins={[timeGridPlugin, interactionPlugin, bootstrapPlugin]}
-
+                                        header={{
+                                            center: '',
+                                            right: 'prev,next'
+                                        }}
                                         firstDay={moment().day() + 8}
                                         weekends={true}
                                         themeSystem='bootstrap'
@@ -471,7 +474,7 @@ export default function ScheduleHour(props) {
 
                                                 }
 
-                                                <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span></span>
+                                                <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.class_price.value * 0.2)}€</span></span>
 
                                             </div>
                                             <div

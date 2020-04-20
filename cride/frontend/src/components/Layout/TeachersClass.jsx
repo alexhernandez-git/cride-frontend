@@ -15,6 +15,8 @@ const TeachersNextClasses = (props) => {
     const MySwal = withReactContent(Swal)
 
     const { classElement, type, invitation } = props
+    console.log(classElement);
+
     const classesContext = useContext(TeachersClassesContext);
     const appContext = useContext(AppContext);
 
@@ -362,8 +364,14 @@ const TeachersNextClasses = (props) => {
                                         />
                                     </div>
                                     <div className="d-flex flex-column">
-                                        <span className="h5 mb-0">Marcos Sanchez</span>
-                                        <span className="">{classElement.teacher.email}</span>
+                                        {type == 2 || type == 3 ?
+                                            <>
+                                                <span className="h5 mb-0">{classElement.teacher.name} {classElement.teacher.surname}</span>
+                                                <span className="">{classElement.teacher.email}</span>
+                                            </>
+                                            :
+                                            ''
+                                        }
 
                                     </div>
 

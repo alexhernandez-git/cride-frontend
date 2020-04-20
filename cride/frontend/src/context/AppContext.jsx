@@ -13,6 +13,7 @@ export const AppProvider = ({ children }) => {
             name: '',
             surname: '',
             email: '',
+            isAuthenicated: false,
             teacher: false,
             cupons: []
         },
@@ -31,7 +32,9 @@ export const AppProvider = ({ children }) => {
                     surname: 'Hernandez',
                     profile: {
                         picture: '../../../static/assets/img/profile-blank.png',
-                        classes_buyed: 5
+                        classes_buyed: 5,
+                        is_teacher: false,
+                        birth_date: '',
                     },
                     teacher: {
                         rating: 4.7,
@@ -56,7 +59,7 @@ export const AppProvider = ({ children }) => {
                                 subjectValue: 'Desarrollo con Angular'
                             },
                         ],
-                        lenguages: [
+                        languages: [
                             {
                                 id: "wcppkede79c",
                                 languageValue: "hr",
@@ -332,7 +335,8 @@ export const AppProvider = ({ children }) => {
                         owner: {
                             id: "nueia81qrmp",
                             name: "Alex",
-                            surname: "Hernandez"
+                            surname: "Hernandez",
+                            email: 'alex@gmail.com',
                         },
                         students: [
                             {
@@ -340,6 +344,7 @@ export const AppProvider = ({ children }) => {
                                     id: "alex1234h",
                                     name: "DOMINGO",
                                     surname: "CAYUELA",
+                                    email: 'alex@gmail.com',
                                     profile: {
                                         picture: '../../../static/assets/img/profile-blank.png',
                                     },
@@ -370,6 +375,7 @@ export const AppProvider = ({ children }) => {
                         owner: {
                             id: "nueia81qrmp",
                             name: "Alex",
+                            email: 'alex@gmail.com',
                             surname: "Hernandez"
                         },
                         students: [
@@ -377,6 +383,7 @@ export const AppProvider = ({ children }) => {
                                 user: {
                                     id: "alex1234h",
                                     name: "DOMINGO",
+                                    email: 'alex@gmail.com',
                                     surname: "CAYUELA",
                                     profile: {
                                         picture: '../../../static/assets/img/profile-blank.png',
@@ -408,6 +415,7 @@ export const AppProvider = ({ children }) => {
                         owner: {
                             id: "nueia81qrmp",
                             name: "Alex",
+                            email: 'alex@gmail.com',
                             surname: "Hernandez"
                         },
                         students: [
@@ -415,6 +423,7 @@ export const AppProvider = ({ children }) => {
                                 user: {
                                     id: "alex1234h",
                                     name: "DOMINGO",
+                                    email: 'alex@gmail.com',
                                     surname: "CAYUELA",
                                     profile: {
                                         picture: '../../../static/assets/img/profile-blank.png',
@@ -449,12 +458,14 @@ export const AppProvider = ({ children }) => {
                             owner: {
                                 id: "nueia81qrmp",
                                 name: "Alex",
+                                email: 'alex@gmail.com',
                                 surname: "Hernandez"
                             },
                             students: [
                                 {
                                     user: {
                                         id: "alex1234h",
+                                        email: 'alex@gmail.com',
                                         name: "DOMINGO",
                                         surname: "CAYUELA",
                                     },
@@ -489,12 +500,14 @@ export const AppProvider = ({ children }) => {
                             owner: {
                                 id: "nueia81qrmp",
                                 name: "Alex",
+                                email: 'alex@gmail.com',
                                 surname: "Hernandez"
                             },
                             students: [
                                 {
                                     user: {
                                         id: "alex1234h",
+                                        email: 'alex@gmail.com',
                                         name: "DOMINGO",
                                         surname: "CAYUELA",
                                     },
@@ -528,6 +541,7 @@ export const AppProvider = ({ children }) => {
                             },
                             owner: {
                                 id: "nueia81qrmp",
+                                email: 'alex@gmail.com',
                                 name: "Alex",
                                 surname: "Hernandez"
                             },
@@ -535,6 +549,7 @@ export const AppProvider = ({ children }) => {
                                 {
                                     user: {
                                         id: "alex1234h",
+                                        email: 'alex@gmail.com',
                                         name: "DOMINGO",
                                         surname: "CAYUELA",
                                     },
@@ -555,6 +570,13 @@ export const AppProvider = ({ children }) => {
         })
 
     }, []);
+
+    const login = (data) => {
+        dispatchUser({
+            type: "LOGIN_SUCCESS",
+            payload: data
+        })
+    }
 
     const updateBusinessHours = (data) => {
         dispatchUser({
@@ -681,8 +703,27 @@ export const AppProvider = ({ children }) => {
             }
         })
     }
+    const handleActivateTeacher = () => {
+
+        if (userProfile.user.teacher.presentation == '') {
+            return {
+                result: false,
+                message: 'La presentación no esta rellenada'
+            }
+        } else {
+            dispatchUser({
+                type: "ACTIVATE_TEACHER"
+            })
+            return {
+                result: true,
+                message: 'La cuenta de profesor se ha activado correctamente'
+            }
+        }
+
+    }
     return (
         <AppContext.Provider value={{
+            login,
             userProfile,
             updateBusinessHours,
             uploadProfileImage,
@@ -703,7 +744,8 @@ export const AppProvider = ({ children }) => {
             setPrice,
             cancelClass,
             discardInvitation,
-            acceptInvitation
+            acceptInvitation,
+            handleActivateTeacher
         }}>
             {children}
         </AppContext.Provider>

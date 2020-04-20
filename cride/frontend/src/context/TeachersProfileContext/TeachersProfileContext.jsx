@@ -38,6 +38,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         id: 'efwafaewafew',
                         name: 'Alex',
                         surname: 'Hernandez',
+                        email: 'alex@gmail.com',
                         profile: {
                             picture: '../../../static/assets/img/profile-blank.png'
                         },
@@ -64,7 +65,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                                     subjectValue: 'Desarrollo con Angular'
                                 },
                             ],
-                            idioms: [
+                            languages: [
                                 {
                                     id: "wcppkede79c",
                                     languageValue: "hr",
@@ -259,7 +260,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         {
                             id: 'fudhnl6tja5',
                             title: null,
-                            start: Date.now() + 6.04e+8 / 3,
+                            start: new Date(),
                             end: null,
                             constraint: 'businessHours',
                             owner: {

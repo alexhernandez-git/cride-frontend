@@ -131,9 +131,9 @@ const TeachersProfileStudies = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {appContext.userProfile.user.teacher.academicExperience.length != 0 ?
+                    {appContext.userProfile.user.teacher.academic_experience.length != 0 ?
                         <div className="mb-3">
-                            {appContext.userProfile.user.teacher.academicExperience.map(studies => (
+                            {appContext.userProfile.user.teacher.academic_experience.map(studies => (
 
 
                                 <div className="studies-experience w-100 border-bottom pb-2 mb-2" key={studies.id}>

@@ -3,99 +3,111 @@ import { FaChalkboardTeacher, FaUserEdit, FaChalkboard, FaUserGraduate } from 'r
 import { MdMessage } from 'react-icons/md';
 import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
+import { AppContext } from 'src/context/AppContext'
 export default function TeachersMenu() {
     return (
-        <div className="teachers-menu zone-sidebar shadow bg-gradient-green">
-            <Link className="cursor-no-pointer">
+        <AppContext.Consumer>
+            {appContext => (
+                <>
+                    <div className="teachers-menu zone-sidebar shadow bg-gradient-green">
+                        <Link className="cursor-no-pointer">
 
-                <div className="seccion">
-                    <div className="div-icon-rol rounded-circle teacher active bg-white">
+                            <div className="seccion">
+                                <div className="div-icon-rol rounded-circle teacher active bg-white">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-primary",
-                                size: '20px'
-                            }}>
-                            <FaChalkboardTeacher />
-                        </IconContext.Provider>
-                    </div>
-                    <small className="text-white">
-                        Profesor
+                                    <IconContext.Provider
+                                        value={{
+                                            className: "global-class-name text-primary",
+                                            size: '20px'
+                                        }}>
+                                        <FaChalkboardTeacher />
+                                    </IconContext.Provider>
+                                </div>
+                                <small className="text-white">
+                                    Profesor
                     </small>
-                </div>
-            </Link>
-            <Link to="/myzone/teacher">
-                <div className="seccion">
-                    <div className="div-icon bg-white rounded-circle">
+                            </div>
+                        </Link>
+                        <Link to="/myzone/teacher">
+                            <div className="seccion">
+                                <div className="div-icon bg-white rounded-circle">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-primary",
-                                size: '20px'
-                            }}>
-                            <FaUserEdit />
-                        </IconContext.Provider>
-                    </div>
+                                    <IconContext.Provider
+                                        value={{
+                                            className: "global-class-name text-primary",
+                                            size: '20px'
+                                        }}>
+                                        <FaUserEdit />
+                                    </IconContext.Provider>
+                                </div>
 
-                    <small className="text-white">
-                        Perfil
+                                <small className="text-white">
+                                    Perfil
                     </small>
-                </div>
-            </Link>
-            <Link to="/myzone/teacher/classes">
-                <div className="seccion">
-                    <div className="div-icon bg-white rounded-circle">
+                            </div>
+                        </Link>
+                        {
+                            appContext.userProfile.user.profile.is_teacher ?
+                                <>
+                                    <Link to="/myzone/teacher/classes">
+                                        <div className="seccion">
+                                            <div className="div-icon bg-white rounded-circle">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-primary",
-                                size: '20px'
-                            }}>
-                            <FaChalkboard />
-                        </IconContext.Provider>
-                    </div>
+                                                <IconContext.Provider
+                                                    value={{
+                                                        className: "global-class-name text-primary",
+                                                        size: '20px'
+                                                    }}>
+                                                    <FaChalkboard />
+                                                </IconContext.Provider>
+                                            </div>
 
-                    <small className="text-white">
-                        Mis clases
-                    </small>
-                </div>
-            </Link>
-            <Link to="/myzone/teacher/messages">
-                <div className="seccion">
-                    <div className="div-icon bg-white rounded-circle">
+                                            <small className="text-white">
+                                                Mis clases
+                                         </small>
+                                        </div>
+                                    </Link>
+                                    <Link to="/myzone/teacher/messages">
+                                        <div className="seccion">
+                                            <div className="div-icon bg-white rounded-circle">
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-primary",
-                                size: '20px'
-                            }}>
-                            <MdMessage />
-                        </IconContext.Provider>
-                    </div>
+                                                <IconContext.Provider
+                                                    value={{
+                                                        className: "global-class-name text-primary",
+                                                        size: '20px'
+                                                    }}>
+                                                    <MdMessage />
+                                                </IconContext.Provider>
+                                            </div>
 
-                    <small className="text-white">
-                        Mensajes
-                    </small>
-                </div>
-            </Link>
-            <Link to="/myzone/student">
-                <div className="seccion">
-                    <div className="div-icon bg-white rounded-circle">
+                                            <small className="text-white">
+                                                Mensajes
+                                            </small>
+                                        </div>
+                                    </Link>
 
-                        <IconContext.Provider
-                            value={{
-                                className: "global-class-name text-primary",
-                                size: '20px'
-                            }}>
-                            <FaUserGraduate />
-                        </IconContext.Provider>
-                    </div>
-                    <small className="text-white">
-                        Alumno
-                    </small>
-                </div>
-            </Link>
-            {/* <Link to="/myzone/teacher/calendar">
+                                </>
+                                :
+                                ''
+                        }
+                        <Link to="/myzone/student">
+                            <div className="seccion">
+                                <div className="div-icon bg-white rounded-circle">
+
+                                    <IconContext.Provider
+                                        value={{
+                                            className: "global-class-name text-primary",
+                                            size: '20px'
+                                        }}>
+                                        <FaUserGraduate />
+                                    </IconContext.Provider>
+                                </div>
+                                <small className="text-white">
+                                    Alumno
+                                        </small>
+                            </div>
+                        </Link>
+                        {/* <Link to="/myzone/teacher/calendar">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -113,7 +125,7 @@ export default function TeachersMenu() {
                     </small>
                 </div>
             </Link> */}
-            {/* <Link to="/myzone/messages">
+                        {/* <Link to="/myzone/messages">
                 <div className="seccion">
                     <div className="div-icon bg-gradient-green rounded-circle">
 
@@ -132,7 +144,10 @@ export default function TeachersMenu() {
                 </div>
             </Link> */}
 
-        </div>
-
+                    </div>
+                </>
+            )
+            }
+        </AppContext.Consumer >
     )
 }

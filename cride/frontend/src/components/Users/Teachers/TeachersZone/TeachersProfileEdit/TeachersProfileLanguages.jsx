@@ -83,10 +83,10 @@ const TeachersProfileLanguages = () => {
                     </Col>
 
                     <Col lg={{ offset: 1, span: 6 }}>
-                        {appContext.userProfile.user.teacher.lenguages.length != 0 ?
+                        {appContext.userProfile.user.teacher.languages.length != 0 ?
                             <Table responsive className="botder-top border-bottom text-grey">
                                 <tbody>
-                                    {appContext.userProfile.user.teacher.lenguages.map((lang) => (
+                                    {appContext.userProfile.user.teacher.languages.map((lang) => (
 
                                         <tr key={lang.id}>
                                             <td>{lang.languageLabel}</td>

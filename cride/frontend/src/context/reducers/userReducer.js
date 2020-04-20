@@ -5,7 +5,7 @@ export const userReducer = (state, action) => {
     switch (action.type) {
         case 'FETCH_SUCCESS':
             return {
-                isAuthenticated: true,
+                isAuthenticated: false,
                 loading: false,
                 user: action.payload.user,
                 invitations: action.payload.invitations,
@@ -18,6 +18,12 @@ export const userReducer = (state, action) => {
                 loading: false,
                 user: state.user,
                 error: 'Algo ha ido mal'
+            }
+        case 'LOGIN_SUCCESS':
+            return {
+                ...state,
+                isAuthenticated: true,
+
             }
         case 'UPLOAD_PROFILE_IMAGE':
             return {
@@ -248,6 +254,19 @@ export const userReducer = (state, action) => {
                 ...state,
                 classes: [...state.classes, action.payload.classData],
                 invitations: state.invitations.filter(invitation => invitation.code != action.payload.invitation)
+            }
+        case 'ACTIVATE_TEACHER':
+
+
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    profile: {
+                        ...state.user.profile,
+                        is_teacher: true
+                    }
+                }
             }
         default:
             return state;

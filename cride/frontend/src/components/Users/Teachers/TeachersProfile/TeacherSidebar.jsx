@@ -49,11 +49,11 @@ const TeachersSidebar = () => {
                         <img className="aspect-ratio-box-inside" src={`https://source.unsplash.com/random/1`} alt="" />
                     </div>
 
-                    <div className="p-3">
+                    <div className="p-3 mb-2">
                         <a className="btn btn-block btn-green text-white" onClick={teacherContext.handleShow}>Solicitar clase</a>
                         <div className="buttons mt-3 text-center border-bottom pb-3">
 
-                            <a className="btn btn-block btn-outline-green">Enviar mensaje</a>
+                            <a className="btn btn-block btn-outline-green" href={"mailto:" + teacherContext.teacherState.user.email}>Enviar email</a>
                         </div>
 
                         <div className="call-to-action pt-3 pl-3 pr-3" onClick={teacherContext.handleShow}>
@@ -81,60 +81,19 @@ const TeachersSidebar = () => {
                         </div>
 
                         <div className="d-block d-md-none">
-                            <div className="skills pb-3">
+                            <div className="skills mt-4">
                                 <span className="h4">Skills</span>
-                                <div className="mt-2 mb-2">
-                                    <span>Adobe photoshop</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                {teacherContext.teacherState.user.teacher.skills.map(skill => (
+
+                                    <div className="mt-2 mb-2" key={skill.id}>
+                                        <span>{skill.skillValue}</span>
+                                        <div className="progress">
+                                            <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: `${skill.levelValue}%` }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="mt-2 mb-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-2 mb-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
-                            <div className="languages mt-3">
-                                <span className="h4">Languages</span>
-                                <div className="mt-2 mb-2">
-                                    <span>Adobe photoshop</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-2 mb-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-2 mb-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-2">
-                                    <span>Photography</span>
-                                    <div className="progress">
-                                        <div className="progress-bar bg-gradient-green" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

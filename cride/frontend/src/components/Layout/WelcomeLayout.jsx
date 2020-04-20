@@ -4,6 +4,8 @@ import Blackboard from "./Blackboard"
 import Form from "react-bootstrap/Form"
 import Slider from "react-slick";
 import { Link } from "react-router-dom"
+import { IconContext } from "react-icons";
+import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
 const WelcomeLayout = () => {
     const slider = useRef()
     const [slideIndex, setSlideIndex] = useState(0)
@@ -47,16 +49,37 @@ const WelcomeLayout = () => {
 
 
                     <div className="row bg-danger p-1 shadow">
-                        <div className="container text-center d-flex justify-content-around align-items-center">
+                        <div className="container text-center d-flex justify-content-center align-items-center">
                             {slideIndex == 0 ?
                                 <>
-                                    <span className="h4 m-0 p-2">Alumno</span>
-                                    <span className="h5 m-0 p-2 font-weight-light cursor-pointer" onClick={() => slider.current.slickGoTo(1)}>Profesor</span>
+                                    <span>
+                                        <IconContext.Provider value={{ color: "grey", className: "h3 mr-2 mb-0 cursor-pointer" }}>
+                                            <IoIosArrowDropleft />
+                                        </IconContext.Provider>
+                                    </span>
+                                    <span className="h4 m-0 p-2 cursor-pointer">Alumno</span>
+                                    <span className="h4 m-0 p-2 cursor-pointer font-weight-lighter">Profesor</span>
+                                    <span>
+                                        <IconContext.Provider value={{ color: "white", className: "h3 ml-2 mb-0 cursor-pointer" }}>
+                                            <IoIosArrowDropright onClick={() => { slider.current.slickGoTo(1) }} />
+                                        </IconContext.Provider>
+                                    </span>
                                 </>
                                 :
                                 <>
-                                    <span className="h5 m-0 p-2 font-weight-light cursor-pointer" onClick={() => slider.current.slickGoTo(0)}>Alumno</span>
-                                    <span className="h4 m-0 p-2">Profesor</span>
+                                    <span>
+                                        <IconContext.Provider value={{ color: "white", className: "h3 mr-2 mb-0 cursor-pointer" }}>
+                                            <IoIosArrowDropleft onClick={() => { slider.current.slickGoTo(0) }} />
+                                        </IconContext.Provider>
+                                    </span>
+                                    <span className="h4 m-0 p-2 cursor-pointer font-weight-lighter">Alumno</span>
+
+                                    <span className="h4 m-0 p-2 cursor-pointer">Profesor</span>
+                                    <span>
+                                        <IconContext.Provider value={{ color: "grey", className: "h3 ml-2 mb-0 cursor-pointer" }}>
+                                            <IoIosArrowDropright />
+                                        </IconContext.Provider>
+                                    </span>
                                 </>
                             }
 
@@ -66,7 +89,7 @@ const WelcomeLayout = () => {
                         <Slider {...settings} ref={slider}>
                             <div className="slick-element text-center p-4 d-sm-flex justify-content-between font-weight-normal">
                                 <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Tu eliges</span>con quien vas a aprender</div>
-                                <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas dinero</span>invitando a tus compañeros</div>
+                                <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas vales</span>invitando a tus compañeros</div>
                                 <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Pagas menos</span>si has sido invitado</div>
 
                             </div>
@@ -83,12 +106,8 @@ const WelcomeLayout = () => {
                         </Slider>
                     </div>
                     <div className="d-flex justify-content-center bg-gradient-green p-3">
-                        {slideIndex == 0 ?
-                            <Link to="/teachers" className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 h4 font-weight-normal text-secondary shadow">Empieza a aprender</Link>
-                            :
-                            <Link className="bg-white cursor-pointer rounded-pill text-grey h4 font-weight-normal px-3 py-2 text-secondary shadow">Empieza a enseñar</Link>
-
-                        }
+                        <Link to="/teachers" className="bg-white cursor-pointer rounded-pill text-grey px-3 py-2 m-0 h5 font-weight-normal text-secondary shadow mr-2">Busca a tu profesor</Link>
+                        <Link to="/myzone/teacher" className="bg-white cursor-pointer rounded-pill text-grey h5 m-0 font-weight-normal px-3 py-2 text-secondary shadow ml-2">Empieza a enseñar</Link>
                     </div>
                 </div>
             </div>

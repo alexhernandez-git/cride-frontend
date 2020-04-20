@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { MdMessage } from 'react-icons/md';
+import { IconContext } from "react-icons";
 export default function EnrolledStudents(props) {
     const { name, surname, email } = props.student.user
     return (
@@ -40,21 +41,22 @@ export default function EnrolledStudents(props) {
                                 ''}
                         </div>
                     </div>
-                    <div>{email}</div>
-                    {/* <button
-                        className="btn btn-green text-white d-flex px-2"
-                    >
-                        <IconContext.Provider value={{
-                            className: " text-white cursor-ponter",
-                            size: '20px'
-                        }}>
-                            <MdMessage />
-                        </IconContext.Provider>
-                    </button> */}
+                    <a href={"mailto:" + email}>
 
+                        <button
+                            className="btn btn-green text-white d-flex px-2"
+                        >
+                            <IconContext.Provider value={{
+                                className: " text-white cursor-ponter",
+                                size: '20px'
+                            }}>
+                                <MdMessage />
+                            </IconContext.Provider>
+                        </button>
+                    </a>
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

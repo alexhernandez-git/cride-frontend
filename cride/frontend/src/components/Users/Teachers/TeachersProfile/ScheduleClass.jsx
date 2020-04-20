@@ -98,7 +98,7 @@ export default function ScheduleClass() {
 
                             }
 
-                            <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span></span>
+                            <span className={invitationPriceState ? "d-block" : "d-block"}>Por cada compañero que invites a la clase obtendrás <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.class_price.value * 0.2)}€</span></span>
 
                         </div>
                         <div

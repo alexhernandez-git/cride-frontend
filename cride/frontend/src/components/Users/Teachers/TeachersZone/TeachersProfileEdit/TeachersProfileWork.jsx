@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 
-import Select from 'react-select'
 import DatePicker from 'react-date-picker';
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FiEdit2 } from 'react-icons/fi';
@@ -80,7 +79,7 @@ const TeachersProfileWork = () => {
     }
     const [isEditing, setIsEditing] = useState(false)
     const handleOpenEdit = (id) => {
-        const workEdit = appContext.userProfile.user.teacher.workExperience.filter(work => work.id == id)[0]
+        const workEdit = appContext.userProfile.user.teacher.work_experience.filter(work => work.id == id)[0]
         setValueWork(workEdit)
         setIsEditing(true)
         setShowWorkModal(true)
@@ -105,9 +104,9 @@ const TeachersProfileWork = () => {
                 </Col>
 
                 <Col lg={{ offset: 1, span: 6 }}>
-                    {appContext.userProfile.user.teacher.workExperience.length != 0 ?
+                    {appContext.userProfile.user.teacher.work_experience.length != 0 ?
                         <div className="mb-3">
-                            {appContext.userProfile.user.teacher.workExperience.map(work => (
+                            {appContext.userProfile.user.teacher.work_experience.map(work => (
                                 <div className="work-experience w-100 border-bottom pb-2 mb-2" key={work.id}>
                                     <div className="d-flex justify-content-between">
 
