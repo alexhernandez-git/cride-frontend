@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useState } from 'react';
 import { Form } from 'react-bootstrap'
 import { IconContext } from "react-icons";
 
@@ -7,21 +7,39 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/ClassStudents.scss"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 import { AppContext } from "src/context/AppContext"
-import FriendsList from './FriendsList';
+import UsersList from './UsersList';
 
 const ClassStudents = (props) => {
     const teacherContext = useContext(TeachersProfileContext);
     const appContext = useContext(AppContext);
-
+    const [users, setUsers] = useState([]);
     const invitationStudent = useRef()
     const handleWindowClick = (e) => {
 
         if (e.target.closest("#invitaitonDiv") != invitationStudent.current && e.target.parentElement.parentElement !== null) {
             teacherContext.setInviteStudentsState(false)
         }
-
-
     }
+    useEffect(() => {
+        setUsers([
+            {
+                id: "alex1234h",
+                name: "DOMINGO",
+                surname: "CAYUELA",
+                profile: {
+                    picture: '../../../static/assets/img/profile-blank.png',
+                },
+            },
+            {
+                id: "alex12f34h",
+                name: "Alex",
+                surname: "CAYUELA",
+                profile: {
+                    picture: '../../../static/assets/img/profile-blank.png',
+                },
+            }
+        ])
+    }, []);
     useEffect(() => {
         const handleClick = () => {
 
@@ -113,8 +131,8 @@ const ClassStudents = (props) => {
                                         height: '400px',
                                     }}
                                 >
-                                    {appContext.userProfile.friends.map(user => (
-                                        <FriendsList user={user} classData={props.classData} />
+                                    {users.map(user => (
+                                        <UsersList user={user} classData={props.classData} />
                                     ))}
 
                                 </div>
@@ -124,7 +142,6 @@ const ClassStudents = (props) => {
                                     {
                                         props.classData.students.map(student => (
                                             <div className="my-1">
-                                                {console.log(student)}
                                                 <div className=" px-3 py-2 bg-white rounded-pill shadow">
                                                     <div className="div-delegate-student d-flex justify-content-between align-items-center">
                                                         <div className="d-flex justify-content-start align-items-center w-100">

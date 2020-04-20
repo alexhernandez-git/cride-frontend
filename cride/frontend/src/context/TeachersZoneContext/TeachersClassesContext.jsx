@@ -6,8 +6,8 @@ import {
 
 export const TeachersClassesProvider = ({ children }) => {
     const initialClasses = {
-        classesConfirmed: [],
-        classesToBeConfirmed: [],
+        classes_confirmed: [],
+        classes_to_be_confirmed: [],
         isFetching: false,
         hasError: false
     }
@@ -27,6 +27,11 @@ export const TeachersClassesProvider = ({ children }) => {
                     title: 'Clase',
                     start: new Date().toString(),
                     description: 'Quiero aprender programación en C#',
+                    owner: {
+                        id: "nueia81qrmp",
+                        name: "Alex",
+                        surname: "Hernandez"
+                    },
                     students: [
                         {
                             user: {
@@ -47,8 +52,8 @@ export const TeachersClassesProvider = ({ children }) => {
                             isAdmin: false
                         }
                     ],
-                    createdDate: new Date(),
-                    confirmedDate: new Date()
+                    created_date: new Date(),
+                    confirmed_date: new Date()
 
                 }
             ]
@@ -61,6 +66,11 @@ export const TeachersClassesProvider = ({ children }) => {
                     title: 'Clase',
                     start: new Date().toString(),
                     description: 'Quiero aprender programación en C#',
+                    owner: {
+                        id: "nueia81qrmp",
+                        name: "Alex",
+                        surname: "Hernandez"
+                    },
                     students: [
                         {
                             user: {
@@ -82,8 +92,8 @@ export const TeachersClassesProvider = ({ children }) => {
                             isAdmin: false
                         }
                     ],
-                    createdDate: new Date(),
-                    confirmedDate: new Date()
+                    created_date: new Date(),
+                    confirmed_date: new Date()
 
                 }
             ]

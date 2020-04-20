@@ -47,7 +47,7 @@ export default function ScheduleBuisnessHours() {
         if (!appContext.userProfile.loading) {
 
 
-            dispatchBuisnessHours({ type: "SET_BUSINESS_HOURS", payload: appContext.userProfile.user.teacher.businessHours })
+            dispatchBuisnessHours({ type: "SET_BUSINESS_HOURS", payload: appContext.userProfile.user.teacher.business_hours })
         }
 
     }, [appContext.userProfile.loading]);

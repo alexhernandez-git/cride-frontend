@@ -23,7 +23,7 @@ export default function ClassSubject() {
         title: 'Resolver dudas',
         sessions: '1 clase',
         description: `Realiza una clase con Miguel Ángel. Esta es la opción ideal para resolver una duda de cara a un exámen, una entrega, una entrevista...`,
-        price: teacherContext.teacherState.user.teacher.classPrice,
+        price: teacherContext.teacherState.user.teacher.class_price.value,
         classes: 1
     },
     {
@@ -31,7 +31,7 @@ export default function ClassSubject() {
         title: 'Puntualmente',
         sessions: 'Bono de 5 clases',
         description: `Compra el bono de 5 clases, ahorrarás y podrás realizar las clases cuando quieras. \n Tendrás 6 meses para utilizarlas.`,
-        price: Math.round(teacherContext.teacherState.user.teacher.classPrice - 2).toFixed(2) - 0.01,
+        price: Math.round(teacherContext.teacherState.user.teacher.class_price.value - 2).toFixed(2) - 0.01,
         classes: 5
     },
     {
@@ -39,7 +39,7 @@ export default function ClassSubject() {
         title: 'Regularmente',
         sessions: 'Bono de 10 clases',
         description: `Podrás realizar 10 clases, tú decides la frecuencia: cada semana, cada 2 días...o de forma puntual.\nTendrás 6 meses para utilizarlas.`,
-        price: Math.round(teacherContext.teacherState.user.teacher.classPrice - 4).toFixed(2) - 0.01,
+        price: Math.round(teacherContext.teacherState.user.teacher.class_price.value - 4).toFixed(2) - 0.01,
         classes: 10
     },
     ]);

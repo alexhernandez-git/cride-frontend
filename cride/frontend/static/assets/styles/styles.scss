@@ -44,13 +44,13 @@ a {
 img {
   pointer-events: none;
 }
-// * {
-//   -webkit-user-select: none;
-//   -moz-user-select: none;
-//   -khtml-user-select: none;
-//   -ms-user-select: none;
-//   // color: #323840;
-// }
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  // color: #323840;
+}
 .modal-content {
   border: none !important;
 }

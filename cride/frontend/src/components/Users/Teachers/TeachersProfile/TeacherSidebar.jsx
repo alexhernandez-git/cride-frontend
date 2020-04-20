@@ -61,15 +61,15 @@ const TeachersSidebar = () => {
 
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">1 clase</span>
-                                <span className="text-primary">{teacherContext.teacherState.user.teacher.classPrice}€</span>
+                                <span className="text-primary">{teacherContext.teacherState.user.teacher.class_price.value}€</span>
                             </div>
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">5 clases</span>
-                                <span className="text-primary">{Math.round(teacherContext.teacherState.user.teacher.classPrice - 2).toFixed(2) - 0.01}€/clase</span>
+                                <span className="text-primary">{Math.round(teacherContext.teacherState.user.teacher.class_price.value - 2).toFixed(2) - 0.01}€/clase</span>
                             </div>
                             <div className="d-flex justify-content-between pb-2 border-bottom mb-2 cursor-pointer">
                                 <span className="font-weight-bold">10 clases</span>
-                                <span className="text-primary">{Math.round(teacherContext.teacherState.user.teacher.classPrice - 4).toFixed(2) - 0.01}€/clase</span>
+                                <span className="text-primary">{Math.round(teacherContext.teacherState.user.teacher.class_price.value - 4).toFixed(2) - 0.01}€/clase</span>
                             </div>
                         </div>
                         <div className="classes-acquired mt-3 text-center">

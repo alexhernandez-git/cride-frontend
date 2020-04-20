@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState } from 'react'
 import Tab from 'react-bootstrap/Tab'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -50,7 +50,7 @@ const TeacherProfileEdit = () => {
                                                     ) : classesContext.hasError ? (
                                                         <span>0</span>
                                                     ) : (
-                                                                <span>{classesContext.classes.classesConfirmed.length}</span>
+                                                                <span>{classesContext.classes.classes_confirmed.length}</span>
                                                             )
                                                     }
                                                 </span>
@@ -66,7 +66,7 @@ const TeacherProfileEdit = () => {
                                                     ) : classesContext.hasError ? (
                                                         <span>0</span>
                                                     ) : (
-                                                                <span>{classesContext.classes.classesToBeConfirmed.length}</span>
+                                                                <span>{classesContext.classes.classes_to_be_confirmed.length}</span>
                                                             )
                                                     }
                                                 </span>
@@ -88,9 +88,9 @@ const TeacherProfileEdit = () => {
                                                 <span className="error">Ha ocurrido un error</span>
                                             ) : (
 
-                                                        classesContext.classes.classesConfirmed.length > 0 ?
+                                                        classesContext.classes.classes_confirmed.length > 0 ?
                                                             <>
-                                                                {classesContext.classes.classesConfirmed.map(classElement => (
+                                                                {classesContext.classes.classes_confirmed.map(classElement => (
                                                                     < TeachersClass key={classElement.id} classElement={classElement} type={0} />
                                                                 ))}
                                                             </>
@@ -105,9 +105,9 @@ const TeacherProfileEdit = () => {
                                             ) : classesContext.hasError ? (
                                                 <span className="error">Ha ocurrido un error</span>
                                             ) : (
-                                                        classesContext.classes.classesToBeConfirmed.length > 0 ?
+                                                        classesContext.classes.classes_to_be_confirmed.length > 0 ?
                                                             <>
-                                                                {classesContext.classes.classesToBeConfirmed.map(classElement => (
+                                                                {classesContext.classes.classes_to_be_confirmed.map(classElement => (
                                                                     <TeachersClass key={classElement.id} classElement={classElement} type={1} />
                                                                 ))}
                                                             </>

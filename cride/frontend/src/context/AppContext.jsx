@@ -13,11 +13,10 @@ export const AppProvider = ({ children }) => {
             name: '',
             surname: '',
             email: '',
-            teacher: false
+            teacher: false,
+            cupons: []
         },
-        friends: [],
         invitations: []
-
     }
     const [userProfile, dispatchUser] = useReducer(userReducer, initialUser);
 
@@ -27,21 +26,22 @@ export const AppProvider = ({ children }) => {
         dispatchUser({
             type: 'FETCH_SUCCESS', payload: {
                 user: {
-                    id: Math.random().toString(36).substr(2),
+                    id: 'alex1234h',
                     name: 'Alex',
                     surname: 'Hernandez',
                     profile: {
                         picture: '../../../static/assets/img/profile-blank.png',
+                        classes_buyed: 5
                     },
                     teacher: {
                         rating: 4.7,
-                        classPrice: {
+                        class_price: {
                             label: "24.99$ por clase",
                             value: 24.99,
                             type: "usd"
                         },
                         presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
-                        videoPresentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
+                        video_presentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
                         teach: [
                             {
                                 id: Math.random().toString(36).substr(2),
@@ -99,7 +99,7 @@ export const AppProvider = ({ children }) => {
                                 levelValue: 32
                             }
                         ],
-                        workExperience: [
+                        work_experience: [
                             {
                                 id: "uljz5zio2fj",
                                 title: "Programador frontend",
@@ -119,7 +119,7 @@ export const AppProvider = ({ children }) => {
                                 description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
                             }
                         ],
-                        academicExperience: [
+                        academic_experience: [
                             {
                                 id: "px41nfl2vhh",
                                 title: "Grado Superior de administración de sistemas",
@@ -242,7 +242,7 @@ export const AppProvider = ({ children }) => {
                             },
 
                         ],
-                        businessHours: [
+                        business_hours: [
                         ],
                         classes: [
                             {
@@ -311,20 +311,7 @@ export const AppProvider = ({ children }) => {
                         ],
                     },
                 },
-                friends: [
-                    {
-                        id: "alex1efwa234h",
-                        name: "DOMIfeawNGO",
-                        surname: "CAYUewELA",
 
-                    },
-                    {
-                        id: "alex1few234h",
-                        name: "DOMIfewNGO",
-                        surname: "CAYUfewELA",
-
-                    },
-                ],
                 classes: [
                     {
                         id: 'fudhnfewal6tja5',
@@ -341,6 +328,11 @@ export const AppProvider = ({ children }) => {
                             profile: {
                                 picture: '../../../static/assets/img/profile-blank.png',
                             },
+                        },
+                        owner: {
+                            id: "nueia81qrmp",
+                            name: "Alex",
+                            surname: "Hernandez"
                         },
                         students: [
                             {
@@ -375,6 +367,11 @@ export const AppProvider = ({ children }) => {
                                 picture: '../../../static/assets/img/profile-blank.png',
                             },
                         },
+                        owner: {
+                            id: "nueia81qrmp",
+                            name: "Alex",
+                            surname: "Hernandez"
+                        },
                         students: [
                             {
                                 user: {
@@ -407,6 +404,11 @@ export const AppProvider = ({ children }) => {
                             profile: {
                                 picture: '../../../static/assets/img/profile-blank.png',
                             },
+                        },
+                        owner: {
+                            id: "nueia81qrmp",
+                            name: "Alex",
+                            surname: "Hernandez"
                         },
                         students: [
                             {
@@ -444,6 +446,11 @@ export const AppProvider = ({ children }) => {
                                     picture: '../../../static/assets/img/profile-blank.png',
                                 },
                             },
+                            owner: {
+                                id: "nueia81qrmp",
+                                name: "Alex",
+                                surname: "Hernandez"
+                            },
                             students: [
                                 {
                                     user: {
@@ -479,6 +486,11 @@ export const AppProvider = ({ children }) => {
                                     picture: '../../../static/assets/img/profile-blank.png',
                                 },
                             },
+                            owner: {
+                                id: "nueia81qrmp",
+                                name: "Alex",
+                                surname: "Hernandez"
+                            },
                             students: [
                                 {
                                     user: {
@@ -513,6 +525,11 @@ export const AppProvider = ({ children }) => {
                                 profile: {
                                     picture: '../../../static/assets/img/profile-blank.png',
                                 },
+                            },
+                            owner: {
+                                id: "nueia81qrmp",
+                                name: "Alex",
+                                surname: "Hernandez"
                             },
                             students: [
                                 {

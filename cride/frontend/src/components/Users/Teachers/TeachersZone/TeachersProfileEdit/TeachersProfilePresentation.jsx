@@ -5,7 +5,7 @@ import { Form, Row, Col } from 'react-bootstrap'
 const TeachersProfilePresentation = () => {
     const appContext = useContext(AppContext);
     const inputFileVideo = useRef(null);
-    const [srcVideo, setSrcVideo] = useState(appContext.userProfile.user.teacher.videoPresentation);
+    const [srcVideo, setSrcVideo] = useState(appContext.userProfile.user.teacher.video_presentation);
 
     const [presentation, setPresentation] = useState(appContext.userProfile.user.teacher.presentation)
     const [isEditing, setIsEditing] = useState(false)

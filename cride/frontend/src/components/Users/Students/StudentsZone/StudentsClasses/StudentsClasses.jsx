@@ -30,7 +30,6 @@ const TeacherProfileEdit = () => {
                             </div>
                         </div>
                         <Tab.Container id="left-tabs-example" activeKey={key} onSelect={k => setKey(k)} defaultActiveKey="first" className="p-3">
-
                             <Row className="mb-3 mt-4">
                                 <Col sm={12}>
                                     <Nav style={{

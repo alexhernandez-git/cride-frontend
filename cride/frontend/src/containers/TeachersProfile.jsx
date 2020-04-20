@@ -26,7 +26,6 @@ const TeachersProfile = props => {
                     <>
                         {teacherContext.teacherState.loading ? 'Cargando...' :
                             <>
-
                                 < div className="profile-content container mt-5 mb-5 text-grey">
                                     <Row>
 

@@ -40,6 +40,8 @@ const ClassDetailsForm = (props) => {
     })
 
     useEffect(() => {
+        console.log('props.args', props.args);
+        console.log('teacherContext.isEdit', teacherContext.isEdit);
 
         if (props.args) {
 
@@ -51,11 +53,12 @@ const ClassDetailsForm = (props) => {
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
+                    owner: props.args.event.extendedProps.owner,
                     students: props.args.event.extendedProps.students,
                     invitations: props.args.event.extendedProps.invitations
                 }))
                 let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
-                const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
+                const result = adminStudents.filter((student) => student.user.id == appContext.userProfile.user.id)
 
                 if (result.length > 0) {
                     setIsAdmin(true)
@@ -68,11 +71,12 @@ const ClassDetailsForm = (props) => {
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
+                    owner: props.args.event.extendedProps.owner,
                     students: props.args.event.extendedProps.students,
                     invitations: props.args.event.extendedProps.invitations
                 }))
                 let adminStudents = props.args.event.extendedProps.students.filter((student) => student.isAdmin == true)
-                const result = adminStudents.filter((student) => student.id == appContext.userProfile.user.id)
+                const result = adminStudents.filter((student) => student.user.id == appContext.userProfile.user.id)
 
                 if (result.length > 0) {
                     setIsAdmin(true)
@@ -85,6 +89,7 @@ const ClassDetailsForm = (props) => {
                     constraint: 'businessHours',
                     description: props.args.event.extendedProps.description,
                     accepted: props.args.event.extendedProps.accepted,
+                    owner: props.args.event.extendedProps.owner,
                     students: props.args.event.extendedProps.students,
                     invitations: props.args.event.extendedProps.invitations
 
@@ -96,9 +101,15 @@ const ClassDetailsForm = (props) => {
                 setClassData(() => ({
                     id: Math.random().toString(36).substr(2),
                     title: 'Clase',
-                    start: props.args.dateStr,
+                    start: props.args.date,
                     constraint: 'businessHours',
                     description: '',
+                    owner: {
+                        id: appContext.userProfile.user.id,
+                        name: appContext.userProfile.user.name,
+                        surname: appContext.userProfile.user.surname,
+                        name: appContext.userProfile.user.name,
+                    },
                     accepted: false,
                     students: [{
                         user: {
@@ -108,7 +119,6 @@ const ClassDetailsForm = (props) => {
                             name: appContext.userProfile.user.name,
                         },
                         isAdmin: true,
-                        isInvited: false,
                     }],
                     invitations: []
                 }))

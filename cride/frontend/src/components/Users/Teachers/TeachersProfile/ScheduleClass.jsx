@@ -107,9 +107,9 @@ export default function ScheduleClass() {
                         >
                             <span className="d-block" ref={invitationText}>
                                 Al compañero que invites le va a costar la classe exactamente{' '}
-                                <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice - teacherContext.teacherState.user.teacher.classPrice * 0.2) - 0.01}€</span><br />
+                                <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.class_price.value - teacherContext.teacherState.user.teacher.class_price.value * 0.2) - 0.01}€</span><br />
                                 que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
-                                <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span> por cada invitado que adquiera la clase
+                                <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher.class_price.value * 0.2)}€</span> por cada invitado que adquiera la clase
                                 </span>
                         </div>
 
@@ -152,21 +152,21 @@ export default function ScheduleClass() {
                                                 id='external-events'
                                                 className="text-center draggable-events"
                                             >
-                                                {teacherContext.classesAssignedLeft.length > 0 ?
+                                                {teacherContext.teacherState.classes_assigned_left.length > 0 ?
                                                     <>
 
 
 
                                                         <div className="py-2 d-none d-lg-block"></div>
                                                         <div className="pt-3 d-block d-lg-none"></div>
-                                                        {teacherContext.classesAssignedLeft.length > 0 ?
+                                                        {teacherContext.teacherState.classes_assigned_left.length > 0 ?
                                                             <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases</span>
                                                             :
                                                             ''
                                                         }
                                                         <Row>
-                                                            {teacherContext.classesAssignedLeft.map(() => (
-                                                                teacherContext.classesAssignedLeft.length == 1 ?
+                                                            {teacherContext.teacherState.classes_assigned_left.map(() => (
+                                                                teacherContext.teacherState.classes_assigned_left.length == 1 ?
                                                                     < Col >
                                                                         <div className="fc-event text-center">Clase</div>
                                                                     </Col>
@@ -209,7 +209,7 @@ export default function ScheduleClass() {
                                                             </Nav.Link>
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            {teacherContext.selectedClasses > 0 ?
+                                                            {teacherContext.teacherState.selected_classes > 0 ?
                                                                 <Nav.Link eventKey={1} className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{
@@ -234,7 +234,7 @@ export default function ScheduleClass() {
                                                             }
                                                         </Nav.Item>
                                                         <Nav.Item>
-                                                            {teacherContext.selectedClasses > 0 ?
+                                                            {teacherContext.teacherState.selected_classes > 0 ?
                                                                 <Nav.Link eventKey={2} className="rounded-pill cursor-no-pointer">
                                                                     <IconContext.Provider
                                                                         value={{

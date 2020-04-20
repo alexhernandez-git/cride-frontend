@@ -125,7 +125,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        workExperience: worksAddSorted
+                        work_experience: worksAddSorted
                     }
                 }
             }
@@ -138,7 +138,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        workExperience: worksDeleteSorted
+                        work_experience: worksDeleteSorted
                     }
                 }
             }
@@ -158,7 +158,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        workExperience: worksEditSorted
+                        work_experience: worksEditSorted
                     }
                 }
             }
@@ -171,7 +171,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        academicExperience: studysAddSorted
+                        academic_experience: studysAddSorted
                     }
                 }
             }
@@ -184,7 +184,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        academicExperience: studysDeleteSorted
+                        academic_experience: studysDeleteSorted
                     }
                 }
             }
@@ -204,7 +204,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        academicExperience: studiesEditSorted
+                        academic_experience: studiesEditSorted
                     }
                 }
             }
@@ -226,7 +226,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        classPrice: action.payload
+                        class_price: action.payload
                     }
                 }
             }

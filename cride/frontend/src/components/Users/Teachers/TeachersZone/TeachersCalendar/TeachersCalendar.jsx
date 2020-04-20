@@ -30,7 +30,7 @@ export default function TeacherCalendar() {
 
     useEffect(() => {
         if (!appContext.userProfile.loading) {
-            const businessHoursArray = appContext.userProfile.user.teacher.businessHours
+            const businessHoursArray = appContext.userProfile.user.teacher.business_hours
             const hours = new Array(businessHoursArray.length)
             console.log(hours);
 

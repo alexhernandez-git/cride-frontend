@@ -5,7 +5,7 @@ import Prices from "static/data/prices"
 import { AppContext } from "src/context/AppContext"
 const TeachersProfilePricing = () => {
     const appContext = useContext(AppContext);
-    const [price, setPrice] = useState(appContext.userProfile.user.teacher.classPrice)
+    const [price, setPrice] = useState(appContext.userProfile.user.teacher.class_price)
     const [isEditing, setIsEditing] = useState(false)
     useEffect(() => {
 
@@ -25,7 +25,7 @@ const TeachersProfilePricing = () => {
                     <div className="d-flex justify-content-between mt-2">
 
                         <Select
-                            value={price}
+                            value={price.value}
                             options={Prices}
                             onChange={setPrice}
                             className="w-100 mr-2"

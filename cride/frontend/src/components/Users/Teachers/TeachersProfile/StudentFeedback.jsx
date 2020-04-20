@@ -8,7 +8,6 @@ import { TeachersProfileContext } from "src/context/TeachersProfileContext/Teach
 import StarRating from 'src/components/Layout/StarRatings'
 export default function TeacherPunctuation() {
     const teacherContext = useContext(TeachersProfileContext);
-    const [mean, setMean] = useState(false);
     const [percentages, setPercentages] = useState([])
     useEffect(() => {
         if (teacherContext.teacherState.user.teacher.ratings.length > 0) {

@@ -79,18 +79,19 @@ export default function ScheduleHour(props) {
     }
 
     const handleEventClick = (args) => {
-        setArgs(args)
-        if (args.event.source.id == 0) {
+        console.log('args', args.event.source.internalEventSource.id == 0);
 
+        setArgs(args)
+        if (args.event.source.internalEventSource.id == 0) {
             teacherContext.setIsEdit(true)
 
             teacherContext.handleShowDetailsClassForm()
-        } else if (args.event.source.id == 2 && props.profile) {
+        } else if (args.event.source.internalEventSource.id == 2 && props.profile) {
 
             teacherContext.setIsMyClass(true)
 
             teacherContext.handleShowDetailsClassForm()
-        } else if (args.event.source.id == 3 || (args.event.source.id == 2 && !props.profile)) {
+        } else if (args.event.source.internalEventSource.id == 3 || (args.event.source.internalEventSource.id == 2 && !props.profile)) {
 
             teacherContext.setOnlyShow(true)
             teacherContext.handleShowDetailsClassForm()
@@ -188,7 +189,7 @@ export default function ScheduleHour(props) {
     }
     useEffect(() => {
         if (!teacherContext.teacherState.user.teacher.loading) {
-            const hours = teacherContext.teacherState.user.teacher.businessHours.map(hour => {
+            const hours = teacherContext.teacherState.user.teacher.business_hours.map(hour => {
                 hour.daysOfWeek = []
                 hour.daysOfWeek[0] = hour.day
                 hour.startTime = moment(hour.start, "HH:mm").format("HH:mm").toString()
@@ -248,7 +249,6 @@ export default function ScheduleHour(props) {
                                                 </IconContext.Provider>
 
                                             </button>
-
                                         </div>
                                         <div className="mb-2 w-100 border-bottom rounded p-2 text-grey text-center">
 
@@ -263,21 +263,21 @@ export default function ScheduleHour(props) {
                                     id='external-profile-events'
                                     className="text-center draggable-events"
                                 >
-                                    {teacherContext.teacherState.user.teacher.eventClassesLeft.length > 0 && !teacherContext.showScheduleClass ?
+                                    {teacherContext.teacherState.event_classes_left.length > 0 && !teacherContext.showScheduleClass ?
                                         <>
 
 
 
                                             <div className="py-2 d-none d-lg-block"></div>
                                             <div className="pt-3 d-block d-lg-none"></div>
-                                            {teacherContext.teacherState.user.teacher.eventClassesLeft.length > 0 ?
-                                                <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases</span>
+                                            {teacherContext.teacherState.event_classes_left.length > 0 ?
+                                                <span className="text-center h5 mb-0 font-weight-light">Arrastra tus clases ({teacherContext.teacherState.event_classes_left.length})</span>
                                                 :
                                                 ''
                                             }
                                             <Row>
-                                                {teacherContext.teacherState.user.teacher.eventClassesLeft.map(() => (
-                                                    teacherContext.teacherState.user.teacher.eventClassesLeft.length == 1 ?
+                                                {teacherContext.teacherState.event_classes_left.map(() => (
+                                                    teacherContext.teacherState.event_classes_left.length == 1 ?
                                                         < Col >
                                                             <div className="fc-event text-center">Clase</div>
                                                         </Col>
@@ -332,10 +332,9 @@ export default function ScheduleHour(props) {
                                                 [
                                                     {
                                                         id: 0,
-                                                        // events: teacherContext.teacherState.user.teacher.myPendingClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
-                                                            if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
+                                                            if (classEvent.students.some(student => student.user.id == appContext.userProfile.user.id)) {
                                                                 return classEvent.accepted == false
                                                             }
                                                             return false
@@ -346,9 +345,9 @@ export default function ScheduleHour(props) {
                                                     {
                                                         id: 2,
                                                         // events: teacherContext.teacherState.user.teacher.myAcceptedClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
-                                                            if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
+                                                            if (classEvent.students.some(student => student.user.id == appContext.userProfile.user.id)) {
                                                                 return classEvent.accepted == true
                                                             }
                                                             return false
@@ -360,9 +359,9 @@ export default function ScheduleHour(props) {
                                                     {
                                                         id: 3,
                                                         // events: teacherContext.teacherState.user.teacher.reservedClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
-                                                            return classEvent.students.some(student => student.id != appContext.userProfile.user.id)
+                                                            return classEvent.students.some(student => student.user.id != appContext.userProfile.user.id)
                                                         }),
                                                         color: 'grey',
                                                         editable: false,
@@ -374,14 +373,14 @@ export default function ScheduleHour(props) {
                                                 [
                                                     {
                                                         id: 0,
-                                                        events: teacherContext.temporaryClasses,
+                                                        events: teacherContext.teacherState.temporary_classes,
                                                         color: '#3f8989'
                                                     },
                                                     {
                                                         id: 1,
                                                         // events: teacherContext.teacherState.user.teacher.myPendingClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
-                                                            if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
+                                                            if (classEvent.students.some(student => student.user.id == appContext.userProfile.user.id)) {
                                                                 classEvent.title = 'Clase'
                                                                 return classEvent.accepted == false
                                                             }
@@ -393,8 +392,8 @@ export default function ScheduleHour(props) {
                                                     {
                                                         id: 2,
                                                         // events: teacherContext.teacherState.user.teacher.myAcceptedClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
-                                                            if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
+                                                            if (classEvent.students.some(student => student.user.id == appContext.userProfile.user.id)) {
                                                                 classEvent.title = 'Clase'
                                                                 return classEvent.accepted == true
                                                             }
@@ -407,9 +406,9 @@ export default function ScheduleHour(props) {
                                                     {
                                                         id: 3,
                                                         // events: teacherContext.teacherState.user.teacher.reservedClasses,
-                                                        events: teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
+                                                        events: teacherContext.teacherState.classes.filter((classEvent) => {
                                                             classEvent.title = 'Clase'
-                                                            return classEvent.students.some(student => student.id != appContext.userProfile.user.id)
+                                                            return classEvent.students.some(student => student.user.id != appContext.userProfile.user.id)
                                                         }),
                                                         color: 'grey',
                                                         editable: false,
@@ -432,7 +431,7 @@ export default function ScheduleHour(props) {
                                 <div className="classes-to-assign mt-2 bg-gradient-green shadow p-2 text-white text-center cursor-pointer rounded">
                                     Clases por asignar
                             <span className="font-weight-bold">{' '}
-                                        {props.profile ? teacherContext.teacherState.user.teacher.eventClassesLeft.length : teacherContext.classesAssignedLeft.length}
+                                        {props.profile ? teacherContext.teacherState.event_classes_left.length : teacherContext.teacherState.classes_assigned_left.length}
                                     </span>
                                 </div>
                             </div>
@@ -481,7 +480,7 @@ export default function ScheduleHour(props) {
                                             >
                                                 <span className="d-block" ref={invitationText}>
                                                     Al compañero que invites le va a costar la classe exactamente{' '}
-                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher - teacherContext.teacherState.user.teacher.classPrice * 0.2)}€</span><br />
+                                                    <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher - teacherContext.teacherState.user.teacher.class_price.value * 0.2)}€</span><br />
                                                         que es un <span className="font-weight-bold">20% menos</span> del coste inicial de la clase,<br /> y tu vas a ganar{' '}
                                                     <span className="font-weight-bold">{Math.round(teacherContext.teacherState.user.teacher * 0.2)}€</span> por cada invitado que adquiera la clase
                                                         </span>

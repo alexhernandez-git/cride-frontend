@@ -12,7 +12,7 @@ export const classesReducer = (state, action) => {
             return {
                 ...state,
                 isFetching: false,
-                classesConfirmed: action.payload
+                classes_confirmed: action.payload
             };
         case 'CLASSES_CONFIRMED_ERROR':
             return {
@@ -30,7 +30,7 @@ export const classesReducer = (state, action) => {
             return {
                 ...state,
                 isFetching: false,
-                classesToBeConfirmed: action.payload
+                classes_to_be_confirmed: action.payload
             };
         case 'CLASSES_TO_BE_CONFIRMED_ERROR':
             return {
@@ -40,32 +40,32 @@ export const classesReducer = (state, action) => {
             };
         case 'CONFIRM_CLASS':
             action.payload.confirmedDate = new Date()
-            const newArray = state.classesToBeConfirmed.filter((classElement) => {
+            const newArray = state.classes_to_be_confirmed.filter((classElement) => {
                 return classElement.id != action.payload.id
             })
-            const newArrayConfirmed = [...state.classesConfirmed, action.payload]
+            const newArrayConfirmed = [...state.classes_confirmed, action.payload]
             const newArrayConfirmedSorted = newArrayConfirmed.sort((a, b) => (b.confirmedDate - a.confirmedDate))
 
             return {
                 ...state,
-                classesConfirmed: newArrayConfirmedSorted,
-                classesToBeConfirmed: newArray
+                classes_confirmed: newArrayConfirmedSorted,
+                classes_to_be_confirmed: newArray
             }
         case 'CANCEL_CLASS_CONFIRMED':
-            const newArrayClassesConfirmed = state.classesConfirmed.filter((classElement) => {
+            const newArrayClassesConfirmed = state.classes_confirmed.filter((classElement) => {
                 return classElement.id != action.payload.id
             })
             return {
                 ...state,
-                classesConfirmed: newArrayClassesConfirmed
+                classes_confirmed: newArrayClassesConfirmed
             }
         case 'CANCEL_CLASS_TO_BE_CONFIRMED':
-            const newArrayClassesToBeConfirmed = state.classesToBeConfirmed.filter((classElement) => {
+            const newArrayClassesToBeConfirmed = state.classes_to_be_confirmed.filter((classElement) => {
                 return classElement.id != action.payload.id
             })
             return {
                 ...state,
-                classesToBeConfirmed: newArrayClassesToBeConfirmed
+                classes_to_be_confirmed: newArrayClassesToBeConfirmed
             }
         default:
             return state;

@@ -1,21 +1,11 @@
-import React, { useEffect, useRef, useContext, useState } from 'react';
+import React, { useEffect, useRef, } from 'react';
 import "static/assets/styles/components/Users/Teachers/TeachersProfile/TeacherLessonsLeft.scss"
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
-import { AppContext } from "src/context/AppContext"
 const AcquiredClasses = () => {
     const acquiredClasses = useRef(null);
-    const appContext = useContext(AppContext);
-    const teacherContext = useContext(TeachersProfileContext);
 
-    const [myPendingClasses, setMyPendingClasses] = useState(false);
     useEffect(() => {
-        const result = teacherContext.teacherState.user.teacher.classes.filter((classEvent) => {
-            if (classEvent.students.some(student => student.id == appContext.userProfile.user.id)) {
-                return classEvent.accepted == false
-            }
-            return false;
-        })
-        setMyPendingClasses(result)
+
         const handleScroll = () => {
             let scroll = document.body.getBoundingClientRect().y
 
@@ -33,6 +23,7 @@ const AcquiredClasses = () => {
             window.removeEventListener('scroll', handleScroll)
         };
     }, []);
+
     return (
         <TeachersProfileContext.Consumer>
 
@@ -41,11 +32,9 @@ const AcquiredClasses = () => {
                 < div ref={acquiredClasses} className="teacher-lessons-left shadow rounded bg-gradient-green text-white font-weight-light rounded-pill">
                     <span>Clases adquiridas</span>{' '}
                     <span className="">
-                        {myPendingClasses && teacherContext.teacherState.user.teacher.eventClassesLeft ?
-                            myPendingClasses.length + teacherContext.teacherState.user.teacher.eventClassesLeft.length
-                            :
-                            ''
-                        }
+                        {console.log(teacherContext.teacherState)}
+                        {teacherContext.teacherState.classes_buyed}
+
                     </span>
                 </div>
             )

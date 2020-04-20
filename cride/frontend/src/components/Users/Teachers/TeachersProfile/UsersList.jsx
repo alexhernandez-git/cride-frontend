@@ -3,9 +3,8 @@ import { IconContext } from "react-icons";
 import { TeachersProfileContext } from "src/context/TeachersProfileContext/TeachersProfileContext"
 
 import { MdPersonAdd, MdCheck } from "react-icons/md";
-export default function FriendsList(props) {
+export default function UsersList(props) {
     const teacherContext = useContext(TeachersProfileContext);
-    console.log('classdata', props.classData)
     const { classData, user } = props
     const [isInvited, setIsInvited] = useState(false);
     const checkIsInvited = () => {
@@ -18,7 +17,6 @@ export default function FriendsList(props) {
             classData.invitations.push(user)
             checkIsInvited()
         }
-        console.log(classData)
     }
     useEffect(() => {
         if (user && classData.invitations) {

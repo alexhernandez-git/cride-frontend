@@ -14,11 +14,9 @@ export default function TeachersProfileTeach() {
     const [subjects, setSubjects] = useState(appContext.userProfile.user.teacher.teach)
 
     const handleUpdateSubjects = (e) => {
-
         const subjectIndex = subjects.findIndex((subject => subject.id == e.target.parentElement.parentElement.id));
         const newValue = [...subjects]
         newValue[subjectIndex].subjectValue = e.target.value
-
         setIsEditing(true)
         setSubjects([...newValue])
     }

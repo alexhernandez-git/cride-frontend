@@ -54,7 +54,7 @@ export default function TeachersEducation() {
                             <IoIosArrowDown />
                         </IconContext.Provider>
                     </div>
-                    {teacherContext.teacherState.user.teacher.workExperience.map(work => (
+                    {teacherContext.teacherState.user.teacher.work_experience.map(work => (
                         <div className="work-experience mt-4 pb-2">
 
                             <span className="d-block h4 mb-1 font-weight-normal">{work.title} / {work.company}</span>
