@@ -10,7 +10,7 @@ const TeachersLanguages = () => {
     return (
         <TeachersProfileContext.Consumer>
             {teacherContext => (
-                <div className="teacher-lang shadow w-100 p-4 rounded d-none d-md-block">
+                <div className="teacher-lang shadow w-100 p-4 mb-3 rounded d-none d-md-block">
 
                     <span className="d-block h3 font-weight-normal text-primary mb-3">Languages</span>
                     {teacherContext.teacherState.user.teacher.languages.length != 0 ?

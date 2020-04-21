@@ -17,12 +17,7 @@ export default function TeachersWorkExperience() {
                     <div className="d-flex justify-content-between cursor-pointer">
 
                         <span className="d-block h3 font-weight-normal text-primary">Work experience</span>
-                        <IconContext.Provider value={{
-                            className: "mr-2 text-primary toggle-icon-work",
-                            size: '30px'
-                        }}>
-                            <IoIosArrowDown />
-                        </IconContext.Provider>
+
                     </div>
                     {teacherContext.teacherState.user.teacher.work_experience.map(work => (
                         <div className="work-experience mt-4 pb-2">

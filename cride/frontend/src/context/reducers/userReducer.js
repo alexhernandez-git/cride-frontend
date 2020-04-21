@@ -74,7 +74,7 @@ export const userReducer = (state, action) => {
                     ...state.user,
                     teacher: {
                         ...state.user.teacher,
-                        teach: action.payload
+                        teaches: action.payload
                     }
                 }
             }

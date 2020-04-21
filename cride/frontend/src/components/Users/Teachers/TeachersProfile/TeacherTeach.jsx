@@ -15,7 +15,7 @@ const TeachersTeach = () => {
 
                     <span className="d-block h3 font-weight-normal text-primary">¿What does the teacher teach?</span>
                     <div className="row pr-4 pl-4">
-                        {teacherContext.teacherState.user.teacher.teach.map(teach => (
+                        {teacherContext.teacherState.user.teacher.teaches.map(teach => (
                             <div className="col-md-6 text-break">
                                 <div className="subject p-2 position-relative">
 

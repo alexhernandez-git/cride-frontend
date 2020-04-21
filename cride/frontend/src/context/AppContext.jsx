@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
                         },
                         presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
                         video_presentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',
-                        teach: [
+                        teaches: [
                             {
                                 id: Math.random().toString(36).substr(2),
                                 subjectValue: 'Desarrollo con Swift'

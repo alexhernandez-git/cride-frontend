@@ -11,7 +11,7 @@ export default function TeachersProfileTeach() {
     const [isEditing, setIsEditing] = useState(false)
     const appContext = useContext(AppContext);
 
-    const [subjects, setSubjects] = useState(appContext.userProfile.user.teacher.teach)
+    const [subjects, setSubjects] = useState(appContext.userProfile.user.teacher.teaches)
 
     const handleUpdateSubjects = (e) => {
         const subjectIndex = subjects.findIndex((subject => subject.id == e.target.parentElement.parentElement.id));
