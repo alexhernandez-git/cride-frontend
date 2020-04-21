@@ -54,7 +54,8 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'cride.users.apps.UsersAppConfig',
-    'cride.frontend.apps.FrontendAppConfig'
+    'cride.frontend.apps.FrontendAppConfig',
+    'cride.utils.apps.UtilsAppConfig'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -197,3 +198,7 @@ SASS_PROCESSOR_INCLUDE_DIRS = [
 SASS_PROCESSOR_AUTO_INCLUDE = False
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
 SASS_PRECISION = 8
+
+# Not username in user
+
+ACCOUNT_USERNAME_REQUIRED = False

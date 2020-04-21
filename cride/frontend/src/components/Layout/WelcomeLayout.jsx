@@ -108,7 +108,7 @@ const WelcomeLayout = () => {
                         <Slider {...settings} ref={slider}>
                             <div className="slick-element text-center p-4 d-sm-flex justify-content-between font-weight-normal">
                                 <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Tu eliges</span>con quien vas a aprender</div>
-                                <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas vales</span>invitando a tus compañeros</div>
+                                <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Ganas vales de descuento</span>invitando a tus compañeros</div>
                                 <div className="info-pill col-md-3 d-flex flex-column align-items-center justify-content-center p-2 bg-gradient-green rounded-pill shadow"><span className="font-weight-bold d-block">Pagas menos</span>si has sido invitado</div>
 
                             </div>

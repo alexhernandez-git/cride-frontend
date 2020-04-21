@@ -6,14 +6,13 @@ export const AppProvider = ({ children }) => {
 
     const initialUser = {
         loading: true,
-        isAuthenicated: false,
+        is_authenticated: false,
         error: '',
         user: {
             profile: false,
-            name: '',
-            surname: '',
+            first_name: '',
+            last_name: '',
             email: '',
-            isAuthenicated: false,
             teacher: false,
             cupons: []
         },
@@ -28,13 +27,16 @@ export const AppProvider = ({ children }) => {
             type: 'FETCH_SUCCESS', payload: {
                 user: {
                     id: 'alex1234h',
-                    name: 'Alex',
-                    surname: 'Hernandez',
+                    first_name: 'Alex',
+                    last_name: 'Hernandez',
+                    phone_number: '543534543',
                     profile: {
                         picture: '../../../static/assets/img/profile-blank.png',
                         classes_buyed: 5,
                         is_teacher: false,
                         birth_date: '',
+                        country: 'ES',
+                        language: "es",
                     },
                     teacher: {
                         rating: 4.7,
@@ -48,58 +50,58 @@ export const AppProvider = ({ children }) => {
                         teaches: [
                             {
                                 id: Math.random().toString(36).substr(2),
-                                subjectValue: 'Desarrollo con Swift'
+                                subject_value: 'Desarrollo con Swift'
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                subjectValue: 'Desarrollo con React'
+                                subject_value: 'Desarrollo con React'
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                subjectValue: 'Desarrollo con Angular'
+                                subject_value: 'Desarrollo con Angular'
                             },
                         ],
                         languages: [
                             {
                                 id: "wcppkede79c",
-                                languageValue: "hr",
-                                languageLabel: "Croatian",
-                                levelValue: "b1",
-                                levelLabel: "B1, Usuario independiente",
+                                language_value: "hr",
+                                language_label: "Croatian",
+                                level_value: "b1",
+                                level_label: "B1, Usuario independiente",
                             },
                             {
                                 id: "ar44m6450dl",
-                                languageValue: "es",
-                                languageLabel: "Spanish; Castilian",
-                                levelValue: "b1",
-                                levelLabel: "B1, Usuario independiente",
+                                language_value: "es",
+                                language_label: "Spanish; Castilian",
+                                level_value: "b1",
+                                level_label: "B1, Usuario independiente",
                             }
                         ],
                         skills: [
                             {
                                 id: Math.random().toString(36).substr(2),
-                                skillValue: 'HTML',
-                                levelValue: 100
+                                skill_value: 'HTML',
+                                level_value: 100
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                skillValue: 'CSS',
-                                levelValue: 95
+                                skill_value: 'CSS',
+                                level_value: 95
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                skillValue: 'JavaScript',
-                                levelValue: 70
+                                skill_value: 'JavaScript',
+                                level_value: 70
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                skillValue: 'PHP',
-                                levelValue: 95
+                                skill_value: 'PHP',
+                                level_value: 95
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                skillValue: 'MySQL',
-                                levelValue: 32
+                                skill_value: 'MySQL',
+                                level_value: 32
                             }
                         ],
                         work_experience: [
@@ -107,18 +109,18 @@ export const AppProvider = ({ children }) => {
                                 id: "uljz5zio2fj",
                                 title: "Programador frontend",
                                 company: "Microsoft",
-                                currentWorking: true,
-                                startDate: new Date(),
-                                endDate: false,
+                                current_working: true,
+                                start_date: new Date(),
+                                end_date: false,
                                 description: "En ese trabajo cumplía las funciónes de programador frontend",
                             },
                             {
                                 id: "gx6s2r3urlv",
                                 title: "Programador backend",
                                 company: "Apple",
-                                currentWorking: false,
-                                startDate: new Date(),
-                                endDate: new Date(),
+                                current_working: false,
+                                start_date: new Date(),
+                                end_date: new Date(),
                                 description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor inventore natus est hic earum adipisci architecto explicabo harum, fuga necessitatibus ab voluptatibus illo voluptatem ratione, exercitationem voluptate, perspiciatis velit repudiandae."
                             }
                         ],
@@ -127,18 +129,18 @@ export const AppProvider = ({ children }) => {
                                 id: "px41nfl2vhh",
                                 title: "Grado Superior de administración de sistemas",
                                 school: "CESF",
-                                currentStudiesing: true,
-                                startDate: moment('Wed Jan 03 2018 00:00:00 GMT+0100'),
-                                endDate: false,
+                                current_studing: true,
+                                start_date: moment('Wed Jan 03 2018 00:00:00 GMT+0100'),
+                                end_date: false,
                                 description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos"
                             },
                             {
                                 id: "mwcr7atzbca",
                                 title: "Grado Medio de administración de sistemas",
                                 school: "CESF",
-                                currentStudiesing: false,
-                                startDate: moment('Wed Sep 21 2016 00:00:00 GMT+0200'),
-                                endDate: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
+                                current_studing: false,
+                                start_date: moment('Wed Sep 21 2016 00:00:00 GMT+0200'),
+                                end_date: moment('Thu Jun 21 2018 00:00:00 GMT+0200'),
                                 description: "En esta escuela aprendi todo lo relacionado con la administración de sistemas informaticos",
                             }
                         ],

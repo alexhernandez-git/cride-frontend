@@ -6,9 +6,13 @@ from rest_framework import serializers
 # Models
 from cride.users.models import Profile
 
+# Serializers
+from cride.utils.serializers import LanguageModelSerializer
+
 
 class ProfileModelSerializer(serializers.ModelSerializer):
     """Profile model serializer."""
+    language = LanguageModelSerializer()
 
     class Meta:
         """Meta class."""
@@ -16,13 +20,31 @@ class ProfileModelSerializer(serializers.ModelSerializer):
         model = Profile
         fields = (
             'picture',
-            'biography',
-            'rides_taken',
-            'rides_offered',
-            'reputation'
+            'birth_date',
+            'classes_buyed',
+            'is_teacher',
+            'language',
+            'country'
         )
         read_only_fields = (
-            'rides_taken',
-            'rides_offered',
-            'reputation'
+            'classes_buyed',
+        )
+
+
+class UpdateProfileModelSerializer(serializers.ModelSerializer):
+    """Profile model serializer."""
+    class Meta:
+        """Meta class."""
+
+        model = Profile
+        fields = (
+            'picture',
+            'birth_date',
+            'classes_buyed',
+            'is_teacher',
+            'language',
+            'country'
+        )
+        read_only_fields = (
+            'classes_buyed',
         )

@@ -8,6 +8,7 @@ import {
 import { AppContext } from 'src/context/AppContext';
 const FilterBar = (props) => {
     const appContext = useContext(AppContext)
+
     const [search, setSearch] = useState(useParams().id)
     useEffect(() => {
         appContext.setSearch(search)
@@ -54,10 +55,10 @@ const FilterBar = (props) => {
     return (
         <div className="filter-bar shadow">
             <div className="container pt-3 pb-3">
-                {search ?
+                {useParams().id !== undefined ?
                     <>
                         <div className="text-dark font-weight-light pb-1">
-                            <span className="h5 font-weight-normal">32</span> resultados para <span className="h5 font-weight-normal">{appContext.search}</span>
+                            <span className="h5 font-weight-normal">32</span> resultados para <span className="h5 font-weight-normal">{useParams().id}</span>
                         </div>
                     </>
 

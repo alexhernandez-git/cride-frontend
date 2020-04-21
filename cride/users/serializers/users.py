@@ -12,11 +12,12 @@ from rest_framework.authtoken.models import Token
 from rest_framework.validators import UniqueValidator
 
 # Models
-from cride.users.models import Profile
-from cride.users.models import User
+from cride.users.models import Profile, User, Teacher
+
 
 # Serializers
 from cride.users.serializers.profiles import ProfileModelSerializer
+from cride.users.serializers.teachers import TeacherModelSerializer
 
 # Tasks
 from cride.taskapp.tasks import send_confirmation_email
@@ -29,19 +30,27 @@ class UserModelSerializer(serializers.ModelSerializer):
     """User model serializer."""
 
     profile = ProfileModelSerializer(read_only=True)
+    teacher = TeacherModelSerializer(read_only=True)
 
     class Meta:
         """Meta class."""
 
         model = User
         fields = (
+            'pk',
             'username',
             'first_name',
             'last_name',
             'email',
             'phone_number',
             'is_staff',
-            'profile'
+            'profile',
+            'teacher'
+        )
+
+        read_only_fields = (
+            'pk',
+            'username',
         )
 
 
@@ -56,11 +65,10 @@ class UserSignUpSerializer(serializers.Serializer):
         ]
     )
     username = serializers.CharField(
-        min_length=4,
-        max_length=20,
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        # min_length=4,
+        # max_length=20,
+        # validators=[UniqueValidator(queryset=User.objects.all())]
     )
-
     # Phone number
     phone_regex = RegexValidator(
         regex=r'\+?1?\d{9,15}$',
@@ -88,8 +96,9 @@ class UserSignUpSerializer(serializers.Serializer):
     def create(self, data):
         """Handle user and profile creation."""
         data.pop('password_confirmation')
-        user = User.objects.create_user(**data, is_verified=False, is_client=True)
+        user = User.objects.create_user(**data, is_verified=True, is_client=True)
         profile = Profile.objects.create(user=user)
+        teacher = Teacher.objects.create(user=user)
         send_confirmation_email.delay(user_pk=user.pk)
         return user
 

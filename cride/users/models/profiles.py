@@ -4,10 +4,10 @@
 from django.db import models
 
 # Utilities
-from cride.utils.models import MRideModel
+from cride.utils.models import CLineModel
 
 
-class Profile(MRideModel):
+class Profile(CLineModel):
     """Profile model.
     A profile holds a user's public data like biography, picture,
     and statistics.
@@ -21,15 +21,17 @@ class Profile(MRideModel):
         blank=True,
         null=True
     )
-    biography = models.TextField(max_length=500, blank=True)
+    # biography = models.TextField(max_length=500, blank=True)
+
+    birth_date = models.DateTimeField(blank=True, null=True)
 
     # Stats
-    rides_taken = models.PositiveIntegerField(default=0)
-    rides_offered = models.PositiveIntegerField(default=0)
-    reputation = models.FloatField(
-        default=5.0,
-        help_text="User's reputation based on the rides taken and offered."
-    )
+    classes_buyed = models.PositiveIntegerField(default=0)
+    is_teacher = models.BooleanField(default=False)
+
+    language = models.OneToOneField('utils.Language', on_delete=models.CASCADE, blank=True, null=True)
+
+    country = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         """Return user's str representation."""

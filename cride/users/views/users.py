@@ -15,7 +15,8 @@ from rest_framework.permissions import (
 from cride.users.permissions import IsAccountOwner
 
 # Serializers
-from cride.users.serializers.profiles import ProfileModelSerializer
+from cride.users.serializers.profiles import ProfileModelSerializer, UpdateProfileModelSerializer
+from cride.users.serializers.teachers import TeacherModelSerializer
 from cride.users.serializers import (
     UserLoginSerializer,
     UserModelSerializer,
@@ -39,7 +40,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
 
     queryset = User.objects.filter(is_active=True, is_client=True)
     serializer_class = UserModelSerializer
-    lookup_field = 'username'
+    lookup_field = 'pk'
 
     def get_permissions(self):
         """Assign permissions based on action."""
@@ -68,6 +69,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     @action(detail=False, methods=['post'])
     def signup(self, request):
         """User sign up."""
+        request.data['username'] = '{} {}'.format(request.data['first_name'], request.data['last_name'])
         serializer = UserSignUpSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
@@ -87,9 +89,10 @@ class UserViewSet(mixins.RetrieveModelMixin,
     def profile(self, request, *args, **kwargs):
         """Update profile data."""
         user = self.get_object()
+
         profile = user.profile
         partial = request.method == 'PATCH'
-        serializer = ProfileModelSerializer(
+        serializer = UpdateProfileModelSerializer(
             profile,
             data=request.data,
             partial=partial
@@ -97,6 +100,39 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         data = UserModelSerializer(user).data
+        return Response(data)
+
+    @action(detail=True, methods=['put', 'patch'])
+    def teacher(self, request, *args, **kwargs):
+        """Update profile data."""
+        user = self.get_object()
+        teacher = user.teacher
+        partial = request.method == 'PATCH'
+        serializer = TeacherModelSerializer(
+            teacher,
+            data=request.data,
+            partial=partial
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = UserModelSerializer(user).data
+        return Response(data)
+
+    @action(detail=False, methods=['get'])
+    def get_profile(self, request, *args, **kwargs):
+        # circles = Circle.objects.filter(
+        #     members=request.user,
+        #     membership__is_active=True
+        # )
+        # invitations = Invitation.objects.filter(
+        #     used_by=request.user,
+        #     used=False
+        # )
+        data = {
+            'user': UserModelSerializer(request.user, many=False).data,
+            # 'circles': CircleModelSerializer(circles, many=True).data,
+            # 'invitations': InvitationsModelSerializer(invitations, many=True).data
+        }
         return Response(data)
 
     def retrieve(self, request, *args, **kwargs):

@@ -27,7 +27,7 @@ export default function TeachersZone() {
                                 <>
                                     <div>
                                         <div className="bg-gradient-green border-0 text-white text-center cursor-no-ponter py-2 px-4 w-100"
-                                        >Activar cuenta del profesor</div>
+                                        >Activa cuenta del profesor, para dar classes en ClassLine</div>
                                     </div>
 
                                 </>

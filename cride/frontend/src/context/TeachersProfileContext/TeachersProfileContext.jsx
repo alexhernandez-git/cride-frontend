@@ -39,6 +39,7 @@ export const TeachersProfileProvider = ({ children, id }) => {
                         name: 'Alex',
                         surname: 'Hernandez',
                         email: 'alex@gmail.com',
+                        phone_number: '543534543',
                         profile: {
                             picture: '../../../static/assets/img/profile-blank.png'
                         },
