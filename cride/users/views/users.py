@@ -15,8 +15,9 @@ from rest_framework.permissions import (
 from cride.users.permissions import IsAccountOwner
 
 # Serializers
-from cride.users.serializers.profiles import ProfileModelSerializer, UpdateProfileModelSerializer
+from cride.users.serializers.profiles import ProfileModelSerializer
 from cride.users.serializers.teachers import TeacherModelSerializer
+from cride.users.serializers.prices import PriceModelSerializer
 from cride.users.serializers import (
     UserLoginSerializer,
     UserModelSerializer,
@@ -92,7 +93,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
 
         profile = user.profile
         partial = request.method == 'PATCH'
-        serializer = UpdateProfileModelSerializer(
+        serializer = ProfileModelSerializer(
             profile,
             data=request.data,
             partial=partial

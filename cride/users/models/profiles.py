@@ -27,11 +27,12 @@ class Profile(CLineModel):
 
     # Stats
     classes_buyed = models.PositiveIntegerField(default=0)
+
     is_teacher = models.BooleanField(default=False)
 
-    language = models.OneToOneField('utils.Language', on_delete=models.CASCADE, blank=True, null=True)
+    language = models.CharField(max_length=20, blank=True, null=True)
 
-    country = models.OneToOneField('utils.Country', on_delete=models.CASCADE, blank=True, null=True)
+    country = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         """Return user's str representation."""

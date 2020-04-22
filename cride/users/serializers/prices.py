@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import Price
+from cride.users.models import ClassPrice
 
 
 class PriceModelSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class PriceModelSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class."""
 
-        model = Price
+        model = ClassPrice
         fields = (
             'value',
             'type',

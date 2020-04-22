@@ -16,10 +16,14 @@ class Teacher(CLineModel):
         default=0.0,
         help_text="Teacher's reputation based on the rides taken and offered."
     )
+
     presentation = models.TextField(max_length=500, blank=True)
+
     video_presentation = models.FileField(
         'profile video',
         upload_to='users/videos/',
         blank=True,
         null=True
     )
+
+    class_price = models.OneToOneField('users.ClassPrice', on_delete=models.CASCADE, blank=True, null=True)

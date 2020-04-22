@@ -35,21 +35,15 @@ export const AppProvider = ({ children }) => {
                         classes_buyed: 5,
                         is_teacher: false,
                         birth_date: '',
-                        country: {
-                            label: "Spain", value: "ES"
-                        },
-                        language: {
-                            value: "es",
-                            label: "Spanish; Castilian",
-                            nativeName: "español, castellano"
-                        },
+                        country: "es",
+                        language: "es"
                     },
                     teacher: {
                         rating: 4.7,
                         class_price: {
-                            label: "24.99$ por clase",
                             value: 24.99,
-                            type: "usd"
+                            type: "usd",
+                            level: 2
                         },
                         presentation: 'Hola me llamo Alex Hernandez y soy programador fullstack con amplios conocimientos de HTML, CSS, JavaScript, React, PHP, Python, Django, MySQL, Postgresql, Ubuntu, etc...',
                         video_presentation: 'https://www.youtube.com/embed/l0s6ZLkV-U0',

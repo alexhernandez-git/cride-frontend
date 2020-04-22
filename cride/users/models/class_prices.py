@@ -7,7 +7,7 @@ from django.db import models
 from cride.utils.models import CLineModel
 
 
-class Price(CLineModel):
+class ClassPrice(CLineModel):
     """Teacher price model.
     A profile holds a user's public data like biography, picture,
     and statistics.
