@@ -35,8 +35,14 @@ export const AppProvider = ({ children }) => {
                         classes_buyed: 5,
                         is_teacher: false,
                         birth_date: '',
-                        country: 'ES',
-                        language: "es",
+                        country: {
+                            label: "Spain", value: "ES"
+                        },
+                        language: {
+                            value: "es",
+                            label: "Spanish; Castilian",
+                            nativeName: "español, castellano"
+                        },
                     },
                     teacher: {
                         rating: 4.7,

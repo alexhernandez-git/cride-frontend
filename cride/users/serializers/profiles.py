@@ -7,12 +7,13 @@ from rest_framework import serializers
 from cride.users.models import Profile
 
 # Serializers
-from cride.utils.serializers import LanguageModelSerializer
+from cride.utils.serializers import LanguageModelSerializer, CountryModelSerializer
 
 
 class ProfileModelSerializer(serializers.ModelSerializer):
     """Profile model serializer."""
     language = LanguageModelSerializer()
+    country = CountryModelSerializer()
 
     class Meta:
         """Meta class."""
