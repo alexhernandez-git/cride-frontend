@@ -37,7 +37,7 @@ class UserModelSerializer(serializers.ModelSerializer):
 
         model = User
         fields = (
-            'pk',
+            'id',
             'username',
             'first_name',
             'last_name',
@@ -49,7 +49,7 @@ class UserModelSerializer(serializers.ModelSerializer):
         )
 
         read_only_fields = (
-            'pk',
+            'id',
             'username',
         )
 

@@ -1,6 +1,14 @@
 """Users views."""
 
 # Django REST Framework
+from cride.users.models import User
+from cride.users.serializers import (
+    UserLoginSerializer,
+    UserModelSerializer,
+    UserSignUpSerializer,
+    AccountVerificationSerializer,
+
+)
 from rest_framework import status, viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.views import APIView
@@ -18,16 +26,10 @@ from cride.users.permissions import IsAccountOwner
 from cride.users.serializers.profiles import ProfileModelSerializer
 from cride.users.serializers.teachers import TeacherModelSerializer
 from cride.users.serializers.prices import PriceModelSerializer
-from cride.users.serializers import (
-    UserLoginSerializer,
-    UserModelSerializer,
-    UserSignUpSerializer,
-    AccountVerificationSerializer,
+from cride.users.serializers.teaches import TeachModelSerializer
 
-)
 
 # Models
-from cride.users.models import User
 
 
 class UserViewSet(mixins.RetrieveModelMixin,
@@ -86,16 +88,31 @@ class UserViewSet(mixins.RetrieveModelMixin,
         data = {'message': 'Congratulations, now go share some rides!'}
         return Response(data, status=status.HTTP_200_OK)
 
-    @action(detail=True, methods=['put', 'patch'])
+    @action(detail=False, methods=['put', 'patch'])
     def profile(self, request, *args, **kwargs):
         """Update profile data."""
-        user = self.get_object()
-
+        user = request.user
         profile = user.profile
         partial = request.method == 'PATCH'
         serializer = ProfileModelSerializer(
             profile,
             data=request.data,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        data = UserModelSerializer(user).data
+        return Response(data)
+
+    @action(detail=False, methods=['put', 'patch'])
+    def teacher(self, request, *args, **kwargs):
+        """Update profile data."""
+        user = request.user
+        teacher = user.teacher
+        partial = request.method == 'PATCH'
+        serializer = TeacherModelSerializer(
+            teacher,
+            data=request.data,
+            context={'teaches': request.data.get('teaches')},
             partial=partial
         )
         serializer.is_valid(raise_exception=True)
@@ -103,20 +120,18 @@ class UserViewSet(mixins.RetrieveModelMixin,
         data = UserModelSerializer(user).data
         return Response(data)
 
-    @action(detail=True, methods=['put', 'patch'])
-    def teacher(self, request, *args, **kwargs):
+    @action(detail=False, methods=['post'])
+    def add_teaches(self, request, *args, **kwargs):
         """Update profile data."""
-        user = self.get_object()
-        teacher = user.teacher
-        partial = request.method == 'PATCH'
-        serializer = TeacherModelSerializer(
-            teacher,
+        teacher = request.user.teacher
+        serializer = TeachModelSerializer(
             data=request.data,
-            partial=partial
+            context={'teacher': teacher},
+            many=True
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        data = UserModelSerializer(user).data
+        data = TeachModelSerializer(teacher.teaches, many=True).data
         return Response(data)
 
     @action(detail=False, methods=['get'])
