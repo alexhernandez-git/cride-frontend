@@ -23,8 +23,3 @@ class TeachModelSerializer(serializers.ModelSerializer):
             'id',
             'username',
         )
-
-    # def create(self, data):
-
-    #     import pdb
-    #     pdb.set_trace()

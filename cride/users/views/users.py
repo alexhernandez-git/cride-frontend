@@ -49,7 +49,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         """Assign permissions based on action."""
         if self.action in ['signup', 'login', 'verify']:
             permissions = [AllowAny]
-        elif self.action in ['update', 'update', 'partial_update']:
+        elif self.action in ['update', 'delete', 'partial_update']:
             permissions = [IsAuthenticated, IsAccountOwner]
         elif self.action == 'list':
             permissions = [IsAuthenticated, IsAdminUser]

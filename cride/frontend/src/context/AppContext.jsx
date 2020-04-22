@@ -65,16 +65,12 @@ export const AppProvider = ({ children }) => {
                             {
                                 id: "wcppkede79c",
                                 language_value: "hr",
-                                language_label: "Croatian",
                                 level_value: "b1",
-                                level_label: "B1, Usuario independiente",
                             },
                             {
                                 id: "ar44m6450dl",
                                 language_value: "es",
-                                language_label: "Spanish; Castilian",
                                 level_value: "b1",
-                                level_label: "B1, Usuario independiente",
                             }
                         ],
                         skills: [

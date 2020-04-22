@@ -4,17 +4,19 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import Teacher, ClassPrice, Teach
+from cride.users.models import Teacher, ClassPrice, Teach, Language
 
 # Serializes
 from .prices import PriceModelSerializer
 from .teaches import TeachModelSerializer
+from .languages import LanguageModelSerializer
 
 
 class TeacherModelSerializer(serializers.ModelSerializer):
     """Profile model serializer."""
     class_price = PriceModelSerializer()
     teaches = serializers.SerializerMethodField()
+    languages = serializers.SerializerMethodField()
 
     class Meta:
         """Meta class."""
@@ -25,7 +27,8 @@ class TeacherModelSerializer(serializers.ModelSerializer):
             'presentation',
             'video_presentation',
             'class_price',
-            'teaches'
+            'teaches',
+            'languages'
         )
         read_only_fields = (
             'rating',
@@ -34,6 +37,10 @@ class TeacherModelSerializer(serializers.ModelSerializer):
     def get_teaches(self, obj):
         teaches = Teach.objects.filter(teacher_id=obj.id)
         return TeachModelSerializer(teaches, many=True).data
+
+    def get_languages(self, obj):
+        language = Language.objects.filter(teacher_id=obj.id)
+        return LanguageModelSerializer(language, many=True).data
 
     def update(self, instance, validated_data):
 
