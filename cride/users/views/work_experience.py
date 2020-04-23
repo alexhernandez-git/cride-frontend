@@ -1,7 +1,7 @@
-"""Users views."""
+"""Work experience views."""
 
 # Django REST Framework
-from cride.users.models import Language
+from cride.users.models import WorkExperience
 from cride.users.serializers import (
     UserLoginSerializer,
     UserModelSerializer,
@@ -20,24 +20,25 @@ from rest_framework.permissions import (
     IsAuthenticated,
     IsAdminUser
 )
-from cride.users.permissions import IsTeacherOwner
+from cride.users.permissions import IsAccountOwner, IsTeacherOwner
 
 # Serializers
-from cride.users.serializers import LanguageModelSerializer
+from cride.users.serializers import WorkExperienceModelSerializer
 
 
 # Models
 
 
-class LanguageViewSet(mixins.CreateModelMixin,
-                      mixins.DestroyModelMixin,
-                      viewsets.GenericViewSet):
+class WorkExperienceViewSet(mixins.CreateModelMixin,
+                            mixins.DestroyModelMixin,
+                            mixins.UpdateModelMixin,
+                            viewsets.GenericViewSet):
     """User view set.
 
     Handle sign up, login and account verification.
     """
-    queryset = Language.objects.all()
-    serializer_class = LanguageModelSerializer
+    queryset = WorkExperience.objects.all()
+    serializer_class = WorkExperienceModelSerializer
     lookup_field = 'pk'
 
     def get_permissions(self):

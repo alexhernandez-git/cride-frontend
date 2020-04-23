@@ -5,6 +5,7 @@ from cride.users.models import User
 from cride.users.serializers import (
     UserLoginSerializer,
     UserModelSerializer,
+    UserWithoutTeacherModelSerializer,
     UserSignUpSerializer,
     AccountVerificationSerializer,
 
@@ -64,7 +65,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.is_valid(raise_exception=True)
         user, token = serializer.save()
         data = {
-            'user': UserModelSerializer(user).data,
+            'user': UserWithoutTeacherModelSerializer(user).data,
             'access_token': token,
         }
         return Response(data, status=status.HTTP_201_CREATED)
@@ -76,7 +77,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer = UserSignUpSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        data = UserModelSerializer(user).data
+        data = UserWithoutTeacherModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['post'])
@@ -100,7 +101,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        data = UserModelSerializer(user).data
+        data = UserWithoutTeacherModelSerializer(user).data
         return Response(data)
 
     @action(detail=False, methods=['put', 'patch'])

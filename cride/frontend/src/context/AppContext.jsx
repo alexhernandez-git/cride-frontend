@@ -143,7 +143,7 @@ export const AppProvider = ({ children }) => {
                         ratings: [
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -153,7 +153,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -163,7 +163,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -173,7 +173,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -183,7 +183,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -193,7 +193,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -203,7 +203,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -213,7 +213,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -223,7 +223,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
@@ -233,7 +233,7 @@ export const AppProvider = ({ children }) => {
                             },
                             {
                                 id: Math.random().toString(36).substr(2),
-                                user: {
+                                rating_user: {
                                     name: 'Paco',
                                     surname: 'De la Cruz'
                                 },
