@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import Language
+from cride.teachers.models import Language
 
 
 class LanguageModelSerializer(serializers.ModelSerializer):

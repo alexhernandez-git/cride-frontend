@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import BusinessHours
+from cride.teachers.models import BusinessHours
 
 from datetime import timedelta
 

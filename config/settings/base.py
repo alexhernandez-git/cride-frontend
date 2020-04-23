@@ -55,7 +55,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'cride.users.apps.UsersAppConfig',
     'cride.frontend.apps.FrontendAppConfig',
-    'cride.utils.apps.UtilsAppConfig'
+    'cride.utils.apps.UtilsAppConfig',
+    'cride.teachers.apps.TeachersAppConfig'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

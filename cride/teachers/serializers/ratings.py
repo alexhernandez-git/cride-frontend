@@ -4,10 +4,10 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import Rating
+from cride.teachers.models import Rating
 
 # Serializers
-from cride.users.serializers import UserWithoutTeacherModelSerializer
+from cride.users.serializers.users import UserWithoutTeacherModelSerializer
 
 
 class RatingModelSerializer(serializers.ModelSerializer):

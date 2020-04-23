@@ -12,11 +12,13 @@ from rest_framework.authtoken.models import Token
 from rest_framework.validators import UniqueValidator
 
 # Models
-from cride.users.models import Profile, User, Teacher
+from cride.users.models import Profile, User
 
+from cride.teachers.models import Teacher
 
 # Serializers
-from cride.users.serializers import ProfileModelSerializer, TeacherModelSerializer
+from cride.users.serializers.profiles import ProfileModelSerializer
+from cride.teachers.serializers.teachers import TeacherModelSerializer
 
 # Tasks
 from cride.taskapp.tasks import send_confirmation_email

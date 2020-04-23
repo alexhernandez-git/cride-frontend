@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import ClassPrice
+from cride.teachers.models import ClassPrice
 
 
 class PriceModelSerializer(serializers.ModelSerializer):

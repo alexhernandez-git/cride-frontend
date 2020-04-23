@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import WorkExperience
+from cride.teachers.models import WorkExperience
 
 
 class WorkExperienceModelSerializer(serializers.ModelSerializer):

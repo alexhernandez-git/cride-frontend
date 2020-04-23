@@ -26,8 +26,8 @@ from cride.users.permissions import IsAccountOwner
 # Serializers
 from cride.users.serializers.profiles import ProfileModelSerializer
 from cride.users.serializers.teachers import TeacherModelSerializer
-from cride.users.serializers.prices import PriceModelSerializer
-from cride.users.serializers.teaches import TeachModelSerializer
+from cride.teachers.serializers.prices import PriceModelSerializer
+from cride.teachers.serializers.teaches import TeachModelSerializer
 
 
 # Models
@@ -119,20 +119,6 @@ class UserViewSet(mixins.RetrieveModelMixin,
         serializer.is_valid(raise_exception=True)
         serializer.save()
         data = UserModelSerializer(user).data
-        return Response(data)
-
-    @action(detail=False, methods=['post'])
-    def add_teaches(self, request, *args, **kwargs):
-        """Update profile data."""
-        teacher = request.user.teacher
-        serializer = TeachModelSerializer(
-            data=request.data,
-            context={'teacher': teacher},
-            many=True
-        )
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        data = TeachModelSerializer(teacher.teaches, many=True).data
         return Response(data)
 
     @action(detail=False, methods=['get'])

@@ -4,7 +4,7 @@
 from rest_framework import serializers
 
 # Models
-from cride.users.models import Teach
+from cride.teachers.models import Teach
 
 
 class TeachModelSerializer(serializers.ModelSerializer):

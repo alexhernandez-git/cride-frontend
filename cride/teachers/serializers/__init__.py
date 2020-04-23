@@ -1,5 +1,3 @@
-from .users import *
-from .profiles import *
 from .skills import *
 from .languages import *
 from .work_experience import *
